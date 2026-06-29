@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#F4E8DE}svg{display:block}</style></head>
+<body>
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9A2F39"/>
+      <stop offset="0.5" stop-color="#82252E"/>
+      <stop offset="1" stop-color="#6E1F27"/>
+    </linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E2BE6B"/>
+      <stop offset="0.5" stop-color="#C99A3F"/>
+      <stop offset="1" stop-color="#A87E2C"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#E8C57A" stop-opacity="0.55"/>
+      <stop offset="0.55" stop-color="#E8C57A" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#E8C57A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <filter id="soft2" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3.2"/>
+    </filter>
+  </defs>
+
+  <!-- canvas -->
+  <rect width="1200" height="600" fill="#F4E8DE"/>
+
+  <!-- warm radial glow behind molecule -->
+  <ellipse cx="800" cy="300" rx="430" ry="320" fill="url(#glow)"/>
+
+  <!-- sweeping energy arc -->
+  <path d="M 540 470 Q 800 110 1090 250" fill="none" stroke="#C99A3F" stroke-width="3" stroke-linecap="round" opacity="0.32" filter="url(#soft2)"/>
+  <path d="M 560 430 Q 820 150 1070 300" fill="none" stroke="#8A2A33" stroke-width="1.4" stroke-linecap="round" opacity="0.28" stroke-dasharray="2 9"/>
+
+  <!-- ===================== MOLECULE NETWORK ===================== -->
+  <g stroke="#8A2A33" stroke-opacity="0.5" stroke-width="2" fill="none" stroke-linecap="round">
+    <!-- hexagon ring (centre 820,310 r70) -->
+    <polygon points="890,310 855,249 785,249 750,310 785,371 855,371" stroke-opacity="0.6"/>
+    <!-- chain into ring from lower-left -->
+    <path d="M 590 446 L 672 410 L 758 366"/>
+    <path d="M 758 366 L 785 371"/>
+    <!-- chain out of ring upper-right -->
+    <path d="M 855 249 L 906 264 L 984 304 L 1056 258"/>
+    <path d="M 890 310 L 984 304"/>
+    <!-- branch lower-right -->
+    <path d="M 855 371 L 906 392 L 996 408"/>
+    <!-- gold accent links -->
+    <path d="M 758 366 L 750 310" stroke="#C99A3F" stroke-opacity="0.55"/>
+    <path d="M 906 264 L 890 310" stroke="#C99A3F" stroke-opacity="0.55"/>
+  </g>
+
+  <!-- glow halos behind key nodes -->
+  <g fill="#E8C57A" opacity="0.55" filter="url(#soft)">
+    <circle cx="820" cy="310" r="22"/>
+    <circle cx="1056" cy="258" r="20"/>
+    <circle cx="590" cy="446" r="14"/>
+    <circle cx="906" cy="264" r="12"/>
+  </g>
+
+  <!-- ring centre node -->
+  <circle cx="820" cy="310" r="13" fill="#C99A3F"/>
+  <circle cx="820" cy="310" r="13" fill="none" stroke="#8A2A33" stroke-opacity="0.35" stroke-width="1.5"/>
+
+  <!-- gold nodes -->
+  <g>
+    <circle cx="590" cy="446" r="8" fill="#C99A3F"/>
+    <circle cx="758" cy="366" r="7" fill="#C99A3F"/>
+    <circle cx="906" cy="264" r="7" fill="#C99A3F"/>
+    <circle cx="1056" cy="258" r="9" fill="#C99A3F"/>
+    <circle cx="996" cy="408" r="6" fill="#C99A3F"/>
+  </g>
+  <!-- maroon outline nodes -->
+  <g fill="#F4E8DE" stroke="#8A2A33" stroke-width="2.4">
+    <circle cx="672" cy="410" r="5.5"/>
+    <circle cx="984" cy="304" r="6"/>
+    <circle cx="906" cy="392" r="5"/>
+  </g>
+  <!-- hexagon vertex dots -->
+  <g fill="#8A2A33">
+    <circle cx="890" cy="310" r="3.4"/>
+    <circle cx="855" cy="249" r="3.4"/>
+    <circle cx="785" cy="249" r="3.4"/>
+    <circle cx="750" cy="310" r="3.4"/>
+    <circle cx="785" cy="371" r="3.4"/>
+    <circle cx="855" cy="371" r="3.4"/>
+  </g>
+  <!-- faint sparkles -->
+  <g fill="#C99A3F" opacity="0.7">
+    <circle cx="1086" cy="178" r="3"/>
+    <circle cx="980" cy="180" r="2"/>
+    <circle cx="690" cy="214" r="2.2"/>
+    <circle cx="1108" cy="356" r="2.2"/>
+  </g>
+
+  <!-- ===================== BOTTLE ===================== -->
+  <g transform="translate(0,-22)">
+  <!-- soft shadow -->
+  <ellipse cx="296" cy="612" rx="150" ry="20" fill="#8A2A33" opacity="0.10" filter="url(#soft)"/>
+
+  <!-- capsules at base -->
+  <g transform="translate(372 566) rotate(28)">
+    <rect x="-34" y="-13" width="68" height="26" rx="13" fill="#F4E8DE" stroke="#C99A3F" stroke-width="1.6"/>
+    <path d="M -34 0 a13 13 0 0 1 13 -13 h21 v26 h-21 a13 13 0 0 1 -13 -13 z" fill="#8A2A33"/>
+  </g>
+  <g transform="translate(410 600) rotate(-14)">
+    <rect x="-28" y="-11" width="56" height="22" rx="11" fill="#F4E8DE" stroke="#C99A3F" stroke-width="1.4"/>
+    <path d="M -28 0 a11 11 0 0 1 11 -11 h17 v22 h-17 a11 11 0 0 1 -11 -11 z" fill="#9A2F39"/>
+  </g>
+
+  <!-- bottle body -->
+  <rect x="170" y="250" width="252" height="350" rx="34" fill="url(#glass)"/>
+  <!-- neck + cap -->
+  <rect x="236" y="214" width="120" height="50" rx="10" fill="#732229"/>
+  <rect x="226" y="180" width="140" height="44" rx="12" fill="url(#cap)"/>
+  <rect x="226" y="180" width="140" height="12" rx="6" fill="#EFD18C" opacity="0.6"/>
+  <!-- glass highlight -->
+  <rect x="192" y="268" width="30" height="306" rx="15" fill="#FFFFFF" opacity="0.12"/>
+  <!-- label -->
+  <rect x="184" y="372" width="224" height="150" rx="10" fill="#FBF4EC"/>
+  <rect x="184" y="372" width="224" height="150" rx="10" fill="none" stroke="#C99A3F" stroke-width="2"/>
+  <!-- label molecule mark -->
+  <g transform="translate(296 416)" stroke="#8A2A33" stroke-width="2.4" fill="none">
+    <polygon points="26,0 13,22 -13,22 -26,0 -13,-22 13,-22"/>
+  </g>
+  <g fill="#C99A3F">
+    <circle cx="296" cy="394" r="3.6"/>
+    <circle cx="270" cy="438" r="3.6"/>
+    <circle cx="322" cy="438" r="3.6"/>
+  </g>
+  <!-- label rule lines (no text) -->
+  <rect x="236" y="470" width="120" height="6" rx="3" fill="#8A2A33" opacity="0.85"/>
+  <rect x="256" y="488" width="80" height="5" rx="2.5" fill="#C99A3F"/>
+  </g>
+</svg>
+</body></html>

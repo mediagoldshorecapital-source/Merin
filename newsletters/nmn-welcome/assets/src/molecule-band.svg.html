@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#FBF4EC}svg{display:block}</style></head>
+<body>
+<svg width="1200" height="220" viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="g" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#E8C57A" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#E8C57A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="b" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5"/></filter>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FBF4EC" stop-opacity="1"/>
+      <stop offset="0.12" stop-color="#FBF4EC" stop-opacity="0"/>
+      <stop offset="0.88" stop-color="#FBF4EC" stop-opacity="0"/>
+      <stop offset="1" stop-color="#FBF4EC" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="220" fill="#FBF4EC"/>
+  <ellipse cx="600" cy="110" rx="360" ry="120" fill="url(#g)"/>
+
+  <!-- spine -->
+  <path d="M 120 110 Q 360 70 600 110 T 1080 110" fill="none" stroke="#8A2A33" stroke-opacity="0.45" stroke-width="2"/>
+
+  <!-- three hexagon rings -->
+  <g stroke="#8A2A33" stroke-width="2.4" fill="none" stroke-opacity="0.7">
+    <polygon points="332,110 316,82 284,82 268,110 284,138 316,138"/>
+    <polygon points="632,110 616,80 584,80 568,110 584,140 616,140"/>
+    <polygon points="932,110 916,82 884,82 868,110 884,138 916,138"/>
+  </g>
+  <!-- link nodes -->
+  <g fill="#F4E8DE" stroke="#8A2A33" stroke-width="2.2">
+    <circle cx="450" cy="100" r="6"/>
+    <circle cx="750" cy="120" r="6"/>
+  </g>
+  <!-- glow + gold centres -->
+  <g fill="#E8C57A" opacity="0.55" filter="url(#b)">
+    <circle cx="300" cy="110" r="16"/><circle cx="600" cy="110" r="16"/><circle cx="900" cy="110" r="16"/>
+  </g>
+  <g fill="#C99A3F">
+    <circle cx="300" cy="110" r="8"/><circle cx="600" cy="110" r="8"/><circle cx="900" cy="110" r="8"/>
+    <circle cx="180" cy="110" r="5"/><circle cx="1020" cy="110" r="5"/>
+  </g>
+  <!-- vertex dots -->
+  <g fill="#8A2A33">
+    <circle cx="332" cy="110" r="2.6"/><circle cx="316" cy="82" r="2.6"/><circle cx="284" cy="82" r="2.6"/><circle cx="268" cy="110" r="2.6"/><circle cx="284" cy="138" r="2.6"/><circle cx="316" cy="138" r="2.6"/>
+    <circle cx="632" cy="110" r="2.6"/><circle cx="616" cy="80" r="2.6"/><circle cx="584" cy="80" r="2.6"/><circle cx="568" cy="110" r="2.6"/><circle cx="584" cy="140" r="2.6"/><circle cx="616" cy="140" r="2.6"/>
+    <circle cx="932" cy="110" r="2.6"/><circle cx="916" cy="82" r="2.6"/><circle cx="884" cy="82" r="2.6"/><circle cx="868" cy="110" r="2.6"/><circle cx="884" cy="138" r="2.6"/><circle cx="916" cy="138" r="2.6"/>
+  </g>
+  <!-- sparkles -->
+  <g fill="#C99A3F" opacity="0.6">
+    <circle cx="500" cy="56" r="2.4"/><circle cx="700" cy="60" r="2"/><circle cx="420" cy="160" r="2"/><circle cx="820" cy="158" r="2.4"/>
+  </g>
+  <!-- edge fade -->
+  <rect width="1200" height="220" fill="url(#fade)"/>
+</svg>
+</body></html>
