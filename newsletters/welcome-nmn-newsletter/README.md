@@ -7,7 +7,11 @@ backdrop — rebuilt as a compliant, email-client-safe HTML newsletter with a "g
 welcome vibe.
 
 ## Files
-- `email.html` — responsive, self-contained HTML email source (mirror this into the Klaviyo template).
+- `email.html` — responsive HTML email source (mirror this into the Klaviyo template).
+- `hero-model.jpg` — the welcome hero photo: the model from the supplied graphic, cropped to her
+  smile and **feathered into the hero gradient** so she blends edge-to-edge with the background
+  (the photo's backdrop *is* the section gradient — lilac at the top, cream at the bottom — so the
+  headline above and the intro/product below flow into it with no visible seam).
 
 ## Look & feel
 - **Palette:** brand violet `#6D388B` / deep violet `#4A2660`, warm cream + sand canvas
@@ -43,10 +47,12 @@ Klaviyo newsletter skill):
 ## Before sending — checklist
 1. **Verify the From address** in Klaviyo — pull the verified `default_sender_email` live
    (`get_account_details`); do not hardcode. `from_label` / footer show **Prime Ingredients** only.
-2. **Drop in the real hosted assets.** The header/footer wordmark and the product label are rendered
-   in HTML/CSS so the file has **no external image dependencies** (nothing to break). For the final
-   send, swap in the **real hosted logo image** and a **hosted NMN bottle photo** (Klaviyo
-   `upload_image_from_url`) — the brand prefers the real logo over a text wordmark.
+2. **Host the images.** The header/footer wordmark and the product label are rendered in HTML/CSS
+   (nothing to break), but the hero photo (`hero-model.jpg`) is a real image and is referenced by a
+   **relative path** — email clients need an absolute `https://` URL, so upload it (Klaviyo
+   `upload_image_from_url`) and replace `src="hero-model.jpg"` with the hosted URL before sending.
+   For the final send you can also swap in the **real hosted logo image** and a **hosted NMN bottle
+   photo** — the brand prefers the real logo over a text wordmark.
 3. **Swap the testimonials.** Carol M. / Dianne R. quotes are illustrative placeholders — replace
    with real verified reviews before sending.
 4. **Send a test** to yourself; check desktop + mobile (Gmail, Apple Mail, Outlook), then
