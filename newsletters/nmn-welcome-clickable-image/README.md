@@ -19,6 +19,11 @@ altered, sliced, or regenerated.**
 
 Both CTA buttons link to the same NMN product page.
 
+## Bulletproof CTA button (below the image)
+A live-text **"Shop NMN"** button → https://tryprimeingredients.com/products/nmn
+is rendered below the image. It uses VML for Outlook desktop, so the call-to-action
+is clickable in **every** client even though Outlook ignores the on-image hotspots.
+
 ## Footer (live text, below the image)
 A small live-text footer is rendered **below** the image so these work in every
 client (including Outlook, which ignores image maps):
