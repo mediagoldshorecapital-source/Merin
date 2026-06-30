@@ -21,8 +21,11 @@
       - "START YOUR ROUTINE" button -> https://tryprimeingredients.com/products/nmn
     Note: image-map coordinates are fixed pixels and align best at the 600px width.
     Some email clients (Outlook desktop) ignore image maps, and mobile rescaling
-    can shift hotspots. The footer links were intentionally left unlinked pending
-    confirmation.
+    can shift hotspots.
+
+    A live-text footer is added BELOW the image so the store link, the unsubscribe
+    link (Klaviyo {% unsubscribe %}), and the physical address work in EVERY email
+    client regardless of image-map support. This keeps the email CAN-SPAM compliant.
   -->
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE9E0;">
     <tr>
@@ -54,5 +57,26 @@
           href="https://tryprimeingredients.com/products/nmn"
           alt="Start your routine" title="Start your routine" target="_blank">
   </map>
+
+  <!-- Live-text footer: guarantees working store + unsubscribe links and a
+       physical address in every email client (image maps can't be relied on). -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE9E0;">
+    <tr>
+      <td align="center" style="padding:18px 24px 28px 24px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
+          <tr>
+            <td align="center" style="font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.7;color:#8A8378;">
+              <a href="https://tryprimeingredients.com" style="color:#8A8378;text-decoration:underline;" target="_blank">Visit our store</a>
+              &nbsp;&middot;&nbsp;
+              <a href="{% unsubscribe %}" style="color:#8A8378;text-decoration:underline;">Unsubscribe</a>
+              <br>
+              {{ organization.name }}<br>
+              {{ organization.full_address }}
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 </body>
 </html>

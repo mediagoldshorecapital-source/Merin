@@ -19,12 +19,18 @@ altered, sliced, or regenerated.**
 
 Both CTA buttons link to the same NMN product page.
 
-## Not yet linked (pending confirmation)
-The footer links shown in the image — `tryprimeingredients.com`, "Visit our
-store", and "Unsubscribe" — are **not** linked yet. Say the word and I'll add
-them (e.g. site/store → homepage, Unsubscribe → Klaviyo `{% unsubscribe %}` tag).
-A linked unsubscribe is typically required for compliance, so confirm how you
-want to handle it before sending.
+## Footer (live text, below the image)
+A small live-text footer is rendered **below** the image so these work in every
+client (including Outlook, which ignores image maps):
+- **Visit our store** → https://tryprimeingredients.com
+- **Unsubscribe** → Klaviyo `{% unsubscribe %}` tag (required for compliance)
+- Physical address → Klaviyo `{{ organization.name }}` / `{{ organization.full_address }}`
+  (auto-filled from your Klaviyo account settings — needed for CAN-SPAM)
+
+The footer links were deliberately **not** placed as in-image hotspots: the
+footer is a single line of three small links, so image-map coordinates there
+would be imprecise and could mis-route an unsubscribe click to the store. The
+live-text footer is the reliable, compliant approach.
 
 ## Known limitations of image maps in email
 - Coordinates are **fixed pixels**, calibrated to the 600px width. They are not
