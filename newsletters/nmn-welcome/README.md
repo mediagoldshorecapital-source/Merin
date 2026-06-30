@@ -1,40 +1,34 @@
 # NMN Welcome — "So glad you're here" (violet)
 
-Hyperlinked, email-safe HTML reproduction of the violet NMN welcome design
-(the attached mockup). Visual layout/copy match the image; the only work added
-here is **working hyperlinks** + a Klaviyo-ready, deliverability-safe build.
+The whole welcome email used **as a single image**, with working links — per the
+instruction to use the entire design image and not rebuild on top of it.
 
-## Klaviyo
-- Template (`TBHuLK`): **NMN Welcome — So Glad You're Here (violet, 2026-06-30)**
-  - Edit/preview: https://www.klaviyo.com/email-editor/TBHuLK/edit
-- Editor type: `CODE` (hand-written, table-based, 600px, inline styles, Outlook-safe).
-- Not attached to a campaign — this is the newsletter template only.
+## Files
+- `assets/nmn-welcome-full.png` — the entire design (457×2000, converted from the
+  supplied render; webp isn't reliable in email so it's PNG).
+- `email.html` — the image used whole as one clickable email. Open it from a repo
+  checkout to preview (it loads the PNG via the relative `assets/` path).
 
-## Links wired (every clickable element)
-| Element | Destination |
+## Links wired
+| Clicked element | Goes to |
 | --- | --- |
-| Header logo | `https://tryprimeingredients.com` |
-| Hero image | `https://tryprimeingredients.com/products/nmn` |
-| **DISCOVER NMN →** button | `https://tryprimeingredients.com/products/nmn` |
-| **START YOUR ROUTINE** button | `https://tryprimeingredients.com/products/nmn` |
-| Footer logo | `https://tryprimeingredients.com` |
-| `tryprimeingredients.com` (footer text) | `https://tryprimeingredients.com` |
-| **Visit our store** | `https://tryprimeingredients.com` |
-| **Unsubscribe** | `{% unsubscribe 'Unsubscribe' %}` (Klaviyo live unsubscribe — verified it renders to a real `<a href>`) |
+| The image (anywhere) | `https://tryprimeingredients.com/products/nmn` |
+| **Visit our store** (live footer) | `https://tryprimeingredients.com` |
+| **Unsubscribe** (live footer) | `{% unsubscribe 'Unsubscribe' %}` (Klaviyo live unsubscribe) |
 
-## Hero image — action needed
-The lifestyle hero (woman holding the NMN bottle + the 3 feature pills) wasn't
-in the Klaviyo asset library, so the `<img>` currently points at a temporary
-on-brand stand-in (`98a8252b…png`). To match the mockup exactly:
-1. Upload your hero photo in Klaviyo (or send a public URL).
-2. Replace the `src` on the `<!-- HERO IMAGE -->` `<img>` (keep its `href` to the PDP).
+> The image has a footer with an "unsubscribe" line baked into the picture — that's
+> just pixels and can't be clicked. The single live footer line beneath the image is
+> the working unsubscribe (legally required, and Klaviyo won't send without it).
 
-The 3 feature pills + intro sit as live HTML directly beneath the hero, so they
-stay editable and don't need to be baked into the photo.
+## Klaviyo — to finish (needs the Klaviyo connector reconnected)
+The Klaviyo connection dropped mid-session, so the image couldn't be hosted on
+Klaviyo's CDN or pushed to the template yet. To finish:
+1. Reconnect the Klaviyo connector (claude.ai connector settings).
+2. The image gets uploaded to Klaviyo (Content → Images) and its hosted URL drops
+   into the template `TBHuLK` in place of the `src` — replacing the earlier
+   HTML build with this single-image version.
 
-## Notes
-- Palette: violet `#6D388B`, deep plum `#4A2463`, lavender tint `#F5F1F8/#F1EAF7`,
-  ink `#2A2A33`, gold stars `#C99A3F` — per `references/brand.md`.
-- Display headings use Georgia (serif) to match the mockup; eyebrows/body/buttons
-  use the Montserrat→Helvetica→Arial stack.
-- Footer carries no postal address and no FDA disclaimer (per brand rule).
+You can also do it by hand right now without waiting: in Klaviyo upload
+`assets/nmn-welcome-full.png` under **Content → Images**, copy its URL, paste it as
+the `<img src="…">` in the email code, and paste the code into the template's CODE
+editor. The `{% unsubscribe %}` tag and the store link are already in place.
