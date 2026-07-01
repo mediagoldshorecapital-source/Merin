@@ -9,7 +9,8 @@ altered, sliced, or regenerated.**
 
 ## Image
 - Source (hosted, used as-is): `https://d3k81ch9hvuctc.cloudfront.net/company/XTxzmw/images/2355ef42-ae0c-46f3-a2f4-055652f11596.png`
-- Displayed at **600px** wide (standard email content width).
+- Intrinsic size: **1360 × 5948 px**. Displayed at **600px** wide (scales to ~2624px tall).
+- Image-map hotspot coordinates are calibrated to the **intrinsic 1360 × 5948** space.
 
 ## Hotspots (confirmed)
 | Region in image | Destination |
@@ -27,6 +28,7 @@ is clickable in **every** client even though Outlook ignores the on-image hotspo
 ## Footer (live text, below the image)
 A small live-text footer is rendered **below** the image so these work in every
 client (including Outlook, which ignores image maps):
+- **tryprimeingredients.com** → https://tryprimeingredients.com
 - **Visit our store** → https://tryprimeingredients.com
 - **Unsubscribe** → Klaviyo `{% unsubscribe %}` tag (required for compliance)
 - Physical address → Klaviyo `{{ organization.name }}` / `{{ organization.full_address }}`

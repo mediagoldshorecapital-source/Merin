@@ -16,12 +16,13 @@
   <!--
     NMN welcome newsletter as a single clickable hero image.
     The image is used EXACTLY as provided (hosted on CloudFront) and is not altered.
-    Clickable hotspots (HTML image map), calibrated to a 600px display width:
+    Clickable hotspots (HTML image map), calibrated to the image's true intrinsic
+    pixel size 1360 x 5948 (area coords live in intrinsic space and scale with the
+    displayed image):
       - "DISCOVER NMN ->"   button  -> https://tryprimeingredients.com/products/nmn
       - "START YOUR ROUTINE" button -> https://tryprimeingredients.com/products/nmn
-    Note: image-map coordinates are fixed pixels and align best at the 600px width.
-    Some email clients (Outlook desktop) ignore image maps, and mobile rescaling
-    can shift hotspots.
+    Note: image maps are ignored by Outlook desktop and some webmail clients, so a
+    live-text CTA button + footer links are also provided below the image.
 
     A live-text footer is added BELOW the image so the store link, the unsubscribe
     link (Klaviyo {% unsubscribe %}), and the physical address work in EVERY email
@@ -36,7 +37,7 @@
               <img
                 src="https://d3k81ch9hvuctc.cloudfront.net/company/XTxzmw/images/2355ef42-ae0c-46f3-a2f4-055652f11596.png"
                 width="600"
-                height="2220"
+                height="2624"
                 alt="So glad you're here. Meet NMN — cellular energy in a single capsule. Discover NMN and start your routine."
                 usemap="#nmnmap"
                 style="display:block;width:600px;max-width:600px;height:auto;">
@@ -48,12 +49,13 @@
   </table>
 
   <map name="nmnmap">
-    <!-- "DISCOVER NMN ->" button -->
-    <area shape="rect" coords="150,945,450,1010"
+    <!-- Coordinates are in the image's intrinsic pixel space: 1360 wide x 5948 tall. -->
+    <!-- "DISCOVER NMN ->" button (~42-46% down) -->
+    <area shape="rect" coords="326,2440,1034,2740"
           href="https://tryprimeingredients.com/products/nmn"
           alt="Discover NMN" title="Discover NMN" target="_blank">
-    <!-- "START YOUR ROUTINE" button -->
-    <area shape="rect" coords="165,2065,435,2135"
+    <!-- "START YOUR ROUTINE" button (~92-96% down) -->
+    <area shape="rect" coords="354,5500,1006,5740"
           href="https://tryprimeingredients.com/products/nmn"
           alt="Start your routine" title="Start your routine" target="_blank">
   </map>
@@ -91,6 +93,8 @@
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
           <tr>
             <td align="center" style="font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.7;color:#8A8378;">
+              <a href="https://tryprimeingredients.com" style="color:#8A8378;text-decoration:underline;" target="_blank">tryprimeingredients.com</a>
+              &nbsp;&middot;&nbsp;
               <a href="https://tryprimeingredients.com" style="color:#8A8378;text-decoration:underline;" target="_blank">Visit our store</a>
               &nbsp;&middot;&nbsp;
               <a href="{% unsubscribe %}" style="color:#8A8378;text-decoration:underline;">Unsubscribe</a>
