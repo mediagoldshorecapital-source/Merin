@@ -24,16 +24,16 @@
   <!--
     NMN welcome newsletter as a single clickable hero image.
     The image is used EXACTLY as provided (hosted on CloudFront) and is not altered.
-    The WHOLE image is wrapped in one link to https://tryprimeingredients.com so a
-    click anywhere on it opens the website. A single wrapping link works in every
-    email client (unlike image maps, which Outlook/Gmail strip).
+    The WHOLE image is wrapped in one link to https://tryprimeingredients.com/products/nmn
+    so a tap anywhere on it opens the NMN product page. A single wrapping link works
+    in every email client (unlike image maps, which Outlook/Gmail strip).
 
     Layout is fluid-hybrid: fixed 600px on desktop/Outlook, scales to 100% of the
     screen on mobile so there is no horizontal scroll or pinch-to-zoom.
 
-    The functional footer (store link, Klaviyo {% unsubscribe %}, physical address)
-    is LIVE TEXT below the image and is NOT part of the image link, so an unsubscribe
-    click is never redirected to the site. This keeps the email CAN-SPAM compliant.
+    NOTE: the unsubscribe link was removed at the client's request. A working
+    unsubscribe is legally required and Klaviyo enforces it — ensure the account-level
+    footer/unsubscribe is present before sending.
   -->
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE9E0;">
     <tr>
@@ -41,7 +41,7 @@
         <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;">
           <tr>
             <td align="center" style="padding:0;font-size:0;line-height:0;">
-              <a href="https://tryprimeingredients.com" target="_blank" style="text-decoration:none;">
+              <a href="https://tryprimeingredients.com/products/nmn" target="_blank" style="text-decoration:none;">
                 <img
                   src="https://d3k81ch9hvuctc.cloudfront.net/company/XTxzmw/images/2355ef42-ae0c-46f3-a2f4-055652f11596.png"
                   width="600"
@@ -93,8 +93,6 @@
               <a href="https://tryprimeingredients.com" style="color:#8A8378;text-decoration:underline;" target="_blank">tryprimeingredients.com</a>
               &nbsp;&middot;&nbsp;
               <a href="https://tryprimeingredients.com" style="color:#8A8378;text-decoration:underline;" target="_blank">Visit our store</a>
-              &nbsp;&middot;&nbsp;
-              <a href="{% unsubscribe %}" style="color:#8A8378;text-decoration:underline;">Unsubscribe</a>
               <br>
               {{ organization.name }}<br>
               {{ organization.full_address }}

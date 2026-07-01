@@ -20,8 +20,8 @@ footer text to 13px for readability. Requires the `<meta name="viewport">` tag
 (included).
 
 ## Link behavior
-The **entire image** is wrapped in a single link to **https://tryprimeingredients.com**,
-so a click anywhere on it opens the website. A single wrapping link is reliable in
+The **entire image** is wrapped in a single link to **https://tryprimeingredients.com/products/nmn**,
+so a tap anywhere on it opens the NMN product page. A single wrapping link is reliable in
 every email client (Apple Mail, Gmail, Outlook, mobile) — unlike HTML image maps,
 which Outlook desktop and much of Gmail strip.
 
@@ -41,18 +41,16 @@ is rendered below the image. It uses VML for Outlook desktop, so the call-to-act
 is clickable in **every** client even though Outlook ignores the on-image hotspots.
 
 ## Footer (live text, below the image)
-A small live-text footer is rendered **below** the image so these work in every
-client (including Outlook, which ignores image maps):
+A small live-text footer is rendered **below** the image:
 - **tryprimeingredients.com** → https://tryprimeingredients.com
 - **Visit our store** → https://tryprimeingredients.com
-- **Unsubscribe** → Klaviyo `{% unsubscribe %}` tag (required for compliance)
 - Physical address → Klaviyo `{{ organization.name }}` / `{{ organization.full_address }}`
-  (auto-filled from your Klaviyo account settings — needed for CAN-SPAM)
+  (auto-filled from your Klaviyo account settings)
 
-The footer links were deliberately **not** placed as in-image hotspots: the
-footer is a single line of three small links, so image-map coordinates there
-would be imprecise and could mis-route an unsubscribe click to the store. The
-live-text footer is the reliable, compliant approach.
+**Unsubscribe was removed at the client's request.** A working unsubscribe link is
+legally required (CAN-SPAM/CASL/GDPR) and Klaviyo enforces it — Klaviyo will either
+block the send or auto-append its own unsubscribe/footer. Ensure the account-level
+footer/unsubscribe is configured before sending.
 
 ## History
 Earlier versions used an HTML image map to make individual on-image buttons
