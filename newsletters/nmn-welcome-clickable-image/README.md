@@ -12,13 +12,21 @@ altered, sliced, or regenerated.**
 - Intrinsic size: **1360 × 5948 px**. Displayed at **600px** wide (scales to ~2624px tall).
 - Image-map hotspot coordinates are calibrated to the **intrinsic 1360 × 5948** space.
 
-## Hotspots (confirmed)
-| Region in image | Destination |
-|---|---|
-| "DISCOVER NMN →" button | https://tryprimeingredients.com/products/nmn |
-| "START YOUR ROUTINE" button | https://tryprimeingredients.com/products/nmn |
+## Link behavior
+The **entire image** is wrapped in a single link to **https://tryprimeingredients.com**,
+so a click anywhere on it opens the website. A single wrapping link is reliable in
+every email client (Apple Mail, Gmail, Outlook, mobile) — unlike HTML image maps,
+which Outlook desktop and much of Gmail strip.
 
-Both CTA buttons link to the same NMN product page.
+The reinforcing **"Shop NMN" button** below the image points to the NMN product page
+(`/products/nmn`).
+
+### Why not exclude the header/footer inside the image?
+The newsletter is one flat image. Carving out clickable sub-regions requires an HTML
+image map (unreliable — stripped by Outlook/Gmail) or slicing the image (declined).
+The functional footer (store link, unsubscribe, address) is therefore rendered as
+**live text below the image** and is NOT part of the image link, so an unsubscribe
+click is never redirected to the site.
 
 ## Bulletproof CTA button (below the image)
 A live-text **"Shop NMN"** button → https://tryprimeingredients.com/products/nmn
@@ -39,15 +47,10 @@ footer is a single line of three small links, so image-map coordinates there
 would be imprecise and could mis-route an unsubscribe click to the store. The
 live-text footer is the reliable, compliant approach.
 
-## Known limitations of image maps in email
-- Coordinates are **fixed pixels**, calibrated to the 600px width. They are not
-  responsive — if a client rescales the image (common on mobile), hotspots can
-  drift.
-- **Outlook desktop** ignores image maps entirely (the image shows but isn't
-  clickable).
-- Hotspot vertical positions were estimated because the source host is blocked
-  in this environment (couldn't auto-measure the file). If a button click misses,
-  the `coords` in `email.html` may need a small nudge.
+## History
+Earlier versions used an HTML image map to make individual on-image buttons
+clickable. Those proved unreliable (Outlook/Gmail strip image maps), so the design
+was switched to a single wrapping link over the whole image, which works everywhere.
 
 ## Klaviyo
 Nothing has been pushed to Klaviyo. Ask before importing/sending.

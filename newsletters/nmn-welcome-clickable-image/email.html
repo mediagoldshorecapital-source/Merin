@@ -16,17 +16,13 @@
   <!--
     NMN welcome newsletter as a single clickable hero image.
     The image is used EXACTLY as provided (hosted on CloudFront) and is not altered.
-    Clickable hotspots (HTML image map), calibrated to the image's true intrinsic
-    pixel size 1360 x 5948 (area coords live in intrinsic space and scale with the
-    displayed image):
-      - "DISCOVER NMN ->"   button  -> https://tryprimeingredients.com/products/nmn
-      - "START YOUR ROUTINE" button -> https://tryprimeingredients.com/products/nmn
-    Note: image maps are ignored by Outlook desktop and some webmail clients, so a
-    live-text CTA button + footer links are also provided below the image.
+    The WHOLE image is wrapped in one link to https://tryprimeingredients.com so a
+    click anywhere on it opens the website. A single wrapping link works in every
+    email client (unlike image maps, which Outlook/Gmail strip).
 
-    A live-text footer is added BELOW the image so the store link, the unsubscribe
-    link (Klaviyo {% unsubscribe %}), and the physical address work in EVERY email
-    client regardless of image-map support. This keeps the email CAN-SPAM compliant.
+    The functional footer (store link, Klaviyo {% unsubscribe %}, physical address)
+    is LIVE TEXT below the image and is NOT part of the image link, so an unsubscribe
+    click is never redirected to the site. This keeps the email CAN-SPAM compliant.
   -->
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE9E0;">
     <tr>
@@ -34,13 +30,14 @@
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
           <tr>
             <td align="center" style="padding:0;font-size:0;line-height:0;">
-              <img
-                src="https://d3k81ch9hvuctc.cloudfront.net/company/XTxzmw/images/2355ef42-ae0c-46f3-a2f4-055652f11596.png"
-                width="600"
-                height="2624"
-                alt="So glad you're here. Meet NMN — cellular energy in a single capsule. Discover NMN and start your routine."
-                usemap="#nmnmap"
-                style="display:block;width:600px;max-width:600px;height:auto;">
+              <a href="https://tryprimeingredients.com" target="_blank" style="text-decoration:none;">
+                <img
+                  src="https://d3k81ch9hvuctc.cloudfront.net/company/XTxzmw/images/2355ef42-ae0c-46f3-a2f4-055652f11596.png"
+                  width="600"
+                  height="2624"
+                  alt="So glad you're here. Meet NMN — cellular energy in a single capsule. Discover NMN and start your routine."
+                  style="display:block;width:600px;max-width:600px;height:auto;border:0;">
+              </a>
             </td>
           </tr>
         </table>
@@ -48,20 +45,8 @@
     </tr>
   </table>
 
-  <map name="nmnmap">
-    <!-- Coordinates are in the image's intrinsic pixel space: 1360 wide x 5948 tall. -->
-    <!-- "DISCOVER NMN ->" button (~42-46% down) -->
-    <area shape="rect" coords="326,2440,1034,2740"
-          href="https://tryprimeingredients.com/products/nmn"
-          alt="Discover NMN" title="Discover NMN" target="_blank">
-    <!-- "START YOUR ROUTINE" button (~92-96% down) -->
-    <area shape="rect" coords="354,5500,1006,5740"
-          href="https://tryprimeingredients.com/products/nmn"
-          alt="Start your routine" title="Start your routine" target="_blank">
-  </map>
-
-  <!-- Bulletproof CTA button (works in Outlook too, where image maps are ignored).
-       Mirrors the on-image "Discover NMN" / "Start your routine" buttons. -->
+  <!-- Bulletproof CTA button (reinforces the call-to-action; the whole image above
+       already links to the site). -->
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE9E0;">
     <tr>
       <td align="center" style="padding:24px 24px 8px 24px;">
