@@ -9,8 +9,15 @@ altered, sliced, or regenerated.**
 
 ## Image
 - Source (hosted, used as-is): `https://d3k81ch9hvuctc.cloudfront.net/company/XTxzmw/images/2355ef42-ae0c-46f3-a2f4-055652f11596.png`
-- Intrinsic size: **1360 × 5948 px**. Displayed at **600px** wide (scales to ~2624px tall).
-- Image-map hotspot coordinates are calibrated to the **intrinsic 1360 × 5948** space.
+- Intrinsic size: **1360 × 5948 px**. Displayed at **600px** wide on desktop.
+
+## Mobile / responsive
+Fluid-hybrid layout: fixed **600px** on desktop and Outlook, but the image, button,
+and footer scale to **100% of the screen width** on phones (no horizontal scroll or
+pinch-to-zoom). This is done with `width:100%;max-width:600px;height:auto` on the
+image + containers, plus a `@media (max-width:600px)` block that also bumps the
+footer text to 13px for readability. Requires the `<meta name="viewport">` tag
+(included).
 
 ## Link behavior
 The **entire image** is wrapped in a single link to **https://tryprimeingredients.com**,

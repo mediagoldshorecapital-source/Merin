@@ -4,12 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting">
   <title>So glad you're here — NMN Welcome</title>
   <style>
-    body { margin:0; padding:0; background-color:#EFE9E0; -webkit-text-size-adjust:100%; }
+    body { margin:0; padding:0; background-color:#EFE9E0; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
     img { border:0; line-height:100%; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; display:block; }
-    table { border-collapse:collapse; }
+    table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
     a { text-decoration:none; }
+    /* Mobile: let everything scale to the screen width */
+    @media only screen and (max-width:600px) {
+      .container { width:100% !important; max-width:100% !important; }
+      .hero-img { width:100% !important; height:auto !important; }
+      .footer-text { font-size:13px !important; }
+      .btn-pad { padding-left:16px !important; padding-right:16px !important; }
+    }
   </style>
 </head>
 <body>
@@ -20,6 +28,9 @@
     click anywhere on it opens the website. A single wrapping link works in every
     email client (unlike image maps, which Outlook/Gmail strip).
 
+    Layout is fluid-hybrid: fixed 600px on desktop/Outlook, scales to 100% of the
+    screen on mobile so there is no horizontal scroll or pinch-to-zoom.
+
     The functional footer (store link, Klaviyo {% unsubscribe %}, physical address)
     is LIVE TEXT below the image and is NOT part of the image link, so an unsubscribe
     click is never redirected to the site. This keeps the email CAN-SPAM compliant.
@@ -27,7 +38,7 @@
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE9E0;">
     <tr>
       <td align="center" style="padding:0;">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
+        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;">
           <tr>
             <td align="center" style="padding:0;font-size:0;line-height:0;">
               <a href="https://tryprimeingredients.com" target="_blank" style="text-decoration:none;">
@@ -35,8 +46,9 @@
                   src="https://d3k81ch9hvuctc.cloudfront.net/company/XTxzmw/images/2355ef42-ae0c-46f3-a2f4-055652f11596.png"
                   width="600"
                   height="2624"
-                  alt="So glad you're here. Meet NMN — cellular energy in a single capsule. Discover NMN and start your routine."
-                  style="display:block;width:600px;max-width:600px;height:auto;border:0;">
+                  alt="So glad you're here. Meet NMN — cellular energy in a single capsule."
+                  class="hero-img"
+                  style="display:block;width:100%;max-width:600px;height:auto;border:0;">
               </a>
             </td>
           </tr>
@@ -49,7 +61,7 @@
        already links to the site). -->
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE9E0;">
     <tr>
-      <td align="center" style="padding:24px 24px 8px 24px;">
+      <td align="center" class="btn-pad" style="padding:24px 24px 8px 24px;">
         <!--[if mso]>
         <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://tryprimeingredients.com/products/nmn" style="height:48px;v-text-anchor:middle;width:260px;" arcsize="50%" fillcolor="#4A2D6B" stroke="f">
           <w:anchorlock/>
@@ -61,7 +73,7 @@
           <tr>
             <td align="center" bgcolor="#4A2D6B" style="border-radius:30px;">
               <a href="https://tryprimeingredients.com/products/nmn" target="_blank"
-                 style="display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:15px;letter-spacing:1px;color:#FFFFFF;padding:15px 44px;text-transform:uppercase;border-radius:30px;">Shop NMN</a>
+                 style="display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:15px;letter-spacing:1px;color:#FFFFFF;padding:16px 44px;text-transform:uppercase;border-radius:30px;">Shop NMN</a>
             </td>
           </tr>
         </table>
@@ -71,13 +83,13 @@
   </table>
 
   <!-- Live-text footer: guarantees working store + unsubscribe links and a
-       physical address in every email client (image maps can't be relied on). -->
+       physical address in every email client. -->
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE9E0;">
     <tr>
       <td align="center" style="padding:18px 24px 28px 24px;">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
+        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;">
           <tr>
-            <td align="center" style="font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.7;color:#8A8378;">
+            <td align="center" class="footer-text" style="font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.8;color:#8A8378;">
               <a href="https://tryprimeingredients.com" style="color:#8A8378;text-decoration:underline;" target="_blank">tryprimeingredients.com</a>
               &nbsp;&middot;&nbsp;
               <a href="https://tryprimeingredients.com" style="color:#8A8378;text-decoration:underline;" target="_blank">Visit our store</a>
