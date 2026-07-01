@@ -41,16 +41,12 @@ is rendered below the image. It uses VML for Outlook desktop, so the call-to-act
 is clickable in **every** client even though Outlook ignores the on-image hotspots.
 
 ## Footer (live text, below the image)
-A small live-text footer is rendered **below** the image:
+A small live-text footer is rendered **below** the image so these work in every client:
 - **tryprimeingredients.com** → https://tryprimeingredients.com
 - **Visit our store** → https://tryprimeingredients.com
+- **Unsubscribe** → Klaviyo `{% unsubscribe %}` tag (required for compliance)
 - Physical address → Klaviyo `{{ organization.name }}` / `{{ organization.full_address }}`
-  (auto-filled from your Klaviyo account settings)
-
-**Unsubscribe was removed at the client's request.** A working unsubscribe link is
-legally required (CAN-SPAM/CASL/GDPR) and Klaviyo enforces it — Klaviyo will either
-block the send or auto-append its own unsubscribe/footer. Ensure the account-level
-footer/unsubscribe is configured before sending.
+  (auto-filled from your Klaviyo account settings — needed for CAN-SPAM)
 
 ## History
 Earlier versions used an HTML image map to make individual on-image buttons
