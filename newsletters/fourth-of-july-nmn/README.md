@@ -29,21 +29,13 @@ The featured artwork is referenced directly from its Klaviyo CDN URL
 (`.../5e3bff10-7322-41f8-a800-d95e2d2e5c01.jpeg`), used as-is at 600px wide,
 scaling to 100% on phones.
 
-## The GIF — one step left ⚠️
-The video (`.../01KWHNTPHZANKJTDAXM70HXWR7.mp4`) could not be downloaded from
-inside this coding session: the session's network policy blocks
-`d3k81ch9hvuctc.cloudfront.net` (Klaviyo's CDN). Two ways to finish:
-
-1. **Let the session do it** — in the Claude Code environment settings, set the
-   network policy to allow that domain (or "all"), then say "convert the gif".
-   ffmpeg is already installed and `make-gif.sh` is ready.
-2. **Do it locally** — run `./make-gif.sh` on any machine with ffmpeg
-   (or use ezgif.com: ~12 fps, 552px wide, loop forever).
-
-Then upload `july4.gif` to Klaviyo (**Content → Images**), copy the hosted URL,
-and in `email.html` replace the placeholder `REPLACE-WITH-KLAVIYO-GIF-URL/july4.gif`
-(it's clearly marked with a `GIF SLOT` comment). Keep the GIF under ~3 MB;
-Outlook desktop shows only its first frame, which is normal and acceptable.
+## The GIF ✅
+The video was converted to a GIF and uploaded to Klaviyo; the email now
+references its hosted URL
+(`.../610bbaef-832b-4a25-a5ae-41766dbf13f2.gif`) in the "See it in motion"
+section, wrapped in the same NMN product link as the artwork. Note: Outlook
+desktop shows only the GIF's first frame, which is normal and acceptable.
+`make-gif.sh` is kept in case the GIF ever needs re-encoding (e.g. smaller size).
 
 ## Send settings (when you give the signal)
 - **Subject:** `Happy 4th — light up your summer 🎆`
@@ -56,7 +48,6 @@ Outlook desktop shows only its first frame, which is normal and acceptable.
 | Risk-reversal | `A risk-free Fourth of July` | `Try NMN for 30 days, backed by our guarantee.` |
 
 ## Pre-send checklist
-- [ ] Convert the video → `july4.gif`, upload to Klaviyo, replace the GIF slot URL.
 - [ ] Paste `email.html` into Klaviyo's HTML/code editor.
 - [ ] Set subject + preview text.
 - [ ] Send a test; check mobile: image fills the width, tap anywhere on the
