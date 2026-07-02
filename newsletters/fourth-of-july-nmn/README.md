@@ -1,10 +1,12 @@
 # Fourth of July Newsletter — NMN
 
-A full, designed newsletter (same structure as the welcome NMN email: trust bar,
-wordmark, hero, benefits, science card, animated section, how-to, guarantee,
-reviews, final CTA, footer) in a Fourth-of-July palette — deep navy, flag red,
-cream, and the brand's gold. The featured artwork and the GIF sit edge-to-edge
-on navy bands so they blend into the design instead of floating like attachments.
+A compact, mobile-first Fourth-of-July newsletter (v2, reworked to the brand
+kit in the uploaded zip): real Prime Ingredients logo, GIF as the hero on a
+navy band, three quick benefit checks, the artwork mid-email on warm cream,
+one review + 30-day guarantee block, final CTA, short footer. Palette is
+"heritage Americana" — deep navy, flag red, warm cream/parchment, antique
+gold, with thin red/gold flag-ribbon stripes as accents. No postal address in
+the footer and benefit-style CTA labels, per the brand rules in the zip.
 
 **Nothing has been sent or pushed to Klaviyo.** Paste it yourself when ready.
 
