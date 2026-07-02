@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="x-apple-disable-message-reformatting">
+  <!-- Dark-mode opt-out: keeps Apple Mail (iPhone/iPad/Mac) from recoloring the email -->
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light only">
   <title>Happy Fourth of July — Prime Ingredients</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,6 +16,7 @@
   <![endif]-->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap');
+    :root{color-scheme:light only;supported-color-schemes:light only;}
     body{margin:0;padding:0;width:100%!important;background-color:#EAD9CC;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-font-smoothing:antialiased;}
     img{border:0;line-height:100%;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;}
     table{border-collapse:collapse;}
@@ -33,6 +37,51 @@
       .hero-img,.gif-img{width:100%!important;height:auto!important;}
       .stack{display:block!important;width:100%!important;}
     }
+    /* ===== DARK-MODE ARMOR =====
+       Re-assert every brand color when a client tries to recolor the email. */
+    @media (prefers-color-scheme: dark){
+      body, .dk-body{background-color:#EAD9CC!important;}
+      .dk-navy{background-color:#14264A!important;}
+      .dk-cream{background-color:#FBF6EF!important;}
+      .dk-parch{background-color:#F4E8DE!important;}
+      .dk-white{background-color:#FFFFFF!important;}
+      .dk-red{background-color:#B22234!important;}
+      .dk-gold{background-color:#C99A3F!important;}
+      .dk-t-cream{color:#FBF6EF!important;}
+      .dk-t-trust{color:#E9E2D4!important;}
+      .dk-t-gold{color:#E8B84A!important;}
+      .dk-t-star{color:#C99A3F!important;}
+      .dk-t-blue{color:#D9E2F5!important;}
+      .dk-t-blue2{color:#BCC9E2!important;}
+      .dk-t-ink{color:#33303A!important;}
+      .dk-t-warm{color:#4A4238!important;}
+      .dk-t-navy{color:#14264A!important;}
+      .dk-t-red{color:#B22234!important;}
+      .dk-t-white{color:#FFFFFF!important;}
+      .dk-t-gray{color:#8C7E76!important;}
+      .dk-t-gray2{color:#8A7C6E!important;}
+    }
+    /* Outlook.com / Outlook apps dark mode uses these attribute hooks */
+    [data-ogsb] body, [data-ogsb] .dk-body{background-color:#EAD9CC!important;}
+    [data-ogsb] .dk-navy{background-color:#14264A!important;}
+    [data-ogsb] .dk-cream{background-color:#FBF6EF!important;}
+    [data-ogsb] .dk-parch{background-color:#F4E8DE!important;}
+    [data-ogsb] .dk-white{background-color:#FFFFFF!important;}
+    [data-ogsb] .dk-red{background-color:#B22234!important;}
+    [data-ogsb] .dk-gold{background-color:#C99A3F!important;}
+    [data-ogsc] .dk-t-cream{color:#FBF6EF!important;}
+    [data-ogsc] .dk-t-trust{color:#E9E2D4!important;}
+    [data-ogsc] .dk-t-gold{color:#E8B84A!important;}
+    [data-ogsc] .dk-t-star{color:#C99A3F!important;}
+    [data-ogsc] .dk-t-blue{color:#D9E2F5!important;}
+    [data-ogsc] .dk-t-blue2{color:#BCC9E2!important;}
+    [data-ogsc] .dk-t-ink{color:#33303A!important;}
+    [data-ogsc] .dk-t-warm{color:#4A4238!important;}
+    [data-ogsc] .dk-t-navy{color:#14264A!important;}
+    [data-ogsc] .dk-t-red{color:#B22234!important;}
+    [data-ogsc] .dk-t-white{color:#FFFFFF!important;}
+    [data-ogsc] .dk-t-gray{color:#8C7E76!important;}
+    [data-ogsc] .dk-t-gray2{color:#8A7C6E!important;}
   </style>
 </head>
 <body style="margin:0;padding:0;background-color:#EAD9CC;">
@@ -42,42 +91,42 @@
     Independence from slowing down — cellular energy for the long weekend.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
   </div>
 
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EAD9CC;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="dk-body" style="background-color:#EAD9CC;background-image:linear-gradient(#EAD9CC,#EAD9CC);">
     <tr>
       <td align="center" class="outer" style="padding:24px 12px;">
 
         <!-- ===== CONTAINER ===== -->
-        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#FBF6EF;border-radius:18px;overflow:hidden;box-shadow:0 18px 50px rgba(20,38,74,.18);">
+        <table role="presentation" class="container dk-cream" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#FBF6EF;border-radius:18px;overflow:hidden;box-shadow:0 18px 50px rgba(20,38,74,.18);">
 
-          <!-- Trust bar -->
+          <!-- Trust bar (gradient-locked so dark mode can't wash out the navy) -->
           <tr>
-            <td align="center" style="background-color:#14264A;padding:11px 16px;">
-              <span class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:1.4px;color:#E9E2D4;">CLEAN INGREDIENTS&nbsp;&nbsp;&middot;&nbsp;&nbsp;cGMP CERTIFIED&nbsp;&nbsp;&middot;&nbsp;&nbsp;30-DAY GUARANTEE</span>
+            <td align="center" class="dk-navy" style="background-color:#14264A;background-image:linear-gradient(#14264A,#14264A);padding:11px 16px;">
+              <span class="sans dk-t-trust" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:1.4px;color:#E9E2D4;">CLEAN INGREDIENTS&nbsp;&nbsp;&middot;&nbsp;&nbsp;cGMP CERTIFIED&nbsp;&nbsp;&middot;&nbsp;&nbsp;30-DAY GUARANTEE</span>
             </td>
           </tr>
-          <!-- flag ribbon -->
-          <tr><td style="height:3px;line-height:3px;font-size:3px;background-color:#B22234;">&nbsp;</td></tr>
-          <tr><td style="height:3px;line-height:3px;font-size:3px;background-color:#C99A3F;">&nbsp;</td></tr>
+          <!-- flag ribbon (gradient-locked) -->
+          <tr><td class="dk-red" style="height:3px;line-height:3px;font-size:3px;background-color:#B22234;background-image:linear-gradient(#B22234,#B22234);">&nbsp;</td></tr>
+          <tr><td class="dk-gold" style="height:3px;line-height:3px;font-size:3px;background-color:#C99A3F;background-image:linear-gradient(#C99A3F,#C99A3F);">&nbsp;</td></tr>
 
-          <!-- Real logo -->
+          <!-- Real logo (background locked so the logo always sits on cream) -->
           <tr>
-            <td align="center" style="padding:26px 24px 20px;background-color:#FBF6EF;">
+            <td align="center" class="dk-cream" style="padding:26px 24px 20px;background-color:#FBF6EF;background-image:linear-gradient(#FBF6EF,#FBF6EF);">
               <a href="https://tryprimeingredients.com/" target="_blank" style="text-decoration:none;">
                 <img src="https://files.catbox.moe/pzdusu.png" alt="Prime Ingredients" width="230" class="logo-img" style="display:inline-block;width:230px;height:auto;">
               </a>
             </td>
           </tr>
 
-          <!-- ===== HERO (GIF on top) ===== -->
+          <!-- ===== HERO (GIF on top; navy gradient-locked) ===== -->
           <tr>
-            <td class="px" align="center" style="padding:32px 40px 24px;background-color:#14264A;">
-              <div class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:3px;color:#E8B84A;text-transform:uppercase;padding-bottom:14px;">&#9733;&nbsp; Happy Fourth of July &nbsp;&#9733;</div>
-              <h1 class="h1 serif" style="margin:0;font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:42px;line-height:1.08;font-weight:600;color:#FBF6EF;">Independence from<br><span style="font-style:italic;color:#E8B84A;">slowing down.</span></h1>
+            <td class="px dk-navy" align="center" style="padding:32px 40px 24px;background-color:#14264A;background-image:linear-gradient(#14264A,#14264A);">
+              <div class="sans dk-t-gold" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:3px;color:#E8B84A;text-transform:uppercase;padding-bottom:14px;">&#9733;&nbsp; Happy Fourth of July &nbsp;&#9733;</div>
+              <h1 class="h1 serif dk-t-cream" style="margin:0;font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:42px;line-height:1.08;font-weight:600;color:#FBF6EF;">Independence from<br><span class="dk-t-gold" style="font-style:italic;color:#E8B84A;">slowing down.</span></h1>
             </td>
           </tr>
           <!-- the GIF, full-bleed — tap anywhere opens the NMN page -->
           <tr>
-            <td align="center" style="padding:0;font-size:0;line-height:0;background-color:#14264A;">
+            <td align="center" class="dk-navy" style="padding:0;font-size:0;line-height:0;background-color:#14264A;background-image:linear-gradient(#14264A,#14264A);">
               <a href="https://tryprimeingredients.com/products/nmn" target="_blank" style="text-decoration:none;">
                 <img
                   src="https://d3k81ch9hvuctc.cloudfront.net/company/U8pRQr/images/610bbaef-832b-4a25-a5ae-41766dbf13f2.gif"
@@ -89,8 +138,8 @@
             </td>
           </tr>
           <tr>
-            <td class="px" align="center" style="padding:26px 44px 36px;background-color:#14264A;">
-              <p class="sans lede" style="margin:0 auto 24px;max-width:430px;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.65;color:#D9E2F5;">
+            <td class="px dk-navy" align="center" style="padding:26px 44px 36px;background-color:#14264A;background-image:linear-gradient(#14264A,#14264A);">
+              <p class="sans lede dk-t-blue" style="margin:0 auto 24px;max-width:430px;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.65;color:#D9E2F5;">
                 Cookouts, parades, fireworks past bedtime &mdash; summer asks a lot of your energy. NMN supports the NAD+ your cells run on, so you can keep up with all of it.
               </p>
               <!--[if mso]>
@@ -102,8 +151,8 @@
               <!--[if !mso]><!-- -->
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:340px;">
                 <tr>
-                  <td class="btn-td" align="center" style="border-radius:30px;background:#B22234;background:linear-gradient(135deg,#C42B3D,#9E1B2C);box-shadow:0 10px 22px rgba(178,34,52,.35);">
-                    <a href="https://tryprimeingredients.com/products/nmn" target="_blank" class="sans btn-a" style="display:block;color:#FFFFFF;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:14.5px;font-weight:700;letter-spacing:1.2px;text-decoration:none;padding:17px 40px;border-radius:30px;text-transform:uppercase;">Try NMN for 30 Days</a>
+                  <td class="btn-td dk-red" align="center" style="border-radius:30px;background-color:#B22234;background-image:linear-gradient(135deg,#C42B3D,#9E1B2C);box-shadow:0 10px 22px rgba(178,34,52,.35);">
+                    <a href="https://tryprimeingredients.com/products/nmn" target="_blank" class="sans btn-a dk-t-white" style="display:block;color:#FFFFFF;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:14.5px;font-weight:700;letter-spacing:1.2px;text-decoration:none;padding:17px 40px;border-radius:30px;text-transform:uppercase;">Try NMN for 30 Days</a>
                   </td>
                 </tr>
               </table>
@@ -113,26 +162,26 @@
 
           <!-- ===== WHY (three cards side-by-side on desktop, stacked on mobile) ===== -->
           <tr>
-            <td class="px" style="padding:36px 34px 10px;background-color:#FBF6EF;">
-              <h2 class="h2 serif" style="margin:0 0 20px;font-family:'Playfair Display',Georgia,serif;font-size:25px;line-height:1.2;font-weight:600;color:#14264A;text-align:center;">Why NMN, this summer</h2>
+            <td class="px dk-cream" style="padding:36px 34px 10px;background-color:#FBF6EF;background-image:linear-gradient(#FBF6EF,#FBF6EF);">
+              <h2 class="h2 serif dk-t-navy" style="margin:0 0 20px;font-family:'Playfair Display',Georgia,serif;font-size:25px;line-height:1.2;font-weight:600;color:#14264A;text-align:center;">Why NMN, this summer</h2>
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td class="stack" width="33.33%" style="vertical-align:top;padding:6px;">
-                    <div style="background:#FFFFFF;border-radius:14px;padding:20px 14px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
-                      <div style="width:26px;height:26px;border-radius:50%;background:#B22234;color:#FFFFFF;text-align:center;line-height:26px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;margin:0 auto 10px;">&#10003;</div>
-                      <div class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#33303A;">Supports <strong>healthy NAD+ levels</strong> &amp; cellular energy</div>
+                    <div class="dk-white" style="background-color:#FFFFFF;background-image:linear-gradient(#FFFFFF,#FFFFFF);border-radius:14px;padding:20px 14px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
+                      <div class="dk-red dk-t-white" style="width:26px;height:26px;border-radius:50%;background-color:#B22234;background-image:linear-gradient(#B22234,#B22234);color:#FFFFFF;text-align:center;line-height:26px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;margin:0 auto 10px;">&#10003;</div>
+                      <div class="sans dk-t-ink" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#33303A;">Supports <strong>healthy NAD+ levels</strong> &amp; cellular energy</div>
                     </div>
                   </td>
                   <td class="stack" width="33.33%" style="vertical-align:top;padding:6px;">
-                    <div style="background:#FFFFFF;border-radius:14px;padding:20px 14px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
-                      <div style="width:26px;height:26px;border-radius:50%;background:#14264A;color:#FFFFFF;text-align:center;line-height:26px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;margin:0 auto 10px;">&#10003;</div>
-                      <div class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#33303A;">Supports <strong>healthy aging</strong> from the inside out</div>
+                    <div class="dk-white" style="background-color:#FFFFFF;background-image:linear-gradient(#FFFFFF,#FFFFFF);border-radius:14px;padding:20px 14px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
+                      <div class="dk-navy dk-t-white" style="width:26px;height:26px;border-radius:50%;background-color:#14264A;background-image:linear-gradient(#14264A,#14264A);color:#FFFFFF;text-align:center;line-height:26px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;margin:0 auto 10px;">&#10003;</div>
+                      <div class="sans dk-t-ink" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#33303A;">Supports <strong>healthy aging</strong> from the inside out</div>
                     </div>
                   </td>
                   <td class="stack" width="33.33%" style="vertical-align:top;padding:6px;">
-                    <div style="background:#FFFFFF;border-radius:14px;padding:20px 14px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
-                      <div style="width:26px;height:26px;border-radius:50%;background:#C99A3F;color:#FFFFFF;text-align:center;line-height:26px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;margin:0 auto 10px;">&#10003;</div>
-                      <div class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#33303A;"><strong>1,000&nbsp;mg</strong> per serving &middot; 10-in-1 &middot; clean &amp; cGMP</div>
+                    <div class="dk-white" style="background-color:#FFFFFF;background-image:linear-gradient(#FFFFFF,#FFFFFF);border-radius:14px;padding:20px 14px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
+                      <div class="dk-gold dk-t-white" style="width:26px;height:26px;border-radius:50%;background-color:#C99A3F;background-image:linear-gradient(#C99A3F,#C99A3F);color:#FFFFFF;text-align:center;line-height:26px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;margin:0 auto 10px;">&#10003;</div>
+                      <div class="sans dk-t-ink" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;color:#33303A;"><strong>1,000&nbsp;mg</strong> per serving &middot; 10-in-1 &middot; clean &amp; cGMP</div>
                     </div>
                   </td>
                 </tr>
@@ -142,11 +191,11 @@
 
           <!-- star divider -->
           <tr>
-            <td align="center" style="padding:20px 40px 6px;background-color:#FBF6EF;">
+            <td align="center" class="dk-cream" style="padding:20px 40px 6px;background-color:#FBF6EF;background-image:linear-gradient(#FBF6EF,#FBF6EF);">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                   <td style="border-top:1px solid #E4D5C2;"></td>
-                  <td width="60" align="center" style="font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#C99A3F;line-height:1;padding:0 8px;transform:translateY(-8px);">&#9733;</td>
+                  <td width="60" align="center" class="dk-t-star" style="font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#C99A3F;line-height:1;padding:0 8px;transform:translateY(-8px);">&#9733;</td>
                   <td style="border-top:1px solid #E4D5C2;"></td>
                 </tr>
               </table>
@@ -155,12 +204,12 @@
 
           <!-- ===== MID: THE PHOTO (tap anywhere opens the NMN page) ===== -->
           <tr>
-            <td class="px" align="center" style="padding:20px 44px 22px;background-color:#FBF6EF;">
-              <h2 class="h2 serif" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:25px;line-height:1.25;font-weight:600;color:#14264A;">The star of <span style="font-style:italic;color:#B22234;">your</span> show</h2>
+            <td class="px dk-cream" align="center" style="padding:20px 44px 22px;background-color:#FBF6EF;background-image:linear-gradient(#FBF6EF,#FBF6EF);">
+              <h2 class="h2 serif dk-t-navy" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:25px;line-height:1.25;font-weight:600;color:#14264A;">The star of <span class="dk-t-red" style="font-style:italic;color:#B22234;">your</span> show</h2>
             </td>
           </tr>
           <tr>
-            <td align="center" style="padding:0;font-size:0;line-height:0;background-color:#FBF6EF;">
+            <td align="center" class="dk-cream" style="padding:0;font-size:0;line-height:0;background-color:#FBF6EF;background-image:linear-gradient(#FBF6EF,#FBF6EF);">
               <a href="https://tryprimeingredients.com/products/nmn" target="_blank" style="text-decoration:none;">
                 <img
                   src="https://d3k81ch9hvuctc.cloudfront.net/company/U8pRQr/images/5e3bff10-7322-41f8-a800-d95e2d2e5c01.jpeg"
@@ -172,33 +221,33 @@
             </td>
           </tr>
           <tr>
-            <td class="px" align="center" style="padding:24px 46px 34px;background-color:#F4E8DE;">
-              <p class="sans" style="margin:0 auto 18px;max-width:440px;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.66;color:#4A4238;">
+            <td class="px dk-parch" align="center" style="padding:24px 46px 34px;background-color:#F4E8DE;background-image:linear-gradient(#F4E8DE,#F4E8DE);">
+              <p class="sans dk-t-warm" style="margin:0 auto 18px;max-width:440px;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.66;color:#4A4238;">
                 NAD+ powers nearly every cell in your body, and it naturally declines with age. NMN is the precursor your cells use to make more of it &mdash; one clean capsule, every morning.
               </p>
-              <a href="https://tryprimeingredients.com/products/nmn" target="_blank" class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13.5px;font-weight:700;letter-spacing:1.5px;color:#B22234;text-decoration:underline;">SEE WHY NAD+ MATTERS &rarr;</a>
+              <a href="https://tryprimeingredients.com/products/nmn" target="_blank" class="sans dk-t-red" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13.5px;font-weight:700;letter-spacing:1.5px;color:#B22234;text-decoration:underline;">SEE WHY NAD+ MATTERS &rarr;</a>
             </td>
           </tr>
 
           <!-- ===== PROOF + GUARANTEE (side-by-side on desktop, stacked on mobile) ===== -->
           <tr>
-            <td class="px" style="padding:30px 34px 34px;background-color:#FBF6EF;">
+            <td class="px dk-cream" style="padding:30px 34px 34px;background-color:#FBF6EF;background-image:linear-gradient(#FBF6EF,#FBF6EF);">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td class="stack" width="50%" style="vertical-align:top;padding:6px;">
-                    <div style="background:#FFFFFF;border-radius:14px;padding:22px 20px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
-                      <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;letter-spacing:2.5px;color:#C99A3F;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                      <p class="serif" style="margin:12px 0 10px;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:16px;line-height:1.55;color:#14264A;">&ldquo;I feel steadier through my afternoons. Easy to take, and I love that it&rsquo;s clean.&rdquo;</p>
-                      <div class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;color:#8A7C6E;">Carol M. &middot; Verified customer</div>
+                    <div class="dk-white" style="background-color:#FFFFFF;background-image:linear-gradient(#FFFFFF,#FFFFFF);border-radius:14px;padding:22px 20px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
+                      <div class="dk-t-star" style="font-family:Helvetica,Arial,sans-serif;font-size:15px;letter-spacing:2.5px;color:#C99A3F;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                      <p class="serif dk-t-navy" style="margin:12px 0 10px;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:16px;line-height:1.55;color:#14264A;">&ldquo;I feel steadier through my afternoons. Easy to take, and I love that it&rsquo;s clean.&rdquo;</p>
+                      <div class="sans dk-t-gray2" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;color:#8A7C6E;">Carol M. &middot; Verified customer</div>
                     </div>
                   </td>
                   <td class="stack" width="50%" style="vertical-align:top;padding:6px;">
-                    <div style="background:#FFFFFF;border-radius:14px;padding:22px 20px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
+                    <div class="dk-white" style="background-color:#FFFFFF;background-image:linear-gradient(#FFFFFF,#FFFFFF);border-radius:14px;padding:22px 20px;box-shadow:0 6px 16px rgba(20,38,74,.07);text-align:center;">
                       <div style="width:64px;height:64px;border-radius:50%;border:2px dashed #C99A3F;margin:0 auto 12px;">
-                        <div class="serif" style="font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:#B22234;line-height:1;padding-top:15px;text-align:center;">30</div>
-                        <div class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:6.5px;font-weight:700;letter-spacing:1px;color:#14264A;text-align:center;padding-top:2px;">DAY GUARANTEE</div>
+                        <div class="serif dk-t-red" style="font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:#B22234;line-height:1;padding-top:15px;text-align:center;">30</div>
+                        <div class="sans dk-t-navy" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:6.5px;font-weight:700;letter-spacing:1px;color:#14264A;text-align:center;padding-top:2px;">DAY GUARANTEE</div>
                       </div>
-                      <div class="sans" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:#4A4238;">Try it for a full month. If you&rsquo;re not happy, we&rsquo;ll refund you &mdash; no fuss, no questions.</div>
+                      <div class="sans dk-t-warm" style="font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:#4A4238;">Try it for a full month. If you&rsquo;re not happy, we&rsquo;ll refund you &mdash; no fuss, no questions.</div>
                     </div>
                   </td>
                 </tr>
@@ -206,14 +255,14 @@
             </td>
           </tr>
 
-          <!-- ===== FINAL CTA ===== -->
+          <!-- ===== FINAL CTA (navy gradient is itself the dark-mode lock) ===== -->
           <tr>
-            <td class="px" align="center" style="background:#14264A;background:linear-gradient(150deg,#1E3A66 0%,#0E1B36 100%);padding:38px 40px 42px;">
+            <td class="px dk-navy" align="center" style="background-color:#14264A;background-image:linear-gradient(150deg,#1E3A66 0%,#0E1B36 100%);padding:38px 40px 42px;">
               <div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:8px;line-height:1;padding-bottom:14px;">
-                <span style="color:#B22234;">&#9733;</span><span style="color:#E8B84A;">&#9733;</span><span style="color:#FBF6EF;">&#9733;</span><span style="color:#E8B84A;">&#9733;</span><span style="color:#B22234;">&#9733;</span>
+                <span class="dk-t-red" style="color:#B22234;">&#9733;</span><span class="dk-t-gold" style="color:#E8B84A;">&#9733;</span><span class="dk-t-cream" style="color:#FBF6EF;">&#9733;</span><span class="dk-t-gold" style="color:#E8B84A;">&#9733;</span><span class="dk-t-red" style="color:#B22234;">&#9733;</span>
               </div>
-              <h2 class="serif" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:27px;font-weight:600;color:#FFFFFF;line-height:1.2;">Light up your summer.</h2>
-              <p class="sans" style="margin:12px auto 22px;max-width:360px;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:14.5px;line-height:1.6;color:#BCC9E2;">One clean capsule a day for the energy your cells run on.</p>
+              <h2 class="serif dk-t-white" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:27px;font-weight:600;color:#FFFFFF;line-height:1.2;">Light up your summer.</h2>
+              <p class="sans dk-t-blue2" style="margin:12px auto 22px;max-width:360px;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:14.5px;line-height:1.6;color:#BCC9E2;">One clean capsule a day for the energy your cells run on.</p>
               <!--[if mso]>
               <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://tryprimeingredients.com/products/nmn" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="50%" stroke="f" fillcolor="#FFFFFF">
                 <w:anchorlock/>
@@ -223,27 +272,27 @@
               <!--[if !mso]><!-- -->
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:340px;">
                 <tr>
-                  <td class="btn-td" align="center" style="border-radius:30px;background-color:#FFFFFF;">
-                    <a href="https://tryprimeingredients.com/products/nmn" target="_blank" class="sans btn-a" style="display:block;color:#14264A;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:1.2px;text-decoration:none;padding:17px 36px;border-radius:30px;text-transform:uppercase;">Add NMN to Your Morning</a>
+                  <td class="btn-td dk-white" align="center" style="border-radius:30px;background-color:#FFFFFF;background-image:linear-gradient(#FFFFFF,#FFFFFF);">
+                    <a href="https://tryprimeingredients.com/products/nmn" target="_blank" class="sans btn-a dk-t-navy" style="display:block;color:#14264A;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:1.2px;text-decoration:none;padding:17px 36px;border-radius:30px;text-transform:uppercase;">Add NMN to Your Morning</a>
                   </td>
                 </tr>
               </table>
               <!--<![endif]-->
             </td>
           </tr>
-          <!-- flag ribbon -->
-          <tr><td style="height:3px;line-height:3px;font-size:3px;background-color:#C99A3F;">&nbsp;</td></tr>
-          <tr><td style="height:3px;line-height:3px;font-size:3px;background-color:#B22234;">&nbsp;</td></tr>
+          <!-- flag ribbon (gradient-locked) -->
+          <tr><td class="dk-gold" style="height:3px;line-height:3px;font-size:3px;background-color:#C99A3F;background-image:linear-gradient(#C99A3F,#C99A3F);">&nbsp;</td></tr>
+          <tr><td class="dk-red" style="height:3px;line-height:3px;font-size:3px;background-color:#B22234;background-image:linear-gradient(#B22234,#B22234);">&nbsp;</td></tr>
 
-          <!-- ===== FOOTER (no postal address — brand rule) ===== -->
+          <!-- ===== FOOTER (locked so the logo always sits on parchment; no postal address — brand rule) ===== -->
           <tr>
-            <td align="center" style="background-color:#F4E8DE;padding:24px 36px 30px;">
+            <td align="center" class="dk-parch" style="background-color:#F4E8DE;background-image:linear-gradient(#F4E8DE,#F4E8DE);padding:24px 36px 30px;">
               <img src="https://files.catbox.moe/pzdusu.png" alt="Prime Ingredients" width="140" style="display:inline-block;width:140px;height:auto;margin-bottom:10px;">
-              <p class="sans" style="margin:0;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.7;color:#8C7E76;">
-                You&rsquo;re receiving this because you subscribed at <a href="https://tryprimeingredients.com/" style="color:#B22234;text-decoration:none;font-weight:600;">tryprimeingredients.com</a>.
+              <p class="sans dk-t-gray" style="margin:0;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.7;color:#8C7E76;">
+                You&rsquo;re receiving this because you subscribed at <a href="https://tryprimeingredients.com/" class="dk-t-red" style="color:#B22234;text-decoration:none;font-weight:600;">tryprimeingredients.com</a>.
               </p>
               <p class="sans" style="margin:10px 0 0;font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:12px;">
-                {% unsubscribe 'Unsubscribe' %} &nbsp;&middot;&nbsp; <a href="https://tryprimeingredients.com/" style="color:#B22234;text-decoration:none;font-weight:600;">Visit our store</a>
+                {% unsubscribe 'Unsubscribe' %} &nbsp;&middot;&nbsp; <a href="https://tryprimeingredients.com/" class="dk-t-red" style="color:#B22234;text-decoration:none;font-weight:600;">Visit our store</a>
               </p>
             </td>
           </tr>
