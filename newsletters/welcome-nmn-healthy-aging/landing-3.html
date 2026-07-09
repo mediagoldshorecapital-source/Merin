@@ -54,12 +54,14 @@
 
 <script>
   var CODE = 'PRIME10';
+  var SHOP = 'https://tryprimeingredients.com/discount/PRIME10?utm_source=klaviyo&utm_medium=email&utm_campaign=welcome_nmn';
   // Positions measured on the 793×1983 artwork, converted to %:  px/793 (x,w), px/1983 (y,h)
   var HOTSPOTS = [
-    { label:'copy PRIME10', type:'copy', left:65.07, top:41.76, w:17.53, h:2.12 }, // 516,828 139x42
-    { label:'Instagram',    type:'link', url:'https://www.instagram.com/tryprimeingredients', left:74.15, top:94.70, w:3.91, h:1.51 }, // 588,1878 31x30
-    { label:'Facebook',     type:'link', url:'https://www.facebook.com/tryprimeingredients',  left:79.70, top:94.80, w:4.41, h:1.51 }, // 632,1880 35x30
-    { label:'Email',        type:'link', url:'mailto:hello@tryprimeingredients.com',           left:85.62, top:94.70, w:4.16, h:1.71 }  // 679,1878 33x34
+    { label:'copy PRIME10', type:'copy', left:58.51, top:38.17, w:22.07, h:2.82 }, // 464,757 175x56
+    { label:'Shop',         type:'link', url:SHOP, left:53.72, top:43.87, w:31.53, h:2.62 }, // 426,870 250x52
+    { label:'Instagram',    type:'link', url:'https://www.instagram.com/tryprimeingredients', left:72.51, top:95.96, w:5.55, h:2.42 }, // 575,1903 44x48
+    { label:'Facebook',     type:'link', url:'https://www.facebook.com/tryprimeingredients',  left:79.82, top:95.86, w:5.04, h:2.62 }, // 633,1901 40x52
+    { label:'Email',        type:'link', url:'mailto:hello@tryprimeingredients.com',           left:86.63, top:96.12, w:5.55, h:2.22 }  // 687,1906 44x44
   ];
   var stage = document.getElementById('stage');
   HOTSPOTS.forEach(function(h){
