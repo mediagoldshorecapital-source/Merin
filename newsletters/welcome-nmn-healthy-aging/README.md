@@ -1,60 +1,57 @@
 # Welcome Email — Your Healthy Aging Era (NMN)
 
 Prime Ingredients' welcome / onboarding email for new subscribers, built around the
-hero SKU **NMN Ultimate 10-in-1 (1,000mg)**. Same purple "Healthy Aging Era" design as
-the mockup, now production-ready with Klaviyo tags, social links, unsubscribe / manage
-preferences, a view-in-browser web page, and a **click-to-copy PRIME10** code.
+hero SKU **NMN Ultimate 10-in-1 (1,000mg)**. Uses the **exact design artwork** (hosted
+on Klaviyo's CDN) as the visual, with the pieces that must be live layered on top:
+Klaviyo tags, a **click-to-copy PRIME10** code, social links, unsubscribe / manage
+preferences, and a view-in-browser web page.
+
+## Design artwork
+The email renders the finished design as a single hosted image:
+`https://d3k81ch9hvuctc.cloudfront.net/company/U8pRQr/images/b924903e-211e-4ad8-9267-4a430ce4988f.png`
+(Klaviyo company `U8pRQr`). Tapping the artwork opens the store with PRIME10 applied.
 
 ## Files
-- `email.html` — responsive HTML email source (Klaviyo template). Table-based, inline
-  styles, no JavaScript (email clients strip it). The PRIME10 block links to the
-  Shopify auto-apply URL so the code is applied on click.
-- `landing.html` — the **web page / view-in-browser** version. Same design, but the
-  PRIME10 code is a real **click-to-copy** button (writes to clipboard, shows a
-  "Copied!" confirmation + toast). Host this and point the email's web-view / code link
-  at it if you want true copy-on-click.
+- `email.html` — Klaviyo email. Design image + a **live** welcome-gift band (PRIME10 +
+  "Shop with PRIME10") + a **live** footer (social, unsubscribe, manage preferences,
+  address, disclaimer). No JavaScript — email clients strip it.
+- `landing.html` — the **web page / view-in-browser** version. Same layout, but the
+  PRIME10 code is a real **click-to-copy** button (clipboard + fallback, "Copied!"
+  state + toast). Point the email's web-view link here for true copy-on-click.
 
 ## The PRIME10 code — how "copy on click" works
-Email clients (Gmail, Apple Mail, Outlook) **do not run JavaScript**, so clipboard copy
-cannot happen inside the email itself. It's delivered two ways:
-1. **In the email (`email.html`)** — the code and the "Shop with PRIME10" button link to
-   `https://tryprimeingredients.com/discount/PRIME10`. Shopify auto-applies the discount
-   and drops the shopper into the store with 10% off already active — no manual entry.
-2. **On the web page (`landing.html`)** — clicking the `PRIME10` chip copies the code to
-   the clipboard (`navigator.clipboard` with an `execCommand` fallback), flips the chip
-   to a green "Copied!" state, and fires a toast. Verified with a headless browser.
+Email clients (Gmail, Apple Mail, Outlook) **do not run JavaScript**, so a click can't
+copy to the clipboard *inside the email itself*. It's handled two ways:
+1. **In the email (`email.html`)** — the code and "Shop with PRIME10" button link to
+   `https://tryprimeingredients.com/discount/PRIME10`; Shopify auto-applies the 10% off,
+   no manual entry. The code also links to the web view where copy works.
+2. **On the web page (`landing.html`)** — clicking `PRIME10` copies it to the clipboard
+   (`navigator.clipboard` with an `execCommand` fallback), flips the chip to a green
+   "Copied!" state, and fires a toast. Verified with a headless browser.
 
-## Klaviyo features included (in `email.html`)
-- **Personalization:** `{{ first_name|default:'there' }}` in the welcome line.
-- **View in browser:** `{% web_view 'View this email in your browser' %}` at the top.
-- **Unsubscribe:** `{% unsubscribe 'Unsubscribe' %}` in the footer (required).
-- **Manage preferences:** `{% manage_preferences 'Manage preferences' %}`.
-- **Company address (CAN-SPAM):** `{{ organization.name }}` / `{{ organization.full_address }}`.
-- **Preheader / preview text** hidden at the top of the body.
+## Why some elements are "live" over the image
+An all-image email can't have a working unsubscribe, a copyable code, or accessible
+links — and a live **unsubscribe** is legally required (CAN-SPAM). So the artwork carries
+the look, and these sit as real HTML beneath it:
+- Personalization-ready footer, `{% unsubscribe %}`, `{% manage_preferences %}`
+- `{% web_view %}` (view in browser) at the top
+- `{{ organization.name }}` / `{{ organization.full_address }}` (CAN-SPAM address)
+- Social links (Instagram, Facebook, email)
+- Copyable PRIME10 + apply-discount button
 
-> Note: `landing.html` uses plain `{unsubscribe_url}` / `{manage_preferences_url}`
-> placeholders since a hosted web page renders outside Klaviyo's tag engine — swap for
-> real links (or your ESP's tags) when you host it.
-
-## Social media
-Footer icons link to Instagram, Facebook, and email. Update the handles/URLs:
-- Instagram: `https://www.instagram.com/tryprimeingredients`
-- Facebook: `https://www.facebook.com/tryprimeingredients`
-- Email: `hello@tryprimeingredients.com`
+> If your artwork already includes a footer/social/unsubscribe row, crop it off the
+> image so it isn't duplicated by the live footer — the live one is the one that must
+> function.
 
 ## Before sending — checklist
 1. **Verify the From address** on a verified sending domain in Klaviyo.
-2. **Drop in the Canva hero image.** Both files have a `[ NMN … hero image ]` placeholder
-   where the woman + NMN bottle lifestyle image goes (keep width 600).
-3. **Confirm the PRIME10 discount exists** in Shopify and that
-   `/discount/PRIME10` resolves and auto-applies.
+2. **Confirm the artwork URL** renders (it's blocked in the dev sandbox but public on the
+   CDN). Add a taller `width`/`height`-free `<img>` if you swap it for a different export.
+3. **Confirm the PRIME10 discount exists** in Shopify and `/discount/PRIME10` auto-applies.
 4. **Update social handles + company address** (address is placeholder copy).
 5. **Send a test** to yourself; check desktop + mobile, then schedule/send.
 
-## Notes / approach
-- Palette: purple `#6D4C9F` / plum `#7E64AB`, lavender `#EDE4F5` / `#F3ECFA`, gold accent
-  `#C6A24E`, ink `#4A3F5C`. Serif = Georgia, sans = Helvetica/Arial.
-- Feature/step icons are Unicode + CSS shapes (no image dependencies), matching the
-  existing newsletter's approach. Swap for the Canva line icons if you prefer exact parity.
-- Product claims (β-NMN, 10-in-1, NAD+ precursor, cGMP, non-GMO/vegan) mirror the mockup —
-  verify against the live product page before sending.
+## Notes
+- Palette: purple `#6D4C9F` / plum `#7E64AB`, lavender `#E9DFF4` / `#EFE6F9`, gold `#C6A24E`.
+- `landing.html` uses plain `{unsubscribe_url}` / `{manage_preferences_url}` placeholders
+  since a hosted page renders outside Klaviyo's tag engine — swap for real links.

@@ -5,105 +5,56 @@
 <title>Welcome to Your Healthy Aging Era — Prime Ingredients</title>
 <style>
   :root{
-    --purple:#6D4C9F; --purple-deep:#6A4A9C; --plum:#7E64AB;
-    --lav-bg:#EDE4F5; --panel:#FBF7FF; --panel-2:#F1E8FA; --head-bg:#F3ECFA;
+    --purple:#6D4C9F; --purple-deep:#5E3E93; --plum:#7E64AB;
+    --lav-bg:#E9DFF4; --panel-2:#F3EBFB; --head-bg:#EFE6F9;
     --gold:#C6A24E; --ink:#4A3F5C; --muted:#6E6480; --muted-2:#8C7BA6;
   }
   *{box-sizing:border-box;}
   body{margin:0;padding:0;background:var(--lav-bg);color:var(--ink);
     font-family:Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
-  .serif{font-family:Georgia,'Times New Roman',serif;}
-  .wrap{max-width:600px;margin:0 auto;padding:24px 12px 48px;}
-  .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(106,74,156,.12);}
+  .wrap{max-width:600px;margin:0 auto;padding:20px 12px 48px;}
   .viewline{text-align:center;font-size:11px;letter-spacing:1px;color:var(--muted-2);padding:0 8px 12px;}
-  .head{background:var(--head-bg);text-align:center;padding:26px 40px 0;}
-  .pill{display:inline-block;background:#fff;border-radius:26px;padding:11px 26px;
-    font-family:Georgia,serif;font-size:19px;color:var(--purple-deep);}
-  .hero{background:var(--head-bg);text-align:center;padding:32px 44px 8px;}
-  .hero .pre{font-family:Georgia,serif;font-size:22px;color:#5B4A72;}
-  .hero h1{font-family:Georgia,serif;font-weight:400;font-size:52px;line-height:1.05;
-    color:var(--purple-deep);margin:2px 0 0;}
-  .hero h1 .era{font-style:italic;font-size:34px;color:var(--plum);}
-  .rule{width:64px;height:2px;background:var(--gold);margin:20px auto 0;}
-  .hero p{font-size:16px;line-height:1.7;color:#5F5570;padding:20px 20px 28px;margin:0;}
-  .imgph{background:var(--head-bg);padding:0 44px 26px;}
-  .imgph .box{background:#E6D8F2;border-radius:8px;text-align:center;padding:54px 20px;
-    font-size:12px;letter-spacing:1px;color:var(--muted-2);}
-  .section{padding:34px 30px 6px;text-align:center;}
-  .section .mark{color:var(--gold);font-size:15px;}
-  .section .kick{font-family:Georgia,serif;font-size:22px;letter-spacing:2px;
-    color:var(--purple-deep);text-transform:uppercase;padding-top:6px;}
-  .section .kick.plain{text-transform:none;letter-spacing:0;}
+  .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 14px 50px rgba(94,62,147,.16);}
+  .design{display:block;width:100%;height:auto;}
+  .design-fallback{display:none;padding:60px 24px;text-align:center;color:var(--muted-2);
+    font-size:13px;line-height:1.7;background:var(--head-bg);}
 
-  /* You're in + gift */
-  .youre{padding:8px 30px;}
-  .youre-inner{background:var(--panel);border:1px solid #EFE6F8;border-radius:12px;
-    display:flex;gap:18px;padding:26px;flex-wrap:wrap;}
-  .youre-l{flex:1 1 250px;}
-  .youre-l .lbl{font-size:12px;letter-spacing:2px;color:var(--plum);text-transform:uppercase;font-weight:700;}
-  .youre-l p{font-size:14px;line-height:1.7;color:#5F5570;margin:12px 0 0;}
-  .gift{flex:1 1 220px;background:var(--panel-2);border-radius:12px;text-align:center;padding:22px 18px;}
+  /* gift band */
+  .gift{margin:24px 36px 8px;background:var(--panel-2);border-radius:12px;text-align:center;padding:26px 24px;}
   .gift .lbl{font-size:11px;letter-spacing:2px;color:var(--plum);text-transform:uppercase;}
-
-  /* Copy-to-clipboard code */
-  .code-btn{margin:12px auto 0;display:inline-flex;align-items:center;gap:10px;
-    background:#fff;border:1px dashed #B79AD6;border-radius:10px;padding:12px 22px;cursor:pointer;
-    font-family:Georgia,serif;font-size:24px;letter-spacing:3px;color:var(--purple-deep);
-    transition:transform .12s ease, box-shadow .2s ease, background .2s ease;}
-  .code-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(109,76,159,.18);}
+  .code-btn{margin:14px auto 0;display:inline-flex;align-items:center;gap:10px;
+    background:#fff;border:1px dashed #B79AD6;border-radius:10px;padding:14px 28px;cursor:pointer;
+    font-family:Georgia,serif;font-size:26px;letter-spacing:3px;color:var(--purple-deep);
+    transition:transform .12s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;}
+  .code-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(109,76,159,.20);}
   .code-btn:active{transform:translateY(0);}
-  .code-btn .ico{font-size:14px;letter-spacing:0;color:var(--plum);}
+  .code-btn .cico{width:16px;height:16px;color:var(--plum);flex:0 0 16px;}
   .code-btn.copied{background:#EAF6EC;border-color:#7FB98A;color:#2F7A3E;}
-  .code-btn.copied .ico{color:#2F7A3E;}
-  .gift .sub{font-size:12px;color:var(--muted);padding-top:10px;}
+  .code-btn.copied .cico{color:#2F7A3E;}
+  .copyhint{font-size:11px;color:var(--muted-2);padding-top:9px;min-height:14px;}
   .btn{display:inline-block;background:var(--purple);color:#fff;border-radius:26px;
-    padding:12px 26px;font-size:13px;letter-spacing:1px;text-decoration:none;margin-top:14px;}
-  .copyhint{font-size:11px;color:var(--muted-2);padding-top:8px;min-height:14px;}
+    padding:14px 34px;font-size:14px;letter-spacing:1px;text-decoration:none;margin-top:16px;
+    box-shadow:0 8px 18px rgba(109,76,159,.28);}
 
   /* toast */
   .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
     background:var(--ink);color:#fff;padding:12px 22px;border-radius:26px;font-size:14px;
-    opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;z-index:50;}
+    opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;z-index:50;
+    display:flex;align-items:center;gap:8px;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-  /* grids */
-  .grid{display:flex;flex-wrap:wrap;padding:16px 22px 8px;}
-  .cell{width:33.33%;padding:8px;}
-  .tile{background:var(--panel);border-radius:12px;min-height:120px;height:100%;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:18px 12px;}
-  .tile .ico{font-size:22px;color:var(--plum);}
-  .tile .t{font-size:12px;line-height:1.5;color:#5F5570;padding-top:8px;}
-  .step .num{width:30px;height:30px;border-radius:50%;background:var(--purple);color:#fff;
-    display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:14px;}
-  .step .ico{font-size:22px;color:var(--gold);}
-  .step h3{font-family:Georgia,serif;font-weight:400;font-size:17px;line-height:1.3;color:var(--ink);margin:8px 0 0;}
-  .step p{font-size:12px;line-height:1.6;color:var(--muted);margin:8px 0 0;}
-  .step .tile{justify-content:flex-start;}
-
-  /* sign off */
-  .signoff{padding:22px 30px 30px;}
-  .signoff .band{background:var(--purple);border-radius:12px;text-align:center;padding:30px;}
-  .signoff .band .a{font-family:Georgia,serif;font-style:italic;font-size:22px;color:var(--head-bg);}
-  .signoff .band .b{color:var(--gold);font-size:14px;padding:10px 0;}
-  .signoff .band .c{font-size:14px;letter-spacing:1px;color:#EADFF6;}
+  .toast svg{width:16px;height:16px;}
 
   /* footer */
-  .foot{background:var(--head-bg);text-align:center;padding:26px 40px 30px;}
+  .foot{background:var(--head-bg);text-align:center;padding:26px 40px 32px;margin-top:8px;}
   .foot .logo{font-family:Georgia,serif;font-size:18px;color:var(--purple-deep);padding-bottom:16px;}
-  .soc{display:flex;gap:12px;justify-content:center;margin-bottom:16px;}
-  .soc a{width:34px;height:34px;border-radius:50%;background:var(--purple);color:#fff;
-    display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:15px;}
-  .foot .fine{font-size:12px;line-height:1.7;color:var(--muted-2);}
+  .soc{display:flex;gap:12px;justify-content:center;margin-bottom:18px;}
+  .soc a{width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff;
+    display:flex;align-items:center;justify-content:center;text-decoration:none;}
+  .soc a svg{width:17px;height:17px;}
+  .foot .fine{font-size:12px;line-height:1.75;color:var(--muted-2);}
   .foot .fine a{color:var(--plum);text-decoration:underline;}
   .foot .addr{font-size:11px;line-height:1.6;color:#A99BC0;padding-top:14px;}
   .foot .disc{font-size:10px;line-height:1.6;color:#B4A7C8;padding-top:14px;}
-
-  @media (max-width:600px){
-    .hero h1{font-size:40px;}
-    .cell{width:50%;}
-    .youre-inner{flex-direction:column;}
-  }
 </style>
 </head>
 <body>
@@ -111,69 +62,33 @@
   <div class="viewline">Prime Ingredients &middot; Welcome</div>
   <div class="card">
 
-    <div class="head"><span class="pill">&#127807; Prime Ingredients</span></div>
+    <!-- Exact design artwork; tap to shop with PRIME10 applied -->
+    <a href="https://tryprimeingredients.com/discount/PRIME10">
+      <img class="design"
+           src="https://d3k81ch9hvuctc.cloudfront.net/company/U8pRQr/images/b924903e-211e-4ad8-9267-4a430ce4988f.png"
+           alt="Welcome to Your Healthy Aging Era — NMN Ultimate 10-in-1. Use code PRIME10 for 10% off."
+           onerror="this.style.display='none';document.getElementById('imgfb').style.display='block';">
+    </a>
+    <div class="design-fallback" id="imgfb">Design artwork loads from your Klaviyo CDN.<br>(Preview blocked in this sandbox, but it displays for your recipients.)</div>
 
-    <div class="hero">
-      <div class="pre serif">Welcome to</div>
-      <h1>Your<br>Healthy<br>Aging <span class="era">Era</span></h1>
-      <div class="rule"></div>
-      <p>Science-backed support for cellular energy, healthy aging, and everyday vitality.</p>
+    <!-- Working click-to-copy welcome code -->
+    <div class="gift">
+      <div class="lbl">A welcome gift, on us</div>
+      <button type="button" class="code-btn" id="codeBtn" onclick="copyCode()" aria-label="Copy discount code PRIME10">
+        <span id="codeText">PRIME10</span>
+        <svg class="cico" id="codeIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+      </button>
+      <div class="copyhint" id="copyHint">Click the code to copy it</div>
+      <a class="btn" href="https://tryprimeingredients.com/discount/PRIME10">Shop with PRIME10</a>
     </div>
-
-    <div class="imgph"><div class="box">[ NMN Ultimate 10-in-1 &mdash; 1,000mg &middot; hero image ]</div></div>
-
-    <!-- You're in + gift -->
-    <div class="youre">
-      <div class="youre-inner">
-        <div class="youre-l">
-          <div class="lbl">You're in</div>
-          <p>Hi, and welcome. You just joined a small, focused routine built around one idea &mdash; give your cells what they need, and consistency does the rest. Here's where to start.</p>
-        </div>
-        <div class="gift">
-          <div class="lbl">A welcome gift, on us</div>
-          <button type="button" class="code-btn" id="codeBtn" onclick="copyCode()" aria-label="Copy discount code PRIME10">
-            <span id="codeText">PRIME10</span><span class="ico" id="codeIco">&#128203;</span>
-          </button>
-          <div class="copyhint" id="copyHint">Click the code to copy it</div>
-          <div class="sub">Take 10% off your first order</div>
-          <a class="btn" href="https://tryprimeingredients.com/discount/PRIME10">Shop with PRIME10</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- What's inside -->
-    <div class="section"><div class="mark">&#10022;</div><div class="kick">What's Actually Inside</div></div>
-    <div class="grid">
-      <div class="cell"><div class="tile"><div class="ico">&#9903;</div><div class="t"><strong>&beta;-NMN</strong>, the active precursor form</div></div></div>
-      <div class="cell"><div class="tile"><div class="ico">&#127807;</div><div class="t">Vegetarian capsules, no fillers</div></div></div>
-      <div class="cell"><div class="tile"><div class="ico">&#9734;</div><div class="t">10-in-1 complex in every dose</div></div></div>
-      <div class="cell"><div class="tile"><div class="ico">&#9728;</div><div class="t">Made in a cGMP-certified facility</div></div></div>
-      <div class="cell"><div class="tile"><div class="ico">&#10003;</div><div class="t">Non-GMO &amp; vegan, always</div></div></div>
-      <div class="cell"><div class="tile"><div class="ico">&#9901;</div><div class="t">A direct precursor to NAD+</div></div></div>
-    </div>
-
-    <!-- Three ways -->
-    <div class="section"><div class="mark">&#10022;</div><div class="kick plain serif">Three Ways to Start Well</div></div>
-    <div class="grid">
-      <div class="cell step"><div class="tile"><div class="num">1</div><div class="ico">&#9728;</div><h3>Take it with breakfast</h3><p>One capsule, same time each morning. Pairing it with food helps it become second <strong>nature fast.</strong></p></div></div>
-      <div class="cell step"><div class="tile"><div class="num">2</div><div class="ico">&#128197;</div><h3>Give it a few weeks</h3><p>Cellular energy support builds gradually. Most people notice the <strong>difference around week three or four.</strong></p></div></div>
-      <div class="cell step"><div class="tile"><div class="num">3</div><div class="ico">&#9825;</div><h3>Know your why</h3><p>NAD+ naturally declines with age &mdash; NMN is the precursor your cells use to help make <strong>more of it.</strong></p></div></div>
-    </div>
-
-    <!-- Sign off -->
-    <div class="signoff"><div class="band">
-      <div class="a">Glad you're here.</div>
-      <div class="b">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-      <div class="c">&mdash; The Prime Ingredients Team</div>
-    </div></div>
 
     <!-- Footer -->
     <div class="foot">
       <div class="logo">&#127807; Prime Ingredients</div>
       <div class="soc">
-        <a href="https://www.instagram.com/tryprimeingredients" aria-label="Instagram">&#9673;</a>
-        <a href="https://www.facebook.com/tryprimeingredients" aria-label="Facebook">f</a>
-        <a href="mailto:hello@tryprimeingredients.com" aria-label="Email">&#9993;</a>
+        <a href="https://www.instagram.com/tryprimeingredients" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="#fff" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/tryprimeingredients" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="#fff"><path d="M14.5 8.5H16V6h-2c-1.9 0-3 1.2-3 3v1.5H9V13h2v6h2.5v-6H16l.5-2.5h-3V9c0-.4.2-.5.6-.5Z"/></svg></a>
+        <a href="mailto:hello@tryprimeingredients.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M4 7l8 5.5L20 7"/></svg></a>
       </div>
       <div class="fine">
         You're receiving this because you subscribed at <a href="https://tryprimeingredients.com">tryprimeingredients.com</a>.<br>
@@ -186,13 +101,15 @@
   </div>
 </div>
 
-<div class="toast" id="toast">Copied PRIME10 to clipboard &#10003;</div>
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span id="toastText">Copied PRIME10 to clipboard</span></div>
 
 <script>
   var CODE = 'PRIME10';
+  var COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>';
+  var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
   function showToast(msg){
     var t = document.getElementById('toast');
-    if(msg){ t.textContent = msg; }
+    document.getElementById('toastText').textContent = msg;
     t.classList.add('show');
     clearTimeout(t._h);
     t._h = setTimeout(function(){ t.classList.remove('show'); }, 1800);
@@ -202,38 +119,31 @@
     var ico = document.getElementById('codeIco');
     var hint = document.getElementById('copyHint');
     btn.classList.add('copied');
-    ico.innerHTML = '&#10003;';
+    ico.innerHTML = CHECK_SVG;
     hint.textContent = 'Copied! Paste it at checkout.';
-    showToast('Copied ' + CODE + ' to clipboard ✓');
+    showToast('Copied ' + CODE + ' to clipboard');
     clearTimeout(btn._r);
     btn._r = setTimeout(function(){
       btn.classList.remove('copied');
-      ico.innerHTML = '&#128203;';
+      ico.innerHTML = COPY_SVG;
       hint.textContent = 'Click the code to copy it';
     }, 2200);
   }
   function fallbackCopy(){
     var ta = document.createElement('textarea');
-    ta.value = CODE;
-    ta.setAttribute('readonly','');
-    ta.style.position = 'absolute';
-    ta.style.left = '-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    var ok = false;
-    try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
-    document.body.removeChild(ta);
-    return ok;
+    ta.value = CODE; ta.setAttribute('readonly','');
+    ta.style.position='absolute'; ta.style.left='-9999px';
+    document.body.appendChild(ta); ta.select();
+    var ok=false; try{ ok=document.execCommand('copy'); }catch(e){ ok=false; }
+    document.body.removeChild(ta); return ok;
   }
   function copyCode(){
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(CODE).then(markCopied, function(){
-        if(fallbackCopy()) markCopied();
-        else showToast('Copy the code: ' + CODE);
+        if(fallbackCopy()) markCopied(); else showToast('Copy the code: ' + CODE);
       });
     } else {
-      if(fallbackCopy()) markCopied();
-      else showToast('Copy the code: ' + CODE);
+      if(fallbackCopy()) markCopied(); else showToast('Copy the code: ' + CODE);
     }
   }
 </script>
