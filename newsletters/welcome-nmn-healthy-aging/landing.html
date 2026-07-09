@@ -6,8 +6,7 @@
 <style>
   :root{
     --purple:#6D4C9F; --purple-deep:#5E3E93; --plum:#7E64AB;
-    --lav-bg:#E9DFF4; --panel-2:#F3EBFB; --head-bg:#EFE6F9;
-    --gold:#C6A24E; --ink:#4A3F5C; --muted:#6E6480; --muted-2:#8C7BA6;
+    --lav-bg:#E9DFF4; --head-bg:#EFE6F9; --ink:#4A3F5C; --muted-2:#8C7BA6;
   }
   *{box-sizing:border-box;}
   body{margin:0;padding:0;background:var(--lav-bg);color:var(--ink);
@@ -15,46 +14,37 @@
   .wrap{max-width:600px;margin:0 auto;padding:20px 12px 48px;}
   .viewline{text-align:center;font-size:11px;letter-spacing:1px;color:var(--muted-2);padding:0 8px 12px;}
   .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 14px 50px rgba(94,62,147,.16);}
-  .design{display:block;width:100%;height:auto;}
-  .design-fallback{display:none;padding:60px 24px;text-align:center;color:var(--muted-2);
-    font-size:13px;line-height:1.7;background:var(--head-bg);}
 
-  /* gift band */
-  .gift{margin:24px 36px 8px;background:var(--panel-2);border-radius:12px;text-align:center;padding:26px 24px;}
-  .gift .lbl{font-size:11px;letter-spacing:2px;color:var(--plum);text-transform:uppercase;}
-  .code-btn{margin:14px auto 0;display:inline-flex;align-items:center;gap:10px;
-    background:#fff;border:1px dashed #B79AD6;border-radius:10px;padding:14px 28px;cursor:pointer;
-    font-family:Georgia,serif;font-size:26px;letter-spacing:3px;color:var(--purple-deep);
-    transition:transform .12s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;}
-  .code-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(109,76,159,.20);}
-  .code-btn:active{transform:translateY(0);}
-  .code-btn .cico{width:16px;height:16px;color:var(--plum);flex:0 0 16px;}
-  .code-btn.copied{background:#EAF6EC;border-color:#7FB98A;color:#2F7A3E;}
-  .code-btn.copied .cico{color:#2F7A3E;}
-  .copyhint{font-size:11px;color:var(--muted-2);padding-top:9px;min-height:14px;}
-  .btn{display:inline-block;background:var(--purple);color:#fff;border-radius:26px;
-    padding:14px 34px;font-size:14px;letter-spacing:1px;text-decoration:none;margin-top:16px;
-    box-shadow:0 8px 18px rgba(109,76,159,.28);}
+  /* Artwork + hotspot overlay. Aspect ratio 793:1983 keeps the layer aligned at any width. */
+  .stage{position:relative;width:100%;aspect-ratio:793 / 1983;background:var(--head-bg);}
+  .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .hot{position:absolute;display:block;cursor:pointer;background:transparent;border:0;padding:0;margin:0;
+    -webkit-tap-highlight-color:rgba(109,76,159,.15);border-radius:8px;}
+  .hot:focus-visible{outline:2px solid #6D4C9F;outline-offset:2px;}
+  .imgfb{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;
+    padding:40px;color:var(--muted-2);font-size:13px;line-height:1.7;}
+
+  /* Debug tuner (add ?debug=1 to the URL) */
+  body.debug .hot{background:rgba(109,76,159,.22);outline:1px dashed #6D4C9F;}
+  body.debug .hot::after{content:attr(data-label);position:absolute;top:2px;left:4px;
+    font:10px/1.2 monospace;color:#3a2a5c;background:rgba(255,255,255,.75);padding:1px 3px;border-radius:3px;}
+  .readout{display:none;}
+  body.debug .readout{display:block;position:fixed;bottom:10px;left:10px;z-index:99;
+    font:12px/1.4 monospace;background:#2b2440;color:#fff;padding:8px 12px;border-radius:8px;max-width:90vw;}
 
   /* toast */
   .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
     background:var(--ink);color:#fff;padding:12px 22px;border-radius:26px;font-size:14px;
-    opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;z-index:50;
-    display:flex;align-items:center;gap:8px;}
+    opacity:0;pointer-events:none;transition:opacity .25s, transform .25s;z-index:60;display:flex;align-items:center;gap:8px;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
   .toast svg{width:16px;height:16px;}
 
-  /* footer */
-  .foot{background:var(--head-bg);text-align:center;padding:26px 40px 32px;margin-top:8px;}
-  .foot .logo{font-family:Georgia,serif;font-size:18px;color:var(--purple-deep);padding-bottom:16px;}
-  .soc{display:flex;gap:12px;justify-content:center;margin-bottom:18px;}
-  .soc a{width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff;
-    display:flex;align-items:center;justify-content:center;text-decoration:none;}
-  .soc a svg{width:17px;height:17px;}
-  .foot .fine{font-size:12px;line-height:1.75;color:var(--muted-2);}
+  /* minimal legal footer (required live; kept tiny) */
+  .foot{background:var(--head-bg);text-align:center;padding:18px 30px 24px;}
+  .foot .fine{font-size:12px;line-height:1.7;color:var(--muted-2);}
   .foot .fine a{color:var(--plum);text-decoration:underline;}
-  .foot .addr{font-size:11px;line-height:1.6;color:#A99BC0;padding-top:14px;}
-  .foot .disc{font-size:10px;line-height:1.6;color:#B4A7C8;padding-top:14px;}
+  .foot .addr{font-size:11px;line-height:1.6;color:#A99BC0;padding-top:10px;}
+  .foot .disc{font-size:10px;line-height:1.6;color:#B4A7C8;padding-top:10px;}
 </style>
 </head>
 <body>
@@ -62,39 +52,22 @@
   <div class="viewline">Prime Ingredients &middot; Welcome</div>
   <div class="card">
 
-    <!-- Exact design artwork; tap to shop with PRIME10 applied -->
-    <a href="https://tryprimeingredients.com/discount/PRIME10">
-      <img class="design"
-           src="https://d3k81ch9hvuctc.cloudfront.net/company/U8pRQr/images/b924903e-211e-4ad8-9267-4a430ce4988f.png"
-           alt="Welcome to Your Healthy Aging Era — NMN Ultimate 10-in-1. Use code PRIME10 for 10% off."
-           onerror="this.style.display='none';document.getElementById('imgfb').style.display='block';">
-    </a>
-    <div class="design-fallback" id="imgfb">Design artwork loads from your Klaviyo CDN.<br>(Preview blocked in this sandbox, but it displays for your recipients.)</div>
-
-    <!-- Working click-to-copy welcome code -->
-    <div class="gift">
-      <div class="lbl">A welcome gift, on us</div>
-      <button type="button" class="code-btn" id="codeBtn" onclick="copyCode()" aria-label="Copy discount code PRIME10">
-        <span id="codeText">PRIME10</span>
-        <svg class="cico" id="codeIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
-      </button>
-      <div class="copyhint" id="copyHint">Click the code to copy it</div>
-      <a class="btn" href="https://tryprimeingredients.com/discount/PRIME10">Shop with PRIME10</a>
+    <div class="stage" id="stage">
+      <img src="https://d3k81ch9hvuctc.cloudfront.net/company/U8pRQr/images/b924903e-211e-4ad8-9267-4a430ce4988f.png"
+           alt="Welcome to Your Healthy Aging Era — NMN Ultimate 10-in-1. Use code PRIME10 for 10% off your first order."
+           onerror="this.style.display='none';document.getElementById('imgfb').style.display='flex';">
+      <div class="imgfb" id="imgfb">Design artwork loads from your Klaviyo CDN.<br>(Preview blocked in this sandbox; it displays for recipients.)</div>
+      <!-- Hotspots are injected here from the HOTSPOTS array below -->
     </div>
 
-    <!-- Footer -->
+    <!-- minimal live legal line (unsubscribe + address are required and must be reliable) -->
     <div class="foot">
-      <div class="logo">&#127807; Prime Ingredients</div>
-      <div class="soc">
-        <a href="https://www.instagram.com/tryprimeingredients" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="#fff" stroke="none"/></svg></a>
-        <a href="https://www.facebook.com/tryprimeingredients" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="#fff"><path d="M14.5 8.5H16V6h-2c-1.9 0-3 1.2-3 3v1.5H9V13h2v6h2.5v-6H16l.5-2.5h-3V9c0-.4.2-.5.6-.5Z"/></svg></a>
-        <a href="mailto:hello@tryprimeingredients.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M4 7l8 5.5L20 7"/></svg></a>
-      </div>
       <div class="fine">
-        You're receiving this because you subscribed at <a href="https://tryprimeingredients.com">tryprimeingredients.com</a>.<br>
-        <a href="{unsubscribe_url}">Unsubscribe</a> &nbsp;&middot;&nbsp; <a href="{manage_preferences_url}">Manage preferences</a> &nbsp;&middot;&nbsp; <a href="https://tryprimeingredients.com">Visit our store</a>
+        <a href="{unsubscribe_url}">Unsubscribe</a> &nbsp;&middot;&nbsp;
+        <a href="{manage_preferences_url}">Manage preferences</a> &nbsp;&middot;&nbsp;
+        <a href="https://tryprimeingredients.com">Visit our store</a>
       </div>
-      <div class="addr">Prime Ingredients<br>123 Wellness Way, Suite 100, Austin, TX 78701</div>
+      <div class="addr">Prime Ingredients &middot; 123 Wellness Way, Suite 100, Austin, TX 78701</div>
       <div class="disc">These statements have not been evaluated by the Food &amp; Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</div>
     </div>
 
@@ -102,49 +75,65 @@
 </div>
 
 <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span id="toastText">Copied PRIME10 to clipboard</span></div>
+<div class="readout" id="readout">move cursor over artwork…</div>
 
 <script>
   var CODE = 'PRIME10';
-  var COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>';
-  var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+  var SHOP = 'https://tryprimeingredients.com/discount/PRIME10?utm_source=klaviyo&utm_medium=email&utm_campaign=welcome_nmn';
+
+  /* ---- Hotspots as % of the artwork (edit these; use ?debug=1 to see + tune) ----
+     left/top/w/h are percentages of the image. type 'copy' copies PRIME10;
+     'link' opens url. Numbers are estimated from the mockup — nudge to taste. */
+  var HOTSPOTS = [
+    { label:'copy PRIME10', type:'copy', left:59, top:40.8, w:32, h:4.2 },
+    { label:'Shop',         type:'link', url:SHOP, left:59, top:46.2, w:32, h:3.4 },
+    { label:'Instagram',    type:'link', url:'https://www.instagram.com/tryprimeingredients', left:66.5, top:95.3, w:7, h:2.1 },
+    { label:'Facebook',     type:'link', url:'https://www.facebook.com/tryprimeingredients',  left:74.0, top:95.3, w:7, h:2.1 },
+    { label:'Email',        type:'link', url:'mailto:hello@tryprimeingredients.com',           left:81.5, top:95.3, w:7, h:2.1 }
+  ];
+
+  var stage = document.getElementById('stage');
+  HOTSPOTS.forEach(function(h){
+    var el;
+    if(h.type === 'copy'){ el = document.createElement('button'); el.type='button'; el.onclick = copyCode; }
+    else { el = document.createElement('a'); el.href = h.url; }
+    el.className = 'hot';
+    el.setAttribute('data-label', h.label);
+    el.setAttribute('aria-label', h.label);
+    el.style.left = h.left + '%'; el.style.top = h.top + '%';
+    el.style.width = h.w + '%';  el.style.height = h.h + '%';
+    stage.appendChild(el);
+  });
+
+  /* copy-to-clipboard */
   function showToast(msg){
-    var t = document.getElementById('toast');
-    document.getElementById('toastText').textContent = msg;
-    t.classList.add('show');
-    clearTimeout(t._h);
-    t._h = setTimeout(function(){ t.classList.remove('show'); }, 1800);
-  }
-  function markCopied(){
-    var btn = document.getElementById('codeBtn');
-    var ico = document.getElementById('codeIco');
-    var hint = document.getElementById('copyHint');
-    btn.classList.add('copied');
-    ico.innerHTML = CHECK_SVG;
-    hint.textContent = 'Copied! Paste it at checkout.';
-    showToast('Copied ' + CODE + ' to clipboard');
-    clearTimeout(btn._r);
-    btn._r = setTimeout(function(){
-      btn.classList.remove('copied');
-      ico.innerHTML = COPY_SVG;
-      hint.textContent = 'Click the code to copy it';
-    }, 2200);
+    var t=document.getElementById('toast');
+    document.getElementById('toastText').textContent=msg;
+    t.classList.add('show'); clearTimeout(t._h);
+    t._h=setTimeout(function(){t.classList.remove('show');},1800);
   }
   function fallbackCopy(){
-    var ta = document.createElement('textarea');
-    ta.value = CODE; ta.setAttribute('readonly','');
-    ta.style.position='absolute'; ta.style.left='-9999px';
-    document.body.appendChild(ta); ta.select();
-    var ok=false; try{ ok=document.execCommand('copy'); }catch(e){ ok=false; }
-    document.body.removeChild(ta); return ok;
+    var ta=document.createElement('textarea'); ta.value=CODE; ta.setAttribute('readonly','');
+    ta.style.position='absolute'; ta.style.left='-9999px'; document.body.appendChild(ta); ta.select();
+    var ok=false; try{ok=document.execCommand('copy');}catch(e){ok=false;} document.body.removeChild(ta); return ok;
   }
   function copyCode(){
     if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(CODE).then(markCopied, function(){
-        if(fallbackCopy()) markCopied(); else showToast('Copy the code: ' + CODE);
-      });
-    } else {
-      if(fallbackCopy()) markCopied(); else showToast('Copy the code: ' + CODE);
-    }
+      navigator.clipboard.writeText(CODE).then(function(){showToast('Copied '+CODE+' to clipboard');},
+        function(){ showToast(fallbackCopy()?'Copied '+CODE+' to clipboard':'Copy the code: '+CODE); });
+    } else { showToast(fallbackCopy()?'Copied '+CODE+' to clipboard':'Copy the code: '+CODE); }
+  }
+
+  /* debug tuner: ?debug=1 outlines hotspots and shows live cursor % for precise placement */
+  if(/[?&]debug=1/.test(location.search)){
+    document.body.classList.add('debug');
+    var ro=document.getElementById('readout');
+    stage.addEventListener('mousemove', function(e){
+      var r=stage.getBoundingClientRect();
+      var x=((e.clientX-r.left)/r.width*100).toFixed(1);
+      var y=((e.clientY-r.top)/r.height*100).toFixed(1);
+      ro.textContent='cursor  left:'+x+'%  top:'+y+'%   (image '+Math.round(r.width)+'×'+Math.round(r.height)+')';
+    });
   }
 </script>
 </body></html>
