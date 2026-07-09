@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Ingredients — Welcome (2)</title>
+<style>
+  :root{
+    --purple:#6D4C9F; --purple-deep:#5E3E93; --plum:#7E64AB;
+    --lav-bg:#E9DFF4; --head-bg:#EFE6F9; --ink:#4A4458; --muted-2:#8C7BA6;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:0;background:var(--lav-bg);color:var(--ink);
+    font-family:Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:600px;margin:0 auto;padding:20px 12px 48px;}
+  .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 14px 50px rgba(94,62,147,.16);}
+  .stage{position:relative;width:100%;aspect-ratio:793 / 1983;background:var(--head-bg);}
+  .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0;}
+  .baselink{position:absolute;inset:0;z-index:1;display:block;}
+  .hot{position:absolute;display:block;cursor:pointer;background:transparent;border:0;padding:0;margin:0;z-index:2;
+    -webkit-tap-highlight-color:rgba(109,76,159,.15);border-radius:8px;}
+  .hot:focus-visible{outline:2px solid #6D4C9F;outline-offset:2px;}
+  .imgfb{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;
+    padding:40px;color:var(--muted-2);font-size:13px;line-height:1.7;}
+  body.debug .hot{background:rgba(109,76,159,.22);outline:1px dashed #6D4C9F;}
+  body.debug .hot::after{content:attr(data-label);position:absolute;top:2px;left:4px;
+    font:10px/1.2 monospace;color:#3a2a5c;background:rgba(255,255,255,.75);padding:1px 3px;border-radius:3px;}
+  .readout{display:none;}
+  body.debug .readout{display:block;position:fixed;bottom:10px;left:10px;z-index:99;
+    font:12px/1.4 monospace;background:#2b2440;color:#fff;padding:8px 12px;border-radius:8px;max-width:90vw;}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;padding:12px 22px;border-radius:26px;font-size:14px;
+    opacity:0;pointer-events:none;transition:opacity .25s, transform .25s;z-index:60;display:flex;align-items:center;gap:8px;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast svg{width:16px;height:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+
+    <div class="stage" id="stage">
+      <img src="https://d3k81ch9hvuctc.cloudfront.net/company/U8pRQr/images/5b2cf469-569c-4d22-9a0d-844f3cc5de37.png"
+           alt="Prime Ingredients — NMN Ultimate 10-in-1. Use code PRIME10 for 10% off your first order."
+           onerror="this.style.display='none';document.getElementById('imgfb').style.display='flex';">
+      <div class="imgfb" id="imgfb">Design artwork loads from your Klaviyo CDN.</div>
+      <a class="baselink" href="https://tryprimeingredients.com/discount/PRIME10?utm_source=klaviyo&utm_medium=email&utm_campaign=welcome_nmn" aria-label="Shop with PRIME10 — 10% off your first order"></a>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span id="toastText">Copied PRIME10 to clipboard</span></div>
+<div class="readout" id="readout">move cursor over artwork…</div>
+
+<script>
+  var CODE = 'PRIME10';
+  // Positions measured on the 793×1983 artwork, converted to %:  px/793 (x,w), px/1983 (y,h)
+  var HOTSPOTS = [
+    { label:'copy PRIME10', type:'copy', left:65.07, top:41.76, w:17.53, h:2.12 }, // 516,828 139x42
+    { label:'Instagram',    type:'link', url:'https://www.instagram.com/tryprimeingredients', left:74.15, top:94.70, w:3.91, h:1.51 }, // 588,1878 31x30
+    { label:'Facebook',     type:'link', url:'https://www.facebook.com/tryprimeingredients',  left:79.70, top:94.80, w:4.41, h:1.51 }, // 632,1880 35x30
+    { label:'Email',        type:'link', url:'mailto:hello@tryprimeingredients.com',           left:85.62, top:94.70, w:4.16, h:1.71 }  // 679,1878 33x34
+  ];
+  var stage = document.getElementById('stage');
+  HOTSPOTS.forEach(function(h){
+    var el;
+    if(h.type === 'copy'){ el = document.createElement('button'); el.type='button'; el.onclick = copyCode; }
+    else { el = document.createElement('a'); el.href = h.url; }
+    el.className = 'hot';
+    el.setAttribute('data-label', h.label);
+    el.setAttribute('aria-label', h.label);
+    el.style.left = h.left + '%'; el.style.top = h.top + '%';
+    el.style.width = h.w + '%';  el.style.height = h.h + '%';
+    stage.appendChild(el);
+  });
+  function showToast(msg){
+    var t=document.getElementById('toast');
+    document.getElementById('toastText').textContent=msg;
+    t.classList.add('show'); clearTimeout(t._h);
+    t._h=setTimeout(function(){t.classList.remove('show');},1800);
+  }
+  function fallbackCopy(){
+    var ta=document.createElement('textarea'); ta.value=CODE; ta.setAttribute('readonly','');
+    ta.style.position='absolute'; ta.style.left='-9999px'; document.body.appendChild(ta); ta.select();
+    var ok=false; try{ok=document.execCommand('copy');}catch(e){ok=false;} document.body.removeChild(ta); return ok;
+  }
+  function copyCode(){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(CODE).then(function(){showToast('Copied '+CODE+' to clipboard');},
+        function(){ showToast(fallbackCopy()?'Copied '+CODE+' to clipboard':'Copy the code: '+CODE); });
+    } else { showToast(fallbackCopy()?'Copied '+CODE+' to clipboard':'Copy the code: '+CODE); }
+  }
+  if(/[?&]debug=1/.test(location.search)){
+    document.body.classList.add('debug');
+    var ro=document.getElementById('readout');
+    stage.addEventListener('mousemove', function(e){
+      var r=stage.getBoundingClientRect();
+      var x=((e.clientX-r.left)/r.width*100).toFixed(1);
+      var y=((e.clientY-r.top)/r.height*100).toFixed(1);
+      ro.textContent='cursor  left:'+x+'%  top:'+y+'%   (image '+Math.round(r.width)+'×'+Math.round(r.height)+')';
+    });
+  }
+</script>
+</body></html>
