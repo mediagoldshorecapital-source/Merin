@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scratch &amp; Win — Subscription Offer</title>
+<style>
+  :root {
+    --brand: #6d3bf5;
+    --brand-2: #b45bff;
+    --gold: #f5b301;
+    --ink: #1c1330;
+    --paper: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+  }
+
+  /* Dim page behind the popup */
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background:
+      radial-gradient(1200px 600px at 20% -10%, #efe6ff 0%, transparent 60%),
+      radial-gradient(900px 500px at 100% 120%, #ffe9c7 0%, transparent 55%),
+      #f3eefc;
+  }
+
+  /* ---------- Popup shell ---------- */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 19, 48, 0.55);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 50;
+  }
+
+  .popup {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: var(--paper);
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(28, 19, 48, 0.45);
+    overflow: hidden;
+    animation: pop-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes pop-in {
+    from { opacity: 0; transform: translateY(24px) scale(0.94); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .popup__header {
+    position: relative;
+    padding: 30px 30px 22px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+    overflow: hidden;
+  }
+  .popup__header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120px 120px at 12% 20%, rgba(255,255,255,.25), transparent 70%),
+      radial-gradient(160px 160px at 90% 110%, rgba(255,255,255,.18), transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+
+  .popup__title {
+    margin: 0 0 8px;
+    font-size: 28px;
+    line-height: 1.15;
+    font-weight: 800;
+  }
+  .popup__subtitle {
+    margin: 0;
+    font-size: 15px;
+    opacity: 0.92;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s;
+  }
+  .close-btn:hover { background: rgba(255,255,255,0.38); }
+
+  .popup__body { padding: 26px 30px 30px; }
+
+  .instruction {
+    text-align: center;
+    font-size: 14px;
+    color: #6a5f80;
+    margin: 0 0 20px;
+  }
+  .instruction strong { color: var(--brand); }
+
+  /* ---------- Pills ---------- */
+  .pills {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .pill {
+    position: relative;
+    height: 62px;
+    border-radius: 999px;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    box-shadow: inset 0 0 0 2px rgba(109, 59, 245, 0.12);
+  }
+
+  /* The prize underneath the scratch coating */
+  .pill__prize {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+    color: var(--ink);
+    background: linear-gradient(135deg, #fff6da 0%, #ffe6a8 55%, #ffd980 100%);
+    text-align: center;
+  }
+  .pill__prize .star { color: var(--gold); font-size: 20px; }
+
+  /* Scratch coating canvas sits on top of the prize */
+  .pill__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+    touch-action: none;
+  }
+  .pill__canvas:active { cursor: grabbing; }
+
+  /* Locked (un-scratchable) pills */
+  .pill.is-locked .pill__canvas { cursor: not-allowed; }
+  .pill.is-locked { opacity: 0.75; }
+
+  /* The winning pill, once revealed */
+  .pill.is-won {
+    box-shadow: inset 0 0 0 2px var(--gold), 0 6px 18px rgba(245, 179, 1, 0.35);
+    animation: win-glow 1.2s ease-in-out infinite alternate;
+  }
+  @keyframes win-glow {
+    from { box-shadow: inset 0 0 0 2px var(--gold), 0 6px 18px rgba(245,179,1,.25); }
+    to   { box-shadow: inset 0 0 0 2px var(--gold), 0 10px 26px rgba(245,179,1,.55); }
+  }
+
+  /* ---------- Result / CTA ---------- */
+  .result {
+    margin-top: 22px;
+    text-align: center;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+  }
+  .result.show {
+    max-height: 240px;
+    opacity: 1;
+  }
+  .result__headline {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--brand);
+    margin: 0 0 4px;
+  }
+  .result__text {
+    font-size: 14px;
+    color: #6a5f80;
+    margin: 0 0 16px;
+  }
+
+  .email-row {
+    display: flex;
+    gap: 8px;
+  }
+  .email-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 16px;
+    border: 1.5px solid #e3daf5;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-row input:focus { border-color: var(--brand); }
+
+  .cta {
+    padding: 13px 20px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.12s, box-shadow 0.2s;
+    box-shadow: 0 8px 20px rgba(109, 59, 245, 0.35);
+  }
+  .cta:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(109,59,245,.45); }
+  .cta:active { transform: translateY(0); }
+
+  .fineprint {
+    margin: 14px 0 0;
+    font-size: 11px;
+    color: #9c92b0;
+  }
+
+  /* Confetti canvas overlay */
+  #confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 60;
+  }
+</style>
+</head>
+<body>
+
+  <canvas id="confetti"></canvas>
+
+  <div class="overlay" id="overlay">
+    <div class="popup" role="dialog" aria-labelledby="popupTitle" aria-modal="true">
+      <div class="popup__header">
+        <button class="close-btn" id="closeBtn" aria-label="Close">&times;</button>
+        <span class="badge">Exclusive Offer</span>
+        <h2 class="popup__title" id="popupTitle">Scratch &amp; Win!</h2>
+        <p class="popup__subtitle">Subscribe today for your chance to unlock a reward</p>
+      </div>
+
+      <div class="popup__body">
+        <p class="instruction">
+          Pick <strong>one</strong> pill and scratch it to reveal your prize.
+          Choose wisely — you only get <strong>one</strong> scratch!
+        </p>
+
+        <div class="pills" id="pills">
+          <!-- pills injected by JS -->
+        </div>
+
+        <div class="result" id="result">
+          <p class="result__headline">🎉 You won 3 Months Free!</p>
+          <p class="result__text">Enter your email and we'll apply the reward to your subscription.</p>
+          <div class="email-row">
+            <input type="email" id="emailInput" placeholder="you@example.com" aria-label="Email address" />
+            <button class="cta" id="claimBtn">Claim Reward</button>
+          </div>
+          <p class="fineprint">*New subscribers only. Reward applied at checkout.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  const PILL_COUNT = 5;
+  const PRIZE_LABEL = "3 Months Free";
+  const REVEAL_THRESHOLD = 0.45; // fraction of coating that must be scratched to auto-reveal
+
+  const pillsWrap = document.getElementById("pills");
+  const result = document.getElementById("result");
+
+  // Global lock: becomes true the moment the customer starts scratching ANY pill.
+  let locked = false;
+
+  /* Build the pills */
+  for (let i = 0; i < PILL_COUNT; i++) {
+    const pill = document.createElement("div");
+    pill.className = "pill";
+
+    const prize = document.createElement("div");
+    prize.className = "pill__prize";
+    prize.innerHTML = '<span class="star">★</span> ' + PRIZE_LABEL + ' <span class="star">★</span>';
+
+    const canvas = document.createElement("canvas");
+    canvas.className = "pill__canvas";
+
+    pill.appendChild(prize);
+    pill.appendChild(canvas);
+    pillsWrap.appendChild(pill);
+
+    setupScratch(pill, canvas);
+  }
+
+  /* ---------- Scratch logic per pill ---------- */
+  function setupScratch(pill, canvas) {
+    const ctx = canvas.getContext("2d");
+    let scratching = false;
+    let revealed = false;
+    let sized = false;
+
+    function sizeCanvas() {
+      const rect = pill.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      paintCoating(rect.width, rect.height);
+      sized = true;
+    }
+
+    function paintCoating(w, h) {
+      // Metallic silver scratch-off coating
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, "#c7c9cf");
+      grad.addColorStop(0.45, "#a7abb4");
+      grad.addColorStop(0.55, "#babec6");
+      grad.addColorStop(1, "#8f939d");
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle sparkle noise
+      for (let i = 0; i < 40; i++) {
+        ctx.fillStyle = "rgba(255,255,255," + (Math.random() * 0.25) + ")";
+        ctx.fillRect(Math.random() * w, Math.random() * h, 2, 2);
+      }
+
+      // "SCRATCH HERE" label
+      ctx.fillStyle = "rgba(70,70,80,0.85)";
+      ctx.font = "700 13px 'Segoe UI', system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("SCRATCH HERE", w / 2, h / 2);
+    }
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const point = e.touches ? e.touches[0] : e;
+      return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+    }
+
+    function scratchAt(x, y) {
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.beginPath();
+      ctx.arc(x, y, 18, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    /* Measure how much has been scratched away */
+    function scratchedRatio() {
+      const img = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      let clear = 0;
+      const step = 16; // sample every Nth pixel for speed
+      let counted = 0;
+      for (let i = 3; i < img.length; i += 4 * step) {
+        counted++;
+        if (img[i] === 0) clear++;
+      }
+      return counted ? clear / counted : 0;
+    }
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      // Wipe the rest of the coating away
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      pill.classList.add("is-won");
+      showResult();
+      launchConfetti();
+    }
+
+    function onDown(e) {
+      // If another pill was already engaged, this one is inert.
+      if (locked && !pill.classList.contains("is-active")) {
+        return;
+      }
+      if (revealed) return;
+
+      // First interaction anywhere -> lock every other pill.
+      if (!locked) {
+        engageThisPill();
+      }
+
+      scratching = true;
+      const p = getPos(e);
+      scratchAt(p.x, p.y);
+      e.preventDefault();
+    }
+
+    function onMove(e) {
+      if (!scratching || revealed) return;
+      const p = getPos(e);
+      scratchAt(p.x, p.y);
+      e.preventDefault();
+    }
+
+    function onUp() {
+      if (!scratching) return;
+      scratching = false;
+      if (!revealed && scratchedRatio() >= REVEAL_THRESHOLD) {
+        reveal();
+      }
+    }
+
+    function engageThisPill() {
+      locked = true;
+      pill.classList.add("is-active");
+      // Lock all other pills so they stop reacting to scratch.
+      document.querySelectorAll(".pill").forEach(function (p) {
+        if (p !== pill) p.classList.add("is-locked");
+      });
+    }
+
+    // Pointer + touch bindings
+    canvas.addEventListener("mousedown", onDown);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+
+    canvas.addEventListener("touchstart", onDown, { passive: false });
+    canvas.addEventListener("touchmove", onMove, { passive: false });
+    window.addEventListener("touchend", onUp);
+
+    // Size once laid out, and keep coating crisp on resize.
+    requestAnimationFrame(sizeCanvas);
+    window.addEventListener("resize", function () {
+      if (!revealed) sizeCanvas();
+    });
+  }
+
+  function showResult() {
+    result.classList.add("show");
+  }
+
+  document.getElementById("closeBtn").addEventListener("click", function () {
+    document.getElementById("overlay").style.display = "none";
+  });
+
+  document.getElementById("claimBtn").addEventListener("click", function () {
+    const email = document.getElementById("emailInput").value.trim();
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      document.getElementById("emailInput").focus();
+      document.getElementById("emailInput").style.borderColor = "#e5484d";
+      return;
+    }
+    const btn = document.getElementById("claimBtn");
+    btn.textContent = "✓ Claimed!";
+    btn.disabled = true;
+    btn.style.opacity = "0.85";
+    // Hook your subscription/newsletter API here.
+    // e.g. fetch('/api/subscribe', { method:'POST', body: JSON.stringify({ email, reward: '3-months-free' }) })
+  });
+
+  /* ---------- Confetti ---------- */
+  function launchConfetti() {
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const colors = ["#6d3bf5", "#b45bff", "#f5b301", "#ff7ac0", "#4ad0c0"];
+    const pieces = [];
+    for (let i = 0; i < 140; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: -20 - Math.random() * canvas.height * 0.3,
+        r: 4 + Math.random() * 6,
+        c: colors[(Math.random() * colors.length) | 0],
+        vx: -2 + Math.random() * 4,
+        vy: 2 + Math.random() * 4,
+        rot: Math.random() * Math.PI,
+        vr: -0.2 + Math.random() * 0.4
+      });
+    }
+    let frames = 0;
+    (function frame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(function (p) {
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += 0.05;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 0.6);
+        ctx.restore();
+      });
+      frames++;
+      if (frames < 220) requestAnimationFrame(frame);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    })();
+  }
+})();
+</script>
+</body>
+</html>
