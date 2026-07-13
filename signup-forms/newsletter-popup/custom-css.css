@@ -1,0 +1,90 @@
+/* ============================================================
+   Prime Ingredients — Newsletter Popup
+   Custom CSS for Klaviyo Sign-Up Forms
+   ------------------------------------------------------------
+   HOW TO USE:
+   Klaviyo builds most of the styling through the visual editor
+   (Styles panel). This file is for the finishing touches the
+   editor doesn't expose. Paste it into:
+
+     Sign-Up Forms  ->  (your form)  ->  Styles tab
+        ->  scroll to "Custom CSS"  ->  paste  ->  Save
+
+   Klaviyo wraps each form in a unique id like  #klaviyo-form-XXXXXX.
+   The selectors below are written to work without knowing that id.
+   If two forms on one page collide, prefix each rule with your
+   form's id (shown in the editor URL / embed snippet).
+
+   Brand palette:
+     forest  #2E3D31   caramel #A9805A   caramel-dark #946E4C
+     sand    #EFE9E0   ivory   #FBF8F3   cream  #F4EFE6   gold #C9B79C
+   ============================================================ */
+
+/* Rounded corners + soft shadow on the popup card */
+.klaviyo-form {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  box-shadow: 0 30px 80px rgba(20, 26, 21, 0.45) !important;
+}
+
+/* Email input field */
+.klaviyo-form input[type="email"],
+.klaviyo-form input[type="text"] {
+  border: 1px solid #E4DCCD !important;
+  border-radius: 6px !important;
+  padding: 14px 16px !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 15px !important;
+  color: #2E3D31 !important;
+  background: #ffffff !important;
+}
+.klaviyo-form input[type="email"]::placeholder,
+.klaviyo-form input[type="text"]::placeholder {
+  color: #9a978d !important;
+}
+.klaviyo-form input[type="email"]:focus,
+.klaviyo-form input[type="text"]:focus {
+  outline: none !important;
+  border-color: #A9805A !important;
+  box-shadow: 0 0 0 3px rgba(169, 128, 90, 0.15) !important;
+}
+
+/* Primary button — caramel pill */
+.klaviyo-form button[type="button"].needsclick,
+.klaviyo-form button[type="submit"] {
+  background-color: #A9805A !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  border-radius: 30px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  font-weight: 700 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  padding: 15px 24px !important;
+  transition: background-color 0.2s ease !important;
+}
+.klaviyo-form button[type="button"].needsclick:hover,
+.klaviyo-form button[type="submit"]:hover {
+  background-color: #946E4C !important;
+}
+
+/* "No thanks" close/decline link — understated */
+.klaviyo-form .kl-private-reset-css-Xuajs1 a,
+.klaviyo-form a[href="#close"] {
+  color: #a4a196 !important;
+  text-decoration: underline !important;
+  font-size: 12px !important;
+}
+
+/* Consent / disclaimer microcopy */
+.klaviyo-form .kl-private-reset-css-Xuajs1 p small,
+.klaviyo-form small {
+  color: #8b887e !important;
+  font-size: 11.5px !important;
+  line-height: 1.55 !important;
+}
+
+/* Success (thank-you) message spacing */
+.klaviyo-form form[data-testid="klaviyo-form-success"] {
+  padding: 8px 4px !important;
+}
