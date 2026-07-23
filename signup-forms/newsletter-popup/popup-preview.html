@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Ingredients — Newsletter Popup Preview</title>
+<style>
+  :root{
+    --forest:#2E3D31;
+    --caramel:#A9805A;
+    --caramel-dark:#946E4C;
+    --sand:#EFE9E0;
+    --ivory:#FBF8F3;
+    --cream:#F4EFE6;
+    --gold:#C9B79C;
+    --ink:#2E3D31;
+    --muted:#5B5B52;
+    --line:#E4DCCD;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--sans);
+    background:
+      radial-gradient(1200px 600px at 70% -10%, #fff 0%, rgba(255,255,255,0) 60%),
+      var(--sand);
+    min-height:100vh;
+    color:var(--ink);
+  }
+
+  /* Faux site behind the popup, so the design reads in context */
+  .site{
+    position:fixed;inset:0;overflow:hidden;filter:saturate(.9);
+  }
+  .site-nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 6vw;background:var(--ivory);border-bottom:1px solid var(--line);
+  }
+  .site-nav .brand{font-family:var(--serif);letter-spacing:2px;text-transform:uppercase;font-size:18px;color:var(--forest);}
+  .site-nav .links{display:flex;gap:26px;font-size:13px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
+  .site-hero{padding:9vh 6vw;max-width:640px;}
+  .site-hero h1{font-family:var(--serif);font-weight:normal;font-size:46px;line-height:1.12;color:var(--forest);margin:0 0 16px;}
+  .site-hero p{font-size:17px;line-height:1.6;color:var(--muted);max-width:460px;}
+
+  /* Dim overlay */
+  .overlay{
+    position:fixed;inset:0;background:rgba(20,26,21,.55);
+    display:flex;align-items:center;justify-content:center;padding:24px;z-index:10;
+    -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+  }
+
+  /* ---- The popup ---- */
+  .popup{
+    position:relative;width:100%;max-width:720px;
+    background:var(--ivory);border-radius:10px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(20,26,21,.45);
+    display:grid;grid-template-columns:44% 56%;
+    animation:pop .45s cubic-bezier(.2,.9,.25,1) both;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98);}to{opacity:1;transform:none;}}
+
+  .popup__close{
+    position:absolute;top:12px;right:14px;z-index:3;
+    width:30px;height:30px;border:0;border-radius:50%;
+    background:rgba(255,255,255,.14);color:var(--cream);
+    font-size:18px;line-height:1;cursor:pointer;transition:background .2s;
+  }
+  .popup__close:hover{background:rgba(255,255,255,.28);}
+
+  /* Left brand / offer panel */
+  .panel{
+    position:relative;background:var(--forest);color:var(--cream);
+    padding:44px 34px;display:flex;flex-direction:column;justify-content:center;
+    overflow:hidden;
+  }
+  .panel::after{ /* subtle radial glow */
+    content:"";position:absolute;width:340px;height:340px;border-radius:50%;
+    right:-140px;top:-120px;background:radial-gradient(closest-side, rgba(169,128,90,.35), rgba(169,128,90,0));
+  }
+  .panel .kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+  .panel .brand{font-family:var(--serif);text-transform:uppercase;letter-spacing:3px;font-size:20px;margin:6px 0 26px;}
+  .panel .offer-num{font-family:var(--serif);font-size:62px;line-height:.9;color:#fff;}
+  .panel .offer-lbl{font-family:var(--serif);font-size:26px;margin-top:2px;color:var(--cream);}
+  .panel .offer-sub{font-size:13px;line-height:1.6;color:var(--gold);margin-top:16px;max-width:230px;position:relative;}
+  .panel .rule{width:46px;height:1px;background:var(--caramel);margin:22px 0;}
+  .panel .stars{color:var(--caramel);letter-spacing:3px;font-size:14px;}
+  .panel .proof{font-size:12px;color:var(--gold);margin-top:8px;}
+
+  /* Right form panel */
+  .form-side{padding:46px 40px;display:flex;flex-direction:column;justify-content:center;}
+  .form-side .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--caramel);margin-bottom:12px;}
+  .form-side h2{font-family:var(--serif);font-weight:normal;font-size:30px;line-height:1.15;color:var(--forest);margin:0 0 12px;}
+  .form-side p.lead{font-size:14.5px;line-height:1.6;color:var(--muted);margin:0 0 22px;}
+  .field{width:100%;border:1px solid var(--line);background:#fff;border-radius:6px;
+    padding:14px 16px;font-family:var(--sans);font-size:15px;color:var(--ink);}
+  .field::placeholder{color:#9a978d;}
+  .field:focus{outline:none;border-color:var(--caramel);box-shadow:0 0 0 3px rgba(169,128,90,.15);}
+  .cta{
+    width:100%;margin-top:12px;border:0;border-radius:30px;cursor:pointer;
+    background:var(--caramel);color:#fff;text-transform:uppercase;letter-spacing:1.5px;
+    font-family:var(--sans);font-size:14px;font-weight:bold;padding:15px 20px;transition:background .2s;
+  }
+  .cta:hover{background:var(--caramel-dark);}
+  .consent{font-size:11.5px;line-height:1.55;color:#8b887e;margin-top:14px;}
+  .consent a{color:var(--caramel);text-decoration:underline;}
+  .decline{display:block;background:none;border:0;margin:14px auto 0;cursor:pointer;
+    font-size:12px;letter-spacing:.5px;color:#a4a196;text-decoration:underline;}
+
+  /* Success state */
+  .success{display:none;text-align:center;padding:56px 40px;grid-column:1 / -1;}
+  .success .check{width:64px;height:64px;border-radius:50%;background:var(--forest);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 20px;}
+  .success h2{font-family:var(--serif);font-weight:normal;font-size:28px;color:var(--forest);margin:0 0 10px;}
+  .success p{font-size:15px;line-height:1.6;color:var(--muted);max-width:380px;margin:0 auto;}
+  .success .code{display:inline-block;margin-top:20px;border:1px dashed var(--caramel);border-radius:8px;
+    padding:12px 26px;font-family:var(--serif);font-size:22px;letter-spacing:4px;color:var(--forest);background:var(--cream);}
+  .popup.is-success{grid-template-columns:1fr;}
+  .popup.is-success .panel,.popup.is-success .form-side{display:none;}
+  .popup.is-success .success{display:block;}
+
+  /* Controls (preview only — NOT part of the Klaviyo form) */
+  .controls{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:30;
+    display:flex;gap:8px;background:rgba(46,61,49,.92);padding:8px;border-radius:40px;
+    box-shadow:0 8px 30px rgba(0,0,0,.3);}
+  .controls button{border:0;background:transparent;color:var(--gold);font-size:12px;letter-spacing:.5px;
+    padding:8px 16px;border-radius:30px;cursor:pointer;font-family:var(--sans);}
+  .controls button.active{background:var(--caramel);color:#fff;}
+  .controls .sep{width:1px;background:rgba(255,255,255,.15);margin:4px 2px;}
+
+  /* Mobile stack */
+  .overlay.mobile .popup{max-width:360px;grid-template-columns:1fr;}
+  .overlay.mobile .panel{padding:34px 30px 26px;text-align:left;}
+  .overlay.mobile .panel .offer-num{font-size:52px;}
+  .overlay.mobile .form-side{padding:32px 28px 34px;}
+
+  @media (max-width:760px){
+    .popup{grid-template-columns:1fr;max-width:380px;}
+    .site-hero h1{font-size:32px;}
+    .controls{flex-wrap:wrap;justify-content:center;max-width:92vw;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Faux storefront behind the popup (context only) -->
+  <div class="site" aria-hidden="true">
+    <div class="site-nav">
+      <div class="brand">Prime Ingredients</div>
+      <div class="links"><span>Shop</span><span>Collagen</span><span>About</span><span>Cart (0)</span></div>
+    </div>
+    <div class="site-hero">
+      <h1>Clean, essential<br>solutions for<br>healthy aging.</h1>
+      <p>Science-backed formulas with no fillers or artificial ingredients — just pure, targeted support.</p>
+    </div>
+  </div>
+
+  <!-- The subscription popup -->
+  <div class="overlay" id="overlay">
+    <div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+      <button class="popup__close" id="closeBtn" aria-label="Close">&times;</button>
+
+      <!-- Brand / offer panel -->
+      <aside class="panel">
+        <div class="kicker">Prime Ingredients Circle</div>
+        <div class="brand">Prime<br>Ingredients</div>
+        <div class="offer-num">15%</div>
+        <div class="offer-lbl">off your first order</div>
+        <div class="offer-sub">Plus clean, science-backed healthy-aging tips delivered to your inbox.</div>
+        <div class="rule"></div>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="proof">Loved by our collagen community</div>
+      </aside>
+
+      <!-- Form panel -->
+      <section class="form-side">
+        <div class="eyebrow">Join the list</div>
+        <h2 id="popup-title">Unlock 15% off &amp; healthy-aging tips</h2>
+        <p class="lead">Be first to hear about new products, subscriber-only offers, and clean-living guides — and get 15% off to start.</p>
+        <form id="signupForm" novalidate>
+          <input class="field" type="email" name="email" placeholder="Enter your email address" required autocomplete="email" aria-label="Email address">
+          <button class="cta" type="submit">Claim my 15% off</button>
+        </form>
+        <p class="consent">By subscribing you agree to receive marketing emails from Prime Ingredients. Unsubscribe anytime. See our <a href="#">Privacy Policy</a>.</p>
+        <button class="decline" id="declineBtn" type="button">No thanks, I&rsquo;ll pay full price</button>
+      </section>
+
+      <!-- Success state -->
+      <div class="success">
+        <div class="check">&#10003;</div>
+        <h2>You&rsquo;re in! Welcome to the Circle.</h2>
+        <p>Check your inbox to confirm and grab your discount. Use this code at checkout:</p>
+        <div class="code">WELCOME15</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preview-only controls -->
+  <div class="controls">
+    <button id="v-desktop" class="active">Desktop</button>
+    <button id="v-mobile">Mobile</button>
+    <div class="sep"></div>
+    <button id="v-form" class="active">Form</button>
+    <button id="v-success">Success state</button>
+  </div>
+
+<script>
+  var overlay = document.getElementById('overlay');
+  var popup = document.getElementById('popup');
+  var form = document.getElementById('signupForm');
+
+  form.addEventListener('submit', function(e){ e.preventDefault(); popup.classList.add('is-success'); setActive('v-success'); });
+  document.getElementById('closeBtn').addEventListener('click', function(){ overlay.style.display='none'; });
+  document.getElementById('declineBtn').addEventListener('click', function(){ overlay.style.display='none'; });
+
+  function setActive(id){
+    ['v-form','v-success'].forEach(function(x){ document.getElementById(x).classList.toggle('active', x===id); });
+  }
+  document.getElementById('v-desktop').addEventListener('click', function(){
+    overlay.classList.remove('mobile'); this.classList.add('active'); document.getElementById('v-mobile').classList.remove('active');
+  });
+  document.getElementById('v-mobile').addEventListener('click', function(){
+    overlay.classList.add('mobile'); this.classList.add('active'); document.getElementById('v-desktop').classList.remove('active');
+  });
+  document.getElementById('v-form').addEventListener('click', function(){ popup.classList.remove('is-success'); setActive('v-form'); });
+  document.getElementById('v-success').addEventListener('click', function(){ popup.classList.add('is-success'); setActive('v-success'); });
+</script>
+</body>
+</html>
