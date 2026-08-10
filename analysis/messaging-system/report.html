@@ -1,0 +1,576 @@
+<title>Prime Ingredients — The Linda System</title>
+<style>
+  :root {
+    --ground: #EDF1F3; --surface: #FCFCFB; --surface-2: #F4F7F8;
+    --ink: #111A1F; --ink-2: #4E5F68; --ink-3: #74858E;
+    --rule: #D2DBDF; --rule-soft: #E3EAED;
+    --accent: #00819C; --accent-soft: #D7EDF2;
+    --neg: #C03A1E; --neg-soft: #F7E0DA;
+    --warn: #8A5A0B; --warn-soft: #F6EBD6;
+    --shadow: 0 1px 2px rgba(17,26,31,.06), 0 8px 24px -16px rgba(17,26,31,.28);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1418; --surface: #151E23; --surface-2: #1B262C;
+      --ink: #E2E9EC; --ink-2: #9DAEB7; --ink-3: #7A8B94;
+      --rule: #28343A; --rule-soft: #202B31;
+      --accent: #2FA6AE; --accent-soft: #10333A;
+      --neg: #D9604A; --neg-soft: #3A211C;
+      --warn: #D2A24A; --warn-soft: #332916;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0D1418; --surface: #151E23; --surface-2: #1B262C;
+    --ink: #E2E9EC; --ink-2: #9DAEB7; --ink-3: #7A8B94;
+    --rule: #28343A; --rule-soft: #202B31;
+    --accent: #2FA6AE; --accent-soft: #10333A;
+    --neg: #D9604A; --neg-soft: #3A211C;
+    --warn: #D2A24A; --warn-soft: #332916;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.6; margin: 0; padding: 0 20px 96px; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+
+  h1, h2, h3, h4 {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -0.01em;
+  }
+  h1 { font-size: clamp(2rem, 4.6vw, 3.1rem); line-height: 1.08; }
+  h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.15; }
+  h3 { font-size: 1.14rem; line-height: 1.3; }
+  h4 { font-size: 1rem; line-height: 1.35; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  header.masthead { padding: 64px 0 0; display: flex; flex-direction: column; gap: 22px; }
+  .masthead .lede { font-size: 1.2rem; line-height: 1.55; color: var(--ink-2); max-width: 62ch; }
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 8px 28px; padding-top: 20px; border-top: 1px solid var(--rule);
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .76rem; color: var(--ink-3);
+  }
+  .meta-row b { color: var(--ink-2); font-weight: 600; }
+
+  .verdict {
+    background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--neg);
+    border-radius: 3px; padding: 28px 32px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .verdict.good { border-left-color: var(--accent); }
+  .verdict p { font-size: 1.05rem; color: var(--ink-2); max-width: 72ch; }
+  .verdict strong { color: var(--ink); font-weight: 600; }
+
+  section { display: flex; flex-direction: column; gap: 22px; }
+  .sec-head { display: flex; flex-direction: column; gap: 10px; }
+  .sec-head p { color: var(--ink-2); max-width: 68ch; }
+
+  .t-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: .86rem; min-width: 640px; }
+  caption { caption-side: top; text-align: left; padding: 16px 20px 12px; font-size: .82rem; color: var(--ink-3); border-bottom: 1px solid var(--rule-soft); }
+  th, td { padding: 10px 16px; text-align: right; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-size: .72rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); background: var(--surface-2); white-space: nowrap; }
+  tbody td { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+  tbody td:first-child { color: var(--ink); font-weight: 500; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr.win td { background: var(--accent-soft); }
+  tbody tr.win td:first-child { color: var(--accent); font-weight: 600; }
+  tbody tr.lose td { background: var(--neg-soft); }
+  tbody tr.lose td:first-child { color: var(--neg); font-weight: 600; }
+  td.neg { color: var(--neg); font-weight: 600; }
+  td.pos { color: var(--accent); font-weight: 600; }
+  td.l, th.l { text-align: left; }
+
+  .callout { background: var(--surface-2); border: 1px solid var(--rule); border-radius: 3px; padding: 18px 22px; font-size: .93rem; color: var(--ink-2); max-width: 76ch; }
+  .callout b { color: var(--ink); }
+  .callout.warn { background: var(--warn-soft); border-color: var(--warn); }
+  .callout.bad { background: var(--neg-soft); border-color: var(--neg); }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .card.is-win { border-top: 3px solid var(--accent); }
+  .card.is-lose { border-top: 3px solid var(--neg); }
+  .card .tag { font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace; font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .card.is-win .tag { color: var(--accent); }
+  .card.is-lose .tag { color: var(--neg); }
+  .card ul { margin: 0; padding-left: 18px; font-size: .9rem; color: var(--ink-2); display: flex; flex-direction: column; gap: 5px; }
+
+  blockquote.copy {
+    margin: 0; padding: 14px 16px; background: var(--surface-2); border-left: 2px solid var(--accent);
+    border-radius: 2px; font-size: .89rem; color: var(--ink-2); white-space: pre-line; line-height: 1.5;
+  }
+  blockquote.copy.bad { border-left-color: var(--neg); }
+
+  .formula {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .8rem; background: var(--surface-2); border: 1px solid var(--rule-soft);
+    border-radius: 2px; padding: 12px 14px; color: var(--ink); white-space: pre-line; line-height: 1.55; overflow-x: auto;
+  }
+
+  ol.plays { list-style: none; counter-reset: p; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  ol.plays li { counter-increment: p; background: var(--surface); padding: 20px 24px 20px 62px; position: relative; display: flex; flex-direction: column; gap: 8px; }
+  ol.plays li::before { content: counter(p); position: absolute; left: 24px; top: 20px; font-family: ui-monospace, Menlo, monospace; font-size: .82rem; color: var(--accent); font-weight: 600; }
+  ol.plays p { font-size: .93rem; color: var(--ink-2); max-width: 74ch; }
+
+  .flow { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  .flow-step { background: var(--surface); padding: 16px 22px; display: grid; grid-template-columns: 92px 1fr; gap: 18px; align-items: start; }
+  .flow-when { font-family: ui-monospace, Menlo, monospace; font-size: .76rem; color: var(--accent); font-weight: 600; padding-top: 2px; }
+  .flow-body { display: flex; flex-direction: column; gap: 5px; }
+  .flow-body .fb-title { font-weight: 600; font-size: .95rem; color: var(--ink); }
+  .flow-body p { font-size: .88rem; color: var(--ink-2); }
+
+  figure { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 24px; box-shadow: var(--shadow); }
+  figcaption { font-size: .82rem; color: var(--ink-3); margin-top: 14px; max-width: 66ch; }
+  svg { display: block; width: 100%; height: auto; }
+  .legend { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 16px; font-size: .82rem; color: var(--ink-2); }
+  .legend span { display: flex; align-items: center; gap: 8px; }
+  .swatch { width: 12px; height: 12px; border-radius: 2px; display: block; }
+
+  code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .86em; background: var(--surface-2); padding: 1px 5px; border-radius: 2px; border: 1px solid var(--rule-soft); }
+  footer { border-top: 1px solid var(--rule); padding-top: 22px; font-size: .82rem; color: var(--ink-3); max-width: 76ch; }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">Messaging &amp; growth system · Prime Ingredients</span>
+    <h1>The hook you built the brand on is the worst-performing angle you own.</h1>
+    <p class="lede">Your customer intelligence report is good research. It correctly identifies Linda, her fears, and the mechanism that moves her. But it names <em>"Feeling more tired as you age? It's not just aging"</em> as your hero hook — and across six months and 436 ads, that exact construction returned <b>0.92 ROAS with zero winners and nine losers</b>. The insight is right. The sentence is wrong. This document rebuilds the messaging system on the executions that actually convert.</p>
+    <div class="meta-row">
+      <span><b>Built from</b> NMN Deep Customer Intelligence (20 May 2026)</span>
+      <span><b>Validated against</b> Triple Whale, through 7 Aug 2026</span>
+      <span><b>Ads analysed</b> 1,220 · $381K spend</span>
+    </div>
+  </header>
+
+  <div class="verdict">
+    <span class="eyebrow">Start here — the correction</span>
+    <p>The research treats the product-page opener as proven because it <em>sounds</em> like Linda. It does sound like Linda. But sounding right and selling are different jobs, and the ad data separates them cleanly: the hedged, explanatory version of this insight (<strong>"Feeling more tired as you age? It's not 'just aging.' Your NAD+ levels naturally drop…"</strong>) returned <strong>0.92</strong>. The committed, second-person version (<strong>"Tired of feeling tired as you age? It's not just aging… Your NAD+ levels are plummeting!"</strong>) returned <strong>1.41</strong> across $146,474 of spend and produced four of your twelve all-time winners. Same insight, same mechanism, same audience — <strong>53% apart</strong> because one commits and one hedges.</p>
+  </div>
+
+  <!-- ============ PART 1 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">01 — Corrections</span>
+      <h2>Three things in the research that current data no longer supports</h2>
+      <p>The report was built on data through 20 May. Three of its operational recommendations have since reversed, and acting on them would cost you money.</p>
+    </div>
+
+    <div class="callout bad">
+      <b>Correction 1 — The hero hook is your worst angle.</b> Covered above. Keep the insight, rewrite every execution of it. This is the single highest-value change in this document.
+    </div>
+
+    <div class="callout bad">
+      <b>Correction 2 — "Saturday is her day, never launch on Monday" is no longer true.</b> The report ranked Saturday highest and Monday lowest by 22%. Measured on 1 May – 7 Aug and controlled for ad spend, <b>Friday is the clear best day (1.25 ROAS, $48.47 CPA)</b> and <b>Tuesday is the worst (0.99, $61.26)</b>. Saturday is mid-pack. Monday is fine. Raw order counts mislead here because they track your budget schedule, not her behaviour — Sunday looks like a big day only because it is your biggest spend day, and it returns 1.05.
+    </div>
+
+    <div class="callout bad">
+      <b>Correction 3 — "11 AM is your single best hour" no longer holds.</b> Current peak is <b>7 PM (296 orders)</b> and <b>6 PM (291)</b>; 11 AM has fallen to fifth (276). More importantly the curve is far flatter than the report implies — every hour from 8 AM to midnight sits within 27% of each other. The only genuinely dead window is <b>2–7 AM</b>. Hour-of-day is a weak lever; day-of-week is a real one.
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Day-of-week performance, spend-controlled · 1 May – 7 Aug 2026, Meta channel-reported</caption>
+        <thead>
+          <tr><th scope="col">Day</th><th scope="col">Ad spend</th><th scope="col">ROAS</th><th scope="col">CPA</th><th scope="col">Conv per click</th><th scope="col" class="l">Verdict</th></tr>
+        </thead>
+        <tbody>
+          <tr class="win"><td>Friday</td><td>$34,995</td><td class="pos">1.25</td><td class="pos">$48.47</td><td class="pos">3.60%</td><td class="l">Best day. Underspent relative to return.</td></tr>
+          <tr><td>Saturday</td><td>$32,592</td><td>1.12</td><td>$54.87</td><td>3.17%</td><td class="l">Solid, not exceptional.</td></tr>
+          <tr><td>Wednesday</td><td>$30,294</td><td>1.11</td><td>$54.00</td><td>3.30%</td><td class="l">Quietly strong.</td></tr>
+          <tr><td>Thursday</td><td>$29,474</td><td>1.07</td><td>$56.03</td><td>3.24%</td><td class="l">Average.</td></tr>
+          <tr><td>Monday</td><td>$30,861</td><td>1.06</td><td>$59.01</td><td>2.97%</td><td class="l">Not the dead day the report claims.</td></tr>
+          <tr class="lose"><td>Sunday</td><td>$36,823</td><td class="neg">1.05</td><td>$58.92</td><td>3.00%</td><td class="l">Your biggest spend day, 6th-best return.</td></tr>
+          <tr class="lose"><td>Tuesday</td><td>$31,244</td><td class="neg">0.99</td><td class="neg">$61.26</td><td>2.97%</td><td class="l">Only day below 1.0. Cut hardest here.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">02 — The audience</span>
+      <h2>Linda is right. Robert is the opportunity you're ignoring.</h2>
+      <p>The persona work holds up. The gap is that your most efficient buyer barely appears in your creative.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card is-win">
+        <span class="tag">Confirmed by current data</span>
+        <h3>Linda, 58–68</h3>
+        <ul>
+          <li>Sun Belt / retirement corridor — AZ, CA, FL, TX, NV</li>
+          <li>US-only in practice: <b>5,031 of 5,033 orders</b></li>
+          <li>Mobile-first, Facebook + Instagram = 94% of orders</li>
+          <li>Bundle buyer, ~3 units per order, AOV $60</li>
+          <li>Legacy email (AOL/Yahoo/Comcast) ≈ 40%</li>
+          <li>Refund rate 2.85% — she keeps what she buys</li>
+        </ul>
+      </div>
+      <div class="card is-lose">
+        <span class="tag">Underserved — the biggest open lever</span>
+        <h3>Robert, 60–72</h3>
+        <ul>
+          <li><b>1.81 ROAS</b> — per the research, the most efficient demographic in the account</li>
+          <li>That is the <b>only segment above your ~1.70 breakeven</b></li>
+          <li>Higher AOV, buys $100+ bundles more often</li>
+          <li>Core fear: <em>"I'm becoming my father."</em></li>
+          <li>Motivation: recovery, sharpness, performance — not "youthful glow"</li>
+          <li>Not one ad in six months is written to him</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <b>Why Robert matters more than the ROAS number alone.</b> Your blended ROAS is 1.29 and breakeven is ~1.70, so at account level you lose money on every new customer and recover it on re-bills. A segment converting at 1.81 is the only place you are profitable <em>on first order</em>. Even if the real figure is lower than the report's 1.81, the direction is clear and it is entirely untested in creative. This is the cheapest experiment available to you. Verify it in Ads Manager before scaling, since that number comes from the research, not from a source I can query.
+    </div>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">03 — The message map</span>
+      <h2>Ten insecurities, ten angles, ten hooks</h2>
+      <p>Every hook below is written in the winning structure — second person, committed verbs, a named mechanism, a benefit triad, an explicit CTA. Use these as production briefs, not final copy.</p>
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Insecurity → angle → hook → format → product</caption>
+        <thead>
+          <tr><th scope="col">Her fear</th><th scope="col" class="l">Opening hook</th><th scope="col" class="l">Format</th><th scope="col" class="l">Proof to pair</th><th scope="col" class="l">Product</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1. I'm becoming invisible</td><td class="l">"Tired of sitting out the things you used to run?"<br>It's not just aging — your NAD+ is collapsing.</td><td class="l">UGC video, 20s</td><td class="l">5,128 reviews</td><td class="l">NMN</td></tr>
+          <tr><td>2. Am I losing my mind?</td><td class="l">"Forgot another name this week?"<br>It's not just aging — your brain runs on NAD+, and yours is dropping.</td><td class="l">Founder/expert talking head</td><td class="l">Clinical citation</td><td class="l">NMN (Focus)</td></tr>
+          <tr><td>3. I look older than I feel</td><td class="l">"The mirror is lying to you — and you know it."<br>Your skin's antioxidant defence is running out.</td><td class="l">Before/after, split screen</td><td class="l">Forbes / ELLE</td><td class="l">ASTA</td></tr>
+          <tr><td>4. Can't keep up with grandkids</td><td class="l">"When did getting on the floor become the hard part?"</td><td class="l">Story video, 30s</td><td class="l">Customer testimonial</td><td class="l">NMN</td></tr>
+          <tr><td>5. My body stopped listening</td><td class="l">"Your doctor said it's normal. Normal isn't the same as fine."</td><td class="l">Talking head, direct address</td><td class="l">Women 55–64 reviews</td><td class="l">NMN</td></tr>
+          <tr><td>6. I've been scammed before</td><td class="l">"Not all NMN is created equal. 64% of them fail lab tests."</td><td class="l">Product demo + COA</td><td class="l">Third-party testing</td><td class="l">NMN ★</td></tr>
+          <tr><td>7. Can't afford to waste money</td><td class="l">"$16 a bottle. And if it does nothing, you pay nothing."</td><td class="l">Static offer card</td><td class="l">Money-back guarantee</td><td class="l">NMN bundle</td></tr>
+          <tr><td>8. Falling behind my friends</td><td class="l">"She's 64 and finishes the walk. You used to be her."</td><td class="l">UGC comparison</td><td class="l">500K+ customers</td><td class="l">NMN</td></tr>
+          <tr><td>9. Husband doesn't understand</td><td class="l">"You're not imagining it. There's a name for what's happening."</td><td class="l">Educational, 30s</td><td class="l">Mechanism diagram</td><td class="l">NMN</td></tr>
+          <tr><td>10. I'm running out of time</td><td class="l">"Every tired year is a year you don't get back."</td><td class="l">Emotive, grandchildren</td><td class="l">Longevity research</td><td class="l">NMN (Longevity)</td></tr>
+          <tr class="win"><td>R. I'm becoming my father</td><td class="l">"You watched him slow down. You swore you wouldn't."<br>Your NAD+ is dropping — that's the edge you're losing.</td><td class="l">Male VO, no music, plain</td><td class="l">Clinical + dosage spec</td><td class="l">NMN → Robert</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      ★ <b>Angle 6 deserves special attention.</b> "Not all X is created equal" is your best-performing structure by CPM ($57.47 vs $98.37 for the volume workhorse) and produced three of twelve winners — but you have <b>only ever run it on Astaxanthin</b>, a product that is ~4% of revenue. It has never been tested on NMN, which is 94%. It also directly answers insecurity #6, her single strongest objection. This is the highest-expected-value untested creative in the account.
+    </div>
+  </section>
+
+  <!-- ============ PART 4 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">04 — Per product</span>
+      <h2>Four products, four jobs</h2>
+    </div>
+
+    <div class="grid2">
+      <div class="card is-win">
+        <span class="tag">94% of revenue · $292,955 gross (Jun–Aug 7)</span>
+        <h3>NMN Complex — "Get your years back"</h3>
+        <p><b>Job:</b> acquisition engine and subscription anchor. Everything else attaches to it.</p>
+        <blockquote class="copy">Tired of feeling tired as you age?
+It's not just aging — your NAD+ levels are collapsing.
+Rebuild them with NMN Complex and get back clean energy, sharp focus &amp; clear thinking.
+See how it works →</blockquote>
+        <ul>
+          <li><b>Primary angles:</b> 6 (quality contrast), 1 (invisibility), 2 (cognition)</li>
+          <li><b>Format:</b> 20s UGC video, hook in first 3 seconds, captions burned in</li>
+          <li><b>Offer:</b> lead with per-bottle math ($16.66), not "75% off"</li>
+          <li><b>Never say:</b> "helps support", "naturally declines", "may assist"</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="tag">4% of revenue · $13,725 gross · 462 units</span>
+        <h3>ASTA — "The mirror problem"</h3>
+        <p><b>Job:</b> AOV lift and second-purchase trigger. She buys NMN for energy, then ASTA for the mirror.</p>
+        <blockquote class="copy">Not all astaxanthin is created equal.
+Most are synthetic — weak, and a waste of your money.
+Ours is from microalgae, the form your skin can actually use.
+See the difference →</blockquote>
+        <ul>
+          <li><b>Primary angle:</b> 3 (I look older than I feel)</li>
+          <li><b>Format:</b> before/after split screen; UGC over studio</li>
+          <li><b>Placement:</b> post-purchase upsell + Day-30 email, not cold traffic</li>
+          <li><b>Do not</b> lead with "tan" — the glow/tan angle returns 0.98</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="tag">$2,190 gross · 47 units · 26.5% discount</span>
+        <h3>Multi Collagen — "Inside and outside"</h3>
+        <p><b>Job:</b> bundle component. Too small to justify its own cold-traffic budget.</p>
+        <ul>
+          <li><b>Position as:</b> the "outside" half of an NMN pairing — never standalone</li>
+          <li><b>Angle:</b> 3 + 5 (joints, post-menopause)</li>
+          <li><b>Action:</b> build an "Inside + Out" bundle at a single price point rather than funding separate creative</li>
+          <li><b>Blocker:</b> COGS is null on this SKU, so its margin is unknown — fix before promoting</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="tag">$3,175 gross · 68 units · 40.9% discount</span>
+        <h3>Calcium Balm — "Fix or drop"</h3>
+        <p><b>Job:</b> currently unclear, and it carries your steepest discount.</p>
+        <ul>
+          <li>Highest discount rate of any product at <b>40.9%</b>, on the lowest volume</li>
+          <li>COGS is null — you cannot currently tell whether it makes money</li>
+          <li><b>Recommendation:</b> hold it as a free gift-with-purchase at the top bundle tier, where it lifts AOV instead of consuming ad budget</li>
+          <li>Decide within 30 days: fix the margin data and position it, or retire it</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <b>A setup problem worth catching now.</b> Your Subscribe &amp; Save SKUs have sold <b>nine units total</b> since June — yet 97% of orders are flagged as subscription orders. The subscription is being applied by an app or post-purchase flow rather than through those product variants. That means your S&amp;S product pages are effectively dead, and any creative pointing at them will underperform. Confirm which mechanism actually enrols customers before you write subscription-led ads.
+    </div>
+  </section>
+
+  <!-- ============ PART 5 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">05 — Production spec</span>
+      <h2>How to build the creative</h2>
+      <p>Derived from the twelve winning ads. The rules are unintuitive and they are the whole point.</p>
+    </div>
+
+    <ol class="plays">
+      <li>
+        <h3>Write to qualify, not to attract</h3>
+        <p>In your account, hook rate, hold rate and CTR all correlate <em>negatively</em> with return, in every month measured. Losing ads buy 36% more clicks and convert them 39% worse. Every line should give a non-buyer a reason to scroll past.</p>
+      </li>
+      <li>
+        <h3>Use the winning sentence architecture</h3>
+        <div class="formula">[Symptom question, second person]?
+"It's not just [dismissal she's been given]…"
+"Your [named mechanism] is [committed verb: collapsing / plummeting]!"
+"[Strong verb] it with [product] and get back [b1], [b2] &amp; [b3]."
+"[Explicit CTA] →"</div>
+        <p>Rotate: symptom · dismissal · benefit triad order · CTA verb. Four variables give you dozens of testable variants from one proven skeleton.</p>
+      </li>
+      <li>
+        <h3>Video: 20 seconds, hook in 3, captions always</h3>
+        <p>She watches Facebook Reels in a recliner with the TV on. Sound is often off. Burn captions in. Open on the symptom, not the product. Show a woman who looks 58–68, not 45 — the research is explicit that she is comparing herself to her peer group.</p>
+      </li>
+      <li>
+        <h3>Drop "75% OFF TODAY ONLY" from headlines</h3>
+        <p>It lost on conversions-per-click in five months out of five. Her buying decision is driven by the per-bottle anchor on the landing page ($29.98 → $16.66), not by a shouted percentage in the ad. Lead with the per-bottle math instead.</p>
+      </li>
+      <li>
+        <h3>Judge new creative on conversions per click</h3>
+        <div class="formula">≥ 4.0%  → scale
+3.0–4.0% → hold and iterate
+&lt; 2.8%  → kill</div>
+        <p>Give each new ad ~40 clicks (≈$60 at your $1.50 CPC) before deciding. Read it from Meta — your Triple Whale checkout event only fires on about 63% of purchases.</p>
+      </li>
+      <li>
+        <h3>Fix your ad naming before you scale production</h3>
+        <p><code>- Video - Ad -2</code>, <code>- Video - Ad - 2</code> and <code>Video - Ad - 2</code> are currently three separate rows. Adopt <code>[Product]_[Angle#]_[Format]_[Variant]_[Date]</code> so angle-level reporting works without manual cleanup.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ PART 6 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">06 — Scheduling</span>
+      <h2>When to spend, corrected</h2>
+    </div>
+
+    <div class="grid2">
+      <div class="card is-win">
+        <span class="tag">Budget weighting</span>
+        <h4>By day</h4>
+        <ul>
+          <li><b>Friday</b> — index up. Best ROAS, lowest CPA, best click quality.</li>
+          <li><b>Wed / Sat</b> — hold at current levels.</li>
+          <li><b>Sunday</b> — reduce. It is your largest spend day and sixth-best return.</li>
+          <li><b>Tuesday</b> — cut hardest. The only day below 1.0 ROAS.</li>
+          <li>Launch new creative <b>Wednesday or Thursday</b> so it exits learning by Friday.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">Dayparting</span>
+        <h4>By hour</h4>
+        <ul>
+          <li><b>Run 8 AM – midnight ET.</b> The curve is flat across this window; heavy dayparting is not worth the delivery cost.</li>
+          <li><b>6–8 PM ET is the current peak</b> (296 and 291 orders) — weight modestly, don't over-engineer.</li>
+          <li><b>Suppress 2–7 AM ET.</b> This is the only genuinely dead window.</li>
+          <li>Send email and ManyChat at <b>10:30 AM</b> and <b>6:30 PM ET</b> — those still bracket the two behavioural peaks.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PART 7 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">07 — Communication architecture</span>
+      <h2>The system that turns one order into six</h2>
+      <p>Your economics only work on re-bills: you lose <b>$21.95</b> acquiring a subscriber and make <b>$37.34</b> every time they re-bill. Breakeven is <b>0.59 re-bills per subscriber</b>. Everything below exists to protect that number.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step"><span class="flow-when">Day 0</span><div class="flow-body"><span class="fb-title">Ad → landing page → checkout</span><p>Qualifying hook, per-bottle anchor, Forbes/ELLE, 3 reviews from women who sound like her, Apple Pay. She completes in ~4 minutes.</p></div></div>
+      <div class="flow-step"><span class="flow-when">Day 0 +1h</span><div class="flow-body"><span class="fb-title">Confirmation + expectation setting</span><p>Tell her when to expect results. "Most women feel the shift between day 12 and day 21." This single line is the cheapest churn insurance you have — it stops her quitting at day 10.</p></div></div>
+      <div class="flow-step"><span class="flow-when">Day 3</span><div class="flow-body"><span class="fb-title">How to take it</span><p>Morning, with food, alongside her existing vitamins. Anchor it to a habit she already has (coffee) so it survives.</p></div></div>
+      <div class="flow-step"><span class="flow-when">Day 12</span><div class="flow-body"><span class="fb-title">"Notice anything yet?" — reply-to-us email</span><p>Invites the first success signal. Replies feed testimonials and flag at-risk customers early.</p></div></div>
+      <div class="flow-step"><span class="flow-when">Day 21</span><div class="flow-body"><span class="fb-title">ASTA cross-sell — the mirror angle</span><p>She bought for energy. Now sell the mirror. This is where ASTA belongs, not in cold traffic.</p></div></div>
+      <div class="flow-step"><span class="flow-when">Day 30</span><div class="flow-body"><span class="fb-title">Review request + referral</span><p>She's socially motivated (insecurity #8). Ask her to tell one friend, not to post publicly.</p></div></div>
+      <div class="flow-step"><span class="flow-when">Day 75</span><div class="flow-body"><span class="fb-title">"Running low?" — pre-empt the lapse</span><p>The research is explicit: reorder window is 90–120 days. If you email at Day 75 she reorders; if you don't, she forgets and buys elsewhere.</p></div></div>
+      <div class="flow-step"><span class="flow-when">Day 85 / 95</span><div class="flow-body"><span class="fb-title">Reorder push, then loss-framing</span><p>"Don't lose your momentum." Momentum is the thing she is afraid of losing — use that word, not "discount".</p></div></div>
+    </div>
+
+    <div class="callout bad">
+      <b>None of this can run today.</b> Klaviyo sends Triple Whale no engagement data at all — no sends, opens, clicks or list growth — and attributed just <b>$1,028 in July</b> against $128,676 of revenue. For a subscription supplement brand, email should be doing 20–30% of revenue. That is roughly <b>$25–35K a month</b> you are not collecting, on a list you already own, at near-zero marginal cost. Fixing the Klaviyo integration is the highest-ROI task in this entire document.
+    </div>
+  </section>
+
+  <!-- ============ PART 8 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">08 — The $1M question</span>
+      <h2>Six months is realistic. Three is not.</h2>
+      <p>You asked how to reach $1M in the next 3–6 months. Here is the honest arithmetic, because the answer changes what you should do this week.</p>
+    </div>
+
+    <div class="callout warn">
+      <b>Current run rate:</b> ~$118K/month (August pacing). <b>$1M cumulative over 6 months</b> needs an average of <b>$167K/month</b> — a 41% lift. <b>Over 3 months</b> it needs <b>$333K/month</b> — a 183% lift. The 3-month version can only be bought with spend, and at a 1.43 ROAS against a ~1.70 breakeven, buying it would <em>destroy</em> the margin that funds everything else. Chase the 6-month number.
+    </div>
+
+    <figure>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--accent)"></span>Recurring revenue — compounds with no acquisition cost</span>
+        <span><span class="swatch" style="background:var(--neg)"></span>New-customer revenue — flat, deliberately</span>
+      </div>
+      <svg viewBox="0 0 720 300" role="img" aria-label="Modelled monthly revenue over six months. Recurring revenue grows from 57 to 131 thousand dollars while new customer revenue stays flat near 59 thousand, with the combined total crossing 167 thousand per month by month five.">
+        <line x1="66" y1="250" x2="700" y2="250" stroke="var(--rule)" stroke-width="1"></line>
+        <line x1="66" y1="90" x2="700" y2="90" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="5 4"></line>
+        <text x="700" y="82" text-anchor="end" font-size="11" fill="var(--warn)" font-family="ui-monospace, Menlo, monospace">$167K/mo — the pace $1M needs</text>
+
+        <g font-family="ui-monospace, Menlo, monospace" font-size="10.5" fill="var(--ink-3)">
+          <text x="58" y="254" text-anchor="end">$0</text>
+          <text x="58" y="94" text-anchor="end">$167K</text>
+        </g>
+
+        <g>
+          <rect x="86" y="182" width="38" height="68" rx="3" fill="var(--accent)"></rect>
+          <rect x="86" y="111" width="38" height="69" rx="3" fill="var(--neg)"></rect>
+          <rect x="188" y="160" width="38" height="90" rx="3" fill="var(--accent)"></rect>
+          <rect x="188" y="89" width="38" height="69" rx="3" fill="var(--neg)"></rect>
+          <rect x="290" y="140" width="38" height="110" rx="3" fill="var(--accent)"></rect>
+          <rect x="290" y="69" width="38" height="69" rx="3" fill="var(--neg)"></rect>
+          <rect x="392" y="122" width="38" height="128" rx="3" fill="var(--accent)"></rect>
+          <rect x="392" y="51" width="38" height="69" rx="3" fill="var(--neg)"></rect>
+          <rect x="494" y="106" width="38" height="144" rx="3" fill="var(--accent)"></rect>
+          <rect x="494" y="35" width="38" height="69" rx="3" fill="var(--neg)"></rect>
+          <rect x="596" y="93" width="38" height="157" rx="3" fill="var(--accent)"></rect>
+          <rect x="596" y="22" width="38" height="69" rx="3" fill="var(--neg)"></rect>
+        </g>
+
+        <g font-family="ui-monospace, Menlo, monospace" font-size="10.5" fill="var(--ink-2)" text-anchor="middle">
+          <text x="105" y="104">$116K</text>
+          <text x="207" y="82">$134K</text>
+          <text x="309" y="62">$151K</text>
+          <text x="411" y="44">$166K</text>
+          <text x="513" y="28">$179K</text>
+          <text x="615" y="15">$190K</text>
+        </g>
+        <g font-family="ui-sans-serif, system-ui" font-size="11.5" fill="var(--ink-3)" text-anchor="middle">
+          <text x="105" y="270">Month 1</text>
+          <text x="207" y="270">Month 2</text>
+          <text x="309" y="270">Month 3</text>
+          <text x="411" y="270">Month 4</text>
+          <text x="513" y="270">Month 5</text>
+          <text x="615" y="270">Month 6</text>
+        </g>
+      </svg>
+      <figcaption>Modelled on 877 new subscribers/month held flat, 65% first-cycle retention and 80% thereafter, at current AOVs. Cumulative six-month total ≈ <b>$936K</b> — just short of $1M on acquisition alone, which is why the AOV lever below is what actually closes the gap.</figcaption>
+    </figure>
+
+    <div class="callout">
+      <b>Read the shape, not the decimals.</b> The point of the model is that the growth comes from the recurring block, not the acquisition block. You do not need more traffic to approach $1M — you need the subscription base to compound and your average order to get bigger. Both are cheaper than media. Treat these as directional: the retention assumptions rest on two months of history.
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>The five levers that close the gap, ranked by effort-to-return</caption>
+        <thead>
+          <tr><th scope="col">Lever</th><th scope="col" class="l">What to do</th><th scope="col">Monthly impact</th><th scope="col">Effort</th></tr>
+        </thead>
+        <tbody>
+          <tr class="win"><td>1. AOV / bundle ladder</td><td class="l">Your average order is ~3 units at $60. The research shows Buy&nbsp;3&nbsp;Get&nbsp;3 (6 bottles, ~$106) was once 40% of orders. Rebuild the ladder and default to the 6-bottle tier.</td><td class="pos">+$25–40K</td><td>Low</td></tr>
+          <tr class="win"><td>2. Email / Klaviyo</td><td class="l">Fix the integration, then run the Day 0–95 flow above. Currently $1,028/month on a 5,000+ customer base.</td><td class="pos">+$25–35K</td><td>Low</td></tr>
+          <tr><td>3. Stop discounting re-bills</td><td class="l">Recurring charges carry a 37.9% discount for no acquisition benefit. Cut to 15–20%.</td><td class="pos">+$6.7K margin</td><td>Very low</td></tr>
+          <tr><td>4. Robert campaign</td><td class="l">One dedicated ad set, male-voiced creative, angle R. The only segment reported above breakeven.</td><td>+$10–20K</td><td>Medium</td></tr>
+          <tr><td>5. Branded search</td><td class="l">Google converts at 5.08% — your highest — on 0.4% of orders. At minimum, capture people googling your brand after seeing a Meta ad.</td><td>+$5–15K</td><td>Medium</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PART 9 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">09 — Blind spots</span>
+      <h2>What you're missing that isn't in either document</h2>
+    </div>
+
+    <ol class="plays">
+      <li>
+        <h3>You have no idea what your subscription churn actually is</h3>
+        <p>The entire business now rests on 0.59 re-bills per subscriber, and you have two months of history. If first-cycle retention slips below 60%, scaling acquisition makes losses worse, not better. Build a weekly cycle-1 / cycle-2 / cycle-3 retention report before anything else in this document.</p>
+      </li>
+      <li>
+        <h3>You are not measuring the thing your model depends on</h3>
+        <p>You optimise ads on ROAS and engagement. Neither predicts re-bills. Start tracking <b>CAC-to-second-order rate by creative</b> — which ads produce customers who stay. Two ads with identical ROAS can have very different retention, and right now you cannot see it.</p>
+      </li>
+      <li>
+        <h3>No creative speaks to the subscription at all</h3>
+        <p>97% of orders are subscriptions and re-bills are your only profitable order type, yet not one ad in six months mentions replenishment, "never run out", or the ongoing relationship. Every ad sells the one purchase you lose money on.</p>
+      </li>
+      <li>
+        <h3>Three of four products have no cost data</h3>
+        <p>ASTA, Collagen and Calcium Balm all have null COGS. You are making bundle and promotion decisions on products whose margin you cannot calculate. Calcium Balm carries a 40.9% discount into that blind spot.</p>
+      </li>
+      <li>
+        <h3>You are single-channel, single-product, single-country</h3>
+        <p>100% Meta, 94% one SKU, 99.96% US. Any one of an ad-account restriction, a supply problem, or a payment-processor issue takes revenue to zero. Nothing in a 3–6 month sprint fixes this, but it should be on the plan.</p>
+      </li>
+      <li>
+        <h3>Your April data is still missing</h3>
+        <p>27 days of orders (6 Apr – 2 May) never made it into Triple Whale — roughly $90–100K. Until it's backfilled, every trend, cohort and year-over-year comparison you build will be wrong in the same place.</p>
+      </li>
+    </ol>
+  </section>
+
+  <div class="verdict good">
+    <span class="eyebrow">If you do only four things</span>
+    <p><strong>1.</strong> Rewrite every ad running the hedged "Feeling more tired…" construction into the committed version — same insight, working sentence. <strong>2.</strong> Fix Klaviyo and ship the Day 0–95 flow; it is $25–35K/month sitting on a list you already own. <strong>3.</strong> Rebuild the bundle ladder so the 6-bottle tier is the default again. <strong>4.</strong> Stop discounting re-bills. None of these requires a dollar of additional ad spend, and together they are most of the distance to $1M.</p>
+  </div>
+
+  <footer>
+    Built from the NMN Deep Customer Intelligence Report (Prime Ingredients, 20 May 2026) cross-checked against the Triple Whale warehouse read on 10 August 2026 — <code>orders_table</code>, <code>ads_table</code>, <code>blended_stats_tvf</code>, <code>pixel_joined_tvf</code>. Ad performance figures are Meta channel-reported, valid for ranking creative against creative rather than as absolute profit measures; Triple Whale pixel attribution does not exist before June 2026. Day-of-week and hour-of-day figures cover 1 May – 7 Aug 2026 and are controlled for ad spend where noted. Robert's 1.81 ROAS is carried from the research document and is not independently verifiable in the warehouse — confirm in Ads Manager before scaling against it. Revenue projections are a model, not a forecast: they assume flat acquisition, 65% first-cycle and 80% subsequent subscription retention, and current AOVs, on two months of retention history.
+  </footer>
+
+</div>
