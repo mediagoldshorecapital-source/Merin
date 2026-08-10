@@ -1,0 +1,1089 @@
+<title>NMN — Pain Point &amp; Creative Brief Matrix</title>
+<style>
+:root{--ground:#EDF1F3;--surface:#FCFCFB;--surface-2:#F4F7F8;--ink:#111A1F;--ink-2:#4E5F68;--ink-3:#74858E;
+--rule:#D2DBDF;--rule-soft:#E3EAED;--accent:#00819C;--accent-soft:#D7EDF2;--neg:#C03A1E;--neg-soft:#F7E0DA;
+--warn:#8A5A0B;--warn-soft:#F6EBD6;--good:#1B6547;--good-soft:#DCEDE4;
+--shadow:0 1px 2px rgba(17,26,31,.06),0 8px 24px -16px rgba(17,26,31,.28);}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0D1418;--surface:#151E23;--surface-2:#1B262C;
+--ink:#E2E9EC;--ink-2:#9DAEB7;--ink-3:#7A8B94;--rule:#28343A;--rule-soft:#202B31;--accent:#2FA6AE;--accent-soft:#10333A;
+--neg:#D9604A;--neg-soft:#3A211C;--warn:#D2A24A;--warn-soft:#332916;--good:#58BF8D;--good-soft:#12301F;
+--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);}}
+:root[data-theme="dark"]{--ground:#0D1418;--surface:#151E23;--surface-2:#1B262C;--ink:#E2E9EC;--ink-2:#9DAEB7;
+--ink-3:#7A8B94;--rule:#28343A;--rule-soft:#202B31;--accent:#2FA6AE;--accent-soft:#10333A;--neg:#D9604A;
+--neg-soft:#3A211C;--warn:#D2A24A;--warn-soft:#332916;--good:#58BF8D;--good-soft:#12301F;
+--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+font-size:16px;line-height:1.6;margin:0;padding:0 20px 96px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3,h4{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;font-weight:600;text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,4.6vw,3.1rem);line-height:1.08}
+h2{font-size:clamp(1.5rem,2.8vw,2rem);line-height:1.15}
+h3{font-size:1.1rem;line-height:1.3}
+p{margin:0}
+.eyebrow{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+header.masthead{padding:64px 0 0;display:flex;flex-direction:column;gap:22px}
+.masthead .lede{font-size:1.2rem;line-height:1.55;color:var(--ink-2);max-width:62ch}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px 28px;padding-top:20px;border-top:1px solid var(--rule);
+font-family:ui-monospace,Menlo,monospace;font-size:.76rem;color:var(--ink-3)}
+.meta-row b{color:var(--ink-2);font-weight:600}
+section{display:flex;flex-direction:column;gap:22px}
+.sec-head{display:flex;flex-direction:column;gap:10px}
+.sec-head p{color:var(--ink-2);max-width:68ch}
+.callout{background:var(--surface-2);border:1px solid var(--rule);border-radius:3px;padding:18px 22px;font-size:.93rem;color:var(--ink-2);max-width:78ch}
+.callout b{color:var(--ink)}
+.callout.warn{background:var(--warn-soft);border-color:var(--warn)}
+.rules{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden;counter-reset:rl}
+.rules li{counter-increment:rl;background:var(--surface);padding:16px 22px 16px 56px;position:relative;font-size:.93rem;color:var(--ink-2)}
+.rules li::before{content:counter(rl);position:absolute;left:22px;top:16px;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--accent);font-weight:600}
+.rules b{color:var(--ink)}
+.t-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:760px}
+caption{caption-side:top;text-align:left;padding:16px 20px 12px;font-size:.82rem;color:var(--ink-3);border-bottom:1px solid var(--rule-soft)}
+th,td{padding:9px 14px;text-align:left;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);background:var(--surface-2);white-space:nowrap}
+tbody td{color:var(--ink-2)}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;color:var(--ink-3);font-family:ui-monospace,Menlo,monospace;font-size:.78rem}
+.chip{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.chip.proven{background:var(--good-soft);color:var(--good)}
+.chip.adjacent{background:var(--warn-soft);color:var(--warn)}
+.chip.untested{background:var(--neg-soft);color:var(--neg)}
+.chip.robert{background:var(--accent-soft);color:var(--accent)}
+.chip.plain{background:var(--surface-2);color:var(--ink-3);border:1px solid var(--rule-soft)}
+.cards{display:flex;flex-direction:column;gap:16px}
+.pcard{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--rule);border-radius:3px;padding:24px 26px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow)}
+.pcard.proven{border-left-color:var(--good)}
+.pcard.adjacent{border-left-color:var(--warn)}
+.pcard.untested{border-left-color:var(--neg)}
+.pc-top{display:flex;flex-direction:column;gap:9px}
+.pc-num{font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:var(--ink-3)}
+.pc-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pc-pain{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.pc-pain>div{background:var(--surface-2);border-radius:2px;padding:12px 14px}
+.lbl{font-family:ui-monospace,Menlo,monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:5px}
+.pc-pain p{font-size:.87rem;color:var(--ink-2)}
+.hookbox{border-left:2px solid var(--accent);background:var(--accent-soft);padding:14px 16px;border-radius:2px;display:flex;flex-direction:column;gap:8px}
+.hookbox .hk{font-size:1.02rem;font-weight:600;color:var(--ink)}
+.hookbox .hd{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:1.05rem;color:var(--ink)}
+.hookbox .sh{font-size:.9rem;color:var(--ink-2)}
+.pc-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pc-body>div{display:flex;flex-direction:column;gap:5px}
+.pc-body p{font-size:.88rem;color:var(--ink-2)}
+.pc-idea{background:var(--surface-2);border-radius:2px;padding:13px 15px}
+.pc-idea p{font-size:.89rem;color:var(--ink-2)}
+footer{border-top:1px solid var(--rule);padding-top:22px;font-size:.82rem;color:var(--ink-3);max-width:78ch}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<div class="wrap">
+
+<header class="masthead">
+  <span class="eyebrow">Creative production brief · Prime Ingredients · NMN Complex</span>
+  <h1>Thirty pain points, thirty ads, one rule: qualify her, don’t just catch her.</h1>
+  <p class="lede">Every pain point below comes from the NMN customer intelligence research. Every hook, heading and treatment is written in the structure that actually converts in your Meta account — measured across 1,220 ads and $381K of spend. A designer should be able to build the poster, and an editor cut the reel, from a single entry without asking a follow-up question.</p>
+  <div class="meta-row">
+    <span><b>Pain points</b> 30</span>
+    <span><b>Linda</b> 25 · <b>Robert</b> 5</span>
+    <span><b>Proven</b> 8 · <b>Adjacent</b> 10 · <b>Untested</b> 12</span>
+    <span><b>Built</b> 10 Aug 2026</span>
+  </div>
+</header>
+
+<div class="callout warn">
+  <b>The one rule that governs all thirty.</b> In this account, hook rate, hold rate and click-through rate all correlate <em>negatively</em> with return — in all seven months measured. Losing ads buy 36% more clicks and convert them 39% worse. So every hook here is written to <b>disqualify</b>: to give a non-buyer a reason to scroll past. That is why several of them look narrower, plainer and less “scroll-stopping” than a normal brief. That is deliberate, and it is the difference between $31.90 and $58.09 cost per acquisition.
+</div>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Non-negotiables</span><h2>Rules every asset must follow</h2>
+  <p>Derived from the six-month creative teardown, not from preference.</p></div>
+  <ol class="rules">
+    <li><b>Hooks qualify, they do not attract.</b> If a line would appeal to someone who has never felt this pain, rewrite it.</li>
+    <li><b>Committed verbs only</b> — <em>plummeting, collapsing, rebuild</em>. Never <em>naturally declines, helps support, may assist</em>. This is the 0.92-vs-1.41 ROAS difference and the single most important rule here.</li>
+    <li><b>Never put “75% OFF” in a headline.</b> It lost on conversions-per-click in five months out of five. Lead with the per-bottle anchor: $29.98 → $16.66.</li>
+    <li><b>Talent must read 58–68.</b> She compares herself to her peer group; a 45-year-old model breaks the mirror.</li>
+    <li><b>Reels: 20 seconds, hook inside 3, captions burned in.</b> She watches in a recliner with the TV on and the sound off.</li>
+    <li><b>Plain beats polished.</b> In this account the winners look homemade and the losers look like adverts.</li>
+    <li><b>Judge on conversions per click</b>, not hook rate or CTR. ≥4.0% scale · 3.0–4.0% hold · &lt;2.8% kill, after ~40 clicks (≈$60). Read it from Meta — the Triple Whale checkout event fires on only ~63% of purchases.</li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Index</span><h2>All thirty at a glance</h2>
+  <p>Evidence tier tells you how much budget a concept has earned. <b>Proven</b> has winning ads behind it, <b>adjacent</b> is a variant of a winner, <b>untested</b> is new — do not launch twelve untested concepts at once.</p></div>
+  <div class="t-scroll"><table>
+    <caption>Pain point index · sorted by category</caption>
+    <thead><tr><th>#</th><th>Pain point</th><th>Category</th><th>Tier</th><th>Funnel</th><th>Format</th><th>Qualifying hook</th></tr></thead>
+    <tbody><tr>
+<td class="num">1</td>
+<td>“I’m becoming invisible.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip proven">Proven</span></td>
+<td>Cold</td>
+<td>UGC testimonial</td>
+<td>Tired of sitting out the things you used to run?</td>
+</tr><tr>
+<td class="num">2</td>
+<td>“Am I losing my mind?”</td>
+<td>Psychological / identity</td>
+<td><span class="chip proven">Proven</span></td>
+<td>Cold</td>
+<td>Talking-head direct address</td>
+<td>Forgot another name this week?</td>
+</tr><tr>
+<td class="num">3</td>
+<td>“I look older than I feel inside.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Warm (Day 21)</td>
+<td>Before/after</td>
+<td>The woman in the mirror isn’t the one you feel like.</td>
+</tr><tr>
+<td class="num">4</td>
+<td>“I can’t keep up with my grandchildren.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Cold</td>
+<td>Emotive story</td>
+<td>When did getting down on the floor become the hard part?</td>
+</tr><tr>
+<td class="num">5</td>
+<td>“My body stopped listening to me.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Cold</td>
+<td>Talking-head direct address</td>
+<td>Your doctor said it’s normal. Normal isn’t the same as fine.</td>
+</tr><tr>
+<td class="num">6</td>
+<td>“My husband doesn’t understand.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Cold</td>
+<td>Talking-head direct address</td>
+<td>He says you look fine. He’s not the one living in there.</td>
+</tr><tr>
+<td class="num">7</td>
+<td>“I’m falling behind my friends.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Cold</td>
+<td>UGC comparison</td>
+<td>She’s 64 and finishes the walk. You used to be her.</td>
+</tr><tr>
+<td class="num">8</td>
+<td>“I’m running out of time.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Cold</td>
+<td>Emotive story</td>
+<td>Every tired year is a year you don’t get back.</td>
+</tr><tr>
+<td class="num">9</td>
+<td>“I sleep eight hours and wake up like it was four.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip proven">Proven</span></td>
+<td>Cold</td>
+<td>Problem/solution split</td>
+<td>Slept eight hours. Woke up like it was four.</td>
+</tr><tr>
+<td class="num">10</td>
+<td>“The 3 o’clock crash.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip proven">Proven</span></td>
+<td>Cold</td>
+<td>Problem/solution split</td>
+<td>It’s 3 PM. You already know how this goes.</td>
+</tr><tr>
+<td class="num">11</td>
+<td>“Exhausted all day, wide awake at midnight.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>Talking-head direct address</td>
+<td>Exhausted all day. Wide awake at midnight.</td>
+</tr><tr>
+<td class="num">12</td>
+<td>“One good day costs me the next two.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>UGC testimonial</td>
+<td>One good day still costs you the next two.</td>
+</tr><tr>
+<td class="num">13</td>
+<td>“I lose the word mid-sentence and everyone waits.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Cold</td>
+<td>UGC testimonial</td>
+<td>You lost the word again. And everyone waited.</td>
+</tr><tr>
+<td class="num">14</td>
+<td>“Same food, same walk, different body.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>Talking-head direct address</td>
+<td>Same food. Same walk. Different body.</td>
+</tr><tr>
+<td class="num">15</td>
+<td>“Stiffness is taking the things I moved here to do.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Warm (bundle attach)</td>
+<td>Carousel</td>
+<td>You moved somewhere warm so you could stay outside.</td>
+</tr><tr>
+<td class="num">16</td>
+<td>“I’ve been scammed before.”</td>
+<td>Comparative / trust</td>
+<td><span class="chip proven">Proven</span></td>
+<td>Cold</td>
+<td>Product demo + COA</td>
+<td>Not all NMN is created equal — and 64% of them fail lab tests.</td>
+</tr><tr>
+<td class="num">17</td>
+<td>“Why is yours more expensive than the one on Amazon?”</td>
+<td>Comparative / trust</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Cold</td>
+<td>Product demo + COA</td>
+<td>The cheap one isn’t cheaper. It’s just less.</td>
+</tr><tr>
+<td class="num">18</td>
+<td>“I’ve tried collagen, CoQ10, turmeric — none of it worked.”</td>
+<td>Comparative / trust</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Cold</td>
+<td>Founder/expert explainer</td>
+<td>Collagen. CoQ10. Turmeric. None of them touched the actual problem.</td>
+</tr><tr>
+<td class="num">19</td>
+<td>“I don’t understand NMN versus NR versus NAD+ drips.”</td>
+<td>Comparative / trust</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>Founder/expert explainer</td>
+<td>NMN, NR, NAD+ drips — only one of these is worth your money.</td>
+</tr><tr>
+<td class="num">20</td>
+<td>“How do I know it’s even working?”</td>
+<td>Comparative / trust</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Retention (Day 12)</td>
+<td>Static offer card</td>
+<td>Day 14 is when most women notice. Here’s exactly what to look for.</td>
+</tr><tr>
+<td class="num">21</td>
+<td>“Every dollar is budgeted.”</td>
+<td>Demographic / situational</td>
+<td><span class="chip proven">Proven</span></td>
+<td>Cold</td>
+<td>Static offer card</td>
+<td>$16.66 a bottle. And if it does nothing, you pay nothing.</td>
+</tr><tr>
+<td class="num">22</td>
+<td>“I moved somewhere warm to be outdoors, and I’m indoors.”</td>
+<td>Demographic / situational</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>UGC testimonial</td>
+<td>You didn’t move to Arizona to spend the afternoon indoors.</td>
+</tr><tr>
+<td class="num">23</td>
+<td>“I don’t want to get trapped in something I can’t cancel.”</td>
+<td>Demographic / situational</td>
+<td><span class="chip proven">Proven</span></td>
+<td>All stages</td>
+<td>Static offer card</td>
+<td>Four taps. No account. No subscription trap.</td>
+</tr><tr>
+<td class="num">24</td>
+<td>“I’ll just try one bottle first.”</td>
+<td>Behavioural / purchase friction</td>
+<td><span class="chip proven">Proven</span></td>
+<td>Cold</td>
+<td>Static offer card</td>
+<td>If it didn’t work, we wouldn’t give you three free.</td>
+</tr><tr>
+<td class="num">25</td>
+<td>“I ran out and forgot to order more.”</td>
+<td>Behavioural / purchase friction</td>
+<td><span class="chip adjacent">Adjacent</span></td>
+<td>Retention (Day 75+)</td>
+<td>Static offer card</td>
+<td>You’re about twelve days from running out.</td>
+</tr><tr>
+<td class="num">26</td>
+<td>“I’m becoming my father.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>Talking-head direct address</td>
+<td>You watched him slow down. You swore you wouldn’t.</td>
+</tr><tr>
+<td class="num">27</td>
+<td>“I’ve lost a step and I’m the only one who’s noticed.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>Founder/expert explainer</td>
+<td>You’re a step slower and you’re the only one who’s noticed.</td>
+</tr><tr>
+<td class="num">28</td>
+<td>“I won’t be a burden.”</td>
+<td>Psychological / identity</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>Emotive story (restrained)</td>
+<td>You’re not afraid of getting old. You’re afraid of needing help.</td>
+</tr><tr>
+<td class="num">29</td>
+<td>“Recovery takes days now.”</td>
+<td>Physiological / symptom</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Cold</td>
+<td>UGC testimonial</td>
+<td>Eighteen holes used to cost you nothing.</td>
+</tr><tr>
+<td class="num">30</td>
+<td>“My wife started taking this and I noticed.”</td>
+<td>Behavioural / purchase friction</td>
+<td><span class="chip untested">Untested</span></td>
+<td>Warm (Day 30–45)</td>
+<td>UGC testimonial</td>
+<td>She’s been taking it for three months. You’ve noticed.</td>
+</tr></tbody>
+  </table></div>
+</section>
+
+<section>
+<div class="sec-head"><span class="eyebrow">Psychological / identity · 8 pain points</span></div>
+<div class="cards"><article class="pcard proven">
+<div class="pc-top">
+  <span class="pc-num">Pain point 01</span>
+  <h3>“I’m becoming invisible.”</h3>
+  <div class="pc-chips"><span class="chip proven">Proven</span>
+  <span class="chip plain">Cold</span><span class="chip plain">UGC testimonial</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I’m tired all the time.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She used to run everything — the household, the holidays, the job. Now she sits while others do. Her body is betraying the person she still believes she is.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘More energy’ is the #1 ManyChat tag. ‘Tired in a way sleep doesn’t fix’ is the #1 landing-page hook.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Tired of sitting out the things you used to run?</span>
+  <span class="hd">You’re still in there.</span>
+  <span class="sh">It’s not just aging — your NAD+ is collapsing. Rebuild it and get your days back.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Identity reclamation — not “get energy”, but “get you back”</span><p>The pain isn’t fatigue, it’s watching yourself become a spectator in your own house. Open on the moment of sitting down while everyone else keeps moving. Qualifies hard — anyone who hasn’t felt this scrolls straight past.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Warm domestic interior, late afternoon. Woman ~62 seated in an armchair, mid-ground, slightly soft focus. Behind her, sharp focus: family in motion — someone carrying dishes, a child running past. She is watching, not participating. Plain serif type across the upper third: “When did you become the one who watches?” Bottom bar: product + “$29.98 → $16.66”. No smiling, no stock-photo energy.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s vertical, captions burned in. 0–3s: locked shot, she lowers herself into the chair as family noise continues off-frame. VO: “Tired of sitting out the things you used to run?” 3–9s: quick cuts of what she’s stopped doing — car keys left on the hook, garden gloves unused, a call declined. VO names the mechanism: “It’s not just aging. Your NAD+ is collapsing.” 9–15s: capsule taken with morning coffee; VO: “Rebuild it and get back clean energy, sharp focus and clear thinking.” 15–20s: same chair, same light — empty, and we hear her outside. End card: bottle, per-bottle price, “See how it works →”. No music until 15s.</p></div>
+</div>
+</article><article class="pcard proven">
+<div class="pc-top">
+  <span class="pc-num">Pain point 02</span>
+  <h3>“Am I losing my mind?”</h3>
+  <div class="pc-chips"><span class="chip proven">Proven</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Talking-head direct address</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“Brain fog, I can’t focus.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She watched her mother or aunt go through dementia. Every forgotten word triggers a cold wave of fear about becoming a burden to her children.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>NMN_Focus is a self-identified ManyChat tag. Cognitive decline is named the most visceral fear for 55+.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Forgot another name this week?</span>
+  <span class="hd">It’s probably not what you’re afraid of.</span>
+  <span class="sh">Your brain burns more NAD+ than any organ you have. Yours is running out.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Name the fear precisely, then give it a mechanism that isn’t dementia</span><p>She is silently terrified and most brands won’t say the word, so she stays scared. Say the fear out loud, then offer a smaller, fixable explanation. Enormous relief converts to enormous intent.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Tight portrait, woman ~63, neutral expression, direct eye contact, plain background, soft window light from the left. Large type across the lower third: “Forgot another name this week?” Smaller second line: “It’s probably not what you’re afraid of.” Deliberately un-styled — no props, no product hero. Product appears small, bottom-right.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–3s: her face, direct to camera, silence, then: “I forgot my own grandson’s name at his birthday.” 3–8s: still on face — “I sat in the car afterwards and cried, because I thought this is how it started with my mother.” 8–14s: cut to a simple animated mechanism card — brain, NAD+ level falling. Second VO, calmer, expert: “Your brain consumes more NAD+ than any organ in your body. After 50, levels collapse.” 14–18s: back to her, lighter: “It’s been three months. I haven’t blanked once.” 18–20s: end card, “Learn the mechanism →”. No music. Handheld, imperfect.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 03</span>
+  <h3>“I look older than I feel inside.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Warm (Day 21)</span><span class="chip plain">Before/after</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“Fine lines, dull skin, visible aging.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She catches her reflection and the person she sees doesn’t match the person she feels like. This is an identity crisis, not vanity.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘Look 10 years younger’ framing on the product page. She buys NMN for energy, then adds ASTA for the mirror.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">The woman in the mirror isn’t the one you feel like.</span>
+  <span class="hd">Your face is aging faster than you are.</span>
+  <span class="sh">Cellular energy shows up in your skin first. Rebuild it from the inside.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — The mirror is lying</span><p>This is the ASTA attach point, but framed through NMN’s mechanism so it strengthens the core product instead of competing with it. Runs to existing customers at Day 21 — never cold, which is how ASTA is currently mispositioned.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Split vertical. Left: a mirror reflection, cool blue-grey cast, slightly desaturated. Right: the same woman turned away from the mirror, warm golden light, alive. Vertical type between the panels: “Same woman. Two different ages.” Bottom: NMN + ASTA pair shot with combined per-bottle math.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–3s: a hand wipes condensation from a bathroom mirror, face appears. VO: “The woman in the mirror isn’t the one you feel like.” 3–8s: she leans in, examines under her eyes and jaw — unflinching, no shame framing. 8–13s: mechanism card — cellular energy shows up in skin before anywhere else. 13–18s: same mirror, different day, better light; she doesn’t linger, she just goes. 18–20s: NMN + ASTA end card, “See the pairing →”.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 04</span>
+  <h3>“I can’t keep up with my grandchildren.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Emotive story</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“Low energy, slow recovery.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Her grandchildren are the most important people in her life. When she can’t get on the floor and play, she is failing at the most important role she has left. This is about purpose, not fitness.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Grandchildren named as the most important people in her life; longevity/family ManyChat tag.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">When did getting down on the floor become the hard part?</span>
+  <span class="hd">Getting down isn’t the problem. Getting up is.</span>
+  <span class="sh">It’s not just aging — your NAD+ is collapsing. Rebuild it and be the grandmother you planned on.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Purpose loss, not physical loss</span><p>The specific, undignified detail — needing to brace to stand — does more work than any general energy claim. Highly qualifying: only someone who has lived that exact moment reacts to it.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Low camera angle at a child’s eye level, looking up. Woman ~62 on the floor mid-play, one hand braced on the carpet — the brace is the whole story. Natural living-room light, toys scattered, genuinely untidy. Type upper left: “Getting down isn’t the problem.” Smaller beneath: “Getting up is.” Product small, bottom-right.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–3s: floor-level shot, a 3-year-old’s hands building blocks; a grandmother’s hand enters frame, then the sound of her bracing to stand. VO: “When did getting down on the floor become the hard part?” 3–9s: she sits on the edge of the sofa instead, watching. VO names the mechanism. 9–15s: brief, plain shots of the capsule in a morning routine. 15–19s: same floor, same child — she gets up without the brace and lifts him. 19–20s: end card. Music enters only at 15s.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 05</span>
+  <h3>“My body stopped listening to me.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Talking-head direct address</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“Post-menopause fatigue, weight that won’t budge, hormonal crashes.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>For decades her body was predictable. Now it does things she doesn’t understand and her doctor says it’s normal. Normal doesn’t make it less terrifying. She doesn’t want to accept aging — she wants her body back.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Post-menopause fatigue is a Tier 2 pain point. Women 55–64 are the second-largest spending segment ($43K in 90 days).</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Your doctor said it’s normal. Normal isn’t the same as fine.</span>
+  <span class="hd">You’re not imagining it.</span>
+  <span class="sh">There’s a name for what’s happening, and it isn’t “your age”.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Validate against medical dismissal</span><p>She has been dismissed by a professional. Being believed is the conversion event. Highest-empathy hook in the set and it qualifies cleanly — only someone who has been brushed off responds to it.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Woman ~60 seated on exam-table paper, clinical setting, fully dressed, waiting. Flat overhead fluorescent light, deliberately unflattering. Large type across the middle: “It’s normal for your age.” Struck through. Beneath: “Normal isn’t the same as fine.” Product in the bottom bar only.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–3s: exam room, paper crinkling, off-screen voice: “That’s normal at your age.” Cut to her face, no reaction. VO: “Your doctor said it’s normal.” 3–8s: “Normal isn’t the same as fine.” Quick honest cuts — 3pm on the clock, standing up too slowly, staring into a fridge. 8–14s: expert VO over a simple mechanism card, NAD+ decline after 50 in women. 14–18s: her, at home, plainly: “I stopped accepting it.” 18–20s: end card, “Learn what’s actually happening →”.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 06</span>
+  <h3>“My husband doesn’t understand.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Talking-head direct address</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I don’t feel like myself.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She can’t articulate the fatigue, the fog, the appearance anxiety to her husband. He sees her as fine. She is fine — from the outside. She wants something to validate that what she’s experiencing is real and fixable.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Repeat customers are 96% female — she buys this for herself, not as a gift. ‘It’s not just aging’ is named as the validation line.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">He says you look fine. He’s not the one living in there.</span>
+  <span class="hd">You’re not imagining it.</span>
+  <span class="sh">It’s not just aging — your NAD+ is collapsing. There’s a name for it.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Private validation</span><p>She is fighting a daily battle nobody else can see. The ad’s job is to be the first thing that says this is real. Note: she buys for herself — never frame this as a gift or a husband-buys-for-wife concept.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Two people on a sofa watching TV, shot from behind. He is relaxed. She is upright, phone in hand, not watching. Type: “He says you look fine.” Second line: “He’s not the one living in there.” Product bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–4s: woman ~60, direct to camera, kitchen: “My husband says I look great.” 4–9s: “He doesn’t know I sat in the car for ten minutes before coming in, because I didn’t have it in me yet.” 9–14s: mechanism, calm expert VO. 14–19s: her again, lighter, unforced. 19–20s: end card. Filmed plainly, no styling — in this account the winners are plain and the losers are polished.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 07</span>
+  <h3>“I’m falling behind my friends.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Cold</span><span class="chip plain">UGC comparison</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“My friend has more energy than me.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She is in a social circle of women her age who walk, lunch, volunteer together. When one seems to have more vitality it creates a quiet, corrosive comparison. She doesn’t want to be the tired one.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Social proof works because she imagines being the woman who says ‘I feel 10 years younger’. 5,128 reviews, 500K+ customers.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">She’s 64 and finishes the walk. You used to be her.</span>
+  <span class="hd">You used to be the one setting the pace.</span>
+  <span class="sh">It’s not just aging — your NAD+ is collapsing. Rebuild it.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Peer-group comparison — reclaiming former status, not chasing a new one</span><p>Envy is uncomfortable but extremely reliable in this cohort. Do not shame her — position her as someone reclaiming a status she already held, which is dignified rather than aspirational.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Three women in their 60s on a neighbourhood walking path, Sun Belt morning light, palms or desert planting visible. Two ahead mid-conversation; one half a pace behind, looking at the gap. Shot from behind so no faces are visible — she projects herself in. Type: “You used to be the one setting the pace.” Product bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–3s: walking-path POV, two friends pulling ahead. VO: “She’s 64 and she finishes the walk.” 3–8s: “You used to be her.” Cut to her stopping to catch her breath, pretending to check her phone — the specific, humiliating detail. 8–14s: mechanism and capsule. 14–19s: same path, she’s level with them, mid-laugh, not looking at camera. 19–20s: end card. Real ambient sound — birds, footsteps, breathing.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 08</span>
+  <h3>“I’m running out of time.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Emotive story</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“Longevity, healthy aging.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She’s past the midpoint and knows it. Every year matters more. Every day she feels tired is a day she can’t get back. NMN isn’t a supplement to her — it’s a time machine.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>NMN_Longevity is the third ManyChat tag. Positioned as cellular energy, but the deeper positioning is youth recovery.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Every tired year is a year you don’t get back.</span>
+  <span class="hd">You don’t get these years twice.</span>
+  <span class="sh">Your NAD+ is collapsing. Rebuild it while the years still count.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Time scarcity, framed as presence rather than mortality</span><p>The most emotionally loaded angle in the set — handle without melodrama. No death imagery, no violins. The frame is presence, not mortality; restraint is what makes it land.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A grandmother and a small child on a porch in late golden light, both looking out, not at camera. Composition leaves large negative space to the right. Quiet, small type in that space: “He’ll remember whether you were there. Or whether you were tired.” Product small, bottom-right. Deliberately restrained.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–3s: hand-held phone video of a child’s birthday, shaky and real. Plain VO: “Every tired year is a year you don’t get back.” 3–9s: still frames from family photos months apart, the same woman visibly less present in each. 9–14s: mechanism, brief and unsentimental. 14–19s: new footage — she’s in the frame rather than behind the camera. 19–20s: end card, “See how it works →”.</p></div>
+</div>
+</article></div>
+</section><section>
+<div class="sec-head"><span class="eyebrow">Physiological / symptom · 7 pain points</span></div>
+<div class="cards"><article class="pcard proven">
+<div class="pc-top">
+  <span class="pc-num">Pain point 09</span>
+  <h3>“I sleep eight hours and wake up like it was four.”</h3>
+  <div class="pc-chips"><span class="chip proven">Proven</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Problem/solution split</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I’m tired even after a full night.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>This is the one symptom that proves to her it isn’t simply ‘not enough sleep’ — it’s something structural. It is the reason she is willing to believe a cellular explanation.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Named the #1 landing-page hook. Part 6: ‘she wakes up feeling like she slept 4 hours even though she slept 8’.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Slept eight hours. Woke up like it was four.</span>
+  <span class="hd">Sleep isn’t the problem.</span>
+  <span class="sh">It’s not just aging — your NAD+ is collapsing. That’s why rest doesn’t fix it.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — The disqualifying symptom — the most self-identifying line you own</span><p>The single most specific, most self-identifying symptom in the entire research. A perfect qualifier: people without it don’t recognise it at all, people with it feel seen instantly. This should be your highest-volume production angle.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Bedside table at 6:30 AM. Phone face-up showing the time, a glass of water, reading glasses. Sheets thrown back. No person in frame. Cool early light. Type across the top: “8 hours. Woke up like it was 4.” Beneath, smaller: “Sleep isn’t the problem.” Product bottom bar with per-bottle math.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–3s: alarm sounds, a hand kills it, she doesn’t move. VO: “Slept eight hours. Woke up like it was four.” 3–8s: sitting on the edge of the bed, not standing yet — hold on this uncomfortably long. VO: “It’s not just aging. Your NAD+ is collapsing — that’s why rest doesn’t fix it.” 8–14s: clean mechanism card, four seconds maximum. 14–19s: a different morning, she’s up and out the door in one continuous shot. 19–20s: end card.</p></div>
+</div>
+</article><article class="pcard proven">
+<div class="pc-top">
+  <span class="pc-num">Pain point 10</span>
+  <h3>“The 3 o’clock crash.”</h3>
+  <div class="pc-chips"><span class="chip proven">Proven</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Problem/solution split</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“My energy collapses every afternoon.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>A predictable daily humiliation. She plans her life around it — appointments in the morning, nothing after two.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Explicit landing-page hook. 2–5 PM runs 229–252 orders/hour — she is living the pain point at the moment she sees the ad.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">It’s 3 PM. You already know how this goes.</span>
+  <span class="hd">The crash isn’t a habit. It’s a fuel problem.</span>
+  <span class="sh">Rebuild your NAD+ and stop scheduling your life around three o’clock.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Real-time symptom targeting</span><p>Serve this ad specifically between 2–5 PM ET. She is living the pain as she reads it, and the research shows she orders in exactly this window. This is the highest-leverage dayparting play available to you.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A kitchen clock reading 3:05, sharp in the foreground. Background soft: a woman sitting down at a table, head propped on her hand. Warm but flat afternoon light. Type: “It’s 3 PM. You already know how this goes.” Product bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–3s: hard cut to a clock at 3:00, then her sitting down mid-task. VO: “It’s three o’clock. You already know how this goes.” 3–8s: montage of coping mechanisms — the second coffee, sitting in the parked car, “I’ll do it tomorrow”. 8–13s: mechanism: “This isn’t willpower. It’s NAD+.” 13–18s: 3 PM again, she keeps going — same clock, different outcome. 18–20s: end card. SCHEDULING: deliver 2–5 PM ET.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 11</span>
+  <h3>“Exhausted all day, wide awake at midnight.”</h3>
+  <div class="pc-chips"><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Talking-head direct address</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I can’t sleep.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>The exhaustion loop — too tired to function, too wired to rest. She is demonstrably awake and shopping at midnight.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>205 orders at 12 AM; 127–206 orders/hour between 11 PM and 1 AM. The report flags overnight activity as a sleep-issue signal and sleep support as a Tier 1 product opportunity.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Exhausted all day. Wide awake at midnight.</span>
+  <span class="hd">Tired and wired is a real thing.</span>
+  <span class="sh">Your cells run on a clock too — and yours has lost the signal.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — The tired-but-wired loop</span><p>She is provably awake and buying at midnight and nobody is talking to her at that hour. Untested as an angle, but the behavioural evidence is unusually direct. Serve 10 PM–1 AM ET.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Dark bedroom, the only light a phone screen illuminating a face from below. Clock visible reading 12:47. Type: “Exhausted all day. Wide awake at midnight.” Restrained — no product hero, product in a small bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s, shot almost entirely in low light. 0–3s: ceiling, from her point of view in bed. Quiet close-mic VO: “Exhausted all day. Wide awake at midnight.” 3–9s: the loop — phone check, clock check, sigh, phone check. 9–14s: mechanism, cellular clock, dim-friendly graphics. 14–19s: morning, curtains open, she’s up without the struggle. 19–20s: end card. SCHEDULING: deliver 10 PM–1 AM ET.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 12</span>
+  <h3>“One good day costs me the next two.”</h3>
+  <div class="pc-chips"><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">UGC testimonial</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I recover slowly now.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Her capacity has a ceiling and she is constantly negotiating with it. She isn’t doing less — she’s paying more for the same.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Active Sun Belt lifestyle — walking, gardening, swimming, golf — combined with the low-energy / slow-recovery pain point.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">One good day still costs you the next two.</span>
+  <span class="hd">You’re not doing less. You’re paying more for it.</span>
+  <span class="sh">Rebuild your NAD+ and stop budgeting your week around one afternoon.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — The recovery tax</span><p>Reframes the problem from “I’m tired” to “I’m rationing” — a more precise and more painful description she will recognise instantly. Strong for the active Sun Belt segment.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A garden half-finished — tools down, a bag of soil open, gloves on the step. Bright Arizona light, hard shadows. Nobody in frame. Type: “One good day still costs you the next two.” Product bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–4s: she is gardening, genuinely working, real effort and sweat. VO: “Saturday, I did the whole yard.” 4–9s: hard cut to Sunday — curtains closed, still in a robe at 11 AM: “Sunday I couldn’t move. Monday either.” 9–14s: mechanism, short. 14–19s: Saturday gardening again, then Sunday — dressed, out, keys in hand. 19–20s: end card.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 13</span>
+  <h3>“I lose the word mid-sentence and everyone waits.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Cold</span><span class="chip plain">UGC testimonial</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I can’t find words like I used to.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Public, witnessed cognitive failure — materially worse than private forgetting. The silence while people wait is the specific horror.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘Every time she forgets a word or blanks on a name, a cold wave of fear hits.’ Cognitive decline is the most visceral 55+ fear.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">You lost the word again. And everyone waited.</span>
+  <span class="hd">The pause is the part that scares you.</span>
+  <span class="sh">Your brain runs on NAD+. Rebuild it and stop losing the thread.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — The witnessed moment</span><p>Distinct from row 2 — that one is private dread, this is social humiliation. Build the whole ad around three seconds of real silence at a dinner table. Very high recognition.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A dinner table shot from her seat — three friends mid-conversation, all looking toward camera, waiting. Slight motion blur on them, sharp focus on the empty place setting. Type: “And then everyone waited.” Product bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–5s: dinner table, she’s mid-story, then stops. Real silence — hold it for three uncomfortable seconds while friends wait. 5–9s: VO: “You lost the word again. And everyone waited.” 9–14s: mechanism card. 14–19s: same table, the story lands, laughter. 19–20s: end card. The three-second silence is the entire ad — do not let an editor trim it.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 14</span>
+  <h3>“Same food, same walk, different body.”</h3>
+  <div class="pc-chips"><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Talking-head direct address</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“The weight won’t move.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>The rules she lived by for forty years stopped working, with no explanation and no warning.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Post-menopause weight gain named as a core insecurity; weight management flagged as a Tier 3 product opportunity.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Same food. Same walk. Different body.</span>
+  <span class="hd">You didn’t change. The engine did.</span>
+  <span class="sh">Your cells burn fuel differently after 50. That starts with NAD+.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — The rules changed without telling her — metabolic energy, NOT weight loss</span><p>Do NOT position NMN as a weight-loss product — it isn’t one and the claim risk is real. Position it as metabolic energy and let her draw her own connection. COMPLIANCE: legal review before this runs.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A closet with one pair of trousers hung apart from the rest, tag still on. Domestic, honest, no bodies in frame — avoids body-shaming imagery entirely. Type: “Same food. Same walk. Different body.” Product bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. No body shots, no scales, no physique before/after — the ad is about energy, not size. 0–4s: woman ~60 at a kitchen counter, plainly: “I eat what I’ve always eaten. I walk what I’ve always walked.” 4–9s: “Nothing works the way it used to.” 9–14s: mechanism — cellular fuel, not fat loss; keep claims tight. 14–19s: out walking, energetic, fully clothed, filmed from a respectful distance. 19–20s: end card. COMPLIANCE: no weight-loss claims anywhere in copy or captions.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 15</span>
+  <h3>“Stiffness is taking the things I moved here to do.”</h3>
+  <div class="pc-chips"><span class="chip untested">Untested</span>
+  <span class="chip plain">Warm (bundle attach)</span><span class="chip plain">Carousel</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“My joints hurt.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Mobility loss is the thing that will end her independent outdoor life. She moved somewhere warm for that life; losing it makes the move pointless.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘She’s active — walking, gardening, swimming. Joint pain is the #1 limiter for 60+ active adults.’ Joint support is a Tier 2 opportunity.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">You moved somewhere warm so you could stay outside.</span>
+  <span class="hd">Don’t let stiffness take the reason you moved.</span>
+  <span class="sh">Energy inside, mobility outside — the pairing for an active 60s.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Protect the lifestyle she relocated for</span><p>This is the natural home for Multi Collagen, a SKU far too small to fund its own cold traffic. Sells the NMN + Collagen pair, never Collagen alone. BLOCKER: Collagen COGS is null — fix before promoting.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Card 1: a pool at 7 AM, Sun Belt, empty lane, long shadows. Type: “You moved somewhere warm so you could stay outside.” Card 2: the pairing shot, NMN + Collagen, with combined per-bottle math. Card 3: a plain benefit list — no icons, no gradients.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–4s: desert morning, someone walking a dog past saguaro or palms. VO: “You moved somewhere warm so you could stay outside.” 4–9s: the compromises — the shorter loop, the handrail, sitting down to put shoes on. 9–14s: the pairing explained simply, inside and outside. 14–19s: the longer loop, taken. 19–20s: pair end card. Warm/retention audiences only.</p></div>
+</div>
+</article></div>
+</section><section>
+<div class="sec-head"><span class="eyebrow">Comparative / trust · 5 pain points</span></div>
+<div class="cards"><article class="pcard proven">
+<div class="pc-top">
+  <span class="pc-num">Pain point 16</span>
+  <h3>“I’ve been scammed before.”</h3>
+  <div class="pc-chips"><span class="chip proven">Proven</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Product demo + COA</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“Supplements are a scam.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She’s tried collagen, CoQ10, turmeric. Most did nothing. She spent money she shouldn’t have and is ashamed of how gullible she was. Now she reads every word looking for a reason NOT to buy.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>The 5,128 reviews, Forbes/ELLE mentions and the ‘64% of NMN products fail lab tests’ claim all work because they validate her distrust while positioning you as the exception.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Not all NMN is created equal — and 64% of them fail lab tests.</span>
+  <span class="hd">You were right to be suspicious.</span>
+  <span class="sh">Most NMN on the shelf is underdosed or degraded. Here’s our third-party lab report.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Category-quality contrast — validate her distrust, then be the exception</span><p>“Not all X is created equal” produced 3 of your 12 all-time winners at the best CPM in the account ($57.47 vs $98.37) — but has only ever run on Astaxanthin, ~4% of revenue. Never on NMN, which is 94%. This is the single highest-expected-value untested creative you can brief.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Split frame. Left: three unbranded generic supplement bottles, desaturated, grey-cast, slightly blurred. Right: the NMN Complex bottle, sharp, warm key light, on clean white with an actual COA sheet partly visible beneath. Bold type across the top third: “64% FAIL LAB TESTS.” Bottom bar carries the per-bottle anchor “$29.98 → $16.66” — no percentage. Cool grey versus warm neutral. No lifestyle imagery, no model.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s, vertical, captions burned in. 0–3s: hands set three generic bottles on a kitchen counter. VO: “Not all NMN is created equal.” 3–8s: a real lab report scrolls on a phone screen, a finger tracking a highlighted failure line — “64% of them fail third-party testing.” 8–14s: cut to our bottle, slow rotate, on-screen text stamps actual mg dosage and purity. 14–18s: a woman in her 60s, plainly dressed, kitchen, no styling: “I’ve wasted a lot of money on supplements. I checked this one before I bought it.” 18–20s: bottle, per-bottle price, “See the lab report →”. No music bed under the VO — ambient kitchen sound only.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 17</span>
+  <h3>“Why is yours more expensive than the one on Amazon?”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Product demo + COA</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I found NMN for $18.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Price is a proxy for ‘am I being taken advantage of again’. The objection is about trust, not budget.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘64% of NMN products fail lab tests’. The bundle is described as a trust signal disguised as a discount.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">The cheap one isn’t cheaper. It’s just less.</span>
+  <span class="hd">$18 for half the dose isn’t a saving.</span>
+  <span class="sh">Compare the mg, not the price tag. Then compare ours — $16.66 a bottle.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Price per actual dose, not price per bottle</span><p>Turns her price objection into a quality qualifier, and crucially lets you lead with the per-bottle anchor honestly without ever using a discount headline. Do not name or show a real competitor brand.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Two bottles side by side, photographed identically on clinical white. Overlaid on each: actual mg per serving, servings per bottle, cost per effective dose — three lines of real arithmetic each. Type above: “The cheap one isn’t cheaper. It’s just less.” Generic/unbranded comparison bottle only.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–4s: two bottles on a counter. VO: “This one’s eighteen dollars. This one’s more.” 4–10s: hands turn both to the supplement facts panel; on-screen math builds line by line — mg, servings, cost per dose. 10–15s: “The cheap one isn’t cheaper. It’s just less.” 15–19s: our bottle alone, per-bottle price stamped. 19–20s: “See the numbers →”. No music, counter-top ambient only.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 18</span>
+  <h3>“I’ve tried collagen, CoQ10, turmeric — none of it worked.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Founder/expert explainer</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“Supplements don’t work on me.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Accumulated evidence of her own gullibility. Every failed bottle is a small private humiliation sitting in her cabinet.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘She’s tried things. Probably collagen, probably CoQ10, probably turmeric. Some worked a little. Most didn’t.’</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Collagen. CoQ10. Turmeric. None of them touched the actual problem.</span>
+  <span class="hd">They weren’t scams. They were the wrong target.</span>
+  <span class="sh">None of them raise NAD+. That’s the one that runs your cells.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Why the others failed — a mechanism she can check</span><p>Rather than claiming to be better, explain why the category she already tried was aimed elsewhere. Gives her a face-saving reason her past purchases failed — she wasn’t stupid, she was misdirected. Removes shame, which removes resistance.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A bathroom cabinet shelf, honestly cluttered with half-used supplement bottles, labels turned away. One clean space at the front. Type: “They weren’t scams. They were the wrong target.” Product placed in the clean space.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–4s: hands take bottles off a shelf one at a time, naming them — collagen, CoQ10, turmeric — setting each aside. 4–10s: expert to camera, plainly dressed, no lab coat: “Every one of those targets something downstream. None of them raise NAD+.” 10–15s: a single clean mechanism graphic. 15–19s: our bottle set into the cleared space. 19–20s: “Understand the difference →”.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 19</span>
+  <h3>“I don’t understand NMN versus NR versus NAD+ drips.”</h3>
+  <div class="pc-chips"><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Founder/expert explainer</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“There are too many versions of this.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Confusion is a reason to postpone. She won’t buy something she can’t explain to her husband or her friend.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Category education gap; the product page leads on mechanism. Google/Threads convert at 5.08% — the highest of any source — which is search intent from people trying to understand the category.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">NMN, NR, NAD+ drips — only one of these is worth your money.</span>
+  <span class="hd">Three names. One that matters.</span>
+  <span class="sh">Here’s the difference in thirty seconds, so you can stop guessing.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Make her the informed one</span><p>Confusion is a silent conversion killer in this category. An ad that resolves it earns disproportionate trust, and she will repeat the explanation to a friend — which is how this audience actually spreads. Also the natural creative to pair with the untapped search channel.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A plain three-column comparison, typographic, almost no imagery — NMN / NR / IV drips, one honest line each on how it works, cost, and evidence. Deliberately unglamorous, like a printed handout from a doctor’s office. Small product mark at the base.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s, whiteboard or plain-card explainer. 0–3s: “NMN, NR, NAD+ drips. Only one of these is worth your money.” 3–14s: three cards, roughly 3.5s each, one honest sentence per option — including a fair word about the others, which is what makes it credible. 14–19s: “NMN is the one your cells can actually use, and the only one you can take at home.” 19–20s: end card. No music, no motion-graphics flourish — it must feel like information, not advertising.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 20</span>
+  <h3>“How do I know it’s even working?”</h3>
+  <div class="pc-chips"><span class="chip untested">Untested</span>
+  <span class="chip plain">Retention (Day 12)</span><span class="chip plain">Static offer card</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I can’t tell if it’s doing anything.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She has no visible marker to prove to herself the money wasn’t wasted — which is the same fear as row 16, arriving after the purchase instead of before it.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>The scam insecurity combined with the churn risk: the business breaks even at 0.59 re-bills per subscriber, so a customer quitting at day 10 is a direct loss.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Day 14 is when most women notice. Here’s exactly what to look for.</span>
+  <span class="hd">You’ll know it’s working when 3 PM stops happening.</span>
+  <span class="sh">Most women notice between day 12 and day 21. Mark the date.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Give her a measurable milestone</span><p>This is churn insurance, not acquisition. Telling her when to expect results is the single cheapest thing you can do to protect the 0.59 re-bills breakeven, because it stops her quitting at day 10. Send by email at Day 12 — do not run as paid cold traffic.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A simple calendar page, days 1–21, with day 14 circled by hand in pen. Domestic surface, kitchen counter. Type: “Day 14 is when most women notice.” Below, three specific things to watch for, as a short plain list. Very restrained.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s, or ship as a static in email/SMS. 0–4s: a hand circles day 14 on a wall calendar. VO: “Most women notice between day twelve and day twenty-one.” 4–14s: three concrete markers, ~3s each — waking before the alarm, getting through 3 PM, finishing the sentence. 14–19s: “If you’re on day 8 and nothing’s changed yet, that’s normal. Keep going.” 19–20s: end card. DELIVERY: Day 12 email flow only.</p></div>
+</div>
+</article></div>
+</section><section>
+<div class="sec-head"><span class="eyebrow">Demographic / situational · 3 pain points</span></div>
+<div class="cards"><article class="pcard proven">
+<div class="pc-top">
+  <span class="pc-num">Pain point 21</span>
+  <h3>“Every dollar is budgeted.”</h3>
+  <div class="pc-chips"><span class="chip proven">Proven</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Static offer card</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“$30 a bottle is a lot.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She’s on or near a fixed income. If it doesn’t work, that’s not $58 lost — it’s the shame of being fooled again.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘Social Security + maybe a pension or part-time income... This is why the money-back guarantee is load-bearing.’ Zero discount codes used across 4,770 orders — she responds to the anchor, not to codes.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">$16.66 a bottle. And if it does nothing, you pay nothing.</span>
+  <span class="hd">The math, without the sales pitch.</span>
+  <span class="sh">Six bottles. $16.66 each. Full refund if it doesn’t work for you.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Risk removal, not discount</span><p>The research is explicit that she doesn’t hunt for codes — she responds to per-bottle arithmetic. This is the one place a price-led ad belongs, and it still must never say “75% off”, which lost on conversions-per-click in five months out of five.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Pure typographic offer card. Anchor price struck through, per-bottle price large, refund terms in plain readable type — not 8pt legal grey. Warm neutral background. No product beauty shot, no starbursts, no countdown timer. It should look like a receipt, not a promotion.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>15–20s. 0–4s: bottles placed on a counter one at a time, counted aloud to six. 4–10s: on-screen arithmetic — total, divided, per bottle. 10–16s: “And if it does nothing, you send it back and pay nothing.” 16–20s: end card. No music, no urgency devices. Never use ‘TODAY ONLY’.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 22</span>
+  <h3>“I moved somewhere warm to be outdoors, and I’m indoors.”</h3>
+  <div class="pc-chips"><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">UGC testimonial</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>N/A — situational</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She relocated for an active outdoor life. Losing it means the move was pointless, which is a bigger loss than the activity itself.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Arizona is the premium market — Tucson $82 AOV, Phoenix $61, Mesa $52. Retirement-corridor cities across AZ, NV, TX, FL.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">You didn’t move to Arizona to spend the afternoon indoors.</span>
+  <span class="hd">You moved here for the mornings.</span>
+  <span class="sh">Rebuild your NAD+ and take them back.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Geo-specific — the life she relocated for</span><p>Produce geo variants for Phoenix, Tucson, Scottsdale, Mesa, Las Vegas and Henderson — the premium-AOV markets. Swap the place name and the establishing shot; everything else holds. Very cheap to produce, unusually specific.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Recognisable desert morning — saguaro, low sun, a residential walking path. Woman in her 60s mid-walk, small in frame. Type: “You didn’t move to Arizona to spend the afternoon indoors.” Produce one per city with the place name swapped.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s, one cut per market. 0–4s: local landscape, unmistakable. VO: “You didn’t move to Phoenix to spend the afternoon indoors.” 4–10s: the shrinking world — the walk that got shorter, the pool she doesn’t use, the blinds closing at 2 PM. 10–15s: mechanism. 15–19s: 7 AM, out and moving. 19–20s: end card. Shoot one master and swap the establishing shot and one VO word per city.</p></div>
+</div>
+</article><article class="pcard proven">
+<div class="pc-top">
+  <span class="pc-num">Pain point 23</span>
+  <h3>“I don’t want to get trapped in something I can’t cancel.”</h3>
+  <div class="pc-chips"><span class="chip proven">Proven</span>
+  <span class="chip plain">All stages</span><span class="chip plain">Static offer card</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>N/A — situational / friction</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Checkout friction and subscription anxiety are real for a cohort that has been auto-billed before and struggles to cancel things by phone.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Mobile 103,352 sessions at 4.21%; tablet highest at 5.11%; desktop 1.86%. She checks out with Apple Pay in about four minutes.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Four taps. No account. No subscription trap.</span>
+  <span class="hd">Order in under a minute.</span>
+  <span class="sh">Apple Pay, no account needed, cancel any time.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Frictionlessness as a trust signal</span><p>Not a pain-point ad but a conversion-rate ad. ‘Subscription trap’ is a genuine fear for this cohort — say the quiet part out loud. COMPLIANCE: verify cancellation is genuinely self-serve before making this claim, and note 97% of orders are now subscriptions so the claim must be exact.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A phone held in a hand, screen showing the real checkout with Apple Pay visible. Nothing else in frame. Type: “Four taps. No account.” Use an honest screenshot — do not mock up a fake UI.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>12–15s screen recording. Real thumb, real device, real flow, unedited timing: select bundle → Apple Pay → done. On-screen timer running in the corner to prove the duration. VO: “Four taps. No account. Cancel any time.” COMPLIANCE: only run if cancellation is genuinely self-serve.</p></div>
+</div>
+</article></div>
+</section><section>
+<div class="sec-head"><span class="eyebrow">Behavioural / purchase friction · 2 pain points</span></div>
+<div class="cards"><article class="pcard proven">
+<div class="pc-top">
+  <span class="pc-num">Pain point 24</span>
+  <h3>“I’ll just try one bottle first.”</h3>
+  <div class="pc-chips"><span class="chip proven">Proven</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Static offer card</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I don’t want to commit.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Buying small is how she protects herself — but it is also how she under-doses, sees nothing, and quits before the product has had time to work.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘She is a bundle buyer. Her natural purchase is NOT a single bottle.’ Buy 3 Get 3 was ~40% of orders. ‘The bundle is a trust signal disguised as a discount.’</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">If it didn’t work, we wouldn’t give you three free.</span>
+  <span class="hd">Three bottles free is not a discount. It’s a bet.</span>
+  <span class="sh">We only make money if it works long enough for you to reorder.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — The bundle as proof of confidence, not as a discount</span><p>Directly addresses your live AOV problem — average order is now ~3 units at $60 when the 6-bottle tier used to be 40% of orders. Reframes the bundle from ‘spend more’ to ‘we’re taking the risk’, which is exactly how this distrustful buyer needs to hear it.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Six bottles in a row, three of them clearly and honestly marked as free. Type: “If it didn’t work, we wouldn’t give you three free.” Per-bottle math in the bottom bar. No percentage anywhere on the asset.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>15–20s. 0–5s: three bottles placed down, then three more beside them. VO: “Buy three, we give you three.” 5–12s: “That’s not generosity. NMN takes about ninety days to do its work — and we only make money if you’re still here at day ninety-one.” 12–18s: the honest self-interest is the persuasion; let it sit. 18–20s: end card with per-bottle math.</p></div>
+</div>
+</article><article class="pcard adjacent">
+<div class="pc-top">
+  <span class="pc-num">Pain point 25</span>
+  <h3>“I ran out and forgot to order more.”</h3>
+  <div class="pc-chips"><span class="chip adjacent">Adjacent</span>
+  <span class="chip plain">Retention (Day 75+)</span><span class="chip plain">Static offer card</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>N/A — lapsed</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>She loses the momentum she spent ninety days building, and restarting feels like admitting the first attempt failed.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘The natural reorder window is 90–120 days... If you email her at Day 75, she’ll reorder. If you don’t, she’ll forget and buy from someone else.’</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">You’re about twelve days from running out.</span>
+  <span class="hd">Don’t lose the ninety days you just built.</span>
+  <span class="sh">Reorder now and keep going without a gap.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Loss of momentum — never the word ‘discount’</span><p>Use the word ‘momentum’, not ‘discount’ — momentum is precisely what she is afraid of losing. Time it to Day 75, ahead of the 90–120 day window. Retargeting and email only, never cold.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A nearly empty bottle with four or five capsules visible, on a kitchen counter in morning light. Type: “About twelve days left.” Beneath: “Don’t lose the ninety days you just built.” Reorder CTA.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>12–15s, retargeting only. 0–4s: she tips the bottle into her palm and only a few capsules come out. 4–9s: VO: “You’re about twelve days from running out.” 9–13s: “You’ve spent ninety days building this. A gap costs you most of it.” 13–15s: one-tap reorder card. DELIVERY: Day 75 onward, purchasers only.</p></div>
+</div>
+</article></div>
+</section><section>
+<div class="sec-head"><span class="eyebrow">Robert — the male buyer · 5 pain points</span></div>
+<div class="cards"><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 26</span>
+  <h3>“I’m becoming my father.”</h3>
+  <div class="pc-chips"><span class="chip robert">Robert</span><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Talking-head direct address</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I’m slowing down.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>He watched his dad lose his edge and become dependent. He refuses to let that happen to him. This is refusal, not repair.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘His core insecurity: I’m becoming my father.’ Robert is reported at 1.81 ROAS — the most efficient demographic in the account.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">You watched him slow down. You swore you wouldn’t.</span>
+  <span class="hd">You’re not him. Not yet.</span>
+  <span class="sh">Your NAD+ is collapsing — that’s the edge you’re losing. Rebuild it.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Refusal, not repair</span><p>Robert is reported as the only segment above your ~1.70 breakeven and currently has zero creative written to him. His register is completely different from Linda’s: no warmth, no family softness, no glow. Plain, direct, slightly hard. VERIFY the 1.81 figure in Ads Manager before scaling against it.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Man ~66, workshop or garage, mid-task, sleeves up, not posed. Hard side light. Plain sans type: “You watched him slow down.” Second line: “You swore you wouldn’t.” Product small, bottom-right. No lifestyle gloss, no smiling.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–4s: hands working — tools, a truck, a boat, something real. Male VO, flat and unsentimental: “You watched your father slow down.” 4–9s: “You told yourself that wasn’t going to be you.” 9–14s: mechanism delivered like a spec sheet — dosage, purity, what NAD+ does. Men respond to the numbers. 14–19s: him, still working, later. 19–20s: end card. No music. Male VO throughout.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 27</span>
+  <h3>“I’ve lost a step and I’m the only one who’s noticed.”</h3>
+  <div class="pc-chips"><span class="chip robert">Robert</span><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Founder/expert explainer</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I’m not as sharp as I was.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Competence is his identity. Losing sharpness threatens who he is, not just what he can do.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘Motivation: recovery, cognitive sharpness, physical performance, staying active.’</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">You’re a step slower and you’re the only one who’s noticed.</span>
+  <span class="hd">You noticed before anyone else did.</span>
+  <span class="sh">NAD+ runs your cells’ power output. After 50 it collapses. Here’s the dosage that matters.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Performance decline, spec-led</span><p>Lead with data, not emotion. Robert wants a mechanism and a number — give him mg, purity and third-party testing inside the first ten seconds. This is the inverse of how you write for Linda.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Near-clinical layout. Product on a plain surface with three specs called out in a monospace face — mg per serving, purity %, third-party tested. Almost no copy. Should read like a component datasheet, not an ad.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–4s: “You’re a step slower, and you’re the only one who’s noticed.” 4–12s: expert, plain, to camera, with a simple chart of NAD+ decline by decade. Numbers on screen throughout. 12–18s: dosage and testing spec. 18–20s: end card. No story, no family, no music.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 28</span>
+  <h3>“I won’t be a burden.”</h3>
+  <div class="pc-chips"><span class="chip robert">Robert</span><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">Emotive story (restrained)</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I want to stay independent.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>Dependency is his worst outcome — worse to him than illness. Needing help is the specific fear, not dying.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘He watched his dad slow down, lose his edge, become dependent. He refuses to let that happen.’</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">You’re not afraid of getting old. You’re afraid of needing help.</span>
+  <span class="hd">Independence is the thing worth protecting.</span>
+  <span class="sh">Rebuild your NAD+ while it still compounds.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Independence, not longevity</span><p>For Robert, ‘longevity’ is abstract but ‘needing help’ is visceral. Never show him being cared for — show him doing things alone, competently. The dignity of the framing is the persuasion.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Man ~68 alone on a ladder, or under a car hood, or launching a boat — a task that requires real capability. Shot wide, no assistance in frame. Type: “You’re not afraid of getting old.” Second line: “You’re afraid of needing help.” Product bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–5s: a task performed solo and well — no struggle, no comedy, no fumbling. Male VO: “It was never about living longer.” 5–11s: “It was about not having to ask.” 11–16s: mechanism, brief and factual. 16–19s: the task finished, alone. 19–20s: end card.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 29</span>
+  <h3>“Recovery takes days now.”</h3>
+  <div class="pc-chips"><span class="chip robert">Robert</span><span class="chip untested">Untested</span>
+  <span class="chip plain">Cold</span><span class="chip plain">UGC testimonial</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>“I pay for it afterwards.”</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>The gap between what he plans and what his body will allow. Recovery time, not performance, is how he actually measures his own aging.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>‘Motivation: recovery, cognitive sharpness, physical performance, staying active.’ Same Sun Belt active-lifestyle geography as Linda.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">Eighteen holes used to cost you nothing.</span>
+  <span class="hd">It’s not the round. It’s the two days after.</span>
+  <span class="sh">Rebuild your NAD+ and stop paying interest on a good day.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Recovery time as the real measure of age</span><p>Male mirror of row 12. Swap the activity per variant — golf, boat, garage, gym — and reuse the Sun Belt geo treatment from row 22. Cheap variant production off one master.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>A golf bag by a door, or a boat still on the trailer, late light. Nobody in frame. Type: “It’s not the round. It’s the two days after.” Product bottom bar.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>20s. 0–5s: he plays, works, moves — genuine effort. 5–10s: cut to two days of recovery, compressed — ice, the recliner, cancelled plans. Male VO, flat. 10–15s: mechanism. 15–19s: same activity the following week, no cost. 19–20s: end card.</p></div>
+</div>
+</article><article class="pcard untested">
+<div class="pc-top">
+  <span class="pc-num">Pain point 30</span>
+  <h3>“My wife started taking this and I noticed.”</h3>
+  <div class="pc-chips"><span class="chip robert">Robert</span><span class="chip untested">Untested</span>
+  <span class="chip plain">Warm (Day 30–45)</span><span class="chip plain">UGC testimonial</span></div>
+</div>
+<div class="pc-pain">
+  <div><span class="lbl">Surface pain — what she says</span><p>N/A — acquisition path</p></div>
+  <div><span class="lbl">Deep pain — what she means</span><p>He will accept a recommendation from her that he would reject from an advert. The household is a shared purchase unit.</p></div>
+  <div><span class="lbl">Evidence anchor</span><p>Darril Morrey is the top VIP — 7 orders, $424, male-leaning name. Repeat VIPs consistently buy the mid-to-large bundle.</p></div>
+</div>
+<div class="hookbox">
+  <span class="lbl">Qualifying hook</span>
+  <span class="hk">She’s been taking it for three months. You’ve noticed.</span>
+  <span class="hd">There’s a reason she has more energy than you now.</span>
+  <span class="sh">Add a second bottle to her next order.</span>
+</div>
+<div class="pc-idea"><span class="lbl">Angle — Household expansion — sell the second bottle into the same home</span><p>The cheapest new customer available anywhere in the account — zero acquisition cost, existing trust, card already on file. Serve to purchasers at Day 30–45. Also lifts AOV directly, which is your single biggest revenue lever.</p></div>
+<div class="pc-body">
+  <div><span class="lbl">Creative description — poster</span><p>Two mugs, two sets of reading glasses, one supplement bottle on a shared kitchen counter. Type: “One bottle. Two people who need it.” Add-to-order CTA.</p></div>
+  <div><span class="lbl">Video description — reel</span><p>15s, retargeting only. 0–5s: woman ~60 to camera, amused: “I’ve been taking this for three months. He watched me for eight weeks and then started stealing them.” 5–10s: cut to him, dry: “They work.” 10–15s: “Add his to your next order.” End card. DELIVERY: existing purchasers, Day 30–45.</p></div>
+</div>
+</article></div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Operations</span><h2>Naming, flags and where to start</h2></div>
+  <div class="callout">
+    <b>Naming convention.</b> <code>NMN_[PainPoint#]_[Angle]_[Format]_[Variant]_[YYYYMM]</code> — for example <code>NMN_16_QualityContrast_DemoCOA_A_202608</code>. Three separate rows currently exist for what looks like one ad (<code>- Video - Ad -2</code>, <code>- Video - Ad - 2</code>, <code>Video - Ad - 2</code>), which quietly fragments every angle-level report. Adopt this scheme so new assets are analysable on arrival.
+  </div>
+  <div class="callout warn">
+    <b>Flags before anything ships.</b> Pain point 14 (weight) must not carry a weight-loss claim and needs legal review. Pain point 23 claims self-serve cancellation — verify that is true before running it, particularly as 97% of orders are now subscriptions. Pain point 15 is blocked until Multi Collagen COGS is populated, since its margin is currently unknown.
+  </div>
+  <div class="callout">
+    <b>If you brief only three this month, brief these.</b> <b>16</b> — the quality-contrast angle is your best-performing structure by CPM and has never once run on NMN, which is 94% of revenue. <b>9</b> — “slept eight hours, woke up like it was four” is the most self-identifying line in the entire research and should be your highest-volume angle. <b>26</b> — Robert is reported at 1.81 ROAS, the only segment above your ~1.70 breakeven, and has no creative written to him at all.
+  </div>
+</section>
+
+<footer>
+Pain points drawn from the NMN Deep Customer Intelligence Report (Prime Ingredients, 20 May 2026). Copy structures, evidence tiers and the qualification rule are drawn from a six-month teardown of 1,220 Meta ads and $381,106 of spend, read from the Triple Whale warehouse on 10 August 2026. Ad performance figures behind the tiers are Meta channel-reported and are valid for ranking creative against creative rather than as absolute profit measures, since Triple Whale pixel attribution does not exist before June 2026. Robert’s 1.81 ROAS is carried from the research document and is not independently verifiable in the warehouse — confirm in Ads Manager before scaling against it. All copy here is a production brief, not legally reviewed final copy; supplement claims are the advertiser’s responsibility.
+</footer>
+
+</div>
