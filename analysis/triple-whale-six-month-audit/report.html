@@ -1,0 +1,748 @@
+<title>Prime Ingredients — Six-Month Data Audit</title>
+<style>
+  :root {
+    --ground: #EDF1F3;
+    --surface: #FCFCFB;
+    --surface-2: #F4F7F8;
+    --ink: #111A1F;
+    --ink-2: #4E5F68;
+    --ink-3: #74858E;
+    --rule: #D2DBDF;
+    --rule-soft: #E3EAED;
+    --accent: #00819C;
+    --accent-soft: #D7EDF2;
+    --neg: #C03A1E;
+    --neg-soft: #F7E0DA;
+    --warn: #8A5A0B;
+    --warn-soft: #F6EBD6;
+    --shadow: 0 1px 2px rgba(17, 26, 31, .06), 0 8px 24px -16px rgba(17, 26, 31, .28);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1418;
+      --surface: #151E23;
+      --surface-2: #1B262C;
+      --ink: #E2E9EC;
+      --ink-2: #9DAEB7;
+      --ink-3: #7A8B94;
+      --rule: #28343A;
+      --rule-soft: #202B31;
+      --accent: #2FA6AE;
+      --accent-soft: #10333A;
+      --neg: #D9604A;
+      --neg-soft: #3A211C;
+      --warn: #D2A24A;
+      --warn-soft: #33291628;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0D1418;
+    --surface: #151E23;
+    --surface-2: #1B262C;
+    --ink: #E2E9EC;
+    --ink-2: #9DAEB7;
+    --ink-3: #7A8B94;
+    --rule: #28343A;
+    --rule-soft: #202B31;
+    --accent: #2FA6AE;
+    --accent-soft: #10333A;
+    --neg: #D9604A;
+    --neg-soft: #3A211C;
+    --warn: #D2A24A;
+    --warn-soft: #332916;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 20px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .measure { max-width: 68ch; }
+
+  h1, h2, h3 {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-weight: 600;
+    text-wrap: balance;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-size: clamp(2rem, 4.6vw, 3.1rem); line-height: 1.08; }
+  h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.15; }
+  h3 { font-size: 1.14rem; line-height: 1.3; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .68rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* ---------- masthead ---------- */
+  header.masthead {
+    padding: 64px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .masthead .lede {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 62ch;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .76rem;
+    color: var(--ink-3);
+  }
+  .meta-row b { color: var(--ink-2); font-weight: 600; }
+
+  /* ---------- verdict ---------- */
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--neg);
+    border-radius: 3px;
+    padding: 28px 32px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .verdict p { font-size: 1.05rem; color: var(--ink-2); max-width: 72ch; }
+  .verdict strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- kpi strip ---------- */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(178px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .kpi {
+    background: var(--surface);
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .kpi .k-label { font-size: .78rem; color: var(--ink-3); }
+  .kpi .k-val {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: 1.62rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .kpi .k-val.is-neg { color: var(--neg); }
+  .kpi .k-val.is-pos { color: var(--accent); }
+  .kpi .k-note { font-size: .76rem; color: var(--ink-3); }
+
+  /* ---------- sections ---------- */
+  section { display: flex; flex-direction: column; gap: 22px; }
+  .sec-head { display: flex; flex-direction: column; gap: 10px; }
+  .sec-head p { color: var(--ink-2); max-width: 68ch; }
+
+  /* ---------- tables ---------- */
+  .t-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: var(--surface);
+  }
+  table { border-collapse: collapse; width: 100%; font-size: .875rem; min-width: 620px; }
+  caption {
+    caption-side: top;
+    text-align: left;
+    padding: 16px 20px 12px;
+    font-size: .82rem;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  th, td { padding: 10px 16px; text-align: right; border-bottom: 1px solid var(--rule-soft); }
+  th:first-child, td:first-child { text-align: left; }
+  thead th {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    background: var(--surface-2);
+    white-space: nowrap;
+  }
+  tbody td { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+  tbody td:first-child { color: var(--ink); font-weight: 500; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr.flagged td { background: var(--neg-soft); }
+  tbody tr.flagged td:first-child { color: var(--neg); font-weight: 600; }
+  tbody tr.total td { background: var(--surface-2); font-weight: 600; color: var(--ink); border-top: 1px solid var(--rule); }
+  td.neg { color: var(--neg); font-weight: 600; }
+  td.pos { color: var(--accent); font-weight: 600; }
+  .dim { color: var(--ink-3); font-style: italic; }
+
+  /* bar track inside table cells */
+  .bar-cell { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+  .bar-track {
+    flex: 0 0 84px;
+    height: 7px;
+    background: var(--rule-soft);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--accent); display: block; }
+  .bar-fill.is-neg { background: var(--neg); }
+  .bar-num { font-variant-numeric: tabular-nums; min-width: 42px; }
+
+  /* ---------- figure ---------- */
+  figure { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 24px; box-shadow: var(--shadow); }
+  figcaption { font-size: .82rem; color: var(--ink-3); margin-top: 14px; max-width: 66ch; }
+  svg { display: block; width: 100%; height: auto; }
+
+  /* ---------- findings ---------- */
+  .findings { display: flex; flex-direction: column; gap: 14px; }
+  .finding {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rule);
+    border-radius: 3px;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .finding.sev-critical { border-left-color: var(--neg); }
+  .finding.sev-warn { border-left-color: var(--warn); }
+  .finding.sev-note { border-left-color: var(--accent); }
+  .f-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
+  .chip {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .64rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .chip.sev-critical { background: var(--neg-soft); color: var(--neg); }
+  .chip.sev-warn { background: var(--warn-soft); color: var(--warn); }
+  .chip.sev-note { background: var(--accent-soft); color: var(--accent); }
+  .finding p { color: var(--ink-2); font-size: .95rem; max-width: 74ch; }
+  .finding .evidence {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .78rem;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+    padding-top: 4px;
+    border-top: 1px dotted var(--rule);
+    max-width: 74ch;
+  }
+
+  /* ---------- actions ---------- */
+  ol.actions { list-style: none; counter-reset: act; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  ol.actions li {
+    counter-increment: act;
+    background: var(--surface);
+    padding: 20px 24px 20px 62px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  ol.actions li::before {
+    content: counter(act);
+    position: absolute;
+    left: 24px;
+    top: 20px;
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .82rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  ol.actions p { font-size: .93rem; color: var(--ink-2); max-width: 72ch; }
+  .a-impact {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .76rem;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- misc ---------- */
+  .callout {
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 18px 22px;
+    font-size: .93rem;
+    color: var(--ink-2);
+    max-width: 74ch;
+  }
+  .callout b { color: var(--ink); }
+  code {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .86em;
+    background: var(--surface-2);
+    padding: 1px 5px;
+    border-radius: 2px;
+    border: 1px solid var(--rule-soft);
+  }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 22px;
+    font-size: .82rem;
+    color: var(--ink-3);
+    max-width: 74ch;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, li:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">Triple Whale data audit · Prime Ingredients</span>
+    <h1>You are spending at a loss, and three of the last six months of data can't be trusted.</h1>
+    <p class="lede">A full read of the Triple Whale warehouse from January through 7 August 2026. The headline: blended ROAS has to clear <b>~1.70</b> for this business to break even, and it has run between 1.22 and 1.43 since May. Separately, a 27-day hole in the order data makes April fictional and every pre-May profit figure overstated.</p>
+    <div class="meta-row">
+      <span><b>Store</b> w1rbg9-wu.myshopify.com</span>
+      <span><b>Window</b> 2026-01-01 → 2026-08-07</span>
+      <span><b>Currency</b> USD</span>
+      <span><b>Timezone</b> America/New_York</span>
+      <span><b>Model</b> Triple Attribution, lifetime</span>
+    </div>
+  </header>
+
+  <div class="verdict">
+    <span class="eyebrow">The one-paragraph version</span>
+    <p>Across the period the store did <strong>$493,300</strong> of revenue on <strong>$381,106</strong> of Meta spend — a blended 1.29 ROAS. In the four months where cost data actually exists, contribution profit was <strong>−$45,317</strong>. The business is one product, one channel, one country, and a permanent 35% discount. What saves it is a subscription program launched in June that now covers 97% of orders and is generating recurring revenue at zero acquisition cost — but that program is only two months old, and its recurring orders are being discounted 38% for no reason.</p>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi">
+      <span class="k-label">Revenue, Jan–Aug 7</span>
+      <span class="k-val">$493,300</span>
+      <span class="k-note">8,074 orders</span>
+    </div>
+    <div class="kpi">
+      <span class="k-label">Meta ad spend</span>
+      <span class="k-val">$381,106</span>
+      <span class="k-note">100% of paid spend</span>
+    </div>
+    <div class="kpi">
+      <span class="k-label">Contribution, May–Aug 7</span>
+      <span class="k-val is-neg">−$45,317</span>
+      <span class="k-note">only period with COGS</span>
+    </div>
+    <div class="kpi">
+      <span class="k-label">Breakeven ROAS</span>
+      <span class="k-val">1.70</span>
+      <span class="k-note">actual: 1.22–1.77</span>
+    </div>
+    <div class="kpi">
+      <span class="k-label">Recurring orders, Aug 1–7</span>
+      <span class="k-val is-pos">249</span>
+      <span class="k-note">zero acquisition cost</span>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 1 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">01 — Topline</span>
+      <h2>What actually happened, month by month</h2>
+      <p>Revenue and spend both come straight from the warehouse. Cost of goods only starts in May, so the profit column simply does not exist before then — which is itself one of the biggest findings in this report.</p>
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Monthly performance · <code>orders_table</code>, <code>ads_table</code>, <code>blended_stats_tvf</code></caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Orders</th>
+            <th scope="col">Revenue</th>
+            <th scope="col">Ad spend</th>
+            <th scope="col">ROAS</th>
+            <th scope="col">COGS</th>
+            <th scope="col">Contribution</th>
+            <th scope="col">New cust. %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>January</td><td>313</td><td>$20,486</td><td>$16,733</td><td>1.22</td><td class="dim">none</td><td class="dim">unknown</td><td>—</td></tr>
+          <tr><td>February</td><td>839</td><td>$49,664</td><td>$22,612</td><td>2.20</td><td class="dim">none</td><td class="dim">unknown</td><td>97.1%</td></tr>
+          <tr><td>March</td><td>1,625</td><td>$101,146</td><td>$53,597</td><td>1.89</td><td class="dim">none</td><td class="dim">unknown</td><td>96.6%</td></tr>
+          <tr class="flagged"><td>April</td><td>264</td><td>$17,091</td><td>$61,883</td><td>0.28</td><td class="dim">none</td><td class="dim">data gap</td><td>94.3%</td></tr>
+          <tr><td>May</td><td>1,518</td><td>$94,519</td><td>$76,058</td><td>1.24</td><td>$26,702</td><td class="neg">−$18,234</td><td>89.8%</td></tr>
+          <tr><td>June</td><td>845</td><td>$55,108</td><td>$45,209</td><td>1.22</td><td>$16,990</td><td class="neg">−$13,925</td><td>80.8%</td></tr>
+          <tr><td>July</td><td>2,216</td><td>$128,676</td><td>$89,994</td><td>1.43</td><td>$39,592</td><td class="neg">−$13,625</td><td>69.6%</td></tr>
+          <tr><td>Aug 1–7</td><td>454</td><td>$26,610</td><td>$15,020</td><td>1.77</td><td>$8,515</td><td class="pos">+$467</td><td>37.7%</td></tr>
+          <tr class="total"><td>Total</td><td>8,074</td><td>$493,300</td><td>$381,106</td><td>1.29</td><td>$91,799</td><td class="neg">−$45,317</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 720 310" role="img" aria-label="Contribution profit by month: May minus 18,234 dollars; June minus 13,925; July minus 13,625; August 1 to 7 plus 467.">
+        <line x1="60" y1="51" x2="700" y2="51" stroke="var(--ink-3)" stroke-width="1"></line>
+        <text x="52" y="55" text-anchor="end" font-size="11" fill="var(--ink-3)" font-family="ui-monospace, Menlo, monospace">$0</text>
+
+        <rect x="92" y="51" width="96" height="191" rx="4" fill="var(--neg)"></rect>
+        <rect x="252" y="51" width="96" height="146" rx="4" fill="var(--neg)"></rect>
+        <rect x="412" y="51" width="96" height="143" rx="4" fill="var(--neg)"></rect>
+        <rect x="572" y="45" width="96" height="6" rx="3" fill="var(--accent)"></rect>
+
+        <text x="140" y="228" text-anchor="middle" font-size="13" font-weight="600" fill="var(--surface)" font-family="ui-monospace, Menlo, monospace">−$18,234</text>
+        <text x="300" y="183" text-anchor="middle" font-size="13" font-weight="600" fill="var(--surface)" font-family="ui-monospace, Menlo, monospace">−$13,925</text>
+        <text x="460" y="180" text-anchor="middle" font-size="13" font-weight="600" fill="var(--surface)" font-family="ui-monospace, Menlo, monospace">−$13,625</text>
+        <text x="620" y="35" text-anchor="middle" font-size="13" font-weight="600" fill="var(--accent)" font-family="ui-monospace, Menlo, monospace">+$467</text>
+
+        <text x="140" y="266" text-anchor="middle" font-size="12" fill="var(--ink-2)">May</text>
+        <text x="300" y="266" text-anchor="middle" font-size="12" fill="var(--ink-2)">June</text>
+        <text x="460" y="266" text-anchor="middle" font-size="12" fill="var(--ink-2)">July</text>
+        <text x="620" y="266" text-anchor="middle" font-size="12" fill="var(--ink-2)">Aug 1–7</text>
+        <text x="620" y="284" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">partial month</text>
+      </svg>
+      <figcaption>Contribution profit = revenue − COGS − ad spend − payment fees − shipping cost − refunds. April and earlier are omitted because COGS was never recorded. August is seven days and reflects a deliberate 50% cut in daily spend.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ SECTION 2 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">02 — Data integrity</span>
+      <h2>Before you act on any of this, fix the instrumentation</h2>
+      <p>Eleven separate problems make parts of the warehouse unusable. The first three are severe enough that any decision made from a Triple Whale dashboard between January and May was made on wrong numbers.</p>
+    </div>
+
+    <div class="findings">
+
+      <div class="finding sev-critical">
+        <div class="f-top"><span class="chip sev-critical">Critical</span><h3>A 27-day hole in the order data — April 6 to May 2</h3></div>
+        <p>Orders effectively stop on 6 April and resume on 3 May. Eleven orders are recorded across the entire window. Meanwhile Meta kept spending roughly $2,100 a day and — critically — <em>Meta's own pixel kept reporting 25 to 67 conversions a day</em> worth $2,000–$4,100. Purchases were happening. Triple Whale simply did not ingest them.</p>
+        <p>This is a Shopify → Triple Whale sync failure, not a business collapse. It means April's 0.28 ROAS is fiction, and roughly $90–100K of revenue is missing from the warehouse. Ask Triple Whale support to backfill the range; until they do, exclude April from every comparison.</p>
+        <p class="evidence">Gap spend $55,799 · orders recorded 11 · Meta-reported April conversions 1,383 worth $88,269 · warehouse April revenue $17,091</p>
+      </div>
+
+      <div class="finding sev-critical">
+        <div class="f-top"><span class="chip sev-critical">Critical</span><h3>No cost of goods before May — early profit is overstated by roughly $46K</h3></div>
+        <p>COGS coverage is exactly 0% for January through April, then jumps to 94–97% from May onward. Every profit, margin, and POAS figure Triple Whale showed you for the first four months excluded the single largest variable cost.</p>
+        <p>Applying July's actual 30.8% COGS ratio: February's reported <code>+$21,293</code> net profit was really about <code>+$5,800</code>, and March's reported <code>+$35,637</code> was really about <code>+$4,500</code>. The business was thinner than it looked from day one.</p>
+        <p class="evidence">Orders with COGS — Jan 0/313 · Feb 0/839 · Mar 0/1,625 · Apr 8/264 · May 1,424/1,518 · Jul 2,107/2,216</p>
+      </div>
+
+      <div class="finding sev-critical">
+        <div class="f-top"><span class="chip sev-critical">Critical</span><h3>No attribution data at all before June — $230,883 of spend flew blind</h3></div>
+        <p>The Triple Whale pixel produced zero sessions until May and only became meaningful in June (23,113 sessions), then July (46,045). Every dollar spent from January through May was allocated with no channel, campaign, or creative attribution whatsoever.</p>
+        <p class="evidence">Pixel sessions by month — Jan–Apr 0 · May 761 · Jun 23,113 · Jul 46,045 · Aug 1–7 6,978 · blind spend Jan–May $230,883</p>
+      </div>
+
+      <div class="finding sev-warn">
+        <div class="f-top"><span class="chip sev-warn">Warning</span><h3>Shipping cost is set equal to shipping revenue — real cost is unknown</h3></div>
+        <p>From January through May, <code>shipping_costs</code> matches <code>shipping_price</code> to the cent every single month. That is a default, not a measurement: it assumes you ship for exactly what customers pay you. Handling fees are $0 across all eight months, which is also not credible for a physical supplement.</p>
+        <p>Both understate true costs, so the contribution figures in this report are, if anything, generous.</p>
+        <p class="evidence">Feb $3,477.08 = $3,477.08 · Mar $6,101.32 = $6,101.32 · Apr $901.49 = $901.49 · May $5,806.43 = $5,806.43 · handling fees $0 in every month</p>
+      </div>
+
+      <div class="finding sev-warn">
+        <div class="f-top"><span class="chip sev-warn">Warning</span><h3>Checkout tracking is broken — July recorded more orders than checkouts</h3></div>
+        <p>July shows 1,491 checkout events against 2,364 attributed orders. An order cannot exist without a checkout, so the checkout event is firing on roughly 63% of purchases. Any funnel drop-off analysis built on this is wrong, and the add-to-cart rate is likely undercounted too.</p>
+        <p class="evidence">Jun 646 checkouts / 891 orders · Jul 1,491 / 2,364 · Aug 1–7 180 / 512</p>
+      </div>
+
+      <div class="finding sev-warn">
+        <div class="f-top"><span class="chip sev-warn">Warning</span><h3>Klaviyo is connected but sends no data</h3></div>
+        <p>Sent, delivered, opened, clicked, subscribed and unsubscribed are all null for every month. Only order attribution comes through, and it is tiny: $1,028 in July against $128,676 of revenue. You cannot see list growth, deliverability, or flow performance at all.</p>
+        <p class="evidence">Klaviyo-attributed revenue — Jun $86 · Jul $1,028 · Aug 1–7 $244 · all engagement metrics null</p>
+      </div>
+
+      <div class="finding sev-note">
+        <div class="f-top"><span class="chip sev-note">Cleanup</span><h3>Four smaller data defects</h3></div>
+        <p><b>Inventory is corrupt</b> — 1,312,982,987 items valued at $88.2 billion, with 240 items missing cost. <b>Product COGS is incomplete</b> — three of your four products have null cost, so only the flagship contributes to margin math. <b>Sixteen orders carry a 100% "Custom discount"</b>, giving away $1,379 at zero revenue. <b>Ad naming is inconsistent</b> — <code>- Video - Ad -2</code>, <code>- Video - Ad - 2</code> and <code>Video - Ad - 2</code> are three different rows for what looks like related creative, which quietly fragments every creative report.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">03 — Unit economics</span>
+      <h2>The number to run the business on is 1.70</h2>
+      <p>After cost of goods, payment fees, shipping and refunds, roughly 59 cents of every revenue dollar is left to pay for advertising. That sets a hard breakeven blended ROAS of about 1.70 — and it is the single most useful number in this report.</p>
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Breakeven ROAS vs actual, by month</caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Margin before ad spend</th>
+            <th scope="col">Breakeven ROAS</th>
+            <th scope="col">Actual ROAS</th>
+            <th scope="col">Gap</th>
+            <th scope="col">New-customer CAC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>May</td><td>61.2%</td><td>1.63</td><td>1.24</td><td class="neg">−0.39</td><td>$55.80</td></tr>
+          <tr><td>June</td><td>56.8%</td><td>1.76</td><td>1.22</td><td class="neg">−0.54</td><td>$66.19</td></tr>
+          <tr><td>July</td><td>59.3%</td><td>1.69</td><td>1.43</td><td class="neg">−0.26</td><td>$58.32</td></tr>
+          <tr><td>Aug 1–7</td><td>58.2%</td><td>1.72</td><td>1.77</td><td class="pos">+0.05</td><td>$87.84</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>Read August carefully.</b> It is the first profitable stretch, but not because acquisition improved — new-customer CAC actually spiked to <b>$87.84</b>, the worst of the period. It is profitable because spend was cut roughly in half and the recurring subscription base carried the month. That is a real result, but it is a harvesting result, not a growth one.
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Per-order economics, July 2026 — the fullest clean month</caption>
+        <thead>
+          <tr>
+            <th scope="col">Order type</th>
+            <th scope="col">Orders</th>
+            <th scope="col">AOV</th>
+            <th scope="col">COGS</th>
+            <th scope="col">Fees + shipping</th>
+            <th scope="col">Contribution</th>
+            <th scope="col">Acquisition cost</th>
+            <th scope="col">Net</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>New subscription</td><td>1,646</td><td>$57.92</td><td>$17.90</td><td>$3.65</td><td>$36.37</td><td>$58.32</td><td class="neg">−$21.95</td></tr>
+          <tr><td>Recurring charge</td><td>495</td><td>$60.78</td><td>$19.70</td><td>$3.74</td><td>$37.34</td><td>$0.00</td><td class="pos">+$37.34</td></tr>
+          <tr><td>One-time</td><td>75</td><td>$43.44</td><td>$5.09</td><td>$3.65</td><td>$34.70</td><td>$58.32</td><td class="neg">−$23.62</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>The whole business reduces to one ratio.</b> You lose $21.95 acquiring a subscriber and make $37.34 every time they re-bill. So you need <b>0.59 recurring charges per new subscriber</b> to break even. June's 460 new subscribers produced 495 recurring charges in July (108%). July's 1,646 produced a 249-order first week of August, tracking to roughly 1,067 for the month (65%). Both clear the bar — but only just, and on two months of history.
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">04 — The engine</span>
+      <h2>The subscription pivot is the only thing working</h2>
+      <p>In May, zero orders were subscriptions. By July, 97% were. This is the most consequential change in the entire dataset and it is barely visible in the standard dashboards.</p>
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Subscription adoption and recurring base · <code>orders_table</code></caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Total orders</th>
+            <th scope="col">Subscription orders</th>
+            <th scope="col">Share</th>
+            <th scope="col">New subscriptions</th>
+            <th scope="col">Recurring charges</th>
+            <th scope="col">Discount on recurring</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>May</td><td>1,518</td><td>0</td><td>0%</td><td>0</td><td>0</td><td>—</td></tr>
+          <tr><td>June</td><td>845</td><td>496</td><td>58.7%</td><td>460</td><td><span class="bar-cell"><span class="bar-track"><span class="bar-fill" style="width:7%"></span></span><span class="bar-num">36</span></span></td><td>5.1%</td></tr>
+          <tr><td>July</td><td>2,216</td><td>2,141</td><td>96.6%</td><td>1,646</td><td><span class="bar-cell"><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-num">495</span></span></td><td class="neg">35.4%</td></tr>
+          <tr><td>Aug 1–7</td><td>454</td><td>447</td><td>98.5%</td><td>198</td><td><span class="bar-cell"><span class="bar-track"><span class="bar-fill" style="width:50%"></span></span><span class="bar-num">249</span></span></td><td class="neg">37.9%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>You are discounting your own recurring revenue by 38%.</b> In June, recurring charges carried a 5.1% discount. By July that had jumped to 35.4% and in August 37.9% — the same discount new customers get. Recurring charges need no acquisition incentive; the customer has already chosen to stay. On July's recurring volume alone, cutting that to 20% is worth roughly <b>$6,700 a month</b>, and it scales with the base.
+    </div>
+
+    <div class="callout">
+      <b>This also explains the strange June cohort.</b> Customers who first bought in June show a 55.5% repeat rate against 5–16% for every other cohort. That is not a fluke of behaviour — it is the subscription program launching in June and re-billing those customers in July. Cohort repeat rates before June are the true organic repeat rate, and they are low: <b>4.8% to 6.1%</b>.
+    </div>
+  </section>
+
+  <!-- ============ SECTION 5 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">05 — Media</span>
+      <h2>Where the money goes, and the ROAS trap inside it</h2>
+      <p>Two campaigns are quietly losing money. But the obvious fix — move budget to the highest-ROAS campaigns — is wrong, and the reason matters.</p>
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Meta campaigns, 8 June – 7 August · Triple Attribution</caption>
+        <thead>
+          <tr>
+            <th scope="col">Campaign</th>
+            <th scope="col">Spend</th>
+            <th scope="col">Attributed revenue</th>
+            <th scope="col">ROAS</th>
+            <th scope="col">Orders</th>
+            <th scope="col">New customers</th>
+            <th scope="col">New-cust. CAC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>9. NMN Scale (CBO) Jun 27</td><td>$75,443</td><td>$90,365</td><td>1.20</td><td>1,535</td><td>1,308 (85%)</td><td class="pos">$57.68</td></tr>
+          <tr><td>4. N2 Testing (CBO) Jan 27</td><td>$33,501</td><td>$58,773</td><td>1.75</td><td>961</td><td>493 (51%)</td><td>$67.95</td></tr>
+          <tr><td>8. NMN Testing (CBO) Jun 21</td><td>$13,616</td><td>$13,303</td><td>0.98</td><td>230</td><td>163 (71%)</td><td class="neg">$83.54</td></tr>
+          <tr><td>7. N2 Testing (CBO) May 28</td><td>$11,410</td><td>$20,269</td><td>1.78</td><td>291</td><td>166 (57%)</td><td>$68.73</td></tr>
+          <tr><td>11. Astaxanthin Scale (CBO) Jun 27</td><td>$7,111</td><td>$5,200</td><td>0.73</td><td>104</td><td>77 (74%)</td><td class="neg">$92.35</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>The trap.</b> Campaign 4 has the second-best ROAS at 1.75 — but only 51% of its orders are new customers. Campaign 9 has the worst ROAS of the scale campaigns at 1.20, yet delivers new customers at <b>$57.68</b>, the cheapest in the account, with 85% of its orders genuinely new. Campaign 4's ROAS advantage comes substantially from harvesting people who already bought. Shifting budget into it will not produce proportional new customers — it will mostly re-buy your existing base.
+      <br><br>
+      The real waste is elsewhere: <b>campaigns 8 and 11</b> together burned <b>$20,727</b> at ROAS 0.98 and 0.73, acquiring customers at $83.54 and $92.35 — 45% to 60% above the workhorse.
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Creative performance, 1 July – 7 August · spend over $500</caption>
+        <thead>
+          <tr>
+            <th scope="col">Ad</th>
+            <th scope="col">Spend</th>
+            <th scope="col">ROAS</th>
+            <th scope="col">Orders</th>
+            <th scope="col">% new</th>
+            <th scope="col">New-cust. CAC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Video Ad 1 — Copy 2</td><td>$29,802</td><td>1.31</td><td>682</td><td>85%</td><td class="pos">$51.12</td></tr>
+          <tr><td>Video Ad 2 — Copy</td><td>$16,847</td><td>1.23</td><td>314</td><td>81%</td><td>$66.33</td></tr>
+          <tr><td>Video Ad 3</td><td>$15,622</td><td>1.41</td><td>407</td><td>72%</td><td class="pos">$53.32</td></tr>
+          <tr><td>Video Ad 3 — Copy</td><td>$6,171</td><td>1.03</td><td>102</td><td>85%</td><td class="neg">$70.93</td></tr>
+          <tr class="flagged"><td>Video Ad 1</td><td>$5,742</td><td>3.43</td><td>339</td><td>26%</td><td>$64.52</td></tr>
+          <tr class="flagged"><td>Video Ad 2</td><td>$1,605</td><td>4.76</td><td>119</td><td>9%</td><td class="neg">$145.92</td></tr>
+          <tr class="flagged"><td>Video Ad 2 (variant)</td><td>$521</td><td>6.14</td><td>48</td><td>8%</td><td class="neg">$130.15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      The three highlighted rows look like your best creative — 3.4× to 6.1× ROAS. They are not. Between 74% and 92% of their orders come from <em>returning</em> customers, and their true cost per new customer is $64 to $146. They are retargeting your own buyers. <b>Video Ad 1 — Copy 2</b> and <b>Video Ad 3</b> are the genuine acquisition performers, at $51.12 and $53.32 per new customer.
+    </div>
+  </section>
+
+  <!-- ============ SECTION 6 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">06 — Structure</span>
+      <h2>Four concentrations that are each a single point of failure</h2>
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <caption>Concentration risk · 1 May – 7 August</caption>
+        <thead>
+          <tr><th scope="col">Dimension</th><th scope="col">Concentration</th><th scope="col">Detail</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Product</td><td>93.5%</td><td>"Transform Your Cellular Energy" — $412,817 of $441,279 gross. The other three products total $27,653.</td></tr>
+          <tr><td>Channel</td><td>100%</td><td>Meta is the only paid channel across all eight months. No Google, TikTok, Bing, or affiliate spend at all.</td></tr>
+          <tr><td>Country</td><td>99.96%</td><td>United States — 5,031 of 5,033 orders. Two UK orders.</td></tr>
+          <tr><td>Discounting</td><td>~35%</td><td>Of gross sales, every month, on 95% of orders — and it is not code-driven. 4,775 orders show "no discount" yet still carry a 34.6% markdown, meaning the discount is baked into pricing.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>On the discounting:</b> because it is automatic rather than code-based, "gross sales" in Triple Whale is a list price nobody ever pays. Treat <code>gross_product_sales</code> as a vanity number — $191,486 in July against $128,676 of actual revenue. Every percentage-of-gross metric on the dashboard is distorted by the same 35%.
+    </div>
+
+    <div class="callout">
+      <b>What is genuinely healthy:</b> refund rate is <b>2.85%</b>, which is low for supplements. AOV has been stable at $55–62 all year. Conversion rate is climbing — 3.85% in June, 5.13% in July, 7.34% in early August. And the site's 92–95% bounce rate is almost certainly a measurement artifact of a single-page funnel (1.1 pageviews per session), not a real problem — though the broken checkout tracking means it cannot be confirmed either way.
+    </div>
+  </section>
+
+  <!-- ============ SECTION 7 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">07 — Before further action</span>
+      <h2>What I would do, in this order</h2>
+      <p>Ordered by return on effort. The first three cost nothing but a support ticket and a settings change.</p>
+    </div>
+
+    <ol class="actions">
+      <li>
+        <h3>Stop discounting recurring charges</h3>
+        <p>Recurring subscribers already chose to stay; the 38% markdown buys nothing. Take it to 15–20% — still a real subscriber benefit — and the margin lands straight on the bottom line.</p>
+        <p class="a-impact">≈ +$6,700/month at July volume, scaling with the recurring base · no traffic change required</p>
+      </li>
+      <li>
+        <h3>Kill campaigns 8 and 11</h3>
+        <p>ROAS 0.98 and 0.73, new-customer CAC 45–60% above campaign 9. Move the budget into campaign 9, which is the cheapest genuine acquisition source you have. Do not move it into campaign 4 — its ROAS is inflated by returning customers.</p>
+        <p class="a-impact">$20,727 reallocated over 60 days · ≈ 90 more new customers at campaign 9's CAC</p>
+      </li>
+      <li>
+        <h3>Open a Triple Whale ticket for the April 6 – May 2 backfill</h3>
+        <p>Give them the exact window and the evidence: Meta reported 1,383 April conversions worth $88,269 against 264 recorded orders. Until it is backfilled, exclude April from every report and comparison.</p>
+        <p class="a-impact">Recovers ~$90–100K of missing revenue history · unblocks all year-over-year and trend analysis</p>
+      </li>
+      <li>
+        <h3>Fix the cost settings</h3>
+        <p>Add COGS for the three products that have none, replace the shipping-cost default with real carrier rates, and enter handling fees. Then backfill COGS to January so the first four months become comparable.</p>
+        <p class="a-impact">Makes contribution profit trustworthy · current figures are optimistic by an unknown margin</p>
+      </li>
+      <li>
+        <h3>Repair the checkout event and the Klaviyo feed</h3>
+        <p>The checkout event fires on roughly 63% of purchases, so funnel diagnosis is impossible. Klaviyo sends no engagement data at all, and is attributing $1,028 a month against a 5,000-customer base — email is your cheapest route to the recurring charges the model depends on, and right now you cannot even see it.</p>
+        <p class="a-impact">Unblocks funnel optimisation and the single cheapest retention lever available</p>
+      </li>
+      <li>
+        <h3>Instrument subscription churn before scaling spend again</h3>
+        <p>The entire model rests on 0.59 recurring charges per new subscriber. You have two months of data and it is clearing the bar by a narrow margin. Track cycle-2 and cycle-3 retention weekly — if first-cycle retention drops below 60%, scaling acquisition makes losses worse, not better.</p>
+        <p class="a-impact">Determines whether August's profitability is a floor or a one-off</p>
+      </li>
+      <li>
+        <h3>Start reducing single-channel and single-product exposure</h3>
+        <p>100% of spend on Meta and 93.5% of revenue from one SKU means a single ad-account issue or supply problem takes the business to zero. This is not urgent this week, but it should be on the quarter's plan.</p>
+        <p class="a-impact">Structural · no immediate P&L effect</p>
+      </li>
+    </ol>
+  </section>
+
+  <footer>
+    All figures read directly from the Triple Whale warehouse on 10 August 2026, covering 1 January – 7 August 2026 in the shop's timezone (America/New_York) and currency (USD). Sources: <code>orders_table</code>, <code>ads_table</code>, <code>blended_stats_tvf</code>, <code>pixel_joined_tvf</code>, and the configured Summary KPIs. Contribution profit is calculated as revenue − COGS − ad spend − payment gateway costs − shipping costs − refunds; it excludes overheads, salaries, and software, and is therefore an upper bound on true profit. April figures are shown as recorded and are known to be incomplete.
+  </footer>
+
+</div>
