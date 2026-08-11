@@ -1,0 +1,1114 @@
+<title>Prime Ingredients — Meta Ads Masterplan & SOPs</title>
+<style>
+  :root {
+    --paper:        #F9F7F6;
+    --surface:      #FFFFFF;
+    --surface-sunk: #F2EEEF;
+    --ink:          #1A1520;
+    --ink-soft:     #453C48;
+    --muted:        #6E6572;
+    --line:         #E4DFE2;
+    --line-strong:  #CFC6CB;
+    --accent:       #6D2E52;
+    --accent-soft:  #F3E7EE;
+    --critical:     #A63A2E;
+    --critical-bg:  #F8E9E6;
+    --warn:         #8F6212;
+    --warn-bg:      #F8F0DE;
+    --good:         #2F6B52;
+    --good-bg:      #E5F0EA;
+    --shadow:       0 1px 2px rgba(26,21,32,.05), 0 8px 24px -16px rgba(26,21,32,.25);
+
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:        #16131A;
+      --surface:      #1E1A23;
+      --surface-sunk: #241F2A;
+      --ink:          #F3EFF2;
+      --ink-soft:     #D3CBD5;
+      --muted:        #A79FAB;
+      --line:         #322C38;
+      --line-strong:  #4A4152;
+      --accent:       #D093B5;
+      --accent-soft:  #33203150;
+      --critical:     #E5897A;
+      --critical-bg:  #3A211D;
+      --warn:         #DCAF5E;
+      --warn-bg:      #35291459;
+      --good:         #74C29A;
+      --good-bg:      #1C3128;
+      --shadow:       0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:        #16131A;
+    --surface:      #1E1A23;
+    --surface-sunk: #241F2A;
+    --ink:          #F3EFF2;
+    --ink-soft:     #D3CBD5;
+    --muted:        #A79FAB;
+    --line:         #322C38;
+    --line-strong:  #4A4152;
+    --accent:       #D093B5;
+    --accent-soft:  #33203150;
+    --critical:     #E5897A;
+    --critical-bg:  #3A211D;
+    --warn:         #DCAF5E;
+    --warn-bg:      #35291459;
+    --good:         #74C29A;
+    --good-bg:      #1C3128;
+    --shadow:       0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.62;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 56px;
+  }
+  @media (min-width: 1060px) {
+    .wrap { grid-template-columns: 200px minmax(0, 1fr); }
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--line-strong);
+    padding: 64px 0 36px;
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    font-family: var(--data);
+    font-size: 11.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 20px;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(2.3rem, 5.2vw, 3.5rem);
+    line-height: 1.06;
+    letter-spacing: -.018em;
+    text-wrap: balance;
+    margin: 0 0 20px;
+    max-width: 20ch;
+  }
+  .standfirst {
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    max-width: 66ch;
+    margin: 0 0 8px;
+  }
+  .byline {
+    font-family: var(--data);
+    font-size: 11.5px;
+    color: var(--muted);
+    letter-spacing: .04em;
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+
+  /* ---------- verdict ---------- */
+  .verdict {
+    margin: 36px 0 0;
+    padding: 22px 26px;
+    background: var(--critical-bg);
+    border-left: 3px solid var(--critical);
+    border-radius: 2px;
+  }
+  .verdict p { margin: 0; color: var(--ink); }
+  .verdict strong { color: var(--critical); }
+
+  /* ---------- kpi strip ---------- */
+  .kpis {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 60px;
+  }
+  .kpi { background: var(--surface); padding: 18px 18px 16px; }
+  .kpi .k-label {
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 9px;
+  }
+  .kpi .k-val {
+    font-family: var(--display);
+    font-size: 1.85rem;
+    line-height: 1;
+    letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 7px;
+  }
+  .kpi .k-note {
+    font-family: var(--data);
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .k-val.bad  { color: var(--critical); }
+  .k-val.warn { color: var(--warn); }
+  .k-val.good { color: var(--good); }
+
+  /* ---------- section rail ---------- */
+  .rail { display: none; }
+  @media (min-width: 1060px) {
+    .rail {
+      display: block;
+      grid-column: 1;
+      position: sticky;
+      top: 32px;
+      align-self: start;
+      max-height: calc(100vh - 64px);
+      overflow-y: auto;
+      font-family: var(--data);
+      font-size: 11.5px;
+      line-height: 1.5;
+      border-right: 1px solid var(--line);
+      padding-right: 20px;
+    }
+    .rail ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+    .rail a { color: var(--muted); text-decoration: none; display: block; }
+    .rail a:hover, .rail a:focus-visible { color: var(--accent); }
+    .rail .rail-num { color: var(--line-strong); margin-right: 7px; }
+  }
+
+  main { grid-column: 1 / -1; min-width: 0; }
+  @media (min-width: 1060px) { main { grid-column: 2; } }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 76px; scroll-margin-top: 24px; }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+  }
+  .sec-num {
+    font-family: var(--data);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: .08em;
+    flex: none;
+    padding-top: 4px;
+  }
+  .sec-head h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.55rem, 3.1vw, 2.05rem);
+    letter-spacing: -.016em;
+    line-height: 1.14;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-size: .96rem;
+    font-weight: 680;
+    letter-spacing: .005em;
+    margin: 40px 0 12px;
+  }
+  h4 {
+    font-family: var(--data);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 30px 0 10px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 17px; }
+  ul, ol { max-width: 68ch; margin: 0 0 17px; padding-left: 22px; }
+  li { margin-bottom: 7px; }
+  li::marker { color: var(--line-strong); }
+  strong { font-weight: 650; }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  .lede {
+    font-size: 1.06rem;
+    color: var(--ink-soft);
+    max-width: 66ch;
+  }
+
+  /* ---------- tables ---------- */
+  .t-scroll {
+    overflow-x: auto;
+    margin: 22px 0 26px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--surface);
+  }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 13px 16px 11px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-sunk);
+  }
+  th, td {
+    padding: 9px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  thead th {
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  .num { text-align: right; font-family: var(--data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .pos { color: var(--good); }
+  .neg { color: var(--critical); }
+  .amb { color: var(--warn); }
+  tbody tr.hi td { background: var(--accent-soft); }
+
+  /* ---------- pills ---------- */
+  .pill {
+    display: inline-block;
+    font-family: var(--data);
+    font-size: 10px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .p-kill { background: var(--critical-bg); color: var(--critical); }
+  .p-fix  { background: var(--warn-bg);     color: var(--warn); }
+  .p-keep { background: var(--good-bg);     color: var(--good); }
+
+  /* ---------- callouts ---------- */
+  .box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    box-shadow: var(--shadow);
+  }
+  .box > :last-child { margin-bottom: 0; }
+  .box-t {
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .box.flag { border-left: 3px solid var(--warn); }
+  .box.flag .box-t { color: var(--warn); }
+
+  /* ---------- before/after ---------- */
+  .ba {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 26px 0;
+  }
+  @media (min-width: 700px) { .ba { grid-template-columns: 1fr 1fr; } }
+  .ba-col {
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 20px 22px;
+    background: var(--surface);
+  }
+  .ba-col.now  { border-top: 3px solid var(--critical); }
+  .ba-col.next { border-top: 3px solid var(--good); }
+  .ba-col h4 { margin-top: 0; }
+  .ba-col ul { padding-left: 18px; margin-bottom: 0; font-size: 14.5px; }
+
+  /* ---------- SOP cards ---------- */
+  .sop {
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--surface);
+    margin: 22px 0;
+    overflow: hidden;
+  }
+  .sop-head {
+    background: var(--surface-sunk);
+    border-bottom: 1px solid var(--line);
+    padding: 13px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 14px;
+  }
+  .sop-id {
+    font-family: var(--data);
+    font-size: 11px;
+    letter-spacing: .09em;
+    color: var(--accent);
+  }
+  .sop-head h3 { margin: 0; font-size: .95rem; }
+  .sop-when {
+    font-family: var(--data);
+    font-size: 10.5px;
+    color: var(--muted);
+    letter-spacing: .05em;
+    margin-left: auto;
+  }
+  .sop-body { padding: 20px 22px 6px; }
+  .sop-body ol { padding-left: 20px; font-size: 14.8px; }
+  .sop-body > :last-child { margin-bottom: 14px; }
+
+  /* ---------- phases ---------- */
+  .phase {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px 24px;
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 760px) { .phase { grid-template-columns: 150px minmax(0,1fr); } }
+  .phase-when {
+    font-family: var(--data);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 3px;
+  }
+  .phase h3 { margin: 0 0 8px; }
+  .phase ul { margin-bottom: 0; font-size: 14.8px; }
+
+  hr.rule { border: none; border-top: 1px solid var(--line); margin: 44px 0; }
+
+  .footnote {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 68ch;
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+    margin-top: 60px;
+  }
+  .footnote a { color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Prime Ingredients · NMN · Paid Social</p>
+    <h1>The Meta Masterplan</h1>
+    <p class="standfirst">A structure, creative, and operating system rebuild for a one-product longevity brand selling to older American women — built from 90 days of the account's own numbers, not from theory.</p>
+    <p class="byline">
+      <span>Window: 12 May – 10 Aug 2026</span>
+      <span>Source: Triple Whale (live)</span>
+      <span>Spend analysed: $200,658</span>
+      <span>Currency: USD</span>
+    </p>
+    <div class="verdict">
+      <p><strong>Verdict:</strong> The account is not underperforming because of bidding, budgets, or audiences. It is underperforming because <strong>171 ad sets are splitting $3,006/day between three six-month-old videos</strong>, and the offer underneath loses roughly $28 on every new customer's first order. Fix the structure and the creative pipeline, and the subscription engine you switched on in June starts paying for the acquisition.</p>
+    </div>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi">
+      <p class="k-label">Net profit · 90d</p>
+      <p class="k-val bad">−$41.6k</p>
+      <p class="k-note">−15.3% margin</p>
+    </div>
+    <div class="kpi">
+      <p class="k-label">Meta ROAS</p>
+      <p class="k-val bad">1.01</p>
+      <p class="k-note">was 1.62 · −38%</p>
+    </div>
+    <div class="kpi">
+      <p class="k-label">New-cust. CPA</p>
+      <p class="k-val bad">$63.08</p>
+      <p class="k-note">ceiling ≈ $52</p>
+    </div>
+    <div class="kpi">
+      <p class="k-label">CPM</p>
+      <p class="k-val bad">$104.72</p>
+      <p class="k-note">was $68.96 · +52%</p>
+    </div>
+    <div class="kpi">
+      <p class="k-label">CTR</p>
+      <p class="k-val">5.62%</p>
+      <p class="k-note">was 5.65% · flat</p>
+    </div>
+    <div class="kpi">
+      <p class="k-label">Subscription mix</p>
+      <p class="k-val good">98.4%</p>
+      <p class="k-note">was 0% in May</p>
+    </div>
+    <div class="kpi">
+      <p class="k-label">Repeat revenue</p>
+      <p class="k-val good">$77.1k</p>
+      <p class="k-note">was $9.1k · 8.5×</p>
+    </div>
+    <div class="kpi">
+      <p class="k-label">Ad sets live</p>
+      <p class="k-val bad">171</p>
+      <p class="k-note">$17.58/day each</p>
+    </div>
+  </div>
+
+  <nav class="rail" aria-label="Sections">
+    <ol>
+      <li><a href="#s0"><span class="rail-num">00</span>On the video</a></li>
+      <li><a href="#s1"><span class="rail-num">01</span>Diagnosis</a></li>
+      <li><a href="#s2"><span class="rail-num">02</span>What you can afford</a></li>
+      <li><a href="#s3"><span class="rail-num">03</span>The 2026 model</a></li>
+      <li><a href="#s4"><span class="rail-num">04</span>Account structure</a></li>
+      <li><a href="#s5"><span class="rail-num">05</span>Creative masterplan</a></li>
+      <li><a href="#s6"><span class="rail-num">06</span>The SOPs</a></li>
+      <li><a href="#s7"><span class="rail-num">07</span>Decision rules</a></li>
+      <li><a href="#s8"><span class="rail-num">08</span>90-day roadmap</a></li>
+      <li><a href="#s9"><span class="rail-num">09</span>Off-Meta blockers</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 00 -->
+    <section id="s0">
+      <div class="sec-head">
+        <span class="sec-num">00</span>
+        <h2>An honest note on the video</h2>
+      </div>
+      <div class="box flag">
+        <p class="box-t">Read this before the rest</p>
+        <p><strong>I could not watch the video.</strong> This environment's network policy blocks YouTube and every transcript mirror I tried, so I have not seen or read a single line of <em>"Meta Ads Creative Strategy in 2026: The Full System"</em> (published 11 May 2026). Nothing below should be quoted as "what the video said."</p>
+        <p>What I could establish is the video's title and subject area, and then the surrounding 2026 literature on the same topic — Meta's Andromeda retrieval rebuild and the creative-diversity playbook that followed it. That body of work is consistent across many independent sources, and its core claims map onto this account with unusual precision.</p>
+        <p style="margin-bottom:0">So the framework in §3 is <strong>the corroborated 2026 Andromeda playbook, not a transcript</strong>. Everything in §1, §2, §4–§9 is derived from Prime Ingredients' own Triple Whale data and is independently verifiable in your dashboards. If you send me the transcript or the key timestamps, I'll reconcile this plan against what the video actually argues.</p>
+      </div>
+    </section>
+
+    <!-- 01 -->
+    <section id="s1">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <h2>Diagnosis: five things the data says</h2>
+      </div>
+      <p class="lede">Last 30 days (12 Jul – 10 Aug): $90,184 spent on Meta, 1,502 purchases, blended ROAS 0.97. All of it in the US — there is no geo leak. The problems are structural.</p>
+
+      <h3>1. The account is shattered into 171 ad sets</h3>
+      <p>Four campaigns are live. Between them they run <strong>171 ad sets and 324 ads</strong> on about $3,006/day — an average of <strong>$17.58 per ad set per day</strong>. Meta's conversion optimiser needs roughly 50 conversions per ad set per week to leave the learning phase. At a $56 CPA, $17.58/day buys about <strong>2.2 conversions a week</strong>. Almost nothing in this account has ever exited learning.</p>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Campaigns · 12 Jul – 10 Aug 2026</caption>
+          <thead>
+            <tr><th>Campaign</th><th class="num">Ad sets</th><th class="num">Ads</th><th class="num">Spend</th><th class="num">ROAS</th><th class="num">CPA</th><th class="num">CPM</th><th>Call</th></tr>
+          </thead>
+          <tbody>
+            <tr class="hi"><td>9. NMN Scale (CBO)</td><td class="num">54</td><td class="num">54</td><td class="num">$69,536</td><td class="num">1.05</td><td class="num">$55.90</td><td class="num">$127.73</td><td><span class="pill p-fix">Consolidate</span></td></tr>
+            <tr><td>8. NMN Testing (CBO)</td><td class="num">54</td><td class="num">164</td><td class="num">$11,708</td><td class="num neg">0.73</td><td class="num">$83.63</td><td class="num">$98.68</td><td><span class="pill p-fix">Rebuild</span></td></tr>
+            <tr><td>4. N2 Testing (CBO)</td><td class="num">42</td><td class="num">72</td><td class="num">$5,588</td><td class="num neg">0.77</td><td class="num">$71.65</td><td class="num">$101.54</td><td><span class="pill p-kill">Kill</span></td></tr>
+            <tr><td>11. Astaxanthin Scale (CBO)</td><td class="num">21</td><td class="num">34</td><td class="num">$3,351</td><td class="num neg">0.52</td><td class="num">$83.77</td><td class="num">$124.88</td><td><span class="pill p-kill">Kill</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Worse than the count is the <em>logic</em> of the split. The ad set names tell the story: <span style="font-family:var(--data);font-size:13px">15. (5. Feb 28 (24. Feb 23 <strong>USA 10-12</strong>) - Video Ad 1 Copy)</span>. Those trailing pairs — <span style="font-family:var(--data);font-size:13px">USA 1-3, 4-6, 7-9, 10-12, 13-15, 16-18, 19-21</span> — are three-hour dayparting blocks. You are running the same creative in seven time-of-day slices, each duplicated across months of nested copies, at one ad per ad set.</p>
+      <p>Dayparting made sense when you controlled delivery. Under Andromeda you are simply forbidding the algorithm from buying the cheap impression at 6am and telling seven separate learners to solve the same problem with a seventh of the data each.</p>
+
+      <h3>2. Three videos carry 72% of spend — and they are six months old</h3>
+      <p>Strip away the copies and the duplicated ad sets and the entire business rides on three creatives, first launched around February:</p>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Top creatives by spend · 30 days · hook = 3s views/impressions, hold = completions/3s views</caption>
+          <thead>
+            <tr><th>Ad</th><th>Format</th><th class="num">Spend</th><th class="num">ROAS</th><th class="num">CPA</th><th class="num">Hook</th><th class="num">Hold</th><th class="num">Out. CTR</th><th class="num">CPM</th></tr>
+          </thead>
+          <tbody>
+            <tr class="hi"><td>Video Ad 1 – Copy 2</td><td>Post share</td><td class="num">$25,702</td><td class="num pos">1.14</td><td class="num">$51.20</td><td class="num">41.5%</td><td class="num pos">18.9%</td><td class="num">6.12%</td><td class="num">$144.71</td></tr>
+            <tr><td>Video Ad 2 – Copy</td><td>Post share</td><td class="num">$15,922</td><td class="num pos">1.14</td><td class="num">$57.27</td><td class="num">27.6%</td><td class="num">12.6%</td><td class="num">3.73%</td><td class="num pos">$101.25</td></tr>
+            <tr class="hi"><td>Video Ad 3</td><td>Video</td><td class="num">$11,726</td><td class="num">0.98</td><td class="num">$50.54</td><td class="num pos">61.1%</td><td class="num neg">3.9%</td><td class="num pos">9.58%</td><td class="num neg">$184.08</td></tr>
+            <tr><td>Video Ad 3 – Copy</td><td>Post share</td><td class="num">$5,907</td><td class="num">0.96</td><td class="num">$64.91</td><td class="num">41.6%</td><td class="num">11.5%</td><td class="num">5.49%</td><td class="num">$134.39</td></tr>
+            <tr><td>Video Ad 2 – Copy 2</td><td>Post share</td><td class="num">$2,967</td><td class="num">0.98</td><td class="num">$54.95</td><td class="num">49.2%</td><td class="num neg">3.3%</td><td class="num">5.93%</td><td class="num">$125.23</td></tr>
+            <tr><td>Video Ad 1 – Copy</td><td>Video</td><td class="num">$2,787</td><td class="num">1.01</td><td class="num">$64.82</td><td class="num">37.4%</td><td class="num">12.2%</td><td class="num">3.73%</td><td class="num">$105.10</td></tr>
+            <tr><td>3 Bottle Offer – 1 (P2)</td><td>Static</td><td class="num">$387</td><td class="num pos">1.45</td><td class="num">$55.25</td><td class="num">—</td><td class="num">—</td><td class="num">2.87%</td><td class="num pos">$71.73</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Two findings are worth acting on this week:</p>
+      <ul>
+        <li><strong>Ad 3 is a hook with no body.</strong> 61.1% hook rate is the best in the account by a wide margin — six in ten people who see it stop. Then 3.9% hold: they leave almost immediately. Its 9.58% outbound CTR with 0.98 ROAS confirms it — it generates curiosity clicks, not buyers.</li>
+        <li><strong>Ad 1 is a body with a weaker hook.</strong> 41.5% hook but 18.9% hold — nearly 5× Ad 3's retention — and the best ROAS at the biggest spend.</li>
+      </ul>
+      <p>The single highest-leverage creative task in this account is <strong>grafting Ad 3's opening three seconds onto Ad 1's body structure</strong>. That is one edit, not a shoot.</p>
+      <p>Note also that <strong>post-share ads outperform fresh uploads</strong> (1.14 vs 0.98) because they carry accumulated comments and reactions — a real asset with a 65+ audience, who read comments. And your best ROAS in the whole account is a <strong>static offer card at 1.45 with a $71.73 CPM</strong> — 40% cheaper reach than your videos — running on 0.4% of budget.</p>
+
+      <h3>3. Your buyer is older than your brief</h3>
+      <p>The brief says American women 35–65. The money says otherwise.</p>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Age × gender · 30 days · sorted by spend</caption>
+          <thead>
+            <tr><th>Segment</th><th class="num">Spend</th><th class="num">% spend</th><th class="num">ROAS</th><th class="num">CPA</th><th class="num">CPM</th><th class="num">CTR</th></tr>
+          </thead>
+          <tbody>
+            <tr class="hi"><td>65+ female</td><td class="num">$35,267</td><td class="num">39.1%</td><td class="num">0.97</td><td class="num">$57.25</td><td class="num neg">$148.98</td><td class="num">8.39%</td></tr>
+            <tr class="hi"><td>55–64 female</td><td class="num">$20,669</td><td class="num">22.9%</td><td class="num">0.98</td><td class="num">$57.57</td><td class="num">$127.18</td><td class="num">7.26%</td></tr>
+            <tr><td>65+ male</td><td class="num">$11,026</td><td class="num">12.2%</td><td class="num">1.00</td><td class="num">$67.64</td><td class="num">$104.58</td><td class="num">5.37%</td></tr>
+            <tr><td>45–54 female</td><td class="num">$7,377</td><td class="num">8.2%</td><td class="num">0.94</td><td class="num">$61.99</td><td class="num">$110.66</td><td class="num">5.85%</td></tr>
+            <tr><td>55–64 male</td><td class="num">$7,275</td><td class="num">8.1%</td><td class="num pos">1.14</td><td class="num">$58.67</td><td class="num pos">$88.09</td><td class="num">4.39%</td></tr>
+            <tr><td>45–54 male</td><td class="num">$3,298</td><td class="num">3.7%</td><td class="num neg">0.87</td><td class="num">$70.18</td><td class="num pos">$85.03</td><td class="num">3.82%</td></tr>
+            <tr><td>35–44 female</td><td class="num">$2,369</td><td class="num">2.6%</td><td class="num neg">0.83</td><td class="num">$67.68</td><td class="num">$104.72</td><td class="num">5.42%</td></tr>
+            <tr><td>25–34 female</td><td class="num">$797</td><td class="num">0.9%</td><td class="num neg">0.63</td><td class="num">$79.74</td><td class="num neg">$154.32</td><td class="num">7.90%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Three corrections fall out of this:</p>
+      <ul>
+        <li><strong>Your core is 55–75, not 35–65.</strong> Women 55+ take 62% of spend. Women under 45 take 3.6% and lose money at every level. Stop briefing creative for a 45-year-old.</li>
+        <li><strong>A quarter of your budget goes to men</strong> (25.6%) — and 55–64 men are your <em>single most efficient segment</em> at 1.14 ROAS and an $88 CPM. That is not a leak to plug, it is a segment to name. Consider a dedicated male-facing concept rather than excluding them.</li>
+        <li><strong>65+ women cost a 69% CPM premium</strong> ($148.98 vs $88.09 for 55–64 men) and convert at 0.97. High CTR, mediocre ROAS — the classic older-audience pattern of clicks that aren't intent. This is a landing-page and offer problem more than a targeting one (see §9).</li>
+      </ul>
+
+      <h3>4. You hit a scaling cliff in mid-July and never recovered</h3>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Weekly trajectory · Meta</caption>
+          <thead>
+            <tr><th>Week of</th><th class="num">Spend</th><th class="num">ROAS</th><th class="num">CPA</th><th class="num">CPM</th><th class="num">Freq</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>28 Jun</td><td class="num">$9,877</td><td class="num">1.00</td><td class="num">$61.73</td><td class="num">$83.17</td><td class="num">1.12</td></tr>
+            <tr><td>5 Jul</td><td class="num">$12,892</td><td class="num">1.12</td><td class="num">$50.56</td><td class="num">$101.15</td><td class="num">1.13</td></tr>
+            <tr class="hi"><td>12 Jul</td><td class="num">$22,649</td><td class="num pos">1.15</td><td class="num pos">$45.21</td><td class="num">$112.59</td><td class="num">1.11</td></tr>
+            <tr><td>19 Jul</td><td class="num">$31,269</td><td class="num neg">0.91</td><td class="num">$63.55</td><td class="num neg">$137.98</td><td class="num">1.12</td></tr>
+            <tr><td>26 Jul</td><td class="num">$19,690</td><td class="num">1.00</td><td class="num">$64.56</td><td class="num">$128.69</td><td class="num">1.16</td></tr>
+            <tr><td>2 Aug</td><td class="num">$13,992</td><td class="num neg">0.85</td><td class="num">$79.50</td><td class="num">$100.63</td><td class="num amb">1.25</td></tr>
+            <tr><td>9 Aug <span style="color:var(--muted);font-size:11px">(partial)</span></td><td class="num">$2,584</td><td class="num neg">0.72</td><td class="num neg">$92.27</td><td class="num">$103.06</td><td class="num">1.18</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The week of 12 July was the best week in the window: $22.6k at 1.15 ROAS and a $45.21 CPA. You then pushed spend <strong>+38% in one step</strong> to $31.3k. CPM rose 23%, ROAS fell to 0.91, CPA rose 41%.</p>
+      <p>The important part is what happened next: <strong>pulling the budget back did not restore performance.</strong> ROAS went 0.91 → 1.00 → 0.85 → 0.72 while frequency climbed from 1.11 to 1.25. That is not an auction that punished you for a week; that is a creative pool that was already exhausted when you leaned on it. With three concepts and no fresh supply, there was nothing to recover to.</p>
+
+      <h3>5. The subscription pivot is the one thing going right</h3>
+      <p>Something changed in June, and it changed the business:</p>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Order mix and discount depth by month</caption>
+          <thead>
+            <tr><th>Month</th><th class="num">Orders</th><th class="num">Subscription</th><th class="num">AOV</th><th class="num">Units/order</th><th class="num">Discount off list</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Mar 2026</td><td class="num">1,625</td><td class="num">0%</td><td class="num">$62.24</td><td class="num">3.00</td><td class="num amb">33.9%</td></tr>
+            <tr><td>May 2026</td><td class="num">1,518</td><td class="num">0%</td><td class="num">$62.27</td><td class="num">2.86</td><td class="num amb">31.8%</td></tr>
+            <tr><td>Jun 2026</td><td class="num">845</td><td class="num">58.7%</td><td class="num">$65.22</td><td class="num">3.22</td><td class="num amb">33.5%</td></tr>
+            <tr><td>Jul 2026</td><td class="num">2,216</td><td class="num pos">96.6%</td><td class="num">$58.07</td><td class="num">2.88</td><td class="num amb">34.5%</td></tr>
+            <tr class="hi"><td>Aug 2026 <span style="color:var(--muted);font-size:11px">(to 10th)</span></td><td class="num">628</td><td class="num pos">98.4%</td><td class="num">$58.70</td><td class="num">3.02</td><td class="num neg">36.7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>You moved from 0% to 98% subscription penetration in eight weeks. Repeat revenue went from $9,114 to $77,115 across the two 90-day windows — <strong>8.5×</strong> — and customer frequency from 1.03 to 1.33. The June cohort is now at <strong>1.81 orders and $80.26 gross profit per customer</strong> after roughly two months, and still running.</p>
+      <p>This is why the account is worth saving rather than restarting. It is also why the CPA maths in §2 works at all. The one number moving the wrong way is discount depth: <strong>36.7% off list in August</strong>, the deepest in six months.</p>
+    </section>
+
+    <!-- 02 -->
+    <section id="s2">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <h2>What you can actually afford to pay</h2>
+      </div>
+      <p class="lede">Every structural decision below is downstream of one number: the most you can pay for a new customer and still build a profitable business. Here it is, from your own order data.</p>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Contribution per order · new subscriber, last 90 days</caption>
+          <thead><tr><th>Line</th><th class="num">Per order</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>List value of goods</td><td class="num">$92.44</td><td>AOV + discount</td></tr>
+            <tr><td>Discount given</td><td class="num neg">−$32.10</td><td>34.7% off list</td></tr>
+            <tr><td><strong>Net revenue (AOV)</strong></td><td class="num"><strong>$60.34</strong></td><td>2.99 units</td></tr>
+            <tr><td>COGS</td><td class="num neg">−$18.71</td><td>orders table</td></tr>
+            <tr><td>Payment processing</td><td class="num neg">−$1.90</td><td>gateway fees</td></tr>
+            <tr><td>Shipping &amp; handling <span style="color:var(--muted);font-size:11px">(est.)</span></td><td class="num neg">−$5.00</td><td>assumption</td></tr>
+            <tr class="hi"><td><strong>Contribution, order 1</strong></td><td class="num"><strong>$34.73</strong></td><td></td></tr>
+            <tr><td>Contribution, each recurring order</td><td class="num">$32.69</td><td>AOV $58.77</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box">
+        <p class="box-t">The three CPA lines that govern everything</p>
+        <ul style="margin-bottom:0">
+          <li><strong>$34.73 — first-order break-even.</strong> Pay this and you are profitable on day one. Requires Meta ROAS of 1.74. You are at 1.01.</li>
+          <li><strong>$52 — the working target.</strong> At 1.81 orders per customer (your June cohort's actual), lifetime contribution is ≈$63. A $52 CPA leaves ~$11 per customer and a real margin as retention extends.</li>
+          <li><strong>$67 — the hard ceiling.</strong> Above this you lose money even if every cohort matches June. <span class="neg">You are at $63.08 and drifting up: the week of 2 Aug ran $79.50.</span></li>
+        </ul>
+      </div>
+
+      <p>Two things follow, and they are not optional.</p>
+      <p><strong>First, the discount is doing more damage than the media buying.</strong> You are giving away $32.10 per order — <em>nearly your entire contribution margin</em>. Moving from 35% off to 25% off adds roughly <strong>$9.20 of contribution per order</strong>. That single change lifts first-order contribution from $34.73 to ~$44 and moves your break-even ROAS from 1.74 to 1.37 — which is within reach of what this account already produced in February. No creative or structure work delivers that much that fast.</p>
+      <p><strong>Second, retention is now the asset.</strong> At 1.81 orders you are marginal. At 2.5 orders lifetime contribution is ≈$116 and a $52 CPA is a 2.2× return. Every point of subscription retention is worth more than a point of ROAS, because it raises the CPA you can afford — which in turn lets you win more auctions. Track cohort order-count monthly as a headline metric, not a footnote.</p>
+    </section>
+
+    <!-- 03 -->
+    <section id="s3">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <h2>The 2026 operating model</h2>
+      </div>
+      <p class="lede">The framework below is the corroborated Andromeda-era playbook — not the video's transcript, which I could not access. It is included because this account is a textbook case of the structure it argues against.</p>
+
+      <p>Meta rebuilt the retrieval layer that runs <em>before</em> the auction. The practical consequence is that targeting has moved upstream into the creative: the system infers who should see an ad from what the ad is, rather than from who you told it to find. Four principles follow.</p>
+
+      <h4>Principle 1 — Creative is the targeting layer</h4>
+      <p>You no longer segment audiences; you segment <em>messages</em>, and the system routes each message to the people it fits. A testimonial from a 68-year-old finds 68-year-olds. This is why your dayparted, one-ad-per-ad-set structure is actively harmful: you have given the router seven copies of the same signal and no variety to route.</p>
+
+      <h4>Principle 2 — Variation, not iteration</h4>
+      <p>The distinction that matters most, and the one this account fails: <strong>changing a hook on the same video is iteration. Changing the concept is variation.</strong> Ten UGC clips with different first lines read to the system as one creative. Your library is "Video Ad 1, 2, 3" plus copies — one casting call, not a film festival. The published guidance converges on <strong>8–12 conceptually distinct concepts per campaign, 15–25 active ads per ad set</strong>, deliberately different in persona, format, emotional register, and pain point.</p>
+
+      <h4>Principle 3 — Consolidation is a technical requirement</h4>
+      <p>Fewer ad sets, each with more diverse creative, beat fragmented structures — one widely cited controlled test put a single ad set with 25 diverse creatives 17% ahead on conversions at 16% lower cost than a five-ad-set split. Consolidation is not a tidiness preference; it is how you get enough conversions per learner for the model to work at all.</p>
+
+      <h4>Principle 4 — Signal quality gates everything</h4>
+      <p>Pixel and Conversions API running together, deduplicated, with Event Match Quality above 7. A rebuilt structure on a degraded signal will underperform the mess you have now. <strong>Verify this before you touch anything else</strong> — I cannot see EMQ from Triple Whale, so it is an unknown in this plan and the first thing to check in Events Manager.</p>
+
+      <div class="box flag">
+        <p class="box-t">Where I'd diverge from the generic advice</p>
+        <p style="margin-bottom:0">The standard playbook says "upload your full catalogue so Andromeda has thousands of entry points." <strong>You have one product</strong> — NMN is 91% of revenue ($150,943 of ~$166k). Catalogue breadth is not available to you, so your entry-point diversity has to come entirely from <em>concepts</em>. That raises the creative bar for this brand specifically: the 8–12 concept minimum in §5 is a floor, not a target.</p>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section id="s4">
+      <div class="sec-head">
+        <span class="sec-num">04</span>
+        <h2>The account structure to build</h2>
+      </div>
+      <p class="lede">From 171 ad sets to 6. Same spend, roughly 30× less fragmentation, every ad set funded above the learning threshold.</p>
+
+      <div class="ba">
+        <div class="ba-col now">
+          <h4>Today</h4>
+          <ul>
+            <li>4 campaigns · <strong>171 ad sets</strong> · 324 ads</li>
+            <li>~1 ad per ad set</li>
+            <li>Split by 3-hour dayparting blocks</li>
+            <li>Nested duplicates 3 layers deep</li>
+            <li><strong>$17.58</strong> per ad set per day</li>
+            <li>≈2.2 conversions/ad set/week</li>
+            <li>3 concepts = 72% of spend</li>
+          </ul>
+        </div>
+        <div class="ba-col next">
+          <h4>Target</h4>
+          <ul>
+            <li>4 campaigns · <strong>6 ad sets</strong> · 60–80 ads</li>
+            <li>15–25 ads per ad set</li>
+            <li>No dayparting, no duplicates</li>
+            <li>Flat naming, one generation</li>
+            <li><strong>$150–$1,950</strong> per ad set per day</li>
+            <li>Learning phase cleared in days</li>
+            <li>10–12 concepts, none above 25%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Target structure at $3,000/day</caption>
+          <thead>
+            <tr><th>Campaign</th><th>Type</th><th class="num">Ad sets</th><th class="num">Budget/day</th><th class="num">Share</th><th>Creative load</th></tr>
+          </thead>
+          <tbody>
+            <tr class="hi"><td>PI · ASC · NMN · Evergreen</td><td>Advantage+ Shopping</td><td class="num">1</td><td class="num">$1,800</td><td class="num">60%</td><td>20–25 ads, all concepts</td></tr>
+            <tr><td>PI · CBO · Broad Prospecting</td><td>Sales, CBO, broad</td><td class="num">2</td><td class="num">$600</td><td class="num">20%</td><td>15–20 ads each</td></tr>
+            <tr><td>PI · CBO · Creative Test</td><td>Sales, CBO</td><td class="num">2</td><td class="num">$450</td><td class="num">15%</td><td>4–6 new concepts</td></tr>
+            <tr><td>PI · ABO · Winback &amp; Retarget</td><td>Sales, ABO</td><td class="num">1</td><td class="num">$150</td><td class="num">5%</td><td>6–8 offer/proof ads</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Settings, campaign by campaign</h3>
+
+      <h4>Advantage+ Shopping — the engine</h4>
+      <ul>
+        <li>Single ad set. No age or gender restriction — the data shows 55–64 men are your best segment; excluding them costs you money.</li>
+        <li>Existing-customer budget cap: <strong>15%</strong> (you are 98% subscription; you don't need Meta to re-sell existing subscribers, but a small allocation catches upsells).</li>
+        <li>Advantage+ placements <strong>on</strong>. ASC needs the full inventory to find cheap reach.</li>
+        <li>20–25 ads spanning every concept in §5. Refresh 4–6 ads per week, never all at once.</li>
+        <li>Use <strong>existing post IDs</strong> for anything with accumulated engagement — your post-share ads run 1.14 vs 0.98 for fresh uploads.</li>
+      </ul>
+
+      <h4>Broad CBO — the control</h4>
+      <ul>
+        <li>Ad set A: US, 45+, all genders, broad. Ad set B: US, 55+, women. Two learners, both funded at ~$300/day.</li>
+        <li>Manual placements: Facebook Feed, Facebook Reels, Instagram Reels, Instagram Feed, Facebook Stories, Instagram Stories. <strong>Exclude Audience Network, Reels Overlay, Right Hand Column, Marketplace, Instream, Search, Threads</strong> — those burned $1,946 in 30 days at 0.15–0.85 ROAS.</li>
+        <li>This campaign exists as a hedge and a read on ASC. If it beats ASC for three consecutive weeks, shift budget.</li>
+      </ul>
+
+      <h4>Creative Test — the pipeline</h4>
+      <ul>
+        <li>Two ad sets at ~$225/day each. Broad US 45+. One ad set per creative <em>batch</em>, not per creative.</li>
+        <li>4–6 genuinely distinct new concepts per batch. Never test iterations here — iterations go straight into ASC.</li>
+        <li>Graduation rule in SOP-3. Winners move to ASC by post ID so engagement carries over.</li>
+      </ul>
+
+      <h4>Winback — the cheap money</h4>
+      <ul>
+        <li>Audiences: cancelled subscribers (30–180 days), site visitors 60 days who did not purchase, ATC 30 days no purchase.</li>
+        <li>Offer-led and proof-led creative only. Your static 3-bottle offer card already runs 1.45 ROAS at a $71.73 CPM — this is where it belongs at volume.</li>
+      </ul>
+
+      <div class="box flag">
+        <p class="box-t">How to make the transition without killing the account</p>
+        <p style="margin-bottom:0">Do <strong>not</strong> delete 171 ad sets on a Monday morning. Build the new campaigns alongside the old ones, start them at 25% of total budget, and step the old structure down 25% every three days as the new one absorbs spend. Full migration in 12 days. Keep the top ad set — <em>15. (5. Feb 28 …)</em>, $22,006 at 1.19 ROAS — running untouched until the new ASC campaign beats it for five consecutive days. It is a third of your working spend and the only thing currently holding the account up.</p>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section id="s5">
+      <div class="sec-head">
+        <span class="sec-num">05</span>
+        <h2>Creative masterplan</h2>
+      </div>
+      <p class="lede">Structure gets you back to break-even. Creative is the only thing that scales you past it. You need to go from 3 concepts to 12, and the casting has to change.</p>
+
+      <h3>Craft rules for a 55–75 audience</h3>
+      <p>These are not general best practices; they follow from what this account's numbers and demographics say.</p>
+      <ul>
+        <li><strong>Cast the actual buyer.</strong> Women 55–75, not 35–45. This is the most common failure in supplement creative and the cheapest to fix.</li>
+        <li><strong>Slow down.</strong> Your 3.9% hold rate on the highest-hook ad says the body loses people. TikTok jump-cut grammar does not work here. One idea per 5 seconds, not three.</li>
+        <li><strong>Burn in captions, large and high-contrast.</strong> Sound-off viewing plus presbyopia. Minimum 40px equivalent, never thin weights over video.</li>
+        <li><strong>Design for Facebook, not Instagram.</strong> Facebook Reels and Feed take 70% of spend. Instagram Feed is your worst major placement (0.83). Check every asset in FB Feed's 4:5 crop first.</li>
+        <li><strong>Lead with the mechanism, not the vibe.</strong> This audience buys explanations. NAD+ decline with age is a genuinely persuasive, visualisable story.</li>
+        <li><strong>Use comments as an asset.</strong> Run winners as post-ID ads and moderate — don't delete — the comment thread. Your post-shares beat fresh uploads by 16% on ROAS.</li>
+      </ul>
+
+      <h3>The 12-concept matrix</h3>
+      <p>Each row is a genuinely distinct concept — different persona, entry point, and format. That is what "variation not iteration" means in practice. Build 3–4 per sprint; never let one concept exceed 25% of spend.</p>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Concept matrix · NMN · US women 55–75 (+ 55–64 men)</caption>
+          <thead>
+            <tr><th class="num">#</th><th>Concept</th><th>Entry point</th><th>Format</th><th>Opening beat</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">1</td><td>The 3pm Wall</td><td>Energy crash</td><td>UGC selfie video</td><td>"I used to blame my age for this."</td></tr>
+            <tr><td class="num">2</td><td>Keeping Up</td><td>Grandchildren</td><td>Lifestyle b-roll + VO</td><td>Getting off the floor, unassisted</td></tr>
+            <tr><td class="num">3</td><td>Why NAD+ Falls</td><td>Mechanism</td><td>Animated explainer</td><td>The decline curve, drawn</td></tr>
+            <tr><td class="num">4</td><td>The Skeptic</td><td>Distrust of supplements</td><td>Talking head, unpolished</td><td>"I thought this was nonsense."</td></tr>
+            <tr><td class="num">5</td><td>What's In It</td><td>Ingredient scrutiny</td><td>Studio product demo</td><td>Label read, close-up</td></tr>
+            <tr><td class="num">6</td><td>The Stack You Replaced</td><td>Cost / simplification</td><td>Comparison static + video</td><td>Nine bottles → one</td></tr>
+            <tr><td class="num">7</td><td>Founder's Reason</td><td>Trust / origin</td><td>Direct address</td><td>Why the formula exists</td></tr>
+            <tr><td class="num">8</td><td>The Review Wall</td><td>Social proof</td><td>Screenshot montage</td><td>Real quotes, scrolling</td></tr>
+            <tr><td class="num">9</td><td>Morning Ritual</td><td>Habit formation</td><td>ASMR-quiet lifestyle</td><td>Coffee, capsule, window light</td></tr>
+            <tr><td class="num">10</td><td>3-Bottle Maths</td><td>Offer / value</td><td>Static card</td><td>Price per day, spelled out</td></tr>
+            <tr><td class="num">11</td><td>Letter to a Friend</td><td>Peer recommendation</td><td>Text-on-screen</td><td>"Barbara — you asked what I take."</td></tr>
+            <tr><td class="num">12</td><td>Still Working at 67</td><td>Male-facing capability</td><td>UGC, male talent</td><td>For your best segment (1.14 ROAS)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Immediate creative actions</h3>
+      <ol>
+        <li><strong>The graft.</strong> Ad 3's first 3 seconds (61.1% hook) onto Ad 1's body (18.9% hold). One editor, one day. Launch as a new concept, not a copy.</li>
+        <li><strong>Fix Ad 3's body.</strong> It stops six in ten viewers and then loses them. The hook is a proven asset — rebuild everything after second 3.</li>
+        <li><strong>Scale the static.</strong> Your 3-bottle offer card runs 1.45 ROAS at a $71.73 CPM on 0.4% of spend. Produce six variants and give statics 15% of the ad slots. Cheap reach is how you survive a $148 CPM on 65+ women.</li>
+        <li><strong>Kill Astaxanthin paid support.</strong> 0.52 ROAS, $3,351, and a 2.51% site CVR against NMN's 3.84%. It is not ready for cold traffic. Sell it in the post-purchase flow to the subscriber base instead.</li>
+      </ol>
+    </section>
+
+    <!-- 06 -->
+    <section id="s6">
+      <div class="sec-head">
+        <span class="sec-num">06</span>
+        <h2>The SOPs</h2>
+      </div>
+      <p class="lede">Seven procedures. The point of writing them down is that they constrain you on bad days — most of the damage in this account came from unstructured reactions to single-day numbers.</p>
+
+      <div class="sop">
+        <div class="sop-head"><span class="sop-id">SOP-1</span><h3>The morning check</h3><span class="sop-when">Daily · 15 min · before 10am ET</span></div>
+        <div class="sop-body">
+          <ol>
+            <li>Open Triple Whale summary. Record yesterday: spend, blended ROAS, MER, new-customer CPA, orders.</li>
+            <li>Compare against the <strong>trailing 7-day average</strong>, never against yesterday. Single days are noise at this volume.</li>
+            <li>Check total spend pacing against the monthly plan. Flag if ±15%.</li>
+            <li>Scan for delivery breakage only: ads in review, rejected ads, ad sets that spent $0, payment failures.</li>
+            <li><strong>Permitted actions today:</strong> fix breakage, pause an ad that meets the SOP-5 kill rule, answer comments. Nothing else.</li>
+            <li><strong>Forbidden:</strong> budget changes, new ad sets, audience edits, turning off a "bad day." Budget moves happen on Mondays only, under SOP-4.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="sop">
+        <div class="sop-head"><span class="sop-id">SOP-2</span><h3>Weekly creative council</h3><span class="sop-when">Mondays · 60 min</span></div>
+        <div class="sop-body">
+          <ol>
+            <li>Pull last 7 days at ad level: spend, ROAS, new-customer CPA, hook rate, hold rate, outbound CTR, CPM, frequency.</li>
+            <li>Sort by spend. For the top 10, classify each: <span class="pill p-keep">Scale</span> <span class="pill p-fix">Iterate</span> <span class="pill p-kill">Kill</span> using SOP-5 thresholds.</li>
+            <li><strong>Concentration check:</strong> if any single concept exceeds 25% of spend, that is a risk flag, not a success. Brief a replacement.</li>
+            <li><strong>Fatigue check:</strong> frequency above 1.4, or CPM up more than 20% week-on-week at flat CTR, means the pool is tiring. Accelerate the next batch.</li>
+            <li>Diagnose winners properly — hook rate and hold rate separately. A high-hook/low-hold ad needs a new body; a low-hook/high-hold ad needs a new opening. Do not rebuild the whole ad.</li>
+            <li>Brief 3–4 new concepts from the §5 matrix. Assign owner and delivery date.</li>
+            <li>Confirm next batch launches Thursday (SOP-3).</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="sop">
+        <div class="sop-head"><span class="sop-id">SOP-3</span><h3>Creative testing protocol</h3><span class="sop-when">Weekly · launch Thursdays</span></div>
+        <div class="sop-body">
+          <ol>
+            <li>Batch of 4–6 <strong>conceptually distinct</strong> creatives into the Creative Test campaign. Never iterations — those go straight to ASC.</li>
+            <li>One ad set per batch at ~$225/day. Broad US 45+. Do not split by creative.</li>
+            <li><strong>Run a minimum of 4 days and $600 per creative before any judgement.</strong> At a $56 CPA that is ~10 conversions — still thin, so read direction, not certainty.</li>
+            <li>Read in this order: hook rate → hold rate → outbound CTR → CPA. An ad can fail on CPA and still be a winning hook worth harvesting.</li>
+            <li><strong>Graduate to ASC</strong> if new-customer CPA ≤ $58 <em>or</em> hook rate ≥ 45% with hold ≥ 12%. Move by <strong>post ID</strong> so engagement carries.</li>
+            <li><strong>Kill</strong> if spend &gt; $600 with 0–1 purchases, or hook rate &lt; 20%.</li>
+            <li>Log every result — concept, hook, format, talent age, metrics — in the creative ledger. The ledger is the compounding asset, not any single ad.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="sop">
+        <div class="sop-head"><span class="sop-id">SOP-4</span><h3>Scaling protocol</h3><span class="sop-when">Mondays only</span></div>
+        <div class="sop-body">
+          <p style="font-size:14.8px">Written specifically to prevent a repeat of 19 July, when a 38% single-step increase cost 21% of ROAS and never recovered.</p>
+          <ol>
+            <li><strong>Scale only when all three hold</strong> on a 7-day basis: new-customer CPA ≤ $52, blended ROAS ≥ 1.30, frequency ≤ 1.30.</li>
+            <li><strong>Maximum +20% per campaign per week.</strong> No exceptions, including good news.</li>
+            <li>After any increase, hold for a full 72 hours before judging. Meta re-enters partial learning on budget changes above ~20%.</li>
+            <li>If CPA rises more than 15% after an increase, revert to the previous budget and hold 7 days. Do not push through.</li>
+            <li><strong>Scale creative before budget.</strong> Adding 4 fresh ads to ASC raises capacity; adding dollars to a tired pool raises CPM. When in doubt, ship creative.</li>
+            <li>Descaling follows the same rule in reverse: −20% steps, never a hard stop, which resets learning.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="sop">
+        <div class="sop-head"><span class="sop-id">SOP-5</span><h3>Kill rules</h3><span class="sop-when">Applied at SOP-1 and SOP-2</span></div>
+        <div class="sop-body">
+          <ol>
+            <li><strong>Ad, in test:</strong> spend ≥ $600 with ≤1 purchase, or hook rate &lt; 20% after 50k impressions.</li>
+            <li><strong>Ad, in ASC:</strong> 7-day spend ≥ $1,000 with new-customer CPA &gt; $67 (the hard ceiling). Pause the ad, keep the ad set.</li>
+            <li><strong>Ad set:</strong> 14-day ROAS &lt; 0.75 on ≥ $2,000 spend.</li>
+            <li><strong>Campaign:</strong> 30-day ROAS &lt; 0.80 — this is why Astaxanthin (0.52) and N2 Testing (0.77) go now.</li>
+            <li><strong>Never</strong> kill on fewer than 3 days of data or fewer than 3 conversions of evidence.</li>
+            <li>Pause, don't delete. Deleted history cannot be diagnosed, and post IDs with engagement are assets.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="sop">
+        <div class="sop-head"><span class="sop-id">SOP-6</span><h3>Launch checklist</h3><span class="sop-when">Every new ad, before publish</span></div>
+        <div class="sop-body">
+          <ol>
+            <li>Captions burned in, high contrast, legible at arm's length on a phone.</li>
+            <li>Talent age matches buyer age (55–75), or the concept is explicitly male-facing (#12).</li>
+            <li>Checked in Facebook Feed 4:5 crop <em>and</em> 9:16 Reels — safe zones clear.</li>
+            <li>Naming convention: <span style="font-family:var(--data);font-size:12.5px">CONCEPT_FORMAT_TALENT_HOOKID_vN</span>. No nesting, no "Copy", no dates in parentheses.</li>
+            <li>UTMs complete and consistent — Triple Whale attribution depends on it.</li>
+            <li>Destination is <span style="font-family:var(--data);font-size:12.5px">/products/nmn</span> with the correct offer pre-selected.</li>
+            <li>Claims reviewed: structure/function language only, no disease claims. This is a supplement sold to an older demographic — the compliance and chargeback risk is real.</li>
+            <li>Logged in the creative ledger before it goes live.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="sop">
+        <div class="sop-head"><span class="sop-id">SOP-7</span><h3>Monthly economics review</h3><span class="sop-when">First Monday of the month · 90 min</span></div>
+        <div class="sop-body">
+          <ol>
+            <li>Rebuild the §2 contribution table from the last full month. COGS, discount depth, and shipping all move.</li>
+            <li>Pull cohort order-count for every cohort from March. <strong>Is orders-per-customer rising or flat?</strong> This is the headline number of the business.</li>
+            <li>Recalculate the three CPA lines. Reset the SOP-4 scaling threshold and the SOP-5 kill ceiling to match.</li>
+            <li>Review subscription churn and the cancellation reasons in Loop. Retention buys you CPA headroom faster than optimisation does.</li>
+            <li>Review discount depth against plan. It was 36.7% in August; it should be trending toward 25%.</li>
+            <li>Recheck Event Match Quality and CAPI deduplication in Events Manager.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section id="s7">
+      <div class="sec-head">
+        <span class="sec-num">07</span>
+        <h2>Decision rules on one page</h2>
+      </div>
+      <p class="lede">Print this. It is the whole operating logic, and it removes the judgement calls that have been costing you money.</p>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Thresholds · review monthly under SOP-7</caption>
+          <thead><tr><th>Metric</th><th class="num">Green</th><th class="num">Watch</th><th class="num">Act</th><th>Action if in "Act"</th></tr></thead>
+          <tbody>
+            <tr><td>New-customer CPA (7d)</td><td class="num pos">≤ $52</td><td class="num amb">$52–67</td><td class="num neg">&gt; $67</td><td>Cut budget 20%, ship creative</td></tr>
+            <tr><td>Blended ROAS (7d)</td><td class="num pos">≥ 1.40</td><td class="num amb">1.15–1.40</td><td class="num neg">&lt; 1.15</td><td>Freeze scaling, audit offer</td></tr>
+            <tr><td>Frequency (7d)</td><td class="num pos">≤ 1.30</td><td class="num amb">1.30–1.45</td><td class="num neg">&gt; 1.45</td><td>New concepts, not new budget</td></tr>
+            <tr><td>CPM week-on-week</td><td class="num pos">≤ +10%</td><td class="num amb">+10–20%</td><td class="num neg">&gt; +20%</td><td>Creative fatigue — refresh batch</td></tr>
+            <tr><td>Hook rate (new ad)</td><td class="num pos">≥ 45%</td><td class="num amb">20–45%</td><td class="num neg">&lt; 20%</td><td>Kill the ad</td></tr>
+            <tr><td>Hold rate (new ad)</td><td class="num pos">≥ 15%</td><td class="num amb">8–15%</td><td class="num neg">&lt; 8%</td><td>Rebuild body, keep hook</td></tr>
+            <tr><td>Top concept share of spend</td><td class="num pos">≤ 25%</td><td class="num amb">25–40%</td><td class="num neg">&gt; 40%</td><td>Concentration risk — brief now</td></tr>
+            <tr><td>Discount off list</td><td class="num pos">≤ 25%</td><td class="num amb">25–32%</td><td class="num neg">&gt; 32%</td><td>Margin emergency — escalate</td></tr>
+            <tr><td>Site ATC rate</td><td class="num pos">≥ 8%</td><td class="num amb">6–8%</td><td class="num neg">&lt; 6%</td><td>Landing page, not media</td></tr>
+            <tr><td>Cohort orders/customer</td><td class="num pos">≥ 2.5</td><td class="num amb">1.8–2.5</td><td class="num neg">&lt; 1.8</td><td>Retention work outranks ads</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:14px;color:var(--muted)">Current standing: CPA $63.08 <span class="pill p-fix">watch</span> · ROAS 1.36 <span class="pill p-fix">watch</span> · frequency 1.25 <span class="pill p-keep">green</span> · discount 36.7% <span class="pill p-kill">act</span> · ATC 5.27% <span class="pill p-kill">act</span> · cohort 1.81 <span class="pill p-fix">watch</span>.</p>
+    </section>
+
+    <!-- 08 -->
+    <section id="s8">
+      <div class="sec-head">
+        <span class="sec-num">08</span>
+        <h2>The 90-day roadmap</h2>
+      </div>
+
+      <div class="phase">
+        <div class="phase-when">Days 1–14<br>Stop the bleed</div>
+        <div>
+          <h3>Stabilise</h3>
+          <ul>
+            <li>Verify CAPI, deduplication, and Event Match Quality &gt; 7 in Events Manager. <strong>Nothing else starts until this passes.</strong></li>
+            <li>Kill campaign 4 (N2 Testing, 0.77) and campaign 11 (Astaxanthin, 0.52). Recovers ~$300/day.</li>
+            <li>Exclude Audience Network, Reels Overlay, Right Hand Column, Marketplace, Instream, Search, Threads from manual campaigns. Recovers ~$65/day.</li>
+            <li>Cut discount from ~35% to 28% as a two-week test. Watch CVR, not just AOV — you are testing whether the discount is buying volume or subsidising it.</li>
+            <li>Commission the Ad 3 hook × Ad 1 body graft, and 6 static offer variants.</li>
+            <li>Freeze all scaling. Adopt SOP-1 and SOP-4 immediately.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-when">Days 15–45<br>Rebuild</div>
+        <div>
+          <h3>Restructure and refill the pipeline</h3>
+          <ul>
+            <li>Build the §4 structure alongside the old one. Migrate 25% of budget every 3 days; complete in 12 days.</li>
+            <li>Keep ad set <em>15. (5. Feb 28 …)</em> untouched until new ASC beats it 5 days running.</li>
+            <li>Ship concepts 1–6 from the matrix. Two batches through SOP-3.</li>
+            <li>Land the ATC-rate work from §9 — this gates everything downstream.</li>
+            <li>Run SOP-2 every Monday without exception. The council is the mechanism; the calendar invite is the plan.</li>
+            <li><strong>Exit criteria:</strong> ≤ 8 ad sets live, ≥ 20 ads in ASC, no concept above 25% of spend, new-customer CPA ≤ $55.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-when">Days 46–90<br>Scale</div>
+        <div>
+          <h3>Compound</h3>
+          <ul>
+            <li>Ship concepts 7–12, including the male-facing concept for your 1.14-ROAS segment.</li>
+            <li>Scale under SOP-4 only: +20%/week, all three gates green. From $3,000/day that reaches ~$5,200/day by day 90 <em>if</em> the metrics permit — and stays flat if they don't.</li>
+            <li>Reinstate Astaxanthin as a post-purchase and email offer to the subscriber base — not cold traffic.</li>
+            <li>Build the winback campaign properly against cancelled subscribers, now that there is a cohort to win back.</li>
+            <li><strong>Targets by day 90:</strong> new-customer CPA ≤ $52 · blended ROAS ≥ 1.45 · discount ≤ 27% · cohort orders/customer ≥ 2.2 · <strong>net profit positive.</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 -->
+    <section id="s9">
+      <div class="sec-head">
+        <span class="sec-num">09</span>
+        <h2>What's blocking Meta that isn't Meta</h2>
+      </div>
+      <p class="lede">Two of your three biggest levers are off-platform. A media buyer cannot fix them, and no structure rebuild compensates for them.</p>
+
+      <h3>The landing page is the real bottleneck</h3>
+
+      <div class="t-scroll">
+        <table>
+          <caption>Site funnel · 30 days</caption>
+          <thead><tr><th>Page / device</th><th class="num">Sessions</th><th class="num">ATC rate</th><th class="num">CVR</th><th class="num">AOV</th><th class="num">Bounce</th></tr></thead>
+          <tbody>
+            <tr class="hi"><td>/products/nmn</td><td class="num">38,410</td><td class="num neg">5.27%</td><td class="num">3.84%</td><td class="num">$58.83</td><td class="num neg">96.0%</td></tr>
+            <tr><td>/products/astaxanthin</td><td class="num">1,913</td><td class="num">7.42%</td><td class="num neg">2.51%</td><td class="num">$48.64</td><td class="num">95.7%</td></tr>
+            <tr><td>Mobile</td><td class="num">40,255</td><td class="num">—</td><td class="num">3.55%</td><td class="num">$58.40</td><td class="num">94.4%</td></tr>
+            <tr><td>Desktop</td><td class="num">2,480</td><td class="num">—</td><td class="num neg">1.85%</td><td class="num pos">$71.20</td><td class="num">85.0%</td></tr>
+            <tr><td>Tablet</td><td class="num">1,756</td><td class="num">—</td><td class="num pos">4.10%</td><td class="num">$58.70</td><td class="num">96.6%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Read the funnel carefully: of every 100 sessions, <strong>5.3 add to cart and 3.8 buy</strong>. Cart-to-purchase is 73% — that is strong; checkout is not your problem. <strong>The leak is session → add-to-cart.</strong> 94.7% of the traffic you pay $2.55 a session for never touches the button.</p>
+      <p>Lifting ATC from 5.27% to 7% — not a heroic target — would raise CVR to roughly 5.1% and cut effective CPA by about a third, from $63 to ~$47. <strong>That is larger than anything in §4 or §5.</strong></p>
+      <ul>
+        <li><strong>Design for the 65+ mobile user.</strong> 94% of sessions are mobile and your median buyer is over 60. Body text at 18px minimum, buttons over 48px, high contrast, no thin greys.</li>
+        <li><strong>Offer above the fold, decided in one screen.</strong> With a 96% bounce rate, most people see one viewport. The 3-bottle bundle and the subscription choice must both be visible without scrolling.</li>
+        <li><strong>Desktop converts at 1.85% but has a $71 AOV.</strong> Something is broken on desktop specifically — likely bundle selection. Worth a session recording review even at 6% of traffic.</li>
+        <li><strong>Tablet is your best-converting device (4.10%).</strong> Consistent with an older audience. Make sure the tablet breakpoint isn't an afterthought.</li>
+      </ul>
+
+      <h3>The discount is eating the business</h3>
+      <p>Covered in §2, restated here because it belongs on the operations list: <strong>$32.10 of every $60.34 order is discount.</strong> At 36.7% off list in August it is the deepest it has been in six months, and it is roughly equal to your entire contribution margin. A 10-point reduction adds ~$9.20 per order and moves break-even ROAS from 1.74 to 1.37.</p>
+      <p>Test it as a real test: 28% for two weeks, hold everything else constant, and measure contribution per session rather than conversion rate. A discount that buys volume at negative margin is not a growth lever.</p>
+
+      <h3>Retention is now your CPA budget</h3>
+      <p>You built a subscription business in eight weeks and it is the reason this account is recoverable. The June cohort is at 1.81 orders and $80.26 gross profit per customer. Get that to 2.5 and your affordable CPA rises from $52 to roughly $80 — which is more auction-buying power than any optimisation in this document can produce.</p>
+      <p>Treat Loop's churn data as a paid-media input. Review cancellation reasons monthly under SOP-7 and act on them before you touch bids.</p>
+    </section>
+
+    <p class="footnote">
+      All performance figures are from Prime Ingredients' Triple Whale warehouse, queried live on 11 August 2026. Ad-platform metrics are Meta-reported; revenue and cohort figures are from the Shopify orders table. Shipping and handling at $5.00/order is an assumption — replace it with your actual 3PL rate and the §2 table will sharpen. Event Match Quality and CAPI deduplication status are not visible in Triple Whale and remain unverified.<br><br>
+      The strategic framework in §3 draws on published 2026 Meta/Andromeda guidance including <a href="https://www.tryatria.com/blog/andromeda-meta-ads">Atria</a>, <a href="https://segwise.ai/blog/meta-andromeda-update-creative-strategy-2026">Segwise</a>, <a href="https://confect.io/tactics/meta-andromeda-2026">Confect</a>, <a href="https://www.anchour.com/articles/meta-ads-2026-playbook/">Anchour</a>, and <a href="https://theoptimizer.io/blog/how-to-test-ad-creatives-on-meta-after-the-andromeda-update-2026-playbook">TheOptimizer</a>. It is <em>not</em> a transcript of <a href="https://www.youtube.com/watch?v=vUbLw80KTpo">the requested video</a>, which was unreachable from this environment.
+    </p>
+
+  </main>
+</div>
