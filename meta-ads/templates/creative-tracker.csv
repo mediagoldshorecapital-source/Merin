@@ -1,0 +1,13 @@
+launch_date,ad_name,territory,framework,format,ratio,funnel_stage,campaign,headline,primary_text_id,variable_tested,control_ad_name,spend,impressions,outbound_clicks,outbound_ctr,outbound_cpc,cpm,add_to_carts,cost_per_atc,purchases,revenue,cpa,aov,verdict,kill_reason,promoted_to_scale,rejection_policy,notes
+2026-08-20,NMN_ENG_F04-ItsNotX_01-Headliner_4x5_v01,ENG,F4.1c,01-Headliner,4x5,Cold,TEST,"Most women blame it on age. It's usually cellular energy.",PT-1,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_ENG_F01-PainGone_01-Headliner_4x5_v01,ENG,F1.1,01-Headliner,4x5,Cold,TEST,"3 PM energy crashes. Gone.",PT-1,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_ENG_F03-Timeline_04-Timeline_4x5_v01,ENG,F3-A,04-Timeline,4x5,Cold,TEST,"Day 1 / Week 3 / Month 3 — Energy",PT-5,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_FOG_F01-PainGone_01-Headliner_4x5_v01,FOG,F1.4,01-Headliner,4x5,Cold,TEST,"""Where was I?"" mid-sentence. Gone.",PT-1,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_FOG_F04-ItsNotX_11-BigStat_4x5_v01,FOG,F4.4,11-BigStat,4x5,Cold,TEST,"It's not your memory. It's your mitochondria.",PT-1,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_GRD_F02-PainToDream_03-4Grid_4x5_v01,GRD,F2.1,03-4Grid,4x5,Cold,TEST,"From watching from the couch to on the floor",PT-3,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_GRD_F10-iMessage_07-iMessage_4x5_v01,GRD,F10-B,07-iMessage,4x5,Warm,TEST,"mom you got on the floor with Emma today",PT-3,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_TRU_F05-Testimonial_02-CommentFrame_4x5_v01,TRU,F5,02-CommentFrame,4x5,Warm,TEST,"[real skeptic-converted review]",PT-2,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_TRU_F04-ItsNotX_11-BigStat_4x5_v01,TRU,F4.9,11-BigStat,4x5,Cold,TEST,"64% of NMN products fail lab testing.",PT-2,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_VAL_F07-3Reasons_12-BundleMaths_4x5_v01,VAL,F7C,12-BundleMaths,4x5,Hot,TEST,"$29.98 to $16.66. 6 months. One order.",PT-4,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_VAL_F11-Checklist_08-Checklist_4x5_v01,VAL,F11,08-Checklist,4x5,Hot,TEST,"Everything you were about to Google.",PT-4,net new,,,,,,,,,,,,,,,,,
+2026-08-20,NMN_TIM_F03-Timeline_04-Timeline_4x5_v01,TIM,F3-C,04-Timeline,4x5,Cold,TEST,"30 days / 90 days / 6 months — Longevity",PT-5,net new,,,,,,,,,,,,,,,,,
