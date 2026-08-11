@@ -1,0 +1,1019 @@
+<title>Creative Strategy Operating Manual — Prime Ingredients NMN</title>
+<style>
+  :root{
+    --ground:#FBF8F3;
+    --surface:#FFFFFF;
+    --surface-2:#EFE9E0;
+    --line:#DCD4C8;
+    --line-strong:#C4B9A8;
+    --ink:#1C241E;
+    --ink-2:#4A544C;
+    --ink-3:#6F7970;
+    --forest:#2E3D31;
+    --forest-ink:#F3F0E9;
+    --caramel:#8F6A47;
+    --caramel-bg:#F2E7DA;
+    --on-caramel:#FFFFFF;
+    --clay:#8C3A2B;
+    --clay-bg:#F6E4E0;
+    --good:#3D6B4A;
+    --good-bg:#E3EDE4;
+    --shadow:0 1px 2px rgba(28,36,30,.05),0 8px 24px -16px rgba(28,36,30,.25);
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+    --sans:"Helvetica Neue","Arial Nova",Helvetica,Arial,system-ui,sans-serif;
+    --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#131814;
+      --surface:#1A211C;
+      --surface-2:#222A24;
+      --line:#2E3830;
+      --line-strong:#445147;
+      --ink:#E9E5DB;
+      --ink-2:#B3BAB2;
+      --ink-3:#8A938B;
+      --forest:#8FB39A;
+      --forest-ink:#0E120F;
+      --caramel:#C79A6E;
+      --caramel-bg:#2A2118;
+      --on-caramel:#1A120A;
+      --clay:#D98876;
+      --clay-bg:#2C1A16;
+      --good:#7FB48D;
+      --good-bg:#17251A;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#131814;
+    --surface:#1A211C;
+    --surface-2:#222A24;
+    --line:#2E3830;
+    --line-strong:#445147;
+    --ink:#E9E5DB;
+    --ink-2:#B3BAB2;
+    --ink-3:#8A938B;
+    --forest:#8FB39A;
+    --forest-ink:#0E120F;
+    --caramel:#C79A6E;
+    --caramel-bg:#2A2118;
+    --on-caramel:#1A120A;
+    --clay:#D98876;
+    --clay-bg:#2C1A16;
+    --good:#7FB48D;
+    --good-bg:#17251A;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:2rem}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .shell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:0;max-width:1240px;margin:0 auto}
+
+  /* ---------- sidebar ---------- */
+  .side{
+    position:sticky;top:0;height:100vh;overflow-y:auto;
+    padding:2.5rem 1.25rem 3rem 1.5rem;border-right:1px solid var(--line);
+  }
+  .side-brand{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel);margin-bottom:.4rem}
+  .side-title{font-size:.95rem;font-weight:700;letter-spacing:-.01em;line-height:1.3;margin:0 0 1.75rem}
+  .side nav{display:flex;flex-direction:column;gap:.1rem}
+  .side nav a{
+    display:flex;gap:.6rem;align-items:baseline;
+    font-size:.8rem;color:var(--ink-3);text-decoration:none;
+    padding:.3rem .5rem;border-radius:3px;border-left:2px solid transparent;margin-left:-2px;
+  }
+  .side nav a .n{font-family:var(--mono);font-size:.66rem;color:var(--line-strong);flex:none;width:1.4em}
+  .side nav a:hover{color:var(--ink);background:var(--surface-2)}
+  .side nav a.on{color:var(--forest);border-left-color:var(--caramel);font-weight:600}
+  .side nav a.on .n{color:var(--caramel)}
+  .side nav a:focus-visible{outline:2px solid var(--caramel);outline-offset:1px}
+  .side-note{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--line);font-size:.7rem;line-height:1.5;color:var(--ink-3)}
+
+  /* ---------- main ---------- */
+  main{padding:2.5rem 3rem 8rem;min-width:0}
+  .wrap{max-width:70ch}
+  .wide{max-width:100%}
+
+  .eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel);margin:0 0 .6rem}
+  h1{font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.08;letter-spacing:-.03em;font-weight:700;margin:0 0 .9rem;text-wrap:balance}
+  h2{font-size:1.45rem;line-height:1.2;letter-spacing:-.02em;font-weight:700;margin:0 0 .9rem;text-wrap:balance}
+  h3{font-size:1.02rem;letter-spacing:-.01em;font-weight:700;margin:2rem 0 .6rem}
+  h4{font-size:.85rem;font-weight:700;margin:1.5rem 0 .5rem}
+  p{margin:0 0 1rem}
+  a{color:var(--forest)}
+  strong{font-weight:700;color:var(--ink)}
+  .lede{font-size:1.06rem;color:var(--ink-2);line-height:1.55}
+
+  section{padding:3.25rem 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:0;padding-top:.5rem}
+  .sec-head{display:flex;gap:.9rem;align-items:baseline;margin-bottom:1.1rem}
+  .sec-num{font-family:var(--mono);font-size:.72rem;color:var(--caramel);letter-spacing:.08em;flex:none;padding-top:.25rem}
+
+  ul,ol{margin:0 0 1rem;padding-left:1.15rem}
+  li{margin-bottom:.4rem}
+  li::marker{color:var(--line-strong)}
+
+  code,.mono{font-family:var(--mono);font-size:.86em}
+  code{background:var(--surface-2);padding:.1em .35em;border-radius:3px;color:var(--ink)}
+
+  /* ---------- metric strip ---------- */
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:1.75rem 0}
+  .metric{background:var(--surface);padding:1rem 1.1rem}
+  .metric .k{font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.35rem}
+  .metric .v{font-family:var(--mono);font-size:1.4rem;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--forest);display:block;line-height:1.1}
+  .metric .s{font-size:.7rem;color:var(--ink-3);display:block;margin-top:.3rem}
+
+  /* ---------- callouts ---------- */
+  .note{border-left:3px solid var(--line-strong);background:var(--surface);padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.92rem;border-radius:0 4px 4px 0}
+  .note.warn{border-left-color:var(--clay);background:var(--clay-bg)}
+  .note.key{border-left-color:var(--caramel);background:var(--caramel-bg)}
+  .note.good{border-left-color:var(--good);background:var(--good-bg)}
+  .note p:last-child{margin-bottom:0}
+  .note .lbl{font-family:var(--mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.4rem;color:var(--ink-3)}
+  .note.warn .lbl{color:var(--clay)}
+  .note.key .lbl{color:var(--caramel)}
+  .note.good .lbl{color:var(--good)}
+
+  /* ---------- tables ---------- */
+  .scroll{overflow-x:auto;margin:1.4rem 0;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:.83rem;min-width:520px}
+  th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);background:var(--surface-2);border-bottom:1px solid var(--line-strong);white-space:nowrap;font-weight:500}
+  tbody tr:last-child td{border-bottom:0}
+  td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  td.id{font-family:var(--mono);font-size:.76rem;color:var(--caramel);white-space:nowrap}
+  .bad{color:var(--clay)}
+  .ok{color:var(--good)}
+
+  /* ---------- phases ---------- */
+  .phases{display:flex;flex-direction:column;gap:0;margin:1.5rem 0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--surface)}
+  .phase{display:grid;grid-template-columns:3.2rem 1fr auto;gap:1rem;padding:.9rem 1.1rem;border-bottom:1px solid var(--line);align-items:baseline}
+  .phase:last-child{border-bottom:0}
+  .phase .p{font-family:var(--mono);font-size:.7rem;color:var(--caramel);letter-spacing:.06em}
+  .phase .t{font-size:.9rem}
+  .phase .t b{display:block;margin-bottom:.15rem}
+  .phase .t span{color:var(--ink-3);font-size:.82rem}
+  .phase .h{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);white-space:nowrap}
+
+  /* ---------- persona cards ---------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1.5rem 0}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1.1rem 1.2rem;box-shadow:var(--shadow)}
+  .card .tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--forest-ink);background:var(--forest);padding:.2rem .45rem;border-radius:2px;display:inline-block;margin-bottom:.6rem}
+  .card .tag.alt{background:var(--caramel);color:var(--on-caramel)}
+  .card h4{margin:0 0 .1rem;font-size:1rem}
+  .card .sub{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);margin-bottom:.7rem}
+  .card p{font-size:.85rem;margin-bottom:.6rem}
+  .card ul{font-size:.82rem;padding-left:1rem;margin-bottom:0}
+
+  /* ---------- quotes ---------- */
+  .voc{font-family:var(--serif);font-style:italic;font-size:1.02rem;line-height:1.5;color:var(--forest);border-left:2px solid var(--caramel);padding-left:1rem;margin:1.2rem 0}
+  .voc cite{display:block;font-family:var(--mono);font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:.5rem}
+
+  /* ---------- hooks ---------- */
+  .hookgroup{margin:1.5rem 0}
+  .hookgroup > h4{display:flex;align-items:baseline;gap:.6rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--caramel);border-bottom:1px solid var(--line);padding-bottom:.4rem;margin:1.75rem 0 .8rem}
+  .hooks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem;counter-reset:h}
+  .hooks li{display:grid;grid-template-columns:1.9rem 1fr;gap:.6rem;margin:0;font-size:.88rem;line-height:1.45}
+  .hooks li::before{counter-increment:h;content:counter(h,decimal-leading-zero);font-family:var(--mono);font-size:.68rem;color:var(--line-strong);padding-top:.2rem}
+  .hooks .ost{font-weight:700;display:block}
+  .hooks .say{font-family:var(--serif);font-style:italic;color:var(--ink-2);display:block}
+
+  /* ---------- script ---------- */
+  .script{border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:1.5rem 0;background:var(--surface)}
+  .script header{background:var(--forest);color:var(--forest-ink);padding:.8rem 1.1rem}
+  .script header .cid{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;opacity:.75;display:block;margin-bottom:.15rem}
+  .script header b{font-size:1rem;display:block}
+  .script header .meta{font-size:.75rem;opacity:.8;margin-top:.25rem}
+  .script table{min-width:440px}
+  .script td:first-child{font-family:var(--mono);font-size:.72rem;color:var(--caramel);white-space:nowrap;width:3.5rem}
+
+  /* ---------- decision tree ---------- */
+  .tree{margin:1.5rem 0;display:flex;flex-direction:column;gap:.5rem}
+  .branch{display:grid;grid-template-columns:auto 1fr;gap:.9rem;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--line-strong);border-radius:0 4px 4px 0;padding:.8rem 1rem}
+  .branch .cond{font-family:var(--mono);font-size:.75rem;font-weight:600;color:var(--clay);white-space:nowrap;padding-top:.1rem}
+  .branch .then{font-size:.86rem}
+  .branch .then b{display:block;margin-bottom:.2rem}
+  .branch .then .fix{font-family:var(--mono);font-size:.72rem;color:var(--forest);background:var(--surface-2);padding:.1rem .4rem;border-radius:2px;display:inline-block;margin-top:.35rem}
+
+  /* ---------- misc ---------- */
+  .kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:2rem 0 .6rem;padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .rule-list{list-style:none;padding:0;counter-reset:r;display:flex;flex-direction:column;gap:.6rem;margin:1.3rem 0}
+  .rule-list li{display:grid;grid-template-columns:1.6rem 1fr;gap:.7rem;font-size:.9rem;margin:0}
+  .rule-list li::before{counter-increment:r;content:counter(r);font-family:var(--mono);font-size:.7rem;color:var(--forest-ink);background:var(--forest);width:1.35rem;height:1.35rem;display:grid;place-items:center;border-radius:50%;margin-top:.05rem}
+  footer{border-top:1px solid var(--line);padding:2rem 0 0;font-size:.78rem;color:var(--ink-3);line-height:1.55}
+  .pill{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:2px;white-space:nowrap;display:inline-block}
+  .pill.p0{background:var(--clay-bg);color:var(--clay)}
+  .pill.p1{background:var(--caramel-bg);color:var(--caramel)}
+
+  @media (max-width:900px){
+    .shell{grid-template-columns:1fr}
+    .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:1.5rem 1.25rem}
+    .side nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.15rem}
+    .side-note{display:none}
+    main{padding:2rem 1.25rem 5rem}
+  }
+</style>
+
+<div class="shell">
+<aside class="side">
+  <div class="side-brand">Prime Ingredients</div>
+  <p class="side-title">Creative Strategy<br>Operating Manual</p>
+  <nav id="nav">
+    <a href="#start"><span class="n">00</span>Start here</a>
+    <a href="#system"><span class="n">01</span>The system</a>
+    <a href="#research"><span class="n">02</span>Research</a>
+    <a href="#math"><span class="n">03</span>Offer math</a>
+    <a href="#personas"><span class="n">04</span>Four tracks</a>
+    <a href="#awareness"><span class="n">05</span>Awareness</a>
+    <a href="#pillars"><span class="n">06</span>Pillars</a>
+    <a href="#gaps"><span class="n">07</span>Gap worksheet</a>
+    <a href="#grid"><span class="n">08</span>Concept grid</a>
+    <a href="#hooks"><span class="n">09</span>Hook bank</a>
+    <a href="#scripts"><span class="n">10</span>Scripts</a>
+    <a href="#compliance"><span class="n">11</span>Compliance</a>
+    <a href="#launch"><span class="n">12</span>90-day plan</a>
+    <a href="#measure"><span class="n">13</span>Measurement</a>
+    <a href="#iterate"><span class="n">14</span>Iteration</a>
+    <a href="#rituals"><span class="n">15</span>Rituals</a>
+  </nav>
+  <p class="side-note">Built from the Dara Denney creative strategy document and the NMN Deep Customer Intelligence Report (May 2026). Full text, scripts and templates live in <span class="mono">/creative-strategy</span>.</p>
+</aside>
+
+<main>
+
+<section id="start">
+  <p class="eyebrow">Meta Ads · Creative Strategy</p>
+  <h1>Ten ads that fill a real gap beat fifty that say the same thing in different fonts.</h1>
+  <p class="lede wrap">This is the complete system for building Meta ad creative that produces measurable revenue — written so someone who has never made an ad can execute it at an expert level. It is applied end-to-end to Prime Ingredients NMN Complex 1000mg.</p>
+
+  <div class="note key wrap">
+    <span class="lbl">The thesis</span>
+    <p>Creative strategy is not picking formats or copying competitors. It is <strong>finding the gaps</strong> in an ad account — unaddressed personas, unaddressed awareness levels, undiversified angles — and <strong>filling them with messages mined from the customer's own words.</strong> Everything here is machinery for doing that on a schedule.</p>
+  </div>
+
+  <h3>Your first ten days</h3>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th class="num">Day</th><th>Do this</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1–2</td><td>Reputation Analysis — Google page 1, Amazon "Ask AI", Reddit, YouTube, press, competitor ad library</td><td>Objection Ledger, 20+ rows</td></tr>
+        <tr><td class="num">2–3</td><td>Review &amp; Comment Mining — export site reviews, read every comment on your top-spending ads</td><td>VoC Bank, 100+ quotes</td></tr>
+        <tr><td class="num">3</td><td>Account Gap Analysis — persona / awareness / diversity</td><td>Gap Scorecard</td></tr>
+        <tr><td class="num">4</td><td>Build the Concept Grid</td><td>24–40 named concepts</td></tr>
+        <tr><td class="num">5</td><td>Write 12 briefs from the highest-gap cells</td><td>12 briefs</td></tr>
+        <tr><td class="num">6–8</td><td>Cast creators, ship briefs, shoot, edit, design</td><td>12 assets</td></tr>
+        <tr><td class="num">9</td><td>Launch the Testing campaign — <strong>Thursday</strong></td><td>Live</td></tr>
+        <tr><td class="num">10+</td><td>Weekly scorecard, diagnose, iterate every winner 3×</td><td>Compounding</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note warn wrap">
+    <span class="lbl">The one failure that matters</span>
+    <p>The most common beginner mistake is skipping the research phase and going straight to writing ads. Ads written without the VoC Bank are guesses. Ads written from it are <em>transcription</em> — and transcription wins.</p>
+  </div>
+</section>
+
+<section id="system">
+  <div class="sec-head"><span class="sec-num">01</span><h2>The system, end to end</h2></div>
+  <p class="wrap">Seven phases. Roughly 20 focused hours for the first cycle on a new brand, then about 4 hours a month to maintain. Phases are numbered because they are genuinely sequential — each one consumes the output of the last.</p>
+
+  <div class="phases">
+    <div class="phase"><span class="p">PH 0</span><span class="t"><b>Intake</b><span>Brand facts, offer math, asset inventory, platform access</span></span><span class="h">2h</span></div>
+    <div class="phase"><span class="p">PH 1</span><span class="t"><b>Research — the 3-part system</b><span>Reputation Analysis · Review &amp; Comment Mining · Account Gap Analysis</span></span><span class="h">8h</span></div>
+    <div class="phase"><span class="p">PH 2</span><span class="t"><b>Synthesis</b><span>Personas → awareness ladder → pillars → angles → the Concept Grid</span></span><span class="h">3h</span></div>
+    <div class="phase"><span class="p">PH 3</span><span class="t"><b>Concepting</b><span>Hooks, ad architecture, scripts, static concepts</span></span><span class="h">4h</span></div>
+    <div class="phase"><span class="p">PH 4</span><span class="t"><b>Production</b><span>Casting, briefs, shoot, edit, compliance QA</span></span><span class="h">varies</span></div>
+    <div class="phase"><span class="p">PH 5</span><span class="t"><b>Launch</b><span>Account structure, naming, budget split, timing</span></span><span class="h">1h</span></div>
+    <div class="phase"><span class="p">PH 6</span><span class="t"><b>Measure &amp; iterate</b><span>Diagnostics, kill/scale, iteration ladders</span></span><span class="h">weekly</span></div>
+  </div>
+
+  <h3>Five non-negotiables</h3>
+  <ol class="rule-list wrap">
+    <li><span><strong>No concept ships without a Concept ID.</strong> Persona × Awareness × Pillar × Angle × Format. If you can't name the cell it fills, you're making an ad for no one.</span></li>
+    <li><span><strong>No hook is invented if a customer already said it better.</strong> Mine first, write second.</span></li>
+    <li><span><strong>One variable per iteration.</strong> Change the hook and the creator and the CTA, and a result teaches you nothing.</span></li>
+    <li><span><strong>Never launch a new ad set on Monday.</strong> Your own data: Monday runs 22% below Saturday.</span></li>
+    <li><span><strong>Compliance-check every script before shooting.</strong> A rejection costs a day. A restricted account costs the business.</span></li>
+  </ol>
+</section>
+
+<section id="research">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Phase 1 — the three-part research system</h2></div>
+  <p class="wrap">This is the phase that separates elite accounts from average ones, and it is the phase beginners skip. Do not write a word of ad copy until all three outputs exist.</p>
+
+  <h3>1.1 · Reputation Analysis <span class="mono" style="color:var(--ink-3);font-size:.75rem">— 3 hours</span></h3>
+  <p class="wrap">You are hunting for <strong>objections and skepticism</strong>, not compliments. Do it manually — AI summaries skip the weird, specific, useful material.</p>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Source</th><th>What to do</th><th>What it yields</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Founder backstory</strong></td><td>About page, podcasts, LinkedIn. Why does this product exist?</td><td>Origin narrative + 3 credential proof points</td></tr>
+        <tr><td><strong>Google page 1</strong></td><td>Search brand, <span class="mono">+reviews</span>, <span class="mono">+scam</span>, <span class="mono">+complaints</span>, <span class="mono">is X legit</span>, <span class="mono">X vs Y</span></td><td>Every negative headline a skeptical buyer will see</td></tr>
+        <tr><td><strong>Amazon</strong> <span class="pill p0">highest yield</span></td><td>Read all 1–3★ on the 3 closest competitors. Then use <strong>Ask Amazon AI</strong>: "Who buys this and why?" · "What do reviewers complain about most?" · "What did people try before this?"</td><td>Free persona + objection breakdown synthesized across thousands of reviews</td></tr>
+        <tr><td><strong>Reddit</strong></td><td><span class="mono">site:reddit.com [category] "waste of money"</span></td><td>15 verbatim skepticism quotes — the exact phrasing of doubt</td></tr>
+        <tr><td><strong>YouTube</strong></td><td>Search category reviews. <strong>Read the comments, not the video.</strong></td><td>10 quotes + which creator archetypes the audience trusts</td></tr>
+        <tr><td><strong>Press</strong></td><td>Verify every mention is real and quotable</td><td>Badge assets</td></tr>
+        <tr><td><strong>Competitor ad libraries</strong></td><td>Meta Ad Library, filter to ads running <strong>90+ days</strong></td><td>15–25 proven concepts. A long-running ad is a profitable ad — the only free performance data that exists.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>1.2 · Review &amp; Comment Mining <span class="mono" style="color:var(--ink-3);font-size:.75rem">— 3 hours</span></h3>
+  <p class="wrap">Build a bank of the customer's own words so your copy becomes transcription rather than invention. Dump everything into one sheet, one quote per row, then tag on four axes: <strong>emotion</strong> (fear / shame / hope / relief / pride / anger / grief), <strong>job-to-be-done</strong>, <strong>objection or benefit</strong>, and <strong>trigger moment</strong>.</p>
+  <div class="note wrap">
+    <span class="lbl">Why emotion is the sort column</span>
+    <p>Sort by emotion and read each cluster together. A cluster of fifteen quotes about the same fear is not one ad — it's a <strong>content pillar</strong> that will support six.</p>
+  </div>
+
+  <h4>What makes a quote a golden nugget</h4>
+  <p class="wrap">It needs at least three of: a specific time or place · a physical sensation rather than an abstraction · a comparison to a former self · a slightly embarrassing admission · plain unbranded language · quotable in under twelve words.</p>
+  <blockquote class="voc wrap">"I used to do everything. Now I sit while others do."<cite>Ten words · former self · admission · zero marketing language. That is a hook, unedited.</cite></blockquote>
+
+  <h3>1.3 · Account Gap Analysis <span class="mono" style="color:var(--ink-3);font-size:.75rem">— 2 hours</span></h3>
+  <p class="wrap">The highest-leverage hour in the whole SOP, because a gap is a guaranteed source of incremental performance — you cannot cannibalize an audience you were never talking to. Export your top 30–50 ads by spend and tag each with persona, awareness level, pillar, angle, format, and creator demographic. Then run three diagnostics.</p>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Gap A</span>
+      <h4>Persona gaps</h4>
+      <p class="sub">Who has money and no ads?</p>
+      <p>Compare Meta demographics by ROAS against creative volume by persona.</p>
+      <ul>
+        <li>One persona gets &gt;70% of creative</li>
+        <li>A high-ROAS segment gets &lt;10% of spend</li>
+        <li>A segment appears in Shopify but nowhere in your creative log — you're winning them <em>by accident</em></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Gap B</span>
+      <h4>Awareness gaps</h4>
+      <p class="sub">Are you only harvesting?</p>
+      <p>The classic failure is 70%+ of spend at Product/Most-aware. That account harvests existing demand and hits a hard ceiling.</p>
+      <ul>
+        <li>Unaware + Problem-aware · 40–50%</li>
+        <li>Solution-aware · 20–25%</li>
+        <li>Product-aware · 20–25%</li>
+        <li>Most-aware · 10–15%</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Gap C</span>
+      <h4>Diversity gaps</h4>
+      <p class="sub">Score each persona out of five</p>
+      <p>Not a values exercise — a delivery-cost one. Different creative finds different pockets of the audience.</p>
+      <ul>
+        <li>≥3 distinct pillars in market</li>
+        <li>≥2 angles per pillar</li>
+        <li>≥3 formats</li>
+        <li>≥3 creator demographics</li>
+        <li>≥3 awareness levels</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="math">
+  <div class="sec-head"><span class="sec-num">03</span><h2>The four numbers that judge every ad</h2></div>
+  <p class="wrap">Derived from your own account: net AOV <span class="mono">$56.50</span> (gross $92.21 less the ~34% bundle discount) and Meta site CVR <span class="mono">4.38%</span> across 102,212 sessions. Print these and tape them above the desk of whoever buys media.</p>
+
+  <div class="metrics">
+    <div class="metric"><span class="k">Revenue / session</span><span class="v">$2.47</span><span class="s">Break-even CPC</span></div>
+    <div class="metric"><span class="k">Max CPC @ 2.0×</span><span class="v">$1.24</span><span class="s">Fastest kill signal you have</span></div>
+    <div class="metric"><span class="k">Target CPA @ 2.0×</span><span class="v">$28.25</span><span class="s">$31.22 at Robert's 1.81×</span></div>
+    <div class="metric"><span class="k">Kill threshold</span><span class="v">$85</span><span class="s">Spent with zero purchases</span></div>
+  </div>
+
+  <p class="wrap">Any ad running above <strong>$1.24 outbound CPC</strong> will not hit a 2.0× ROAS unless the landing page beats 4.4%. That verdict is available within hours of launch, long before purchase data means anything — which is what makes it the most useful number in the account.</p>
+
+  <div class="note warn wrap">
+    <span class="lbl">Missing input</span>
+    <p>Gross margin / COGS. Break-even ROAS is <span class="mono">1 ÷ margin</span> — at 70% margin that's 1.43×, at 80% it's 1.25×. Fill this in; it decides whether 1.81× is a good number or a mediocre one.</p>
+  </div>
+
+  <h3>She is a bundle buyer</h3>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Bundle</th><th class="num">Bottles</th><th class="num">Paid</th><th class="num">$/bottle</th><th class="num">% of orders</th></tr></thead>
+      <tbody>
+        <tr><td>Buy 3 Get 3 Free</td><td class="num">6</td><td class="num">~$100–106</td><td class="num">$16.66</td><td class="num">~40%</td></tr>
+        <tr><td>Buy 2 Get 2 Free</td><td class="num">4</td><td class="num">~$82–86</td><td class="num">$21</td><td class="num">~30%</td></tr>
+        <tr><td>Buy 1 Get 1 Free</td><td class="num">2</td><td class="num">~$47–49</td><td class="num">$24</td><td class="num">~20%</td></tr>
+        <tr><td>Single bottle</td><td class="num">1</td><td class="num">~$30–38</td><td class="num">$30</td><td class="num">~10%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="wrap"><strong>70% of orders are four or more bottles.</strong> She isn't buying a supplement, she's buying a three-to-six-month commitment. Creative that sells "try a bottle" is selling the wrong thing to the wrong person — it lowers AOV <em>and</em> it lowers belief.</p>
+  <div class="note key wrap">
+    <span class="lbl">Zero discount codes across 4,770 orders</span>
+    <p>She doesn't hunt for codes. Don't build creative around a promo code — build it around the anchor-versus-effective price, <span class="mono">$29.98 → $16.66</span>. The math is the offer. A code adds friction and invites her to leave the page looking for a better one.</p>
+  </div>
+</section>
+
+<section id="personas">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Four creative tracks</h2></div>
+  <p class="wrap">Three prospecting personas and one lifecycle track. Everything you build belongs to one of these — "women 48–65" is not a persona, it's two or three.</p>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag">≈60% of creative</span>
+      <h4>Linda B — The Reclaimer</h4>
+      <p class="sub">56–68 · Phoenix, Tucson, Vegas, Houston, Miami</p>
+      <p>Retired or semi-retired. House with a yard. Four grandchildren, the youngest is three. AOL or Yahoo email she's had 25 years. iPhone at 11am, iPad in the recliner at 7pm.</p>
+      <p style="color:var(--ink-3);font-size:.8rem">Wakes 6:30 unrested. At 3pm the floor drops out.</p>
+      <ul><li>Becoming invisible</li><li>Can't keep up with the grandchildren</li><li>Been scammed before</li><li>Running out of time</li></ul>
+    </div>
+    <div class="card">
+      <span class="tag">≈15% · unserved</span>
+      <h4>Dana — The Juggler</h4>
+      <p class="sub">48–55 · still working · perimenopausal</p>
+      <p>Her fatigue has a <em>deadline attached to it</em>. Linda's tiredness costs her a walk with her grandson; Dana's costs her a 2:30 meeting. She is not nostalgic, she is compressed.</p>
+      <p style="color:var(--ink-3);font-size:.8rem">The grandchildren angle does not land. Career stamina does.</p>
+      <ul><li>My body stopped listening</li><li>Am I losing my sharpness</li><li>Falling behind my friends</li></ul>
+    </div>
+    <div class="card">
+      <span class="tag alt">≈15% · biggest gap</span>
+      <h4>Robert — The Refuser</h4>
+      <p class="sub">60–72 · ROAS 1.81 — best in the account</p>
+      <p>Retired professional, veteran, or tradesman. Buys $100+ bundles more often than Linda. Your top VIP by lifetime spend sits here.</p>
+      <blockquote class="voc" style="margin:.7rem 0;font-size:.92rem">"I'm becoming my father."<cite>His entire psychology, five words</cite></blockquote>
+      <ul><li>Register: refusal, not validation</li><li>Proof he wants: mg and lab numbers</li><li>Objection: "show me the dose"</li></ul>
+    </div>
+    <div class="card">
+      <span class="tag">≈10% · retention</span>
+      <h4>The Returner</h4>
+      <p class="sub">Day 75–120 after first order</p>
+      <p>Repeat rate went 1.0% → 2.4% → 3.0% → 3.9% → <strong>7.8%</strong>, doubling month over month as the January cohort ran out. Projected 12–15% by August <em>if a reorder flow exists.</em></p>
+      <ul><li>VIPs: $260–424 across 3–7 orders</li><li>$60–85 per order — <strong>they never downgrade</strong></li><li>Never retarget them with the single-bottle offer</li></ul>
+    </div>
+  </div>
+
+  <div class="note key wrap">
+    <span class="lbl">Where the cheapest revenue is</span>
+    <p>Robert has the best ROAS in the account and almost certainly the least creative built for him. Both source documents describe an account built for women; the intelligence report treats him as a <em>discovery</em>, and discoveries are by definition not yet being served. Every dollar of Robert creative you don't make is money left on the table at a known efficiency.</p>
+  </div>
+</section>
+
+<section id="awareness">
+  <div class="sec-head"><span class="sec-num">05</span><h2>The awareness ladder</h2></div>
+  <p class="wrap">Eugene Schwartz's five levels, written as arguments rather than headlines. The account's diagnosed gap is over-reliance on bottom-of-funnel offer ads — this ladder is how you climb back out.</p>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Level</th><th>Linda B</th><th>Robert</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Unaware</strong></td><td>The exhaustion you've accepted as "just getting older" has a name and a measurable cause.</td><td>The slowdown you're watching in other men your age is a measurable decline, not fate.</td></tr>
+        <tr><td><strong>Problem-aware</strong></td><td>The 3pm crash and the 6:30am unrested feeling are the same problem, and it isn't sleep.</td><td>Slower recovery, less edge, needing the afternoon nap — that's a cellular energy problem.</td></tr>
+        <tr><td><strong>Solution-aware</strong></td><td>NAD+ declines with age. NMN is the precursor your body uses to make it. Not all NMN is equal.</td><td>NAD+ falls roughly by half by 60. NMN is the direct precursor.</td></tr>
+        <tr><td><strong>Product-aware</strong></td><td>Most NMN on the market fails lab testing. Here's ours, at 1000mg, third-party verified.</td><td>1000mg per serving. Third-party assay. Read the COA yourself.</td></tr>
+        <tr><td><strong>Most-aware</strong></td><td>Six bottles for the price of three. Money back if it does nothing.</td><td>Six bottles, $100, six months. Cheaper than the coffee you're using instead.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note good wrap">
+    <span class="lbl">Target distribution, next 90 days</span>
+    <p>Unaware + Problem-aware <strong>45%</strong> · Solution-aware <strong>20%</strong> · Product-aware <strong>25%</strong> (including the skepticism play) · Most-aware <strong>10%</strong>.</p>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Six content pillars</h2></div>
+  <p class="wrap">A pillar is a durable claim territory that supports five or more ads for six or more months. Good pillars are orthogonal — if two produce the same ad, merge them. These are not numbered because they are not a sequence.</p>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Pillar</th><th>Territory</th><th>Angles</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Energy Reclaim</strong><br><span class="mono" style="font-size:.7rem;color:var(--ink-3)">flagship</span></td><td>The tiredness has a cause, and the cause is addressable</td><td>"It's not just aging" · The 3pm crash, live · Tired in a way sleep doesn't fix · The NAD+ mechanism · The 6:30am lie</td></tr>
+        <tr><td><strong>The Mind</strong><br><span class="pill p0">compliance risk</span></td><td>Mental clarity and focus</td><td>The word that wouldn't come · Sharp for the 2:30 · Clarity mechanism · The NMN_Focus self-selectors</td></tr>
+        <tr><td><strong>Trust &amp; Purity</strong><br><span class="pill p0">biggest gap</span></td><td>The industry is dirty and we are the exception</td><td>"Is this a scam?" · 64% fail lab tests · Read the label with me · The review wall · Press · "I was scammed before too"</td></tr>
+        <tr><td><strong>The Bundle Math</strong></td><td>Value, risk reversal, free bottles as a trust signal</td><td>$29.98 → $16.66 · The free-bottle logic · The guarantee as a dare · 55¢ a day · Six months, one decision</td></tr>
+        <tr><td><strong>Identity &amp; Presence</strong><br><span class="mono" style="font-size:.7rem;color:var(--ink-3)">highest ceiling</span></td><td>Who she becomes, and who she's afraid of becoming</td><td>Getting on the floor · "I sit while others do" · The end of the walk · "I'm becoming my father" · Nobody said it out loud · Time, not vanity</td></tr>
+        <tr><td><strong>The Mirror</strong><br><span class="mono" style="font-size:.7rem;color:var(--ink-3)">cap at 5%</span></td><td>Appearance, and the ASTA cross-sell</td><td>The photo someone tagged you in · Inside first, then outside</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note key wrap">
+    <span class="lbl">The sharpest insight in the intelligence report</span>
+    <p>The Buy 3 Get 3 Free bundle is <strong>a trust signal disguised as a discount.</strong> If the product were fake, why would you give away three bottles? That reframe is an entire ad — and it converts the offer pillar from a bottom-funnel harvest into a proof asset.</p>
+  </div>
+  <div class="note wrap">
+    <span class="lbl">Why "Is this a scam?" is priority zero</span>
+    <p>Insecurity #6 in the report reads: <em>"she reads every word on your page. She's looking for reasons NOT to buy."</em> An offer ad repels that person. A skepticism ad recruits her. It is the cheapest incremental audience in the account, and there is currently nothing serving it.</p>
+  </div>
+</section>
+
+<section id="gaps">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Gap worksheet</h2></div>
+  <div class="note warn wrap">
+    <span class="lbl">This is a worksheet, not a finding</span>
+    <p>The Meta connector was not authorized when this was built, so live Ads Manager data could not be pulled. Below are the eight hypotheses the intelligence report supports, each with the exact check to run. Budget 90 minutes with Ads Manager open and fill in the right-hand columns — that turns this into the brief for your next production cycle.</p>
+  </div>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th class="num">#</th><th>Hypothesis</th><th>How to verify</th><th class="num">Concepts</th></tr></thead>
+      <tbody>
+        <tr><td class="id">H1</td><td><strong>Robert has near-zero dedicated creative despite the best ROAS in the account</strong> <span class="pill p0">P0</span></td><td>Breakdown → Age &amp; Gender, sort by ROAS. Then count ads casting a male creator.</td><td class="num">4</td></tr>
+        <tr><td class="id">H2</td><td><strong>&gt;65% of spend sits at Product/Most-aware</strong> <span class="pill p0">P0</span></td><td>Tag your top 30 ads by spend with an awareness level. Sum spend per level.</td><td class="num">6</td></tr>
+        <tr><td class="id">H3</td><td>48–55 is treated as part of one undifferentiated "women 48–65" block</td><td>Count ads referencing work, perimenopause, or midday fatigue. Under three confirms it.</td><td class="num">3</td></tr>
+        <tr><td class="id">H4</td><td><strong>No skepticism / anti-scam top-of-funnel exists</strong> <span class="pill p0">P0</span></td><td>Search ad names and copy for "scam", "lab", "tested", "truth".</td><td class="num">3</td></tr>
+        <tr><td class="id">H5</td><td>Creator casting skews younger than the buyer</td><td>Watch your top 15 ads, log apparent creator age. Median under 50 against a 58–68 buyer confirms it.</td><td class="num">5 creators</td></tr>
+        <tr><td class="id">H6</td><td>Tablet converts best (5.11%) and no creative is built for it</td><td>Breakdown → Device. Check whether 4:5 assets exist and whether text is legible at tablet distance.</td><td class="num">re-export</td></tr>
+        <tr><td class="id">H7</td><td>No retention creative for the Day 75–120 reorder window</td><td>Check retargeting for a purchaser audience with reorder messaging.</td><td class="num">3</td></tr>
+        <tr><td class="id">H8</td><td>Creative is over-concentrated: fewer than 5 ads carry 70%+ of spend</td><td>Sort ads by spend, compute the top-5 share.</td><td class="num">volume fix</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="wrap"><strong>Two are effectively pre-confirmed.</strong> H2 is named outright in the creative strategy document as the account's awareness gap. H1 follows from the intelligence report devoting a full section to Robert as a newly-found, most-efficient demographic.</p>
+</section>
+
+<section id="grid">
+  <div class="sec-head"><span class="sec-num">08</span><h2>The concept grid</h2></div>
+  <p class="wrap">Twenty-four concepts that fill the P0 gaps, sequenced into three monthly waves. <span class="mono">Concept ID = Persona × Awareness × Pillar × Angle × Format.</span></p>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>ID</th><th>Persona</th><th>Aware</th><th>Pillar · Angle</th><th>Format</th><th>Gap</th><th class="num">Wave</th></tr></thead>
+      <tbody>
+        <tr><td class="id">C01</td><td>Linda B</td><td>PA</td><td>It's not just aging</td><td>UGC talking head</td><td>H5</td><td class="num">1</td></tr>
+        <tr><td class="id">C02</td><td>Linda B</td><td>PA</td><td>3pm crash, live</td><td>UGC + on-screen clock</td><td>H2</td><td class="num">1</td></tr>
+        <tr><td class="id">C03</td><td>Linda B</td><td>UA</td><td>Sleep doesn't fix it</td><td>Problem-agitate montage</td><td>H2</td><td class="num">1</td></tr>
+        <tr><td class="id">C04</td><td>Linda B</td><td>PrA</td><td>Is this a scam?</td><td>Skepticism explainer</td><td>H4</td><td class="num">1</td></tr>
+        <tr><td class="id">C05</td><td>Linda B</td><td>SA</td><td>64% fail lab tests</td><td>Founder / lab explainer</td><td>H4</td><td class="num">1</td></tr>
+        <tr><td class="id">C06</td><td>Robert</td><td>UA</td><td>Becoming my father</td><td>UGC male, blunt</td><td>H1</td><td class="num">1</td></tr>
+        <tr><td class="id">C07</td><td>Robert</td><td>SA</td><td>Read the label with me</td><td>Teardown</td><td>H1</td><td class="num">1</td></tr>
+        <tr><td class="id">C08</td><td>Linda B</td><td>MA</td><td>$29.98 → $16.66</td><td>Bundle-math static</td><td>—</td><td class="num">1</td></tr>
+        <tr><td class="id">C09</td><td>Linda B</td><td>UA</td><td>Getting on the floor</td><td>UGC + grandchild B-roll</td><td>H2</td><td class="num">2</td></tr>
+        <tr><td class="id">C10</td><td>Linda B</td><td>UA</td><td>I sit while others do</td><td>POV / voiceover</td><td>H2</td><td class="num">2</td></tr>
+        <tr><td class="id">C11</td><td>Dana</td><td>PA</td><td>Sharp for the 2:30</td><td>UGC, home office</td><td>H3</td><td class="num">2</td></tr>
+        <tr><td class="id">C12</td><td>Dana</td><td>UA</td><td>Body stopped listening</td><td>UGC confessional</td><td>H3</td><td class="num">2</td></tr>
+        <tr><td class="id">C13</td><td>All</td><td>SA</td><td>NAD+ mechanism</td><td>Whiteboard / animation</td><td>H2</td><td class="num">2</td></tr>
+        <tr><td class="id">C14</td><td>Robert</td><td>PrA</td><td>55¢ a day</td><td>Static, unit economics</td><td>H1</td><td class="num">2</td></tr>
+        <tr><td class="id">C15</td><td>Linda B</td><td>PrA</td><td>Free-bottle logic</td><td>UGC direct address</td><td>—</td><td class="num">2</td></tr>
+        <tr><td class="id">C16</td><td>Linda B</td><td>PrA</td><td>The one-star reviews</td><td>Review carousel</td><td>—</td><td class="num">2</td></tr>
+        <tr><td class="id">C17</td><td>Linda B</td><td>UA</td><td>End of the walk</td><td>UGC, walking group</td><td>H2</td><td class="num">3</td></tr>
+        <tr><td class="id">C18</td><td>Linda B</td><td>UA</td><td>Nobody said it out loud</td><td>UGC confessional</td><td>H2</td><td class="num">3</td></tr>
+        <tr><td class="id">C19</td><td>Linda B</td><td>PrA</td><td>Guarantee as a dare</td><td>Founder to camera</td><td>—</td><td class="num">3</td></tr>
+        <tr><td class="id">C20</td><td>Robert</td><td>PA</td><td>Recovery + the nap</td><td>UGC male</td><td>H1</td><td class="num">3</td></tr>
+        <tr><td class="id">C21</td><td>Dana</td><td>PrA</td><td>I was scammed before</td><td>UGC confessional</td><td>H3/H4</td><td class="num">3</td></tr>
+        <tr><td class="id">C22</td><td>Linda B</td><td>UA</td><td>Time, not vanity</td><td>Founder / VO montage</td><td>H2</td><td class="num">3</td></tr>
+        <tr><td class="id">C23</td><td>Returner</td><td>MA</td><td>Running low</td><td>UGC + static pair</td><td>H7</td><td class="num">3</td></tr>
+        <tr><td class="id">C24</td><td>Linda B</td><td>SA</td><td>Inside first, then outside</td><td>ASTA cross-sell</td><td>—</td><td class="num">3</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="hooks">
+  <div class="sec-head"><span class="sec-num">09</span><h2>Hook bank</h2></div>
+  <p class="wrap">Roughly half of everything an ad will ever earn is decided in the first three seconds. Write fifteen hooks per concept, shoot five, test three. <strong>Bold is on-screen text</strong>, <span class="mono" style="font-family:var(--serif);font-style:italic">italic is the spoken line</span> — they should never be identical, because that wastes a channel.</p>
+
+  <div class="hookgroup">
+    <h4>Energy Reclaim — "It's not just aging"</h4>
+    <ol class="hooks">
+      <li><span><span class="ost">It's not just aging.</span><span class="say">"Everyone told me this is just what 62 feels like. It isn't."</span></span></li>
+      <li><span><span class="ost">I stopped blaming my age.</span><span class="say">"I spent four years blaming my age for something that had a completely different cause."</span></span></li>
+      <li><span><span class="ost">"You're just getting older."</span><span class="say">"That's what I was told. For four years. It was wrong."</span></span></li>
+      <li><span><span class="ost">62, and I was done accepting this.</span><span class="say">"I want to tell you what changed."</span></span></li>
+    </ol>
+  </div>
+
+  <div class="hookgroup">
+    <h4>Energy Reclaim — the 3pm crash <span style="text-transform:none;letter-spacing:0;color:var(--ink-3)">(deliver 2–4pm)</span></h4>
+    <ol class="hooks">
+      <li><span><span class="ost">It's 3:07 PM.</span><span class="say">"And this is the exact moment my body used to quit on me."</span></span></li>
+      <li><span><span class="ost">The 3 o'clock wall.</span><span class="say">"If you're reading this in the afternoon, you probably know the one I mean."</span></span></li>
+      <li><span><span class="ost">I used to schedule my day around 3pm.</span><span class="say">"Nothing important after two. That was the rule."</span></span></li>
+      <li><span><span class="ost">Not sleepy. Heavy.</span><span class="say">"That's the difference nobody explains. It isn't tiredness — it's weight."</span></span></li>
+      <li><span><span class="ost">My afternoon nap wasn't a luxury.</span><span class="say">"It was a surrender. Every single day."</span></span></li>
+    </ol>
+  </div>
+
+  <div class="hookgroup">
+    <h4>Energy Reclaim — sleep doesn't fix it</h4>
+    <ol class="hooks">
+      <li><span><span class="ost">Eight hours. Woke up like it was four.</span><span class="say">"That's when I knew it wasn't a sleep problem."</span></span></li>
+      <li><span><span class="ost">There's a kind of tired that sleep doesn't touch.</span><span class="say">"Nobody warned me about that one."</span></span></li>
+      <li><span><span class="ost">I wasn't sleep-deprived. I was empty.</span><span class="say">"Different thing entirely."</span></span></li>
+      <li><span><span class="ost">My doctor said my labs were perfect.</span><span class="say">"So why did I feel like this?"</span></span></li>
+      <li><span><span class="ost">6:30 AM. Alarm. And I already need a nap.</span><span class="say">"That was every morning for four years."</span></span></li>
+    </ol>
+  </div>
+
+  <div class="hookgroup">
+    <h4>Energy Reclaim — the mechanism</h4>
+    <ol class="hooks">
+      <li><span><span class="ost">Your cells make energy with something called NAD+.</span><span class="say">"By 60, you have about half of what you had at 40."</span></span></li>
+      <li><span><span class="ost">Half. That's what's left by 60.</span><span class="say">"And nobody tests for it."</span></span></li>
+      <li><span><span class="ost">NMN isn't the energy. It's the raw material.</span><span class="say">"That distinction is the whole thing."</span></span></li>
+      <li><span><span class="ost">The reason coffee stopped working.</span><span class="say">"Caffeine borrows energy. It doesn't make any."</span></span></li>
+    </ol>
+  </div>
+
+  <div class="hookgroup">
+    <h4>The Mind <span style="text-transform:none;letter-spacing:0;color:var(--clay)">— compliance-sensitive</span></h4>
+    <ol class="hooks">
+      <li><span><span class="ost">The word just wouldn't come.</span><span class="say">"Mid-sentence. In front of my daughter. And I felt something cold go through me."</span></span></li>
+      <li><span><span class="ost">I read the same paragraph four times.</span><span class="say">"Then I closed the book."</span></span></li>
+      <li><span><span class="ost">Sharp is a thing you can lose quietly.</span><span class="say">"You don't notice for months."</span></span></li>
+      <li><span><span class="ost">My 2:30 meetings were the problem.</span><span class="say">"By half past two I was nodding along and absorbing nothing."</span></span></li>
+      <li><span><span class="ost">Focus isn't discipline.</span><span class="say">"I kept treating it like a willpower problem. It wasn't."</span></span></li>
+    </ol>
+  </div>
+
+  <div class="hookgroup">
+    <h4>Trust &amp; Purity — the skepticism play</h4>
+    <ol class="hooks">
+      <li><span><span class="ost">"Is Prime Ingredients a scam?"</span><span class="say">"Fair question. Let's actually go through it."</span></span></li>
+      <li><span><span class="ost">Somebody commented that we're a scam.</span><span class="say">"So here's the lab report."</span></span></li>
+      <li><span><span class="ost">I'm going to try to talk you out of this.</span><span class="say">"If you still want it after, fine."</span></span></li>
+      <li><span><span class="ost">The real scam isn't us.</span><span class="say">"It's what's in most of the bottles on the shelf."</span></span></li>
+      <li><span><span class="ost">64% of NMN products fail lab testing.</span><span class="say">"Which means most of what you've bought did nothing. That's not your fault."</span></span></li>
+      <li><span><span class="ost">You weren't gullible. You were sold nothing.</span></span></li>
+      <li><span><span class="ost">"Proprietary blend" means they won't tell you the dose.</span></span></li>
+      <li><span><span class="ost">I read the one-star reviews first.</span></span></li>
+      <li><span><span class="ost">I have a drawer full of bottles that did nothing.</span><span class="say">"So I understand exactly why you don't believe this."</span></span></li>
+    </ol>
+  </div>
+
+  <div class="hookgroup">
+    <h4>The Bundle Math</h4>
+    <ol class="hooks">
+      <li><span><span class="ost">$29.98 a bottle. Or $16.66.</span><span class="say">"Same bottle. Here's the difference."</span></span></li>
+      <li><span><span class="ost">Three bottles. Six arrive.</span><span class="say">"There's no code. It's just the price."</span></span></li>
+      <li><span><span class="ost">If this were fake, why would we give you three free?</span></span></li>
+      <li><span><span class="ost">55 cents a day.</span><span class="say">"Your coffee costs more and does less."</span></span></li>
+      <li><span><span class="ost">Take it for 60 days. If nothing changes, keep the bottles.</span></span></li>
+      <li><span><span class="ost">I'm not asking you to trust me. I'm asking you to test me.</span></span></li>
+    </ol>
+  </div>
+
+  <div class="hookgroup">
+    <h4>Identity &amp; Presence <span style="text-transform:none;letter-spacing:0;color:var(--ink-3)">— verbatim from the report</span></h4>
+    <ol class="hooks">
+      <li><span><span class="ost">I used to do everything. Now I sit while others do.</span></span></li>
+      <li><span><span class="ost">My grandson asked me to get on the floor. I said "in a minute."</span><span class="say">"I said 'in a minute' for about two years."</span></span></li>
+      <li><span><span class="ost">I'm the one who turns back before the end of the walk.</span></span></li>
+      <li><span><span class="ost">Every woman in my walking group has more energy than me.</span><span class="say">"That's a hard thing to notice about yourself."</span></span></li>
+      <li><span><span class="ost">I go to bed while the party's still going.</span></span></li>
+      <li><span><span class="ost">My husband thinks I'm fine.</span><span class="say">"I look fine. That's the problem."</span></span></li>
+      <li><span><span class="ost">I'm turning into my father.</span><span class="say">"I watched him slow down at 65 and I am not doing that."</span></span></li>
+      <li><span><span class="ost">Every tired day is a day I don't get back.</span></span></li>
+      <li><span><span class="ost">I have four grandchildren. The youngest is three.</span><span class="say">"I want to be there for all of it. Actually there."</span></span></li>
+    </ol>
+  </div>
+
+  <p class="wrap" style="margin-top:2rem;color:var(--ink-3);font-size:.88rem">The full bank of 75 hooks, plus twelve static concepts, is in <span class="mono">creative-strategy/03-nmn-hook-script-bank.md</span>.</p>
+</section>
+
+<section id="scripts">
+  <div class="sec-head"><span class="sec-num">10</span><h2>The three priority-zero scripts</h2></div>
+  <p class="wrap">Each opens an audience the account currently cannot reach at any budget. If capacity forces cuts, these three survive.</p>
+
+  <div class="script">
+    <header>
+      <span class="cid">C04 · LindaB · PrA · Trust · ScamQ · Explainer</span>
+      <b>"Is Prime Ingredients a scam?"</b>
+      <div class="meta">Creator: woman 55–65 or the founder · plain room · slightly confrontational energy</div>
+    </header>
+    <div class="scroll" style="margin:0;border:0;border-radius:0">
+    <table>
+      <tbody>
+        <tr><td>0–3</td><td><strong>OST: "Is Prime Ingredients a scam?"</strong> — <span style="font-family:var(--serif);font-style:italic">"Somebody left that in our comments. Fair question. Let's actually go through it."</span></td></tr>
+        <tr><td>3–9</td><td>Holds up phone showing the comment. <span style="font-family:var(--serif);font-style:italic">"Here's why I'm not offended: most NMN on the market genuinely is a scam. Around 64% of it fails lab testing."</span></td></tr>
+        <tr><td>9–15</td><td>Bottle turned around, finger on the label. <span style="font-family:var(--serif);font-style:italic">"Which means if you've tried NMN and felt nothing — you probably weren't gullible. You were sold nothing."</span></td></tr>
+        <tr><td>15–22</td><td>Certificate of analysis scrolling on screen. <span style="font-family:var(--serif);font-style:italic">"So here's ours. Third-party assay. 1000 milligrams, verified. Not a proprietary blend — you can see the number."</span></td></tr>
+        <tr><td>22–28</td><td>Reviews scrolling, deliberately stopping on a critical one. <span style="font-family:var(--serif);font-style:italic">"Go read the one-stars. I'd rather you did."</span></td></tr>
+        <tr><td>28–34</td><td>Back to camera, direct. <span style="font-family:var(--serif);font-style:italic">"And if you still think it's a scam: buy it, take it for 60 days, and if nothing changes, keep the bottles and take your money back."</span></td></tr>
+        <tr><td>34–38</td><td>Bundle graphic. <strong>OST: Read the lab report yourself.</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="note warn wrap">
+    <span class="lbl">Non-negotiable on this one</span>
+    <p>Every document shown on camera must be real. A fabricated COA isn't a compliance problem, it's a legal one.</p>
+  </div>
+
+  <div class="script">
+    <header>
+      <span class="cid">C06 · Robert · UA · Identity · MyFather · UGC</span>
+      <b>"I'm becoming my father"</b>
+      <div class="meta">Creator: man 62–70 · garage, workshop or backyard · blunt delivery · no music bed</div>
+    </header>
+    <div class="scroll" style="margin:0;border:0;border-radius:0">
+    <table>
+      <tbody>
+        <tr><td>0–3</td><td><strong>OST: I'm turning into my father.</strong> — <span style="font-family:var(--serif);font-style:italic">"And I've decided I'm not doing that."</span></td></tr>
+        <tr><td>3–10</td><td><span style="font-family:var(--serif);font-style:italic">"My dad was 65 when he started sitting down for things he used to stand for. By 70 he was done. Nobody in my family said a word about it — we just watched it happen."</span></td></tr>
+        <tr><td>10–16</td><td>Him doing something physical. <span style="font-family:var(--serif);font-style:italic">"I'm 66. Last year I noticed I was taking an afternoon nap. Not choosing to. Needing to."</span></td></tr>
+        <tr><td>16–23</td><td>Plain graphic. <span style="font-family:var(--serif);font-style:italic">"Turns out there's a measurable reason. NAD+ — what your cells use to produce energy — drops by roughly half between 40 and 60."</span></td></tr>
+        <tr><td>23–29</td><td>Product held plainly, no beauty shot. <span style="font-family:var(--serif);font-style:italic">"NMN is the precursor. 1000 milligrams, third-party assayed. I read the certificate before I bought it."</span></td></tr>
+        <tr><td>29–35</td><td>Back at work. <span style="font-family:var(--serif);font-style:italic">"Six bottles, about a hundred bucks. Fifty-five cents a day. I'm not going out like he did."</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="note wrap">
+    <span class="lbl">Casting</span>
+    <p>Do not cast a polished actor. Cast a man who looks like he has done physical work. No music, no warmth. Robert's register is refusal, not reassurance.</p>
+  </div>
+
+  <div class="script">
+    <header>
+      <span class="cid">C03 · LindaB · UA · Energy · SleepDoesntFix · Montage</span>
+      <b>"Sleep doesn't fix it"</b>
+      <div class="meta">VO only, no creator · produces in a day, in-house · pure Unaware-level asset</div>
+    </header>
+    <div class="scroll" style="margin:0;border:0;border-radius:0">
+    <table>
+      <tbody>
+        <tr><td>0–3</td><td>Dark bedroom, 6:30 alarm, hand reaching. <strong>OST: Eight hours. Woke up like it was four.</strong></td></tr>
+        <tr><td>3–8</td><td>Sitting on the edge of the bed, not moving. <span style="font-family:var(--serif);font-style:italic">"There's a kind of tired that sleep doesn't touch. Nobody warns you about that one."</span></td></tr>
+        <tr><td>8–14</td><td>Coffee, vitamins on the counter. <span style="font-family:var(--serif);font-style:italic">"You add more sleep. You add more coffee. Nothing moves."</span></td></tr>
+        <tr><td>14–18</td><td>Afternoon, chair, staring. <span style="font-family:var(--serif);font-style:italic">"And by the afternoon you're negotiating with yourself about what actually has to get done today."</span></td></tr>
+        <tr><td>18–24</td><td><strong>OST: It's not sleep. It's cellular energy.</strong> <span style="font-family:var(--serif);font-style:italic">"Your cells make energy with NAD+. It falls by roughly half by 60."</span></td></tr>
+        <tr><td>24–36</td><td>Product, then bundle and guarantee.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <p class="wrap">Make three of these before you make another offer static. No creator to book, produces in a day, and it fills the single largest hole in the account.</p>
+</section>
+
+<section id="compliance">
+  <div class="sec-head"><span class="sec-num">11</span><h2>Compliance</h2></div>
+  <div class="note warn wrap">
+    <span class="lbl">Read before every shoot</span>
+    <p>Health is a restricted category on Meta. Two rules get beginners rejected or account-restricted: <strong>personal attributes</strong> and <strong>disease claims</strong>. A rejection costs a day. A restricted ad account costs the business.</p>
+  </div>
+
+  <h3>Rule 1 — never assert you know something about the viewer</h3>
+  <p class="wrap">Meta prohibits copy implying knowledge of the viewer's health, age, or condition. The fix is nearly always the same: <strong>move it to first person.</strong></p>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Don't run</th><th>Run instead</th></tr></thead>
+      <tbody>
+        <tr><td class="bad">"Are you struggling with brain fog?"</td><td class="ok">"I was struggling with brain fog."</td></tr>
+        <tr><td class="bad">"Feeling tired all the time?"</td><td class="ok">"I was tired in a way sleep didn't fix."</td></tr>
+        <tr><td class="bad">"Women over 60: your energy is declining"</td><td class="ok">"At 62, here's what changed for me."</td></tr>
+        <tr><td class="bad">"Your NAD+ levels are dropping"</td><td class="ok">"NAD+ falls by roughly half by 60."</td></tr>
+        <tr><td class="bad">"You can't keep up with your grandkids"</td><td class="ok">"I couldn't get on the floor with my grandson."</td></tr>
+        <tr><td class="bad">"Is your 3pm crash ruining your day?"</td><td class="ok">"The 3pm crash used to end my day."</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note wrap">
+    <span class="lbl">A note on the source material</span>
+    <p>The creative strategy document proposes <em>"When brain fog and afternoon fatigue hit right in the middle of your workday"</em> and <em>"Feeling more tired as you age?"</em> Both are second-person statements about the viewer's health and both carry rejection risk <em>as ad copy</em>. The product page can say them; the ad should not. They appear throughout this manual rewritten as <strong>"My 2:30 meetings were the problem"</strong> and <strong>"It's not just aging"</strong> — same insight, no exposure.</p>
+  </div>
+
+  <h3>Rule 2 — structure/function claims only</h3>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Never say</th><th>Say</th></tr></thead>
+      <tbody>
+        <tr><td class="bad">prevents / delays dementia or Alzheimer's</td><td class="ok">supports cognitive function</td></tr>
+        <tr><td class="bad">treats menopause or perimenopause</td><td class="ok">supports energy during midlife</td></tr>
+        <tr><td class="bad">cures chronic fatigue</td><td class="ok">supports healthy energy metabolism</td></tr>
+        <tr><td class="bad">reverses aging</td><td class="ok">supports healthy aging</td></tr>
+        <tr><td class="bad">clinically proven · doctor-recommended</td><td class="ok">only with a real, citable, held study</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note warn wrap">
+    <span class="lbl">The dementia line, specifically</span>
+    <p>The report's most emotionally loaded finding is <em>"I'm terrified I'm losing my mind like my mother did."</em> It is true, it is powerful, and it must <strong>never appear in an ad</strong> — naming a relative's diagnosis alongside a supplement is a disease claim and an implied treatment claim in one sentence.</p>
+    <p>Use the observable moment instead: <em>"The word just wouldn't come. Mid-sentence. In front of my daughter."</em> The fear is fully present. Nothing actionable was claimed.</p>
+  </div>
+
+  <h3>The 60-second pre-shoot check</h3>
+  <ol class="rule-list wrap">
+    <li><span>Search the script for <strong>"you"</strong> or <strong>"your"</strong> beside any health word. Rewrite to first person.</span></li>
+    <li><span>Search for any <strong>disease name</strong>. Delete it.</span></li>
+    <li><span>Search for <strong>cure / treat / prevent / reverse / clinically proven / doctor recommended</strong>. Delete or substantiate.</span></li>
+    <li><span>Confirm every <strong>number</strong> — 1000mg, 64%, review count, 60 days — is real and current.</span></li>
+    <li><span>Confirm every <strong>document or screenshot</strong> shown on camera is genuine.</span></li>
+    <li><span>Confirm the <strong>FDA disclaimer</strong> is present where required.</span></li>
+  </ol>
+</section>
+
+<section id="launch">
+  <div class="sec-head"><span class="sec-num">12</span><h2>The 90-day plan</h2></div>
+  <p class="wrap">Net revenue runs <strong>$88–95K/month</strong> (gross less the stabilized ~34% discount). With a blended ROAS realistically between 1.4× and 1.8×, that implies roughly <strong>$1,600–2,100/day</strong> in Meta spend. Everything below uses <span class="mono">$1,800/day</span> as the worked example and is expressed as a percentage, so it scales cleanly.</p>
+
+  <div class="metrics">
+    <div class="metric"><span class="k">Testing</span><span class="v">22%</span><span class="s">$400/day · find new winners</span></div>
+    <div class="metric"><span class="k">Scaling</span><span class="v">66%</span><span class="s">$1,200/day · proven concepts only</span></div>
+    <div class="metric"><span class="k">Retarget + retain</span><span class="v">12%</span><span class="s">$200/day · incl. Day 75–120</span></div>
+  </div>
+
+  <div class="note warn wrap">
+    <span class="lbl">If testing is under 15% of spend</span>
+    <p>That is why the account feels fatigued. An account with no testing budget has no pipeline, and every winner eventually dies.</p>
+  </div>
+
+  <h3>Naming convention</h3>
+  <p class="wrap"><span class="mono">[MMDD]_[Persona]_[Awareness]_[Pillar]_[Angle]_[Format]_[Creator]_[Version]</span></p>
+  <p class="wrap"><span class="mono" style="color:var(--caramel)">0912_LindaB_PA_Energy_3PMCrash_UGC_C04_v1</span></p>
+  <p class="wrap">Versions: <span class="mono">v1.1</span> new hook · <span class="mono">v1.2</span> new intro · <span class="mono">v1.3</span> new CTA · <span class="mono">v2</span> new edit · <span class="mono">v2-15s</span> length cut.</p>
+  <p class="wrap">This is not bureaucracy. At month six you'll have 300+ ads, and filtering by <span class="mono">_Trust_</span> to read aggregate CPA is how you learn that Trust beats Value by 30% — which decides where next quarter's twelve concepts come from. Without the convention, that question is unanswerable.</p>
+
+  <h3>Test design rules</h3>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Rule</th><th class="num">Value</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Concepts live in testing at once</td><td class="num">6–8</td><td>Fewer starves learning, more starves each ad</td></tr>
+        <tr><td>Judge engagement metrics at</td><td class="num">$28</td><td>1× target CPA — hook rate and CTR are readable this early</td></tr>
+        <tr><td>Kill with zero purchases at</td><td class="num">$85</td><td>3× target CPA — beyond this you're paying for a known answer</td></tr>
+        <tr><td>Declare a winner at</td><td class="num">50 purchases</td><td>or $200 spent, whichever comes first</td></tr>
+        <tr><td>Promote to scaling when</td><td class="num">CPA ≤ $28 × 3 days</td><td>One good day is variance</td></tr>
+        <tr><td>Budget increase per step</td><td class="num">≤ 20–30%</td><td>Larger jumps reset learning</td></tr>
+        <tr><td>Variables per iteration</td><td class="num">exactly 1</td><td>Otherwise the result teaches nothing</td></tr>
+        <tr><td>Expected hit rate</td><td class="num">~1 in 6</td><td>This is normal. Plan volume around it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Timing: launch Thursday</h3>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Day</th><th class="num">Orders</th><th>Index</th></tr></thead>
+      <tbody>
+        <tr><td>Saturday</td><td class="num">742</td><td><strong>Highest</strong></td></tr>
+        <tr><td>Thursday</td><td class="num">732</td><td>Near-peak — <strong>launch day</strong></td></tr>
+        <tr><td>Tuesday</td><td class="num">695</td><td>Strong</td></tr>
+        <tr><td>Sunday</td><td class="num">679</td><td>—</td></tr>
+        <tr><td>Wednesday</td><td class="num">674</td><td>—</td></tr>
+        <tr><td>Friday</td><td class="num">673</td><td>—</td></tr>
+        <tr><td>Monday</td><td class="num">575</td><td class="bad">Lowest — 22% below Saturday</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="wrap">Launching Thursday puts the learning phase across Thu–Fri–Sat, your three-day volume peak, so the ad set exits learning faster and on better data.</p>
+
+  <h3>Dayparting — surgical, not everywhere</h3>
+  <p class="wrap">Your peaks are <strong>11am EST</strong> (299 orders/hr, your single best hour) and <strong>7pm EST</strong> (293/hr), with the 2–5pm crash window at 229–252/hr.</p>
+  <div class="note wrap">
+    <span class="lbl">Do not daypart the scaling campaign</span>
+    <p>Meta requires a lifetime budget for ad scheduling, it fights Advantage+ delivery, and restricting hours on your main spend costs the algorithm room to find cheap conversions. You will usually lose more to constrained delivery than you gain from timing.</p>
+  </div>
+  <div class="note good wrap">
+    <span class="lbl">Do run one dayparted campaign</span>
+    <p><span class="mono">PI_MOMENT_3PM</span> — ~$150/day, lifetime budget, scheduled 2–5pm EST, carrying only the 3pm-crash creative. It is the only asset in the account whose message is <em>literally about the moment it's delivered in</em>: she is living the pain point as she reads it. Nothing else gets that lift from timing, so nothing else earns the constraint.</p>
+    <p>The timing data also pays off with zero downside on <strong>launch timing</strong>, <strong>email/SMS sends</strong> (10:30am and 6:30pm EST), and <strong>budget increases</strong> — make them in the morning.</p>
+  </div>
+
+  <h3>What this actually requires</h3>
+  <p class="wrap"><strong>The single biggest predictor of whether this plan works is whether you actually ship eight new concepts a month.</strong> At a 1-in-6 hit rate, eight concepts is 1.3 new winners per month — just enough to outpace fatigue. At three a month you are shipping half a winner, and the account declines no matter how good the strategy document is.</p>
+  <p class="wrap">If capacity is the constraint, cut iterations before net-new concepts, shift the mix toward VO-montage and static concepts that need no creator booking, and cut Wave 3 depth before Wave 1 gap-fillers. <strong>Never cut C04, C06, or C03.</strong></p>
+</section>
+
+<section id="measure">
+  <div class="sec-head"><span class="sec-num">13</span><h2>Measurement</h2></div>
+  <p class="wrap">ROAS tells you <em>whether</em> something is broken. These four tell you <em>what</em> is broken — the only thing you can act on. Set them up as a custom column preset in this order, and every diagnosis becomes a left-to-right read: the first bad column is your problem, and everything to its right is downstream noise.</p>
+
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Metric</th><th>Formula</th><th>Diagnoses</th><th class="num">Kill</th><th class="num">Strong</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hook rate</strong></td><td class="mono">3s plays ÷ impressions</td><td>The first 3 seconds</td><td class="num bad">&lt;20%</td><td class="num ok">&gt;35%</td></tr>
+        <tr><td><strong>Hold rate</strong></td><td class="mono">ThruPlays ÷ 3s plays</td><td>The body, 3–15s</td><td class="num bad">&lt;10%</td><td class="num ok">&gt;25%</td></tr>
+        <tr><td><strong>Outbound CTR</strong></td><td class="mono">outbound clicks ÷ impr.</td><td>Whether it gave a reason to act</td><td class="num bad">&lt;0.8%</td><td class="num ok">&gt;1.6%</td></tr>
+        <tr><td><strong>Outbound CPC</strong></td><td class="mono">spend ÷ outbound clicks</td><td>Attention → traffic efficiency</td><td class="num bad">&gt;$1.60</td><td class="num ok">&lt;$0.90</td></tr>
+        <tr><td><strong>LPV rate</strong></td><td class="mono">LPVs ÷ outbound clicks</td><td>Page load / link health</td><td class="num bad">&lt;70%</td><td class="num ok">&gt;90%</td></tr>
+        <tr><td><strong>Site CVR</strong></td><td class="mono">purchases ÷ LPVs</td><td>Ad-to-page message match</td><td class="num bad">&lt;3%</td><td class="num ok">&gt;5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="wrap" style="font-size:.85rem;color:var(--ink-3)">The offer-math numbers in section 03 are arithmetic from your own account and are not negotiable. These thresholds are directional category benchmarks — replace them with your own trailing-90-day medians once you have 30+ ads tagged with the naming convention.</p>
+
+  <div class="note good wrap">
+    <span class="lbl">Your site converts well</span>
+    <p>4.38% on a $56 AOV supplement is genuinely strong. That means when an ad underperforms, the problem is almost always <strong>upstream of the page</strong>. Fix the ad, not the site.</p>
+  </div>
+
+  <h3>The diagnostic decision tree</h3>
+  <p class="wrap">Run this on every ad that misses target. Thirty seconds, and it turns "the ad didn't work" into a specific, cheap, correct next action.</p>
+  <div class="tree">
+    <div class="branch"><span class="cond">Hook &lt; 20%</span><span class="then"><b>The first 3 seconds failed.</b>Nothing downstream matters. Shoot three new hooks against the same body — near-zero cost if you kept the raw footage.<span class="fix">→ v1.1</span></span></div>
+    <div class="branch"><span class="cond">Hold &lt; 10%</span><span class="then"><b>You stopped the scroll and lost her at 3–15s.</b>Slow second beat, no turn, or the hook wrote a cheque the body didn't cash. Re-edit 3–15s only. Cut two seconds. Move the turn earlier.<span class="fix">→ v1.2</span></span></div>
+    <div class="branch"><span class="cond">CTR &lt; 0.8%</span><span class="then"><b>She watched and didn't act. You entertained her.</b>No clear offer, weak CTA, or the ad never said what to do. New last eight seconds plus new primary text.<span class="fix">→ v1.3</span></span></div>
+    <div class="branch"><span class="cond">LPV &lt; 70%</span><span class="then"><b>Technical, not creative.</b>Slow page, broken link, wrong destination. Check the URL and page speed.<span class="fix">→ not a creative fix</span></span></div>
+    <div class="branch"><span class="cond">CVR &lt; 3%</span><span class="then"><b>Message mismatch — the most-missed diagnosis.</b>The ad promised something the page doesn't deliver. An ad about the 3pm crash should not land on a generic product page.<span class="fix">→ match the page to the ad</span></span></div>
+    <div class="branch"><span class="cond">All OK</span><span class="then"><b>Check frequency and overlap.</b>Above 2.5 in the same audience is fatigue — retire it. If everything is clean, the offer isn't competitive for that audience. That's a strategy problem, not a creative one.</span></div>
+  </div>
+
+  <h3>Reading it in practice</h3>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th class="num">Hook</th><th class="num">Hold</th><th class="num">CTR</th><th>Verdict</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td class="num">18%</td><td class="num">22%</td><td class="num">1.4%</td><td><strong>A great ad nobody sees</strong></td><td>New hooks. The most recoverable ad in the account.</td></tr>
+        <tr><td class="num">42%</td><td class="num">8%</td><td class="num">0.5%</td><td>Clickbait</td><td>Hook overpromised. Rewrite the body to earn it.</td></tr>
+        <tr><td class="num">38%</td><td class="num">24%</td><td class="num">1.8%</td><td>Ad is fine, CPA isn't</td><td>Page, offer, or frequency. Don't touch the creative.</td></tr>
+        <tr><td class="num">15%</td><td class="num">6%</td><td class="num">0.3%</td><td>Dead</td><td>Kill. The concept is wrong, not the execution.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note key wrap">
+    <span class="lbl">Row one is where the money is</span>
+    <p>A 22% hold rate behind an 18% hook rate means you have a genuinely persuasive ad that almost nobody watches. Three new hooks against existing footage costs a few hundred dollars and often doubles the ad's output. Beginners kill these. Don't.</p>
+  </div>
+</section>
+
+<section id="iterate">
+  <div class="sec-head"><span class="sec-num">14</span><h2>Iteration</h2></div>
+  <p class="wrap">When a concept wins, do not go looking for a new idea. Strip-mine the winner — a single win should produce <strong>eight to fifteen assets.</strong></p>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th class="num">Step</th><th>Iteration</th><th>Cost</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td><strong>Three new hooks</strong>, same body</td><td>~$0 with archived footage</td><td>Highest ROI move available</td></tr>
+        <tr><td class="num">2</td><td><strong>Three new creators</strong>, same script</td><td>One booking cycle</td><td>Unlocks new delivery pockets</td></tr>
+        <tr><td class="num">3</td><td><strong>Length cuts</strong> — 15s / 30s / 45s</td><td>Editing only</td><td>Different placements reward different lengths</td></tr>
+        <tr><td class="num">4</td><td><strong>Format port</strong> — video → static + carousel</td><td>Half a day</td><td>Cheap incremental reach</td></tr>
+        <tr><td class="num">5</td><td><strong>Awareness port</strong> — same angle, moved up or down the ladder</td><td>New script</td><td>Opens a new audience</td></tr>
+        <tr><td class="num">6</td><td><strong>Persona port</strong> — rewritten for Robert or Dana</td><td>New script + creator</td><td>Opens a new demographic</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="wrap">If C04 wins, that ladder yields nine assets — one production cycle's output, at a fraction of the cost and a far higher hit rate than nine cold concepts. This is the difference between an account that plateaus and one that compounds.</p>
+</section>
+
+<section id="rituals">
+  <div class="sec-head"><span class="sec-num">15</span><h2>The rituals</h2></div>
+
+  <h3>Weekly — 60 minutes, Thursdays</h3>
+  <p class="wrap">Thursday is your launch day and your second-highest volume day, so you decide and ship in the same session.</p>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th class="num">Min</th><th>Step</th></tr></thead>
+      <tbody>
+        <tr><td class="num">0–10</td><td>Update the scorecard: spend, CPA, ROAS by concept</td></tr>
+        <tr><td class="num">10–25</td><td>Run the decision tree on every underperformer. Assign a fix code.</td></tr>
+        <tr><td class="num">25–35</td><td><strong>Kill</strong> anything at $85 spent with zero purchases</td></tr>
+        <tr><td class="num">35–45</td><td><strong>Scale</strong> +20–30% on anything under $28 CPA for three straight days</td></tr>
+        <tr><td class="num">45–55</td><td><strong>Iterate</strong> — brief three iterations of the week's best concept</td></tr>
+        <tr><td class="num">55–60</td><td><strong>Mine</strong> — log five new quotes from this week's ad comments</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="wrap">That last ten minutes is the compounding step. Your ad comments are a free, continuously refreshing source of the exact objections your <em>current, colder</em> audience holds. Most teams never read them.</p>
+
+  <h3>Monthly — 2 hours, four pivot tables</h3>
+  <p class="wrap">Spend, CPA and ROAS by <strong>pillar</strong> (which territory to go deeper on), by <strong>awareness level</strong> (whether the funnel has drifted back to offers), by <strong>format</strong> (where production hours go), and by <strong>creator</strong> (who to rebook). All four are one filter away if you followed the naming convention. None are answerable if you didn't.</p>
+  <p class="wrap">Then re-run the Gap Analysis — gaps reopen as you scale, and an audience you fully served last month can be under-served this month at 1.5× the budget. Refresh the Objection Ledger. Retire anything above 2.5 frequency. Recalculate the offer math: if AOV or site CVR moved, every kill threshold in this manual moved with it.</p>
+
+  <h3>The four failure modes</h3>
+  <div class="scroll wide">
+    <table>
+      <thead><tr><th>Failure</th><th>Symptom</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr><td><strong>No pipeline</strong></td><td>Same four ads carrying 70%+ of spend for six weeks; everything feels like "creative fatigue"</td><td>Testing budget too low. Get to 20%+ and eight concepts a month.</td></tr>
+        <tr><td><strong>Volume without strategy</strong></td><td>Twenty new ads a month, hit rate under 1-in-12</td><td>You're skipping research. Every ad should fill a named grid cell.</td></tr>
+        <tr><td><strong>Winner abandonment</strong></td><td>Winners found and never iterated</td><td>Run the ladder. Eight to fifteen assets per win, not one.</td></tr>
+        <tr><td><strong>Funnel collapse</strong></td><td>ROAS looks great, revenue is flat or falling</td><td>Check the awareness distribution. Unaware + Problem-aware should be ~45% of spend.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note warn wrap">
+    <span class="lbl">The fourth one is the dangerous one</span>
+    <p>Because the dashboard looks <em>better</em> while the business gets <em>smaller</em>. Offer ads to a warm audience will always show a good ROAS. They just run out of people.</p>
+  </div>
+
+  <footer>
+    <p><strong>Sources.</strong> Dara Denney, <em>"How I Build an Elite Creative Strategy for a Brand in One Sitting"</em> · Prime Ingredients NMN Deep Customer Intelligence Report, May 20 2026 (Shopify: 110K sessions, 5,538 orders, 150+ customer records · Meta Ads 90-day demographics · ManyChat 13 tags).</p>
+    <p><strong>Two inputs were unavailable when this was built and are flagged inline.</strong> The live product page at tryprimeingredients.com was blocked by network egress, so all product-page facts — pricing, review count, Forbes/ELLE placements, and the "64% of NMN products fail lab tests" claim — come from the intelligence report and must be verified as current and substantiated before they air. Live Meta Ads Manager data was unavailable because the connector was not authorized, so section 07 ships as a worksheet rather than a finding.</p>
+    <p>Full text, all 75 hooks, 14 scripts, 12 static concepts and 5 working templates: <span class="mono">/creative-strategy</span> on branch <span class="mono">claude/meta-ads-creative-sop-8galb0</span>.</p>
+  </footer>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  var secs  = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function sync(){
+    var y = window.scrollY + 120, cur = 0;
+    for (var i=0;i<secs.length;i++){ if (secs[i] && secs[i].offsetTop <= y) cur = i; }
+    links.forEach(function(a,i){ a.classList.toggle('on', i===cur); });
+  }
+  var tick = false;
+  window.addEventListener('scroll', function(){
+    if (tick) return; tick = true;
+    window.requestAnimationFrame(function(){ sync(); tick = false; });
+  }, {passive:true});
+  sync();
+})();
+</script>
