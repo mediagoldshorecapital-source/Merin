@@ -1,0 +1,707 @@
+<title>NMN Static Ads Playbook — Prime Ingredients</title>
+<style>
+  /* ---------- tokens: light (bare :root = complete palette) ---------- */
+  :root{
+    --ground:#F7F8F8;
+    --surface:#FFFFFF;
+    --surface-2:#EFF2F2;
+    --ink:#14201F;
+    --ink-2:#485756;
+    --ink-3:#6E7C7B;
+    --rule:#D8DFDE;
+    --rule-soft:#E7ECEB;
+    --accent:#0E5257;
+    --accent-soft:#DCEAEA;
+    --accent-ink:#0E5257;
+    --neg:#9E3223;
+    --neg-soft:#F6E4E1;
+    --pos:#2C6B47;
+    --pos-soft:#DFEDE4;
+    --warn:#8A5A12;
+    --warn-soft:#F6EBD8;
+    --shadow:0 1px 2px rgba(20,32,31,.06),0 8px 24px -12px rgba(20,32,31,.18);
+
+    --f-display:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --f-body:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --f-data:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+
+    --measure:68ch;
+    --pad:clamp(1.15rem,4vw,2.75rem);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1514;
+      --surface:#151E1D;
+      --surface-2:#1C2726;
+      --ink:#E6ECEB;
+      --ink-2:#A9B7B6;
+      --ink-3:#7F8E8D;
+      --rule:#2A3736;
+      --rule-soft:#212D2C;
+      --accent:#6FD3D0;
+      --accent-soft:#16302F;
+      --accent-ink:#8FE0DD;
+      --neg:#E58B79;
+      --neg-soft:#31201C;
+      --pos:#7FC79B;
+      --pos-soft:#1A2C22;
+      --warn:#DDAE63;
+      --warn-soft:#2C2416;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1514;
+    --surface:#151E1D;
+    --surface-2:#1C2726;
+    --ink:#E6ECEB;
+    --ink-2:#A9B7B6;
+    --ink-3:#7F8E8D;
+    --rule:#2A3736;
+    --rule-soft:#212D2C;
+    --accent:#6FD3D0;
+    --accent-soft:#16302F;
+    --accent-ink:#8FE0DD;
+    --neg:#E58B79;
+    --neg-soft:#31201C;
+    --pos:#7FC79B;
+    --pos-soft:#1A2C22;
+    --warn:#DDAE63;
+    --warn-soft:#2C2416;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--f-body);font-size:17px;line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.u,.num,th,.btn{font-family:var(--f-display)}
+  a{color:var(--accent-ink)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+
+  /* ---------- shell ---------- */
+  .shell{display:grid;grid-template-columns:1fr;max-width:1240px;margin:0 auto}
+  @media(min-width:1040px){
+    .shell{grid-template-columns:246px 1fr;gap:0;align-items:start}
+    .rail{position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--rule);padding:2.6rem 1.4rem 2rem 1.6rem}
+  }
+  .rail{padding:1.5rem var(--pad);border-bottom:1px solid var(--rule)}
+  .rail .brand{font-family:var(--f-display);font-weight:700;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 1.15rem}
+  .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.15rem .9rem}
+  @media(min-width:1040px){.rail ol{display:block}}
+  .rail a{
+    display:flex;gap:.6rem;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    font-family:var(--f-display);font-size:.885rem;line-height:1.35;padding:.34rem 0;
+  }
+  .rail a:hover{color:var(--accent-ink)}
+  .rail a .n{font-family:var(--f-data);font-size:.72rem;color:var(--ink-3);min-width:1.5em}
+
+  main{padding:clamp(2rem,5vw,4rem) var(--pad) 6rem;min-width:0}
+  section{max-width:var(--measure);margin:0 0 clamp(3rem,6vw,4.75rem)}
+  section.wide{max-width:min(100%,1000px)}
+
+  /* ---------- type ---------- */
+  h1{font-size:clamp(2.1rem,5.2vw,3.35rem);line-height:1.02;letter-spacing:-.032em;font-weight:800;margin:.35rem 0 .9rem;text-wrap:balance;max-width:16ch}
+  h2{font-size:clamp(1.35rem,3vw,1.78rem);line-height:1.16;letter-spacing:-.02em;font-weight:750;margin:0 0 .3rem;text-wrap:balance}
+  h3{font-size:1.05rem;letter-spacing:-.008em;font-weight:700;margin:2.1rem 0 .5rem;text-wrap:balance}
+  h4{font-size:.94rem;font-weight:700;margin:1.5rem 0 .35rem}
+  p{margin:0 0 1rem}
+  .lede{font-size:1.1rem;color:var(--ink-2)}
+  .u{display:block;font-size:.735rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:.55rem}
+  .u .n{font-family:var(--f-data);color:var(--ink-3);margin-right:.6em;letter-spacing:.05em}
+  .sub{color:var(--ink-3);font-size:.94rem;margin:.15rem 0 1.6rem}
+  code,.mono{font-family:var(--f-data);font-size:.855em;background:var(--surface-2);padding:.12em .42em;border-radius:4px}
+  strong{font-weight:700}
+  em.q{font-style:italic;color:var(--ink-2)}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.5rem 0}
+
+  /* ---------- header ---------- */
+  .masthead{max-width:min(100%,1000px);border-bottom:1px solid var(--rule);padding-bottom:2.1rem;margin-bottom:clamp(2.4rem,5vw,3.5rem)}
+  .meta{display:flex;flex-wrap:wrap;gap:.45rem .7rem;margin-top:1.3rem}
+  .tag{font-family:var(--f-data);font-size:.72rem;letter-spacing:.03em;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--rule-soft);border-radius:999px;padding:.28rem .68rem}
+
+  /* ---------- KPI band ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin:1.6rem 0}
+  .kpi{background:var(--surface);padding:1rem 1.05rem}
+  .kpi .k{font-family:var(--f-display);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .kpi .v{font-family:var(--f-data);font-variant-numeric:tabular-nums;font-size:1.5rem;line-height:1.15;margin:.42rem 0 .12rem;letter-spacing:-.02em}
+  .kpi .t{font-family:var(--f-data);font-size:.775rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+  .kpi.bad .v{color:var(--neg)}
+  .kpi.good .v{color:var(--pos)}
+
+  /* ---------- callouts ---------- */
+  .box{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:1.15rem 1.25rem;margin:1.3rem 0;box-shadow:var(--shadow)}
+  .box>:last-child{margin-bottom:0}
+  .box.accent{border-left:3px solid var(--accent)}
+  .box.neg{border-left:3px solid var(--neg);background:var(--neg-soft)}
+  .box.pos{border-left:3px solid var(--pos);background:var(--pos-soft)}
+  .box.warn{border-left:3px solid var(--warn);background:var(--warn-soft)}
+  .box .bt{font-family:var(--f-display);font-size:.73rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:.5rem;display:block}
+  .box.neg .bt{color:var(--neg)}.box.pos .bt{color:var(--pos)}.box.warn .bt{color:var(--warn)}.box.accent .bt{color:var(--accent-ink)}
+
+  .calc{font-family:var(--f-data);font-variant-numeric:tabular-nums;font-size:.86rem;line-height:1.85;white-space:pre;overflow-x:auto;display:block;color:var(--ink-2)}
+  .calc b{color:var(--ink);font-weight:700}
+
+  /* ---------- tables ---------- */
+  .tw{overflow-x:auto;margin:1.25rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:.885rem;font-family:var(--f-display)}
+  th{text-align:left;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);padding:.72rem .85rem;border-bottom:1px solid var(--rule);white-space:nowrap}
+  td{padding:.68rem .85rem;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.45}
+  tr:last-child td{border-bottom:0}
+  td.n,th.n{font-family:var(--f-data);font-variant-numeric:tabular-nums;white-space:nowrap}
+  td.neg{color:var(--neg);font-weight:600}
+  td.pos{color:var(--pos);font-weight:600}
+  .code-cell{font-family:var(--f-data);font-size:.78rem;color:var(--ink-2);white-space:nowrap}
+
+  /* ---------- persona ---------- */
+  .persona{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:1.5rem 1.55rem;box-shadow:var(--shadow)}
+  .persona p{font-size:1.02rem}
+  .persona p:first-of-type{font-size:1.16rem;font-weight:600;font-family:var(--f-display);letter-spacing:-.015em}
+  .persona .hi{background:var(--accent-soft);color:var(--accent-ink);padding:.05em .3em;border-radius:3px;font-weight:600}
+
+  /* ---------- territory chips ---------- */
+  .terr{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:.75rem;margin:1.3rem 0}
+  .t-card{background:var(--surface);border:1px solid var(--rule);border-radius:9px;padding:.9rem 1rem}
+  .t-card .c{font-family:var(--f-data);font-size:.74rem;font-weight:700;letter-spacing:.1em;color:var(--accent-ink);display:block;margin-bottom:.3rem}
+  .t-card .nm{font-family:var(--f-display);font-weight:700;font-size:.98rem;display:block;margin-bottom:.3rem}
+  .t-card .d{font-size:.88rem;color:var(--ink-2);line-height:1.45}
+
+  /* ---------- laws ---------- */
+  ol.laws{list-style:none;counter-reset:l;margin:1.3rem 0;padding:0;display:grid;gap:.1rem}
+  ol.laws li{counter-increment:l;display:grid;grid-template-columns:2.1rem 1fr;gap:.5rem;padding:.62rem 0;border-bottom:1px solid var(--rule-soft);font-size:.96rem}
+  ol.laws li:last-child{border-bottom:0}
+  ol.laws li::before{content:counter(l,decimal-leading-zero);font-family:var(--f-data);font-size:.78rem;color:var(--ink-3);padding-top:.22em}
+
+  /* ---------- headline specimens ---------- */
+  .spec{display:grid;gap:.5rem;margin:1.1rem 0}
+  .hl{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:8px;padding:.72rem .95rem;font-family:var(--f-display);font-weight:650;font-size:1.02rem;letter-spacing:-.012em;line-height:1.3}
+  .hl .tt{display:block;font-family:var(--f-data);font-size:.68rem;font-weight:700;letter-spacing:.11em;color:var(--ink-3);margin-bottom:.28rem}
+
+  /* ---------- timeline ad demo ---------- */
+  .tl{border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin:1.2rem 0;max-width:420px}
+  .tl .r{display:grid;grid-template-columns:5.6rem 1fr;gap:.7rem;padding:.78rem 1rem;align-items:baseline}
+  .tl .r .w{font-family:var(--f-data);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .tl .r .b{font-family:var(--f-display);font-size:.97rem;font-weight:600}
+  .tl .r1{background:var(--accent-soft);color:var(--ink)}
+  .tl .r2{background:color-mix(in srgb,var(--accent) 34%,var(--surface));color:var(--ink)}
+  .tl .r3{background:var(--accent);color:var(--ground)}
+  .tl .r3 .w{color:var(--ground);opacity:.85}
+  .tl .foot{background:var(--surface);padding:.72rem 1rem;font-family:var(--f-data);font-size:.78rem;color:var(--ink-2);border-top:1px solid var(--rule)}
+
+  /* ---------- format grid ---------- */
+  .fmts{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:.7rem;margin:1.3rem 0}
+  .fmt{background:var(--surface);border:1px solid var(--rule);border-radius:9px;padding:.85rem .95rem}
+  .fmt .id{font-family:var(--f-data);font-size:.72rem;color:var(--ink-3);letter-spacing:.06em}
+  .fmt .nm{font-family:var(--f-display);font-weight:700;font-size:.95rem;margin:.2rem 0 .3rem;display:block}
+  .fmt .d{font-size:.85rem;color:var(--ink-2);line-height:1.42}
+  .fmt .st{font-family:var(--f-data);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);display:block;margin-top:.5rem}
+
+  /* ---------- rules columns ---------- */
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.85rem;margin:1.3rem 0}
+  .rule-col{border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--surface)}
+  .rule-col header{padding:.62rem .9rem;font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+  .rule-col.k header{background:var(--neg-soft);color:var(--neg)}
+  .rule-col.w header{background:var(--warn-soft);color:var(--warn)}
+  .rule-col.v header{background:var(--pos-soft);color:var(--pos)}
+  .rule-col ul{margin:0;padding:.7rem .9rem .8rem 1.9rem;font-size:.885rem;line-height:1.5}
+  .rule-col li{margin-bottom:.42rem}
+  .rule-col li:last-child{margin-bottom:0}
+  .rule-col .mono{background:transparent;padding:0;font-weight:600;color:var(--ink)}
+
+  /* ---------- weeks ---------- */
+  .weeks{display:grid;gap:.6rem;margin:1.3rem 0}
+  .wk{display:grid;grid-template-columns:5.2rem 1fr;gap:1rem;background:var(--surface);border:1px solid var(--rule);border-radius:9px;padding:.9rem 1rem}
+  .wk .lbl{font-family:var(--f-data);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink)}
+  .wk .bd{font-size:.92rem;line-height:1.5}
+  .wk .bd b{font-family:var(--f-display)}
+
+  ul.plain{margin:.8rem 0;padding-left:1.15rem}
+  ul.plain li{margin-bottom:.42rem}
+
+  footer{max-width:min(100%,1000px);border-top:1px solid var(--rule);padding-top:1.5rem;color:var(--ink-3);font-size:.86rem}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="shell">
+<nav class="rail" aria-label="Sections">
+  <p class="brand">NMN Static Ads</p>
+  <ol>
+    <li><a href="#stakes"><span class="n">00</span>The number</a></li>
+    <li><a href="#linda"><span class="n">01</span>Linda</a></li>
+    <li><a href="#angles"><span class="n">02</span>Angles</a></li>
+    <li><a href="#laws"><span class="n">03</span>The 12 laws</a></li>
+    <li><a href="#copy"><span class="n">04</span>Copy frameworks</a></li>
+    <li><a href="#formats"><span class="n">05</span>Formats</a></li>
+    <li><a href="#craft"><span class="n">06</span>Design specs</a></li>
+    <li><a href="#test"><span class="n">07</span>Testing rules</a></li>
+    <li><a href="#plan"><span class="n">08</span>30-day plan</a></li>
+    <li><a href="#legal"><span class="n">09</span>Compliance</a></li>
+    <li><a href="#files"><span class="n">10</span>The files</a></li>
+  </ol>
+</nav>
+
+<main>
+  <header class="masthead">
+    <span class="u">Prime Ingredients · NMN Complex 1000mg</span>
+    <h1>The Meta Static Ads Playbook</h1>
+    <p class="lede">How to build, launch and read static creatives for a 62-year-old woman in Phoenix who is tired, skeptical, and buys six bottles at a time.</p>
+    <div class="meta">
+      <span class="tag">Sources: Static Ads Mastery · Linda Intelligence Report</span>
+      <span class="tag">Targets from live Triple Whale data · 30d to 10 Aug 2026</span>
+      <span class="tag">v1.0 · 11 Aug 2026</span>
+    </div>
+  </header>
+
+  <!-- 00 -->
+  <section id="stakes" class="wide">
+    <span class="u"><span class="n">00</span>The number this playbook exists to move</span>
+    <h2>Spend doubled. Revenue doubled. Profit got worse.</h2>
+    <p class="sub">Last 30 days vs the 30 before it.</p>
+
+    <div class="kpis">
+      <div class="kpi"><span class="k">Sales</span><span class="v">$131,967</span><span class="t">+90% vs prior</span></div>
+      <div class="kpi"><span class="k">Meta spend</span><span class="v">$90,184</span><span class="t">+90% vs prior</span></div>
+      <div class="kpi bad"><span class="k">Net profit</span><span class="v">−$12,926</span><span class="t">was −$5,784</span></div>
+      <div class="kpi bad"><span class="k">Blended CPA</span><span class="v">$39.68</span><span class="t">break-even $33.83</span></div>
+      <div class="kpi bad"><span class="k">AOV</span><span class="v">$55.78</span><span class="t">was $60.02 · −7%</span></div>
+      <div class="kpi bad"><span class="k">CPM</span><span class="v">$121.07</span><span class="t">was $87.90 · +38%</span></div>
+    </div>
+
+    <h3>The diagnosis, in three lines</h3>
+    <p><strong>CPM rose 38%.</strong> That is the signature of creative fatigue — the same few assets shown to the same Sunbelt women too many times. More spend buys more expensive impressions.</p>
+    <p><strong>AOV fell 7%.</strong> The extra volume arrived on smaller bundles. The creative is selling <em class="q">a bottle</em>, not <em class="q">the six-bottle commitment.</em></p>
+    <p><strong>Cost per add-to-cart rose 80%</strong> ($20.62 → $37.17) while site conversion held flat at 3.5%. Click-through went <em class="q">up</em> at the same time. That combination means one thing: curiosity clicks, not buying clicks.</p>
+
+    <div class="box accent">
+      <span class="bt">Break-even, exactly</span>
+      <span class="calc">Gross profit          $77,060
+Sales                $131,967
+Gross margin            <b>58.4%</b>
+
+Gross profit / order  $77,060 ÷ 2,278  =  <b>$33.83</b>
+Current CPA                              <b>$39.68</b>
+Gap                                      <b>−$5.85 per order</b>
+
+−$5.85 × 2,278 orders  =  <b>−$13,325</b>   ← the reported loss</span>
+      <p style="margin-top:.9rem">There is no hidden problem. We are simply paying $5.85 too much for every customer.</p>
+    </div>
+
+    <div class="box pos">
+      <span class="bt">The prize</span>
+      <span class="calc">Hold spend at $90,184/mo. Move CPA to $30 and AOV to $62:
+
+Orders    $90,184 ÷ $30    =  3,006      <b>(+728)</b>
+Revenue   3,006 × $62      =  $186,372   <b>(+$54,405)</b>
+Gross profit × 58.4%       =  $108,841
+Less ad spend              −  $90,184
+NET                        =  <b>+$18,657 / month</b></span>
+      <p style="margin-top:.9rem"><strong>A $31,583/month swing at identical spend.</strong> Every rule in this playbook exists to move one of the five numbers above.</p>
+    </div>
+
+    <div class="tw">
+      <table>
+        <caption class="sr-only"></caption>
+        <thead><tr><th>Metric</th><th class="n">Today</th><th class="n">Target</th><th>How creative gets it there</th></tr></thead>
+        <tbody>
+          <tr><td>Blended CPA</td><td class="n neg">$39.68</td><td class="n pos">≤ $30.00</td><td>Better angle-to-audience fit, fewer curiosity clicks</td></tr>
+          <tr><td>Blended ROAS</td><td class="n neg">1.46</td><td class="n pos">≥ 1.86</td><td>Same lever, stated differently</td></tr>
+          <tr><td>AOV</td><td class="n neg">$55.78</td><td class="n pos">≥ $62.00</td><td>Timeline + Bundle Maths formats put the 6-bottle offer <em>in the image</em></td></tr>
+          <tr><td>CPM</td><td class="n neg">$121.07</td><td class="n pos">≤ $95</td><td>12–16 fresh statics per week. Volume is the only lever here.</td></tr>
+          <tr><td>Cost per ATC</td><td class="n neg">$37.17</td><td class="n pos">≤ $24</td><td>Ad promise matched to landing-page promise</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box warn">
+      <span class="bt">One thing creative can't fix</span>
+      <p>Site bounce rate is 93.9% and pages-per-session is 1.12. Better creative raises the quality of the click, but there is a hard ceiling on CPA until the landing page gets its own sprint. Worth scheduling right after creative volume is flowing.</p>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section id="linda">
+    <span class="u"><span class="n">01</span>The buyer</span>
+    <h2>Every ad is written to one person</h2>
+    <div class="persona">
+      <p>Her name is Linda. She's 62.</p>
+      <p>She lives in Phoenix. Retired elementary school teacher. Husband Bill is 66. Four grandchildren — 3, 5, 8 and 11. The 3-year-old is everything to her.</p>
+      <p>She wakes at 6:30 and does not feel rested. Vitamins with coffee. Walks the dog at 8. By 11 AM she is in her chair scrolling Facebook on an iPhone 14 Pro — <span class="hi">299 orders an hour, our single best window.</span></p>
+      <p>She sees the ad. <em class="q">"That's exactly how I feel."</em> She taps. Four minutes on the page: Forbes logo, 5,128 reviews, two reviews from women who sound like her. She picks Buy 3 Get 3 Free. Apple Pay. Done.</p>
+      <p>At 3 PM her energy crashes. At 7 PM she is back in the chair, this time on Instagram. <span class="hi">Second peak, 293 orders an hour.</span></p>
+    </div>
+
+    <h3>Hard facts to design against</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Fact</th><th>Design consequence</th></tr></thead>
+        <tbody>
+          <tr><td class="code-cell">Age 55–70, avg 62</td><td>Presbyopia. Minimum 36px body type on a 1080 canvas. No thin fonts, no grey-on-grey.</td></tr>
+          <tr><td class="code-cell">Tablet 5.11% · Mobile 4.21% · Desktop 1.86%</td><td><strong>4:5 and 9:16 only.</strong> We never design for desktop.</td></tr>
+          <tr><td class="code-cell">Sunbelt: AZ, FL, TX, CA, NV</td><td>Warm light, patios, gardens, walking paths. Never snow, never a corporate office.</td></tr>
+          <tr><td class="code-cell">Peak 11 AM &amp; 7 PM ET</td><td>Schedule delivery from 10:30 AM and 6:30 PM.</td></tr>
+          <tr><td class="code-cell">Saturday 742 · Thursday 732 · Monday 575</td><td>Launch Thursday. <strong>Never launch an ad set on Monday</strong> — 22% fewer orders.</td></tr>
+          <tr><td class="code-cell">40% buy 6 bottles · only 10% buy 1</td><td>She is a bundle buyer. Show the bundle, not the single.</td></tr>
+          <tr><td class="code-cell">Zero discount codes across 4,770 orders</td><td>Never put a promo code in an ad. The offer <em>is</em> the bundle.</td></tr>
+          <tr><td class="code-cell">96% of repeat customers female</td><td>Female-first voice and imagery — but don't exclude men in targeting.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box accent">
+      <span class="bt">Robert — the under-served 20%</span>
+      <p>60–72. Retired professional, veteran, tradesman. Same cities, higher AOV, and a <strong>1.81 ROAS — the most efficient segment in the account.</strong> His fear: <em class="q">"I'm becoming my father."</em> He watched his dad slow down and lose his edge. Give him a fifth of the creative volume. Never exclude men from targeting.</p>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section id="angles" class="wide">
+    <span class="u"><span class="n">02</span>Message architecture</span>
+    <h2>Ten insecurities, six territories</h2>
+    <p>Her fears are the raw material. The right-hand column is what you actually write.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th class="n">#</th><th>The fear</th><th>She says</th><th>Write this</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td><strong>"I'm becoming invisible"</strong></td><td>I'm tired all the time</td><td>Permission that the decline is fixable, not inevitable</td></tr>
+          <tr><td class="n">2</td><td><strong>"Am I losing my mind?"</strong></td><td>Brain fog, can't focus</td><td>Name the moment — blanking mid-sentence. Never say dementia.</td></tr>
+          <tr><td class="n">3</td><td><strong>"I look older than I feel"</strong></td><td>Dull skin, fine lines</td><td>The mirror doesn't match the person inside</td></tr>
+          <tr><td class="n">4</td><td><strong>"I can't keep up with my grandchildren"</strong></td><td>Low energy</td><td>The floor. Getting down on it, and getting back up.</td></tr>
+          <tr><td class="n">5</td><td><strong>"My body stopped listening"</strong></td><td>Post-menopause fatigue, 3 PM crash</td><td>Predictable for 40 years, and now it isn't</td></tr>
+          <tr><td class="n">6</td><td><strong>"I've been scammed before"</strong></td><td>Supplements are a scam</td><td>Validate the distrust, then be the exception</td></tr>
+          <tr><td class="n">7</td><td><strong>"I can't waste money"</strong></td><td>$30 a bottle is a lot</td><td>$16.66/bottle. The guarantee is load-bearing.</td></tr>
+          <tr><td class="n">8</td><td><strong>"I'm falling behind my friends"</strong></td><td>My friend has more energy</td><td>She wants to be the one who finishes the walk</td></tr>
+          <tr><td class="n">9</td><td><strong>"My husband doesn't understand"</strong></td><td>I don't feel like myself</td><td>Validation that what she feels is real and has a name</td></tr>
+          <tr><td class="n">10</td><td><strong>"I'm running out of time"</strong></td><td>Longevity</td><td>Every tired day is a day she can't get back</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The six angle territories</h3>
+    <p>Every creative belongs to exactly one. This is how testing stays organised instead of random — and how you eventually learn which <em>angle</em> wins, not just which ad.</p>
+    <div class="terr">
+      <div class="t-card"><span class="c">ENG</span><span class="nm">The 3 PM Crash</span><span class="d">Afternoon energy that doesn't collapse. Serves fears 1 &amp; 5. Top/mid funnel.</span></div>
+      <div class="t-card"><span class="c">FOG</span><span class="nm">Mental Clarity</span><span class="d">Words come back. Names come back. Serves fear 2. Top/mid funnel.</span></div>
+      <div class="t-card"><span class="c">GRD</span><span class="nm">Keeping Up</span><span class="d">Get on the floor, get back up. Serves fears 4 &amp; 8. Top funnel.</span></div>
+      <div class="t-card"><span class="c">TRU</span><span class="nm">Not Another Scam</span><span class="d">Lab-tested, 5,128 reviews, money back. Serves fear 6. Mid/bottom.</span></div>
+      <div class="t-card"><span class="c">VAL</span><span class="nm">The Bundle Maths</span><span class="d">$16.66 against $29.98. Serves fear 7. Bottom funnel.</span></div>
+      <div class="t-card"><span class="c">TIM</span><span class="nm">Time &amp; Longevity</span><span class="d">The years your body is stealing, given back. Fears 3 &amp; 10.</span></div>
+    </div>
+    <p class="sub">Quota per batch of 12: <span class="mono">3× ENG · 2× FOG · 2× GRD · 2× TRU · 2× VAL · 1× TIM</span></p>
+  </section>
+
+  <!-- 03 -->
+  <section id="laws">
+    <span class="u"><span class="n">03</span>Non-negotiables</span>
+    <h2>The twelve laws</h2>
+    <p>Break any of these and the ad does not ship.</p>
+    <ol class="laws">
+      <li><strong>One idea per ad.</strong> If you can't say what it is in five words, start over.</li>
+      <li><strong>Readable in one second, at arm's length, on a phone.</strong> Shrink the file to 15% and look at it.</li>
+      <li><strong>4:5 and 9:16 only.</strong> Desktop converts at 1.86%. We don't design for it.</li>
+      <li><strong>Every ad carries social proof.</strong> Not most. Every one.</li>
+      <li><strong>The headline does 80% of the work.</strong> The image supports it, never the reverse.</li>
+      <li><strong>The bundle appears in the creative</strong>, not only on the landing page. This is how AOV reaches $62.</li>
+      <li><strong>Sunbelt light.</strong> Warm, bright, outdoors. Never snow, never corporate.</li>
+      <li><strong>Hands and faces are 55–70.</strong> The most-skipped rule, and worth more than any headline.</li>
+      <li><strong>No discount codes. Ever.</strong> She has never used one.</li>
+      <li><strong>Brand colour comes from the label.</strong> Familiarity between ad and bottle is a trust mechanic.</li>
+      <li><strong>Change one variable at a time.</strong> An ad you can't learn from is wasted spend.</li>
+      <li><strong>Clear compliance before shipping.</strong> A rejected ad costs a day; a restricted account costs the business.</li>
+    </ol>
+  </section>
+
+  <!-- 04 -->
+  <section id="copy" class="wide">
+    <span class="u"><span class="n">04</span>Copy</span>
+    <h2>Twelve frameworks that need no copywriting skill</h2>
+    <p>The full bank runs to 140+ headlines. These are the four that carry the most weight for this buyer.</p>
+
+    <h3>Pain Point Gone</h3>
+    <p>Name her exact struggle. Add the word "gone." Highest hit-rate in the set.</p>
+    <div class="spec">
+      <div class="hl"><span class="tt">ENG</span>3 PM energy crashes. Gone.</div>
+      <div class="hl"><span class="tt">FOG</span>"Where was I?" mid-sentence. Gone.</div>
+      <div class="hl"><span class="tt">ENG</span>Tired in a way sleep doesn't fix. Gone.</div>
+      <div class="hl"><span class="tt">GRD</span>Watching the grandkids from the chair. Gone.</div>
+    </div>
+
+    <h3>It's not [common belief], it's [unexpected cause]</h3>
+    <p>The most powerful framework for this demographic. It lets her off the hook — her fatigue is not her fault and not inevitable. She has spent five years being told by her doctor and her husband that what she feels is normal. This is the first thing that agrees with her.</p>
+    <div class="spec">
+      <div class="hl"><span class="tt">ENG · the account's proven hook</span>Most women blame it on age. It's usually cellular energy.</div>
+      <div class="hl"><span class="tt">FOG</span>It's not your memory. It's your mitochondria.</div>
+      <div class="hl"><span class="tt">TRU</span>It's not that supplements don't work. It's that 64% of NMN fails lab testing.</div>
+      <div class="hl"><span class="tt">ENG</span>It's not that you need more sleep. It's that sleep stopped working.</div>
+    </div>
+
+    <h3>The Timeline Ad — the AOV weapon</h3>
+    <p>Kills the "when will it work?" objection <em>and</em> makes the six-bottle bundle the logical purchase. A three-month promise needs a three-month supply. <strong>This is the single highest-priority framework for the $55.78 AOV problem.</strong></p>
+    <div class="tl">
+      <div class="r r1"><span class="w">Day 1</span><span class="b">Afternoon energy holds</span></div>
+      <div class="r r2"><span class="w">Week 3</span><span class="b">Mental clarity comes back</span></div>
+      <div class="r r3"><span class="w">Month 3</span><span class="b">Keeping up with the grandkids — effortlessly</span></div>
+      <div class="foot">Buy 3 Get 3 Free · 6 months supply · $16.66/bottle</div>
+    </div>
+    <div class="box accent">
+      <span class="bt">The sleeper variant — test it</span>
+      <span class="calc">Week 1    Probably nothing. That's normal.
+Week 3    The afternoons change first.
+Month 3   Where most women say "I feel 10 years younger."</span>
+      <p style="margin-top:.85rem">Under-promising week one is the most credible thing you can say to a woman who has been scammed before.</p>
+    </div>
+
+    <h3>The Testimonial Screenshot</h3>
+    <p>She is skeptical of brands, not of women like her. Take a real review in her exact language and make it the entire ad. Mine your 5,128 reviews for four shapes, in priority order: <strong>skeptic-converted</strong> → <strong>specific-moment</strong> → <strong>time-anchored</strong> → <strong>third-party-noticed</strong>.</p>
+    <div class="box neg">
+      <span class="bt">Non-negotiable</span>
+      <p>Real reviews only, verbatim, attributed to first name + last initial. No invented reviewers, no invented like counts, no stock headshot standing in for the customer. Fabricated reviews are unlawful under the FTC's consumer-review rule and violate Meta policy independently — and you have 5,128 genuine ones, which is more than enough.</p>
+    </div>
+
+    <h3>Also in the bank</h3>
+    <ul class="plain">
+      <li><strong>From [pain] to [dream outcome]</strong> — <em class="q">"From watching from the couch → to on the floor with your grandkids."</em></li>
+      <li><strong>Do Not Buy This</strong> — <em class="q">"Don't buy this unless you're prepared to out-walk all your friends."</em> Filters junk clicks, which is directly relevant to our cost-per-ATC problem.</li>
+      <li><strong>Three Reasons Why</strong> · <strong>Us vs. Them</strong> (never name a competitor) · <strong>The Objection Checklist</strong> (best retargeting asset in the set)</li>
+      <li><strong>The Breakup Letter</strong> — <em class="q">"Dear 3 PM, we had a routine. You'd take my afternoon, I'd blame my age…"</em></li>
+      <li><strong>The iMessage Thread</strong> — the highest-emotion asset available: <em class="q">"mom you got on the floor with Emma today" / "I know" / "you haven't done that in like two years" / "I know 🙂"</em></li>
+    </ul>
+
+    <h3>Words to ban</h3>
+    <p class="sub">Brand vocabulary she doesn't trust: <span class="mono">unlock · biohack · optimize · game-changer · revolutionary · supercharge · secret · miracle · reverse aging</span> — and any disease name, in any construction.</p>
+  </section>
+
+  <!-- 05 -->
+  <section id="formats" class="wide">
+    <span class="u"><span class="n">05</span>Production</span>
+    <h2>Twelve formats, each a repeatable recipe</h2>
+    <p>Build each one once as a Canva Brand Template. After that a creative is: duplicate → swap headline → export. Twelve creatives becomes a two-hour job.</p>
+    <div class="fmts">
+      <div class="fmt"><span class="id">01</span><span class="nm">The Headliner</span><span class="d">Massive headline, clean bottle, solid block colour. The workhorse.</span><span class="st">Beginner · mid+bottom funnel</span></div>
+      <div class="fmt"><span class="id">02</span><span class="nm">Comment-Frame Proof</span><span class="d">A real review framed as a social comment, above the product.</span><span class="st">Beginner · warm + hot</span></div>
+      <div class="fmt"><span class="id">03</span><span class="nm">4-Grid Collage</span><span class="d">Four quadrants, one hue in four values. Stops the scroll cold.</span><span class="st">Intermediate · cold</span></div>
+      <div class="fmt"><span class="id">04</span><span class="nm">Timeline</span><span class="d">Three darkening bands: Day 1 / Week 3 / Month 3. <strong>Build first.</strong></span><span class="st">Beginner · AOV asset</span></div>
+      <div class="fmt"><span class="id">05</span><span class="nm">IG-Organic Story</span><span class="d">POV hand of a 60-something woman. Bypasses ad-blindness.</span><span class="st">Needs asset · 9:16 only</span></div>
+      <div class="fmt"><span class="id">06</span><span class="nm">Breakup Letter</span><span class="d">Text-only on cream. Huge dwell time, near-zero production cost.</span><span class="st">Beginner · warm</span></div>
+      <div class="fmt"><span class="id">07</span><span class="nm">iMessage Thread</span><span class="d">Two women her age texting. Scale the UI 140% — real iMessage type is unreadable for her.</span><span class="st">Intermediate · warm</span></div>
+      <div class="fmt"><span class="id">08</span><span class="nm">Objection Checklist</span><span class="d">Product beside the seven ticked reasons she almost didn't buy.</span><span class="st">Beginner · best retargeter</span></div>
+      <div class="fmt"><span class="id">09</span><span class="nm">Us vs. Them</span><span class="d">Two columns. Compare to the category or to doing nothing — never a brand.</span><span class="st">Intermediate · cold</span></div>
+      <div class="fmt"><span class="id">10</span><span class="nm">Pain-Point Split</span><span class="d">Her 3 PM, twice. Same woman, same chair, two different days.</span><span class="st">Intermediate · warm</span></div>
+      <div class="fmt"><span class="id">11</span><span class="nm">Big Stat</span><span class="d">One enormous number. 64% · 50% · 5,128 · $16.66. Fastest read in the set.</span><span class="st">Beginner · cold</span></div>
+      <div class="fmt"><span class="id">12</span><span class="nm">Bundle Maths</span><span class="d">$29.98 struck through, $16.66 huge, six bottles visible. <strong>The AOV fixer.</strong></span><span class="st">Beginner · hot</span></div>
+    </div>
+
+    <div class="box accent">
+      <span class="bt">Weekly rhythm</span>
+      <p><strong>Mon</strong> read the numbers, kill losers, mine ten new reviews · <strong>Tue</strong> ideation, twelve briefs · <strong>Wed–Thu AM</strong> build twelve creatives in both ratios, QA · <strong>Thu PM</strong> launch · <strong>Fri</strong> hands off · <strong>Sat–Sun</strong> peak days, scale winners only, no new launches.</p>
+    </div>
+
+    <h3>File naming is the join key</h3>
+    <p class="sub"><span class="mono">NMN_[TERR]_[FRAMEWORK]_[FORMAT]_[RATIO]_v[NN]</span> — and the ad name in Ads Manager must match the filename exactly. Without this you'll find winning <em>ads</em> but never learn which <em>angle</em> wins, and the angle is the compounding asset.</p>
+  </section>
+
+  <!-- 06 -->
+  <section id="craft" class="wide">
+    <span class="u"><span class="n">06</span>Craft</span>
+    <h2>Specs for a 62-year-old reading in Arizona daylight</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Element</th><th class="n">Spec on a 1080px canvas</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Canvas</td><td class="n">1080×1350 first, 1080×1920 second</td><td>Never 16:9. Desktop converts at 1.86%.</td></tr>
+          <tr><td>Primary headline</td><td class="n">100–130px, bold, LH 1.05</td><td>Must fill ~40% of the canvas</td></tr>
+          <tr><td>Body text</td><td class="n">40–52px · <strong>36px absolute floor</strong></td><td>36px renders around 13pt on her phone — already the low end for presbyopia</td></tr>
+          <tr><td>Legal / disclaimer</td><td class="n">28px minimum</td><td>Never smaller. Ever.</td></tr>
+          <tr><td>Contrast</td><td class="n">≥ 4.5:1, aim 7:1</td><td>Check every design in greyscale before shipping</td></tr>
+          <tr><td>Fonts</td><td class="n">Max 2 families, no thin weights</td><td>No script, no condensed, no all-caps past three words</td></tr>
+          <tr><td>Story safe zone</td><td class="n">Top 250px, bottom 340px clear</td><td>Profile chrome and CTA sticker land there</td></tr>
+          <tr><td>Text coverage</td><td class="n">under ~30% of area</td><td>Text-saturated images still get throttled reach</td></tr>
+          <tr><td>Bottle size</td><td class="n">28–38% of canvas height</td><td>Bigger reads as catalogue, smaller as afterthought</td></tr>
+          <tr><td>Elements on canvas</td><td class="n">5 maximum</td><td>Headline, product, trust bar, offer bar, one support graphic</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box warn">
+      <span class="bt">The colour trap</span>
+      <p>Avoid blue-on-black and blue/green text pairings. The aging lens yellows, which compresses blue discrimination specifically — a 62-year-old sees your navy-on-charcoal as mud. Warm tones outperform clinical blues here anyway: blue reads as pharmaceutical, and pharmaceutical reads as <em class="q">"the thing my doctor already told me is normal."</em></p>
+    </div>
+
+    <div class="box accent">
+      <span class="bt">The people rule — the most-skipped, highest-value rule in this document</span>
+      <p>Every human in a Prime Ingredients ad is <strong>55–70</strong>. Not 45 with grey hair. Check for: visible age markers, short natural nails, a wedding band worn thin, linen and cotton, natural silver hair, a patio or garden in warm morning light. If she sees hands that look like hers, she believes the product is for her.</p>
+      <p style="margin-bottom:0">Image models render people 15–20 years younger than you ask. Push the age language hard and re-roll until it's right.</p>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="test" class="wide">
+    <span class="u"><span class="n">07</span>Media buying</span>
+    <h2>Kill and scale rules, derived from this account</h2>
+    <p>Three campaigns, no more. Testing at 15% of spend, scaling 70%, retargeting 15%. Broad targeting, 55–70, US, no interest stack — Meta already knows who buys NMN from 110K sessions of pixel data, and interest narrowing is a contributing cause of the +38% CPM.</p>
+
+    <div class="rules">
+      <div class="rule-col k">
+        <header>Kill</header>
+        <ul>
+          <li><span class="mono">$60</span> spent, 0 add-to-carts</li>
+          <li><span class="mono">$100</span> spent, 0 purchases</li>
+          <li>Outbound CTR <span class="mono">&lt;2.5%</span> after 5,000 impressions</li>
+          <li>Outbound CPC <span class="mono">&gt;$3.50</span> after $50</li>
+          <li>CPA <span class="mono">&gt;$45</span> after $150 and ≥3 purchases</li>
+          <li>Frequency <span class="mono">&gt;2.5</span> and CPA rising 3 days running</li>
+        </ul>
+      </div>
+      <div class="rule-col w">
+        <header>Watch · review in 48h</header>
+        <ul>
+          <li>CPA between <span class="mono">$34</span> and <span class="mono">$45</span></li>
+          <li>Outbound CTR <span class="mono">2.5–5.0%</span></li>
+          <li>Under $100 spend with 1–2 purchases — not enough data, don't kill early</li>
+        </ul>
+      </div>
+      <div class="rule-col v">
+        <header>Winner · promote to scale</header>
+        <ul>
+          <li>CPA <span class="mono">≤ $30</span></li>
+          <li>Spend <span class="mono">≥ $150</span></li>
+          <li>Purchases <span class="mono">≥ 3</span></li>
+          <li>Outbound CTR <span class="mono">≥ 5.0%</span></li>
+          <li>All four true, or it isn't a winner</li>
+        </ul>
+      </div>
+    </div>
+
+    <p><strong>Scaling ladder:</strong> promote into the scale campaign at $100/day → hold 3 days → if CPA holds ≤$30, raise +20% → repeat every 3 days. If CPA breaks $34 for two consecutive days, roll back to the last working budget. Never raise more than 20% in a day.</p>
+
+    <h3>Three things not to do</h3>
+    <ul class="plain">
+      <li><strong>Don't kill before $60 spend.</strong> At a $30 CPA, one purchase is normal randomness. Killing at $25 is superstition.</li>
+      <li><strong>Don't judge ROAS at the ad level.</strong> Use CPA — ad-level ROAS is distorted by which bundle happened to sell.</li>
+      <li><strong>Don't edit a live winner.</strong> Any edit wipes accumulated social proof and re-enters learning. Duplicate instead.</li>
+    </ul>
+
+    <div class="box warn">
+      <span class="bt">On dayparting — the honest version</span>
+      <p>The data says 11 AM and 7 PM ET. But ad scheduling requires a <em>lifetime</em> budget, and restricting hours on your main campaign starves delivery and raises CPM — usually costing more than the timing gains. Control the <em>launch</em> timing instead, which is free: publish Thursday morning so ads exit learning by Saturday's peak. If you want the dayparted play, run one dedicated lifetime-budget ad set from 2–5 PM ET carrying only "3 PM crash" creatives — she is living the pain point in real time in that window — cap it at 10% of budget, and judge it on its own CPA.</p>
+    </div>
+
+    <div class="box accent">
+      <span class="bt">Attribution — don't mix the two</span>
+      <p>Triple Whale runs Triple Attribution, lifetime window, and will disagree with Meta: Meta reported 1,502 purchases at $60.04 CPA while Shopify recorded 2,278 orders at $39.68 blended. <strong>Blended is truth for "are we making money." In-platform is the comparator for "which ad beat which ad."</strong> Never use them in the same sentence.</p>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section id="plan" class="wide">
+    <span class="u"><span class="n">08</span>Execution</span>
+    <h2>The first thirty days</h2>
+    <div class="weeks">
+      <div class="wk"><span class="lbl">Week 0</span><span class="bd"><b>Setup.</b> Confirm offer, trust assets and product facts. Pull label hex codes. Export all reviews. Build the trust-asset folder and product cutouts. Set up the AI Brain Trust. Build the three campaigns, paused. Build the six beginner Canva templates.</span></div>
+      <div class="wk"><span class="lbl">Week 1</span><span class="bd"><b>Prove the machine.</b> Record the baseline Monday. Twelve briefs Tuesday. Build Wed–Thu. <b>Launch twelve creatives Thursday PM.</b> Three of them — Timeline ×2 and Bundle Maths — are the AOV assets, and they must ship in week one.</span></div>
+      <div class="wk"><span class="lbl">Week 2</span><span class="bd"><b>Find the first winner.</b> Kill against the thresholds and log <em>why</em> — the reasons are the learning. Half of batch two must be variations of whatever is performing best. If nothing is under $34 CPA after 24 creatives, the problem is probably the landing page, not the creative.</span></div>
+      <div class="wk"><span class="lbl">Week 3</span><span class="bd"><b>Scale what works.</b> Weight the territory quota toward the lowest-CPA angle. Launch the dayparted 2–5 PM ENG ad set now that you have proven ENG creatives to put in it.</span></div>
+      <div class="wk"><span class="lbl">Week 4</span><span class="bd"><b>Consolidate.</b> Retire anything over 2.5 frequency with rising CPA; replace with headline-only variants. Ratio settles at 70% variations of winners, 30% net-new exploration — and holds there permanently.</span></div>
+    </div>
+
+    <h3>Scorecard</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Metric</th><th class="n">Baseline</th><th class="n">Day 30</th><th class="n">Day 60</th><th class="n">Day 90</th></tr></thead>
+        <tbody>
+          <tr><td>Blended CPA</td><td class="n">$39.68</td><td class="n">≤ $34</td><td class="n">≤ $31</td><td class="n pos">≤ $30</td></tr>
+          <tr><td>Blended ROAS</td><td class="n">1.46</td><td class="n">≥ 1.71</td><td class="n">≥ 1.80</td><td class="n pos">≥ 1.86</td></tr>
+          <tr><td>AOV</td><td class="n">$55.78</td><td class="n">≥ $58</td><td class="n">≥ $60</td><td class="n pos">≥ $62</td></tr>
+          <tr><td>CPM</td><td class="n">$121.07</td><td class="n">≤ $110</td><td class="n">≤ $100</td><td class="n pos">≤ $95</td></tr>
+          <tr><td>Cost per ATC</td><td class="n">$37.17</td><td class="n">≤ $30</td><td class="n">≤ $27</td><td class="n pos">≤ $24</td></tr>
+          <tr><td>Net profit / month</td><td class="n neg">−$12,926</td><td class="n">break-even</td><td class="n">&gt; +$5,000</td><td class="n pos">&gt; +$18,000</td></tr>
+          <tr><td>Creatives tested</td><td class="n">0</td><td class="n">48</td><td class="n">96</td><td class="n">144</td></tr>
+          <tr><td>Winners in rotation</td><td class="n">—</td><td class="n">1–2</td><td class="n">2–3</td><td class="n pos">3–5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box pos">
+      <span class="bt">If you only do three things</span>
+      <ul class="plain" style="margin-bottom:0">
+        <li><strong>Ship Format 04 (Timeline) and Format 12 (Bundle Maths) this week.</strong> They are the direct fix for the AOV decline, and AOV is half the profit gap.</li>
+        <li><strong>Ship twelve new statics every Thursday, without exception.</strong> Volume is what pulls the $121 CPM down. One brilliant ad launched slowly loses to twelve decent ads launched weekly.</li>
+        <li><strong>Log every ad with its territory and framework code.</strong> Otherwise you find winning ads but never learn which angle wins.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section id="legal">
+    <span class="u"><span class="n">09</span>Risk</span>
+    <h2>What actually gets you shut down</h2>
+    <p>94% of this business's revenue runs through Meta. There is no fallback channel if the account goes down. This is operational risk guidance, not legal advice — have a regulatory attorney sign off on the claim set once, then this becomes the daily checklist.</p>
+
+    <h3>Personal attributes — the most common rejection</h3>
+    <p>Meta prohibits copy that implies knowledge of a person's health. The mechanical fix is moving from <em class="q">"you have X"</em> to <em class="q">"people who have X"</em> — third person, category-level, or customer-attributed. You keep the emotional hit and lose the exposure.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Risky</th><th>Compliant rewrite</th></tr></thead>
+        <tbody>
+          <tr><td>"Feeling more tired as you age?"</td><td>"Most women over 60 blame it on age. It's usually cellular energy."</td></tr>
+          <tr><td>"Your brain fog isn't normal"</td><td>"Brain fog after 60 is common. It isn't inevitable."</td></tr>
+          <tr><td>"Struggling with post-menopause fatigue?"</td><td>"Post-menopause fatigue is one of the most common reasons women try NMN."</td></tr>
+          <tr><td>"You can't keep up with your grandkids anymore"</td><td>"Keeping up with the grandkids is the #1 reason our customers started."</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub">The brand's existing hook sits right on this line and is currently tolerated. Test the third-person variant alongside it — if it performs comparably you've removed a standing risk for free, and you'll want it already proven if the original starts getting rejected at scale.</p>
+
+    <h3>The other three</h3>
+    <ul class="plain">
+      <li><strong>Disease claims.</strong> Structure/function only. Never name a disease — not even in a "not a treatment for" construction. Don't put the word in the ad.</li>
+      <li><strong>Fabricated reviews.</strong> Unlawful under the FTC consumer-review rule with per-violation civil penalties, and a Meta violation independently. Real reviews only.</li>
+      <li><strong>Unsubstantiated stats.</strong> Every number needs a document in a folder <em>before</em> the ad runs — including the "64% of NMN products fail lab tests" claim, which is the highest-value and highest-risk stat in the whole plan.</li>
+    </ul>
+
+    <div class="box warn">
+      <span class="bt">Know this before you scale</span>
+      <p>FDA has taken the position that NMN is excluded from the dietary supplement definition, which is what drove major marketplace delistings. The industry has contested it and the position has moved. It's not a reason to stop advertising — it's a reason to keep every claim boringly defensible and to have the substantiation folder built before spend rises. Verify current status with a regulatory advisor.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section id="files" class="wide">
+    <span class="u"><span class="n">10</span>Reference</span>
+    <h2>The working files</h2>
+    <p>This page is the overview. The repository holds the operational detail — the full 140-headline bank, the step-by-step build recipes, the AI prompt library and the tracker.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>File</th><th>Contains</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td class="code-cell">01-strategy-and-brief.md</td><td>Account economics, persona cards, ten insecurities, six territories, twelve laws</td><td>Owner / buyer</td></tr>
+          <tr><td class="code-cell">02-copy-bank.md</td><td>12 frameworks, 140+ headlines, 6 primary texts, headline and description fields, banned-word list</td><td>Copy</td></tr>
+          <tr><td class="code-cell">03-creative-formats.md</td><td>12 formats, each with a step-by-step build recipe and a format×framework matrix</td><td>Designer</td></tr>
+          <tr><td class="code-cell">04-design-system.md</td><td>Canvas, type scale, palette, contrast, safe zones, 26-point pre-flight QA</td><td>Designer</td></tr>
+          <tr><td class="code-cell">05-production-workflow.md</td><td>Weekly rhythm, brief template, naming, AI prompt library, asset library structure</td><td>Producer</td></tr>
+          <tr><td class="code-cell">06-testing-and-measurement.md</td><td>Account structure, budget tiers, kill/scale rules, weekly scorecard, attribution</td><td>Buyer</td></tr>
+          <tr><td class="code-cell">07-30-day-launch-plan.md</td><td>Day-by-day plan and the first 24 creatives, fully specified</td><td>Everyone</td></tr>
+          <tr><td class="code-cell">08-compliance.md</td><td>FTC review rule, personal attributes, disease claims, substantiation, rejection playbook</td><td>Everyone</td></tr>
+          <tr><td class="code-cell">templates/creative-tracker.csv</td><td>Pre-loaded with batch one, ready for Google Sheets</td><td>Buyer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box accent">
+      <span class="bt">Three things to confirm before week 1</span>
+      <p>The brand site was unreachable from the environment this was built in, so these came from the intelligence report and account data rather than the live page. Confirm them once and the playbook is fully locked.</p>
+      <ul class="plain" style="margin-bottom:0">
+        <li><strong>Offer &amp; price</strong> — Buy 3 Get 3 Free at ~$100–106, $16.66/bottle, anchor $29.98. Still current?</li>
+        <li><strong>Trust assets</strong> — exact review count, Forbes/ELLE placements, guarantee length, and a citable source for the 64% lab-test stat.</li>
+        <li><strong>Product facts</strong> — mg per serving, capsules per bottle, third-party COA, and the label hex codes for the palette.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>Prime Ingredients · NMN Complex static ads playbook · v1.0, 11 August 2026. Performance figures from Triple Whale (Triple Attribution, lifetime window), 30 days to 10 August 2026. Persona from the NMN Deep Customer Intelligence Report, May 2026. Frameworks from Static Ads Mastery.</p>
+  </footer>
+</main>
+</div>
