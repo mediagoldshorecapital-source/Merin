@@ -1,0 +1,833 @@
+<title>NMN Comment Intelligence</title>
+<style>
+  :root{
+    --paper:#F1F3F2;
+    --surface:#FFFFFF;
+    --surface-2:#E9EDEB;
+    --ink:#16211F;
+    --ink-2:#3C4A47;
+    --graphite:#66756F;
+    --rule:#D3DAD7;
+    --rule-strong:#B6C1BD;
+    --accent:#1C5C52;
+    --accent-soft:#DCE9E4;
+    --signal:#B23E28;
+    --signal-soft:#F3E0DA;
+    --mark:#F5DC72;
+    --mark-ink:#16211F;
+    --shadow:0 1px 2px rgba(22,33,31,.05), 0 8px 24px -16px rgba(22,33,31,.28);
+
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+
+    --measure:68ch;
+    --pad:clamp(1.1rem,4vw,2.5rem);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0F1615;
+      --surface:#161F1D;
+      --surface-2:#1C2725;
+      --ink:#E4EAE7;
+      --ink-2:#B7C3BF;
+      --graphite:#8B9A95;
+      --rule:#26332F;
+      --rule-strong:#374743;
+      --accent:#63C3AE;
+      --accent-soft:#16302B;
+      --signal:#EE8570;
+      --signal-soft:#33201B;
+      --mark:rgba(245,220,114,.26);
+      --mark-ink:#F3E9C4;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0F1615;
+    --surface:#161F1D;
+    --surface-2:#1C2725;
+    --ink:#E4EAE7;
+    --ink-2:#B7C3BF;
+    --graphite:#8B9A95;
+    --rule:#26332F;
+    --rule-strong:#374743;
+    --accent:#63C3AE;
+    --accent-soft:#16302B;
+    --signal:#EE8570;
+    --signal-soft:#33201B;
+    --mark:rgba(245,220,114,.26);
+    --mark-ink:#F3E9C4;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    margin:0;
+    padding:0 var(--pad) 6rem;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+
+  /* ---------- masthead ---------- */
+  .mast{
+    padding:clamp(2.5rem,7vw,5rem) 0 2rem;
+    border-bottom:2px solid var(--ink);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--graphite);
+    margin:0 0 1.25rem;
+  }
+  h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.6rem,7.5vw,4.6rem);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin:0 0 1rem;
+    text-wrap:balance;
+  }
+  .standfirst{
+    font-family:var(--serif);
+    font-size:clamp(1.1rem,2.4vw,1.35rem);
+    line-height:1.5;
+    color:var(--ink-2);
+    max-width:60ch;
+    margin:0 0 2.25rem;
+  }
+  .figures{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+  }
+  .fig{background:var(--paper);padding:1rem 1.1rem;}
+  .fig b{
+    display:block;
+    font-family:var(--mono);
+    font-size:1.5rem;
+    font-weight:600;
+    letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;
+    color:var(--accent);
+  }
+  .fig span{
+    display:block;
+    font-size:.74rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--graphite);
+    margin-top:.3rem;
+    line-height:1.35;
+  }
+
+  /* ---------- nav ---------- */
+  nav.toc{
+    position:sticky;top:0;z-index:20;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    margin:0 calc(var(--pad) * -1) 3rem;
+    padding:.6rem var(--pad);
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  nav.toc ol{
+    display:flex;gap:1.4rem;list-style:none;margin:0 auto;padding:0;
+    max-width:1080px;white-space:nowrap;
+  }
+  nav.toc a{
+    font-family:var(--mono);
+    font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--graphite);text-decoration:none;
+    padding:.25rem 0;display:inline-block;
+    border-bottom:2px solid transparent;
+  }
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--ink);border-bottom-color:var(--accent);}
+
+  /* ---------- sections ---------- */
+  section{padding:0 0 clamp(3rem,7vw,5.5rem);scroll-margin-top:4rem;}
+  .part-label{
+    font-family:var(--mono);
+    font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);
+    display:flex;align-items:center;gap:.75rem;
+    margin:0 0 .9rem;
+  }
+  .part-label::after{content:"";flex:1;height:1px;background:var(--rule);}
+  h2{
+    font-family:var(--serif);
+    font-size:clamp(1.9rem,4.4vw,2.7rem);
+    font-weight:600;line-height:1.1;letter-spacing:-.018em;
+    margin:0 0 1rem;text-wrap:balance;
+  }
+  h3{
+    font-family:var(--serif);
+    font-size:1.32rem;font-weight:600;line-height:1.25;
+    margin:2.4rem 0 .7rem;text-wrap:balance;
+  }
+  h4{
+    font-family:var(--sans);
+    font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--graphite);margin:1.6rem 0 .5rem;
+  }
+  p,ul,ol{max-width:var(--measure);}
+  p{margin:0 0 1.05rem;}
+  ul,ol{margin:0 0 1.15rem;padding-left:1.2rem;}
+  li{margin-bottom:.42rem;}
+  li::marker{color:var(--graphite);}
+  strong{font-weight:650;}
+  a{color:var(--accent);}
+  mark{background:var(--mark);color:var(--mark-ink);padding:.05em .18em;border-radius:2px;}
+  code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);padding:.1em .35em;border-radius:3px;}
+
+  .lede{
+    font-family:var(--serif);
+    font-size:1.15rem;line-height:1.55;color:var(--ink-2);
+    max-width:62ch;margin:0 0 1.6rem;
+  }
+
+  /* ---------- verbatim ---------- */
+  .verbatim{
+    border-left:3px solid var(--accent);
+    background:var(--surface);
+    padding:.9rem 1.15rem;
+    margin:1.2rem 0;
+    max-width:var(--measure);
+    box-shadow:var(--shadow);
+  }
+  .verbatim p{
+    font-family:var(--serif);
+    font-size:1.02rem;line-height:1.5;margin:0 0 .45rem;
+  }
+  .verbatim p:last-child{margin-bottom:0;}
+  .attrib{
+    font-family:var(--mono);
+    font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--graphite);
+  }
+  .verbatim-stack{display:flex;flex-direction:column;gap:.55rem;margin:1.2rem 0;max-width:var(--measure);}
+  .verbatim-stack .v{
+    font-family:var(--serif);font-size:1rem;line-height:1.45;
+    padding-left:.9rem;border-left:2px solid var(--rule-strong);color:var(--ink-2);
+  }
+
+  /* ---------- tables ---------- */
+  .tablewrap{overflow-x:auto;margin:1.4rem 0 2rem;border:1px solid var(--rule);background:var(--surface);}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:.92rem;}
+  caption{
+    text-align:left;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--graphite);padding:.7rem .9rem;
+    border-bottom:1px solid var(--rule);background:var(--surface-2);
+  }
+  th,td{padding:.7rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule);}
+  thead th{
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--graphite);font-weight:600;background:var(--surface-2);
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--accent);font-weight:600;white-space:nowrap;}
+  .q{font-family:var(--serif);font-size:1rem;line-height:1.35;}
+
+  /* ---------- barrier cards ---------- */
+  .barriers{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.6rem 0 2rem;}
+  @media(min-width:820px){.barriers{grid-template-columns:1fr 1fr;}}
+  .barrier{background:var(--surface);padding:1.35rem 1.4rem;display:flex;flex-direction:column;gap:.55rem;}
+  .barrier-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;}
+  .barrier-name{font-family:var(--serif);font-size:1.2rem;font-weight:600;line-height:1.2;margin:0;}
+  .vol{
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+    background:var(--signal-soft);color:var(--signal);
+    padding:.2rem .45rem;border-radius:2px;white-space:nowrap;font-variant-numeric:tabular-nums;
+  }
+  .vol.low{background:var(--accent-soft);color:var(--accent);}
+  .barrier .said{
+    font-family:var(--serif);font-style:italic;font-size:.98rem;line-height:1.42;
+    color:var(--ink-2);margin:0;
+  }
+  .barrier dl{margin:.35rem 0 0;display:grid;gap:.5rem;}
+  .barrier dt{
+    font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--graphite);margin-bottom:.12rem;
+  }
+  .barrier dd{margin:0;font-size:.93rem;line-height:1.5;}
+
+  /* ---------- driver blocks ---------- */
+  .driver{
+    border-top:1px solid var(--rule);
+    padding:1.5rem 0 .3rem;
+    display:grid;gap:.3rem 2rem;
+  }
+  @media(min-width:860px){.driver{grid-template-columns:minmax(0,15rem) minmax(0,1fr);}}
+  .driver h3{margin:0;font-size:1.25rem;}
+  .driver .body{max-width:60ch;}
+  .driver .body p:last-child{margin-bottom:1.1rem;}
+
+  /* ---------- lexicon ---------- */
+  .lex{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.4rem 0 2rem;}
+  @media(min-width:760px){.lex{grid-template-columns:1fr 1fr;}}
+  .lexcol{background:var(--surface);padding:1.2rem 1.3rem;}
+  .lexcol h4{margin-top:0;}
+  .chips{display:flex;flex-wrap:wrap;gap:.35rem;list-style:none;padding:0;margin:0;max-width:none;}
+  .chips li{
+    margin:0;font-family:var(--mono);font-size:.76rem;
+    border:1px solid var(--rule-strong);border-radius:2px;
+    padding:.22rem .5rem;color:var(--ink-2);background:var(--paper);
+  }
+  .chips.bad li{border-color:var(--signal);color:var(--signal);background:var(--signal-soft);text-decoration:line-through;}
+  .chips.good li{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);}
+
+  /* ---------- swipe file ---------- */
+  .swipe{
+    counter-reset:hook;
+    display:grid;gap:1px;background:var(--rule);
+    border:1px solid var(--rule);margin:1.3rem 0 2rem;
+  }
+  @media(min-width:800px){.swipe{grid-template-columns:1fr 1fr;}}
+  .hook{background:var(--surface);padding:.85rem 1.1rem;display:flex;gap:.75rem;align-items:flex-start;}
+  .hook::before{
+    counter-increment:hook;content:counter(hook,decimal-leading-zero);
+    font-family:var(--mono);font-size:.66rem;color:var(--graphite);
+    padding-top:.28rem;font-variant-numeric:tabular-nums;
+  }
+  .hook span{font-family:var(--serif);font-size:1.02rem;line-height:1.38;}
+  .hook em{font-style:normal;display:block;font-family:var(--mono);font-size:.63rem;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--graphite);margin-top:.3rem;}
+
+  /* ---------- script ---------- */
+  .script{
+    background:var(--surface);border:1px solid var(--rule);
+    padding:1.2rem 1.35rem;margin:1.1rem 0;box-shadow:var(--shadow);
+  }
+  .script h4{margin-top:0;color:var(--accent);}
+  .script ol{margin:0;padding-left:1.15rem;max-width:none;}
+  .script li{font-size:.95rem;margin-bottom:.55rem;}
+  .beat{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite);display:block;}
+
+  /* ---------- callout ---------- */
+  .callout{
+    border:1px solid var(--signal);
+    background:var(--signal-soft);
+    padding:1.15rem 1.3rem;margin:1.5rem 0;max-width:var(--measure);
+  }
+  .callout h4{color:var(--signal);margin-top:0;}
+  .callout p:last-child{margin-bottom:0;}
+  .callout p,.callout ul{max-width:none;}
+
+  .note{
+    border-left:2px solid var(--rule-strong);
+    padding:.15rem 0 .15rem .9rem;
+    font-size:.9rem;color:var(--graphite);max-width:var(--measure);margin:1.2rem 0;
+  }
+  .note p{margin-bottom:.5rem;}
+  .note p:last-child{margin-bottom:0;}
+
+  footer{
+    border-top:2px solid var(--ink);padding:1.5rem 0 0;margin-top:2rem;
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--graphite);
+  }
+  a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">Voice-of-customer teardown &middot; Prepared for Prime &middot; August 2026</p>
+  <h1>NMN Comment&nbsp;Intelligence</h1>
+  <p class="standfirst">What 3,491 YouTube comments on NMN reveal about what this market actually believes, fears, argues about, and needs to hear before it buys.</p>
+  <div class="figures">
+    <div class="fig"><b>3,491</b><span>Comments parsed</span></div>
+    <div class="fig"><b>1,154</b><span>Direct questions</span></div>
+    <div class="fig"><b>438</b><span>Cite studies or evidence</span></div>
+    <div class="fig"><b>279</b><span>Argue "just take niacin"</span></div>
+    <div class="fig"><b>167</b><span>Use fake / scam / snake&nbsp;oil</span></div>
+    <div class="fig"><b>247</b><span>Mention David Sinclair</span></div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <ol>
+    <li><a href="#room">01 Read the room</a></li>
+    <li><a href="#questions">02 The twelve questions</a></li>
+    <li><a href="#skeptics">03 Seven skeptics</a></li>
+    <li><a href="#psych">04 Psychology</a></li>
+    <li><a href="#lexicon">05 Lexicon</a></li>
+    <li><a href="#ideas">06 Nine ideas</a></li>
+    <li><a href="#prime">07 Applying to Prime</a></li>
+    <li><a href="#guardrails">08 Guardrails</a></li>
+  </ol>
+</nav>
+
+<!-- ================= 01 ================= -->
+<section id="room">
+  <p class="part-label">Part 01</p>
+  <h2>Read the room before you write a word</h2>
+  <p class="lede">This corpus is not a general population. It is the comment sections of NMN <em>debate</em> videos — Sinclair explainers, Thomas DeLauer sponsorships, Dr Brad Stanfield debunkings, third-party purity tests, FDA-ban news. That single fact should reset your creative brief.</p>
+
+  <h3>These people are not unaware. They are adjudicating.</h3>
+  <p>They arrive already fluent in <code>NAD+</code>, <code>precursor</code>, <code>salvage pathway</code>, <code>TMG</code>, <code>sublingual</code>, <code>third-party tested</code>. They quote study authors by name — Igarashi 2022, Yi 2022, Yoshino 2021. They compare cost-per-gram in public. Awareness-stage advertising ("Did you know your NAD+ declines with age?") is talking beneath them and will read as amateur.</p>
+  <p>You are writing for a <strong>product-aware, actively skeptical comparison shopper</strong>. The job of your ad is not to introduce the category. It is to <mark>win an argument they are already having</mark>.</p>
+
+  <h3>The dominant emotion is not hope. It is betrayal.</h3>
+  <p>Sinclair appears 247 times, and in the recent layers of the corpus the tone has flipped hard — from "his book is incredible" to "the more I learn about Sinclair the more I distrust him." Then the leading skeptic, Stanfield, got accused of his own product failing a Consumer Lab test. Both sides of the debate now stand accused of selling something.</p>
+  <div class="verbatim">
+    <p>"Dr Stanfield you have a shop too so why should we believe you when you have a financial interest too?"</p>
+    <p class="attrib">Comment</p>
+  </div>
+  <p>The strategic consequence is severe and specific: <strong>your credibility cannot be borrowed from a scientist, a doctor, or an influencer.</strong> Every human authority in this category has been publicly compromised in front of this exact audience. What survives is documents — lab reports, batch numbers, named testing facilities, plain arithmetic.</p>
+
+  <div class="note">
+    <p><strong>Sampling caveat, stated plainly.</strong> Comment sections over-represent people with strong opinions and outcomes at both extremes. Treat the frequencies here as a map of <em>what gets argued about</em>, not as market-share estimates of belief. The verbatims are the asset; the counts are the ranking.</p>
+  </div>
+</section>
+
+<!-- ================= 02 ================= -->
+<section id="questions">
+  <p class="part-label">Part 02</p>
+  <h2>The twelve questions asked over and over</h2>
+  <p class="lede">Out of 1,154 questions, these twelve clusters account for the overwhelming majority. Each one is a piece of unmade content, an unwritten FAQ line, or a missing on-pack detail.</p>
+
+  <div class="tablewrap">
+    <table>
+      <caption>Question clusters, ranked by comment volume</caption>
+      <thead>
+        <tr><th scope="col">Volume</th><th scope="col">What they ask</th><th scope="col">What they're really asking</th><th scope="col">Where it belongs</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">301</td><td class="q">NMN vs NR vs NAD+ vs NMNH — which one?</td><td>Which horse do I back so I don't waste a year on the wrong molecule?</td><td>Comparison page, paid social carousel</td></tr>
+        <tr><td class="num">279</td><td class="q">Why not just take cheap niacin / B3?</td><td>Am I being upsold on a $60 version of a $4 vitamin?</td><td>Objection ad, PDP block</td></tr>
+        <tr><td class="num">213</td><td class="q">How much do I take — 250, 500, 1000, 2000&nbsp;mg?</td><td>Is this bottle actually a full dose or a two-week tease?</td><td>On-pack, PDP hero, unboxing UGC</td></tr>
+        <tr><td class="num">167</td><td class="q">How do I know it isn't fake?</td><td>Is there any NMN in here at all?</td><td>Hero of the whole brand</td></tr>
+        <tr><td class="num">166</td><td class="q">Is it banned? Can I still get it?</td><td>Should I stock up now?</td><td>Email, SMS, retention</td></tr>
+        <tr><td class="num">108</td><td class="q">Do I need TMG with it?</td><td>Am I depleting something by taking this?</td><td>Bundle logic, onboarding flow</td></tr>
+        <tr><td class="num">103</td><td class="q">Is it safe — insomnia, palpitations, headaches, cancer?</td><td>What's the worst case if I'm wrong?</td><td>FAQ, first-purchase email</td></tr>
+        <tr><td class="num">94</td><td class="q">Capsule, powder, sublingual, liposomal, or enteric?</td><td>Does it survive my stomach?</td><td>Format explainer, PDP</td></tr>
+        <tr><td class="num">86</td><td class="q">Do I refrigerate it? Did shipping heat ruin it?</td><td>Did I already waste this money?</td><td>Packaging, post-purchase email</td></tr>
+        <tr><td class="num">72</td><td class="q">Is it third-party tested? Which lab?</td><td>Show me the paperwork.</td><td>QR on bottle, COA landing page</td></tr>
+        <tr><td class="num">39</td><td class="q">When do I take it — morning, empty stomach, with fat?</td><td>Am I doing this wrong?</td><td>Insert card, day-2 email</td></tr>
+        <tr><td class="num">37</td><td class="q">I took it for months and felt nothing. Why?</td><td>Give me a reason that isn't "you're imagining things."</td><td>Dedicated page &mdash; nobody owns this</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The three questions nobody is answering well</h3>
+  <p>Refrigeration and shipping heat, the TMG methyl question, and "why did I feel nothing" are the three highest-anxiety, lowest-supply topics in the entire corpus. Brands answer dose and price. Almost nobody answers these.</p>
+  <div class="verbatim-stack">
+    <p class="v">"You made me spend $240 worth of this stuff and it came in a pouched bag, all the containers were hot, there was no point to refrigerate them."</p>
+    <p class="v">"Nowhere on their website do they mention that NMN needs refrigerated so that's a red flag."</p>
+    <p class="v">"Damn I just ordered NR without TMG — so confusing."</p>
+    <p class="v">"So you said in heat the NMN will degrade… I live on the island of Puerto Rico, so by the time I receive it, will it still be good?"</p>
+  </div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section id="skeptics">
+  <p class="part-label">Part 03</p>
+  <h2>Seven kinds of skeptic, seven different jobs</h2>
+  <p class="lede">"Skepticism" is not one objection. It is seven distinct mental models, and a creative that answers one of them can actively inflame another. Treat these as separate audiences with separate ads.</p>
+
+  <div class="barriers">
+
+    <article class="barrier">
+      <div class="barrier-head">
+        <h3 class="barrier-name">The Reductionist</h3>
+        <span class="vol">279 comments</span>
+      </div>
+      <p class="said">"NR and NMN are extremely expensive sources of NA and NAM. Nothing more."</p>
+      <dl>
+        <dt>Belief</dt><dd>Gut bacteria break NMN down into plain niacin, so you're paying 15× for vitamin B3.</dd>
+        <dt>Don't</dt><dd>Argue enzymology in a 30-second ad. You cannot win the NAMPT-bottleneck debate in a feed, and trying makes you sound defensive.</dd>
+        <dt>Do</dt><dd>Move the argument to ground you can win: the flush. Many of them have <em>tried</em> high-dose niacin and hated it. "No flush, no 3-gram megadose, no rash" is a lived-experience claim they can verify tonight.</dd>
+        <dt>Asset</dt><dd>Side-by-side: what you swallow, what it feels like, what it costs per day.</dd>
+      </dl>
+    </article>
+
+    <article class="barrier">
+      <div class="barrier-head">
+        <h3 class="barrier-name">The Counterfeit Cynic</h3>
+        <span class="vol">167 comments</span>
+      </div>
+      <p class="said">"Testing revealed the majority of NMN sold on Amazon is counterfeit or contains virtually no active ingredient."</p>
+      <dl>
+        <dt>Belief</dt><dd>The category is full of powder that isn't NMN. They cite the ChromaDex figures — 64% under 1% claimed content, 14% with zero — from memory.</dd>
+        <dt>Why it matters</dt><dd>This is the <strong>most winnable objection in the category</strong> and the least served. It is also the one Prime is structurally positioned to win.</dd>
+        <dt>Do</dt><dd>Make purity the hero, not longevity. Batch number on the bottle, scan to the actual COA, name the lab, show the assay number, publish failed batches too.</dd>
+        <dt>Asset</dt><dd>The COA is the creative. Not a badge — the document.</dd>
+      </dl>
+    </article>
+
+    <article class="barrier">
+      <div class="barrier-head">
+        <h3 class="barrier-name">The Evidentialist</h3>
+        <span class="vol">438 comments</span>
+      </div>
+      <p class="said">"Ok but has any study on humans shown that higher NAD actually means people are better off?"</p>
+      <dl>
+        <dt>Belief</dt><dd>Mice aren't people. Blood NAD+ isn't tissue NAD+. Raising a biomarker isn't a benefit.</dd>
+        <dt>Do</dt><dd>Cite honestly and cite the <em>limits</em>. This buyer converts on calibration, not enthusiasm. A brand that says "here's what the 250&nbsp;mg Igarashi trial showed, and here's what it didn't" out-credentials every competitor instantly.</dd>
+        <dt>Asset</dt><dd>A plain-language evidence page with a "what we can't claim yet" section. Long-form, not a feed ad.</dd>
+      </dl>
+    </article>
+
+    <article class="barrier">
+      <div class="barrier-head">
+        <h3 class="barrier-name">The Conflict Detector</h3>
+        <span class="vol">127 comments</span>
+      </div>
+      <p class="said">"It's all grifters calling out grifters to sell their own grift."</p>
+      <dl>
+        <dt>Belief</dt><dd>Anyone who profits is disqualified from telling the truth. Sinclair, Stanfield, DeLauer, the sponsored reviewer — all compromised.</dd>
+        <dt>Do</dt><dd>Pre-empt it in your own voice. Say you sell it. Say what your margin pays for. Point them to a third party you don't control and invite them to check.</dd>
+        <dt>Never</dt><dd>Use a white coat, a stethoscope, or an unnamed "leading longevity researcher." This audience reads that as a tell.</dd>
+      </dl>
+    </article>
+
+    <article class="barrier">
+      <div class="barrier-head">
+        <h3 class="barrier-name">The Disconfirmed Buyer</h3>
+        <span class="vol">37 comments</span>
+      </div>
+      <p class="said">"I've taken this for months and I feel nothing at all. It may work for some, but I will not be buying again."</p>
+      <dl>
+        <dt>Belief</dt><dd>I ran the experiment on myself. It failed. Your ad is contradicting my own body.</dd>
+        <dt>Do</dt><dd>Never tell them they're wrong. Give them a mechanism: dose too low, no methyl support, degraded product, already-sufficient NAD+, wrong window. Then give them the refund without a fight — the corpus shows a refunded customer still argues <em>for</em> the category.</dd>
+        <dt>Asset</dt><dd>"Five reasons NMN did nothing for you." This page does not exist anywhere. Build it.</dd>
+      </dl>
+    </article>
+
+    <article class="barrier">
+      <div class="barrier-head">
+        <h3 class="barrier-name">The Placebo Self-Doubter</h3>
+        <span class="vol">96 comments</span>
+      </div>
+      <p class="said">"It's not placebo — I didn't notice the benefits until I stopped taking it."</p>
+      <dl>
+        <dt>Belief</dt><dd>I feel better, but I'm suspicious of myself. I need a way to prove it to me.</dd>
+        <dt>Insight</dt><dd>They invented their own test: <mark>stop taking it and see what comes back</mark>. It recurs constantly and it is the market's own gold standard of proof.</dd>
+        <dt>Do</dt><dd>Name the test and invite it. "Take it 60 days. Then stop for ten. That's the only review we care about." Confident, falsifiable, and completely honest.</dd>
+      </dl>
+    </article>
+
+    <article class="barrier">
+      <div class="barrier-head">
+        <h3 class="barrier-name">The Contrarian</h3>
+        <span class="vol low">166 comments &middot; tailwind</span>
+      </div>
+      <p class="said">"When I heard the FDA wanted to ban it, I knew instantly it would be effective."</p>
+      <dl>
+        <dt>Note</dt><dd>The five highest-liked comments in the entire corpus are FDA-ban posts — 1,000, 615, 610, 586, 574 likes. This is the single strongest emotional current in the data.</dd>
+        <dt>Do</dt><dd>Use availability and supply framing: "still available," "we hold inventory," "stock up." Reactance sells here.</dd>
+        <dt>Careful</dt><dd>Don't make the conspiracy claim yourself. Let the sentiment exist in your audience; don't put "Big Pharma doesn't want you to have this" in your own ad copy. It's a regulatory and brand-safety liability, and it caps you at the fringe.</dd>
+      </dl>
+    </article>
+
+  </div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section id="psych">
+  <p class="part-label">Part 04</p>
+  <h2>The psychology underneath the objections</h2>
+  <p class="lede">Below the questions sit six structural conditions of this category. These are the things that don't change when a new study drops — and therefore the things worth building a brand on.</p>
+
+  <div class="driver">
+    <h3>The verification vacuum</h3>
+    <div class="body">
+      <p>NMN asks a buyer to accept three unverifiable things at once. They cannot feel it working (most report nothing dramatic). They cannot see it working (no visible change). And they cannot confirm the powder is even the molecule on the label. No other supplement category stacks all three.</p>
+      <p>Every anxiety in this corpus routes back to that vacuum — the purity panic, the placebo litigation, the refrigeration fear, the NAD blood tests, the pets used as unbiased test subjects. <strong>The brand that collapses the verification gap owns the category.</strong> Not the brand with the best story about longevity.</p>
+    </div>
+  </div>
+
+  <div class="driver">
+    <h3>Authority collapse</h3>
+    <div class="body">
+      <p>This audience bought in on a Harvard professor and then watched him get accused of lobbying to turn their supplement into a prescription drug. They turned to the skeptic and watched his own multivitamin get accused of failing a lab test. The corpus records the whole arc.</p>
+      <p>The behavioural residue is a permanent discount applied to any confident human on camera. It's why "Thomas, you never actually said what happened to <em>you</em>" is one of the most-liked comment patterns in the set — 558 likes on one instance. Enthusiasm now reads as a sales tell. Specificity reads as truth.</p>
+    </div>
+  </div>
+
+  <div class="driver">
+    <h3>Folk-science proof rituals</h3>
+    <div class="body">
+      <p>Denied trustworthy institutions, the market built its own evidence formats. Four recur constantly, and they are the native language of proof here:</p>
+      <ul>
+        <li><strong>The stop-and-restart test.</strong> "When I stop taking it, the arthritic pain comes back."</li>
+        <li><strong>The physical benchmark.</strong> "I'm 57 and I can do more pushups than at bootcamp when I was 18." Mile times, stairs, pickleball, grip.</li>
+        <li><strong>Before-and-after bloodwork.</strong> A1c, ApoB, plasma NAD+, biological-age tests.</li>
+        <li><strong>The pet as control.</strong> "The dog can't have a placebo effect." Used sincerely and repeatedly.</li>
+      </ul>
+      <p>Testimonials that use these formats land. Testimonials that say "I feel amazing" do not.</p>
+    </div>
+  </div>
+
+  <div class="driver">
+    <h3>Age as an identity gate</h3>
+    <div class="body">
+      <p>"You're too young to need this" is used as a put-down in the comments — and simultaneously, being visibly old is the thing everyone is running from. The audience needs permission to claim decline without claiming oldness.</p>
+      <p>The language that works threads that needle by pointing at the biology, not the person: <mark>"NAD+ falls roughly 50% between 40 and 60"</mark> lets a 52-year-old opt in without accepting the label "elderly." The language that fails is "for seniors," "for mature adults," or stock photography of grey-haired couples on beaches.</p>
+    </div>
+  </div>
+
+  <div class="driver">
+    <h3>Protocol anxiety after purchase</h3>
+    <div class="body">
+      <p>Refrigerate or not. Sublingual or swallow. With fat or empty stomach. TMG or not. Cycle or daily. Every one of these is an open loop that fires <em>after</em> the card is charged — which means it drives non-adherence, early churn, and refund requests, not just pre-purchase hesitation.</p>
+      <p>Treat protocol content as a retention lever with a hard revenue number attached, not as customer-service overhead.</p>
+    </div>
+  </div>
+
+  <div class="driver">
+    <h3>Public cost-per-gram arithmetic</h3>
+    <div class="body">
+      <p>They do the math out loud, and they do it accurately: "$50 for 60 caps at 250&nbsp;mg means 15 days at Sinclair's dose — $120 a month." "Sinclair's own brand is 15–20× the cost of third-party tested NMN by content weight."</p>
+      <p>Any brand that obscures serving math gets caught and mocked in its own comment section. The inverse is a real weapon: <strong>publish cost-per-gram and let the premium brands lose the comparison for you.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section id="lexicon">
+  <p class="part-label">Part 05</p>
+  <h2>Their words, not yours</h2>
+  <p class="lede">Lift these verbatim. Market vocabulary out-converts marketing vocabulary because it signals you've been in the same rooms they have.</p>
+
+  <div class="lex">
+    <div class="lexcol">
+      <h4>Technical terms they already own</h4>
+      <ul class="chips">
+        <li>NAD+</li><li>precursor</li><li>salvage pathway</li><li>NAMPT</li><li>Slc12a8</li>
+        <li>methyl donor</li><li>methylation</li><li>TMG / betaine</li><li>homocysteine</li>
+        <li>sublingual</li><li>liposomal</li><li>enteric-coated</li><li>bioavailability</li>
+        <li>third-party tested</li><li>COA</li><li>heavy metals</li><li>mycotoxins</li><li>GMP</li>
+        <li>99% purity</li><li>label claim</li><li>degradation</li><li>cold chain</li>
+        <li>stack</li><li>cycling</li><li>non-responder</li><li>biological age</li>
+        <li>epigenetic clock</li><li>gait speed</li><li>grip strength</li><li>VO2 max</li>
+      </ul>
+      <h4>Feeling words they actually use</h4>
+      <ul class="chips">
+        <li>clean energy</li><li>the afternoon crash</li><li>run out of steam</li>
+        <li>brain fog</li><li>mental clarity</li><li>sharper</li><li>ramp-up in the morning</li>
+        <li>recovery</li><li>soreness the next day</li><li>nimble</li>
+        <li>game changer</li><li>back to normal</li><li>a new lease on life</li>
+        <li>getting my life back</li><li>a cheat code for middle age</li>
+        <li>the beast came back</li>
+      </ul>
+    </div>
+    <div class="lexcol">
+      <h4>Phrases to steal directly</h4>
+      <ul class="chips good">
+        <li>"I stopped and it came back"</li>
+        <li>"not a placebo — here's why"</li>
+        <li>"show me the certificate"</li>
+        <li>"what's actually in the bottle"</li>
+        <li>"cost per gram"</li>
+        <li>"a full gram, not a teaser dose"</li>
+        <li>"no flush"</li>
+        <li>"if you're a responder"</li>
+        <li>"I'm 57 and…"</li>
+        <li>"the day after the gym"</li>
+      </ul>
+      <h4>Words that will get you mocked</h4>
+      <ul class="chips bad">
+        <li>reverse aging</li><li>fountain of youth</li><li>miracle</li>
+        <li>anti-aging pill</li><li>turn back the clock</li><li>cellular rejuvenation</li>
+        <li>breakthrough</li><li>doctors hate this</li><li>secret</li>
+        <li>clinically proven</li><li>cure</li><li>detox</li><li>for seniors</li>
+      </ul>
+      <div class="note" style="margin-top:1.2rem">
+        <p>"Fountain of youth" and "miracle" appear in the corpus almost exclusively as <em>sarcasm</em>. Using them sincerely marks you as the thing they're already laughing at.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 ================= -->
+<section id="ideas">
+  <p class="part-label">Part 06</p>
+  <h2>Nine ideas worth building on</h2>
+  <p class="lede">Ranked by the gap between how much the market wants it and how little anyone is supplying it.</p>
+
+  <h3>1. Sell the certificate, not the molecule</h3>
+  <p>Purity is the category's largest unresolved anxiety and its most concrete, provable claim. Batch number printed on every bottle, QR to the actual PDF, named lab, assay result, heavy metals, mycotoxins. Not a trust badge — the document itself, legible, dated, matching the batch in their hand. This converts the Counterfeit Cynic and reassures every other segment at the same time.</p>
+
+  <h3>2. Reframe from "does NMN work" to "are you a responder"</h3>
+  <p>The category's central argument is unwinnable and exhausting. The responder frame sidesteps it entirely, is more honest than the alternative, and is already how the smartest commenters talk. Operationalise it: a defined trial period, a specific protocol, a stated set of signals to watch for, and a no-argument refund if nothing shows up. You look confident because you're the only one willing to be tested.</p>
+
+  <h3>3. Tell an honest timeline</h3>
+  <p>The corpus is full of people quitting at three weeks because an ad implied two. The reported pattern clusters at 2–8 weeks, with sleep and morning alertness first, recovery and stamina later. A calibrated timeline — "most people notice nothing in week one; here's the order things tend to show up" — lowers refunds, raises adherence, and reads as truth precisely because it under-promises.</p>
+
+  <h3>4. Own "why you felt nothing"</h3>
+  <p>Zero brands have this page. It captures the highest-intent skeptical search traffic in the category, converts the Disconfirmed Buyer who is currently lost forever, and signals more confidence than any testimonial could.</p>
+
+  <h3>5. Publish cost-per-gram</h3>
+  <p>A simple comparison page — dose per serving, servings per container, cost per gram of actual NMN — turns the audience's own arithmetic habit into your acquisition channel. The premium brands lose this comparison by an order of magnitude and cannot respond without cutting price.</p>
+
+  <h3>6. Be the stack coach, not the pill seller</h3>
+  <p>TMG, timing, fat, storage, cycling, what to pair and what to skip. These are the highest-volume unanswered questions in the data. Owning them makes Prime the trusted operator of the protocol rather than one interchangeable bottle inside it — and it makes the bundle attach rate a natural consequence rather than an upsell.</p>
+
+  <h3>7. Make the cold chain visible</h3>
+  <p>Shipping heat is a live, unaddressed fear with real refund consequences. Whatever Prime actually does about stability — stabilised form, packaging, seasonal handling — say it explicitly and show it. If the product is heat-stable, that is a headline, not a footnote.</p>
+
+  <h3>8. Recruit the stop-and-restart testimonial</h3>
+  <p>Ask reviewers one question: "What happened when you ran out?" It produces the exact anecdote structure this market treats as proof, and it is far more persuasive than a five-star "love this product."</p>
+
+  <h3>9. Segment creative by decade, not just by targeting</h3>
+  <div class="tablewrap">
+    <table>
+      <caption>Age bands and the language they respond to</caption>
+      <thead><tr><th scope="col">Band</th><th scope="col">Their frame</th><th scope="col">Proof they want</th><th scope="col">Hook territory</th></tr></thead>
+      <tbody>
+        <tr><td class="num">38–49</td><td>"I'm slipping and nobody warned me"</td><td>Gym recovery, mile time, focus at 3pm</td><td>Performance, brain fog, the day after the workout</td></tr>
+        <tr><td class="num">50–64</td><td>"I want my thirties energy back"</td><td>Stairs, sleep, soreness, bloodwork</td><td>The stop-and-restart test, "the beast came back"</td></tr>
+        <tr><td class="num">65+</td><td>"I want to stay independent"</td><td>Gait speed, grip, gardening, grandkids</td><td>"Getting my life back," mobility, morning ramp-up</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 07 ================= -->
+<section id="prime">
+  <p class="part-label">Part 07</p>
+  <h2>Applying this to Prime</h2>
+
+  <div class="note">
+    <p><strong>One gap to flag.</strong> The sandbox blocked <code>tryprimeingredients.com</code>, so I could not read your live site. The product facts below come from public listings for Prime Powders — NMN capsules at 1,000&nbsp;mg per serving (stabilised), 500&nbsp;mg fast-dissolve NMN powder, NMNH capsules at 99% potency, third-party tested, made in the USA in a GMP facility, low heavy metals, mycotoxin-free. <mark>Correct me where that's wrong</mark> and the recommendations below adjust cleanly — the strategy doesn't depend on it, the specifics do.</p>
+  </div>
+
+  <h3>The positioning the data points to</h3>
+  <p>Prime's public claim set — third-party tested, made in the USA, GMP, 1,000&nbsp;mg full-gram serving, 99% potency, heavy metals and mycotoxins screened — happens to map almost exactly onto the top three anxieties in this corpus: <em>is it real</em>, <em>is it a full dose</em>, <em>is it clean</em>. That is a fortunate alignment and it should be the whole brand, not a bullet list halfway down the PDP.</p>
+
+  <h4>Positioning lines to test</h4>
+  <div class="swipe">
+    <div class="hook"><span>The NMN that shows its paperwork.<em>Purity-first, evidence tone</em></span></div>
+    <div class="hook"><span>A full gram. Tested. Batch number on the bottle.<em>Concrete, three-fact stack</em></span></div>
+    <div class="hook"><span>Most NMN isn't NMN. Here's ours, assayed.<em>Category-attack, high tension</em></span></div>
+    <div class="hook"><span>Made for people who read the certificate first.<em>Identity, flatters the skeptic</em></span></div>
+  </div>
+
+  <h3>Hook swipe file</h3>
+  <p>Built from verbatim comment language. Each is a testable first line for paid social, a thumbnail, or a subject line.</p>
+  <div class="swipe">
+    <div class="hook"><span>"64% of NMN on Amazon had less than 1% NMN in it."<em>Counterfeit Cynic</em></span></div>
+    <div class="hook"><span>Here's our batch number. Go look it up.<em>Counterfeit Cynic</em></span></div>
+    <div class="hook"><span>You're not buying NMN. You're buying a certificate of analysis.<em>Counterfeit Cynic</em></span></div>
+    <div class="hook"><span>Every bottle we've ever failed is on this page.<em>Conflict Detector</em></span></div>
+    <div class="hook"><span>Yes, we sell it. Here's the lab that doesn't.<em>Conflict Detector</em></span></div>
+    <div class="hook"><span>"Just take niacin." Okay — take 2 grams and call us at 3pm.<em>Reductionist, flush angle</em></span></div>
+    <div class="hook"><span>No flush. No rash. No 3-gram megadose.<em>Reductionist</em></span></div>
+    <div class="hook"><span>Take it 60 days. Then stop for ten. That's the review we want.<em>Placebo Self-Doubter</em></span></div>
+    <div class="hook"><span>The only NMN review that means anything: what happened when you ran out.<em>Placebo Self-Doubter</em></span></div>
+    <div class="hook"><span>Five reasons NMN did nothing for you.<em>Disconfirmed Buyer</em></span></div>
+    <div class="hook"><span>If you felt nothing, you probably weren't taking a gram.<em>Disconfirmed Buyer / dose</em></span></div>
+    <div class="hook"><span>Your bottle says 250&nbsp;mg. The trials used 1,000.<em>Dose math</em></span></div>
+    <div class="hook"><span>$50 for a two-week supply is not a deal.<em>Cost-per-gram</em></span></div>
+    <div class="hook"><span>Cost per gram, every brand, one table.<em>Cost-per-gram</em></span></div>
+    <div class="hook"><span>Week 1: nothing. Week 3: you sleep. Week 6: the stairs.<em>Honest timeline</em></span></div>
+    <div class="hook"><span>We'd rather you quit at day 60 than at day 12.<em>Honest timeline</em></span></div>
+    <div class="hook"><span>Do you need TMG with it? Short answer inside.<em>Stack coach</em></span></div>
+    <div class="hook"><span>Does shipping heat ruin NMN? We tested ours at 40°C.<em>Cold chain</em></span></div>
+    <div class="hook"><span>NAD+ falls about half between 40 and 60. That's the whole pitch.<em>Age-gate safe</em></span></div>
+    <div class="hook"><span>I'm 57. I can do more pushups than I could at 25.<em>Physical benchmark UGC</em></span></div>
+    <div class="hook"><span>It's not the energy. It's not needing the second coffee.<em>Feeling language</em></span></div>
+    <div class="hook"><span>What we can't claim yet.<em>Evidentialist, long-form</em></span></div>
+    <div class="hook"><span>Three human trials, plainly explained, including what they missed.<em>Evidentialist</em></span></div>
+    <div class="hook"><span>Still available. Still tested. Still a full gram.<em>Contrarian / availability</em></span></div>
+  </div>
+
+  <h3>Three UGC scripts</h3>
+
+  <div class="script">
+    <h4>A · The stop-and-restart</h4>
+    <ol>
+      <li><span class="beat">Hook, 0–3s</span>"I ran out of my NMN for nine days. That's how I know it works."</li>
+      <li><span class="beat">Context, 3–10s</span>Age, one specific baseline. "I'm 54. Before this, I was done by two in the afternoon."</li>
+      <li><span class="beat">The gap, 10–20s</span>What came back during the gap — named, physical, unglamorous. Stairs. The 3pm wall. Waking up foggy.</li>
+      <li><span class="beat">The return, 20–28s</span>"Four days back on it and it settled again."</li>
+      <li><span class="beat">Product, 28–36s</span>Bottle in hand, batch number visible. "A full gram, and I can pull up the lab report on the label."</li>
+      <li><span class="beat">CTA</span>"Try it 60 days, then stop for ten. That's the test."</li>
+    </ol>
+  </div>
+
+  <div class="script">
+    <h4>B · The certificate</h4>
+    <ol>
+      <li><span class="beat">Hook, 0–3s</span>"Most NMN on Amazon isn't NMN." Hold up a competitor-shaped generic bottle, unbranded.</li>
+      <li><span class="beat">Stakes, 3–12s</span>Cite the third-party testing findings. Under 1% content. Some with zero.</li>
+      <li><span class="beat">Turn, 12–22s</span>"So here's the only thing I check now." Scan the batch code on Prime, show the COA loading on the phone screen.</li>
+      <li><span class="beat">Read it, 22–32s</span>Point at three lines: identity, potency, heavy metals. Say the lab's name out loud.</li>
+      <li><span class="beat">CTA</span>"Don't take my word for it. Take the assay."</li>
+    </ol>
+  </div>
+
+  <div class="script">
+    <h4>C · The niacin argument</h4>
+    <ol>
+      <li><span class="beat">Hook, 0–4s</span>"Every NMN video has the same comment: just take cheap niacin."</li>
+      <li><span class="beat">Concede, 4–12s</span>Give it real credit. Niacin raises NAD+ and it's cheap. Say so. Conceding buys the next ten seconds.</li>
+      <li><span class="beat">Pivot, 12–24s</span>The flush. The megadose. The reason people quit it. Personal, specific, unpleasant.</li>
+      <li><span class="beat">Position, 24–34s</span>"So this is what I do instead. One gram, no flush, tested."</li>
+      <li><span class="beat">CTA</span>"If niacin works for you, genuinely — keep going. If you bounced off it, this is the other road."</li>
+    </ol>
+  </div>
+
+  <h3>Page and flow fixes</h3>
+  <h4>Product page — order matters</h4>
+  <ol>
+    <li>Dose per serving, in milligrams, above the fold. Servings per container next to it.</li>
+    <li>Cost per gram, calculated for them.</li>
+    <li>Batch number + live COA link, not a badge.</li>
+    <li>"Do I need TMG?" — answered on the page, not in a linked FAQ.</li>
+    <li>Storage and shipping-heat answer, explicitly.</li>
+    <li>Timeline expectation: what shows up when.</li>
+    <li>The refund terms, stated in one sentence a skeptic can trust.</li>
+  </ol>
+
+  <h4>Post-purchase flow (Klaviyo)</h4>
+  <ul>
+    <li><strong>Day 0</strong> — How to take it: timing, with or without food, storage. Kills the top protocol anxieties before they become tickets.</li>
+    <li><strong>Day 2</strong> — The TMG question, answered honestly either way.</li>
+    <li><strong>Day 7</strong> — "You probably don't feel anything yet. Here's why that's expected." Single biggest churn-prevention email available.</li>
+    <li><strong>Day 21</strong> — What to watch for, in their language: morning ramp-up, the 3pm wall, day-after soreness.</li>
+    <li><strong>Day 45</strong> — Introduce the stop-and-restart test. Frame it as the brand's own confidence.</li>
+    <li><strong>Day 60</strong> — Review request with one question: "What changed, and what came back when you ran out?"</li>
+  </ul>
+
+  <h4>What to test first</h4>
+  <p>If you only run three tests: <strong>certificate-led</strong> vs <strong>full-gram/dose-math-led</strong> vs <strong>stop-and-restart-led</strong>. Those three map to the three largest, most distinct clusters in the data, and they'll tell you which axis this brand should own before you spend on the rest.</p>
+</section>
+
+<!-- ================= 08 ================= -->
+<section id="guardrails">
+  <p class="part-label">Part 08</p>
+  <h2>Guardrails</h2>
+
+  <div class="callout">
+    <h4>The most persuasive quotes in this corpus are unusable</h4>
+    <p>The highest-emotion testimonials in the data describe reversing Alzheimer's, resolving lung scarring, curing arthritis, and recovering from cancer treatment. They are moving, they are specific, and putting any of them in an ad turns a supplement into an unapproved drug claim in the eyes of the FTC and FDA.</p>
+    <p>Keep to structure/function language: supports cellular energy, supports healthy NAD+ levels, supports healthy aging. Screen every piece of UGC for disease language before it goes live, including in comment replies and creator briefs — a claim made by your paid creator is your claim.</p>
+  </div>
+
+  <ul>
+    <li><strong>Substantiate testimonials.</strong> Keep the raw review, the date, and the customer's consent on file for anything you run as an ad. Add typicality language where results are unusual.</li>
+    <li><strong>Don't run the conspiracy.</strong> The FDA-reactance sentiment is a real tailwind, but "Big Pharma is hiding this" in your own copy is a Meta rejection risk and a brand ceiling. Use availability framing instead.</li>
+    <li><strong>Don't borrow Sinclair.</strong> Naming him is now roughly as likely to cost trust as to build it with this specific audience, and it invites the whole lobbying argument into your comments.</li>
+    <li><strong>Only claim what your COA says.</strong> "99% purity" and "third-party tested" are powerful precisely because they're checkable — which means they must survive being checked, on every batch.</li>
+    <li><strong>Health-claim review before scale.</strong> Have counsel review the evidence page and the responder-guarantee wording once. It's cheap now and expensive later.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Source: 3,491 comments, ~620,000 characters, parsed from the supplied YouTube comment export &middot; Analysis prepared for creative strategy use &middot; Frequencies indicate argument volume, not population prevalence</p>
+</footer>
+
+</div>
