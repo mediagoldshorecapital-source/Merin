@@ -1,0 +1,1354 @@
+<title>The NMN Quote Bank</title>
+<style>
+:root{
+ --paper:#F1F3F2;--surface:#fff;--surface2:#E9EDEB;--ink:#16211F;--ink2:#3C4A47;
+ --graphite:#66756F;--rule:#D3DAD7;--rule2:#B6C1BD;--accent:#1C5C52;--accent-soft:#DCE9E4;
+ --signal:#B23E28;--signal-soft:#F3E0DA;--mark:#F5DC72;
+ --fear:#C08B4E;--shame:#8E6E9C;--anger:#B23E28;--grief:#5B7395;--hope:#5F8A4A;--relief:#1C7F6E;--pride:#B08B1E;
+ --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+ --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+ --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#0F1615;--surface:#161F1D;--surface2:#1C2725;--ink:#E4EAE7;--ink2:#B7C3BF;
+ --graphite:#8B9A95;--rule:#26332F;--rule2:#374743;--accent:#63C3AE;--accent-soft:#16302B;
+ --signal:#EE8570;--signal-soft:#33201B;--mark:rgba(245,220,114,.26);
+ --fear:#D9A66B;--shame:#B394C0;--anger:#EE8570;--grief:#8CA6C8;--hope:#8CBD73;--relief:#5FBFAC;--pride:#D6B84A;
+}}
+:root[data-theme="dark"]{
+ --paper:#0F1615;--surface:#161F1D;--surface2:#1C2725;--ink:#E4EAE7;--ink2:#B7C3BF;
+ --graphite:#8B9A95;--rule:#26332F;--rule2:#374743;--accent:#63C3AE;--accent-soft:#16302B;
+ --signal:#EE8570;--signal-soft:#33201B;--mark:rgba(245,220,114,.26);
+ --fear:#D9A66B;--shame:#B394C0;--anger:#EE8570;--grief:#8CA6C8;--hope:#8CBD73;--relief:#5FBFAC;--pride:#D6B84A;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;margin:0;padding:0 clamp(1rem,3vw,2rem) 5rem;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1500px;margin:0 auto}
+header{padding:clamp(2rem,6vw,4rem) 0 1.6rem;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);margin:0 0 1rem}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.03;letter-spacing:-.02em;margin:0 0 .8rem;text-wrap:balance}
+.stand{font-family:var(--serif);font-size:clamp(1.05rem,2.2vw,1.25rem);line-height:1.5;color:var(--ink2);max-width:62ch;margin:0 0 1.8rem}
+h2{font-family:var(--serif);font-size:clamp(1.5rem,3.2vw,2rem);font-weight:600;line-height:1.15;margin:0 0 .7rem;letter-spacing:-.015em}
+h3{font-family:var(--sans);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);margin:1.8rem 0 .6rem}
+section{padding:clamp(2rem,5vw,3.2rem) 0 0}
+p{max-width:70ch;margin:0 0 1rem}
+.part{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.75rem;margin:0 0 .8rem}
+.part::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+.ebars{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.2rem 0 0}
+.ebar{background:var(--paper);padding:.75rem .85rem;display:flex;align-items:baseline;gap:.45rem;flex-wrap:wrap}
+.eswatch{width:10px;height:10px;border-radius:2px;flex:none;align-self:center}
+.ebar b{font-family:var(--mono);font-size:1.15rem;font-variant-numeric:tabular-nums}
+.ebar span:last-child{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite)}
+.eswatch.emo-Fear{background:var(--fear)}.eswatch.emo-Shame{background:var(--shame)}
+.eswatch.emo-Anger{background:var(--anger)}.eswatch.emo-Grief{background:var(--grief)}
+.eswatch.emo-Hope{background:var(--hope)}.eswatch.emo-Relief{background:var(--relief)}
+.eswatch.emo-Pride{background:var(--pride)}
+
+.cols{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.2rem 0}
+@media(min-width:840px){.cols{grid-template-columns:1fr 1fr}}
+.col{background:var(--surface);padding:1.1rem 1.2rem}
+.col h3{margin-top:0}
+.mini{width:100%;border-collapse:collapse;font-size:.86rem}
+.mini td{padding:.3rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.mini tr:last-child td{border-bottom:none}
+.mini td.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--accent);font-weight:600;width:3.5rem}
+.mini td.ck{width:2.2rem}
+
+.controls{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:1.4rem 0 .8rem;position:sticky;top:0;background:var(--paper);padding:.7rem 0;z-index:5;border-bottom:1px solid var(--rule)}
+.controls label{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);margin-right:.3rem}
+button.f{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;border:1px solid var(--rule2);background:var(--surface);color:var(--ink2);padding:.3rem .6rem;border-radius:2px;cursor:pointer}
+button.f:hover{border-color:var(--accent);color:var(--accent)}
+button.f[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#count{font-family:var(--mono);font-size:.72rem;color:var(--graphite);margin-left:auto;font-variant-numeric:tabular-nums}
+
+.tw{overflow-x:auto;border:1px solid var(--rule);background:var(--surface)}
+table.bank{border-collapse:collapse;width:100%;min-width:1180px;font-size:.85rem}
+table.bank thead th{position:sticky;top:0;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;text-align:left;padding:.6rem .7rem;z-index:2}
+table.bank td{padding:.6rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+table.bank tbody tr:hover{background:var(--surface2)}
+td.id{font-family:var(--mono);font-size:.68rem;color:var(--graphite);white-space:nowrap}
+td.quote{font-family:var(--serif);font-size:.98rem;line-height:1.38;min-width:20rem;max-width:26rem}
+.wc{display:block;font-family:var(--mono);font-size:.6rem;color:var(--graphite);margin-top:.2rem}
+.emo{font-family:var(--mono);font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;padding:.16rem .4rem;border-radius:2px;white-space:nowrap;border:1px solid currentColor}
+.emo-Fear{color:var(--fear)}.emo-Shame{color:var(--shame)}.emo-Anger{color:var(--anger)}
+.emo-Grief{color:var(--grief)}.emo-Hope{color:var(--hope)}.emo-Relief{color:var(--relief)}.emo-Pride{color:var(--pride)}
+td.jtbd{min-width:9rem;max-width:12rem;color:var(--ink2)}
+.kind{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.15rem}
+.k-Objection{color:var(--signal)}.k-Benefit{color:var(--accent)}
+.spec{display:block;color:var(--ink2)}
+td.trig{min-width:10rem;max-width:13rem;color:var(--ink2)}
+td.crit{white-space:nowrap;min-width:6.5rem}
+td.crit b{font-family:var(--mono);font-size:.7rem;color:var(--graphite);margin-left:.25rem}
+.c{display:inline-block;font-family:var(--mono);font-style:normal;font-size:.6rem;font-weight:700;width:1.05rem;height:1.05rem;line-height:1.05rem;text-align:center;border-radius:2px;margin-right:.1rem;background:var(--accent-soft);color:var(--accent)}
+.c-F{background:var(--mark);color:#16211F}
+.c-E{background:var(--signal-soft);color:var(--signal)}
+td.seg{font-size:.78rem;color:var(--graphite);min-width:8rem}
+td.use{min-width:13rem;max-width:17rem;color:var(--ink2);font-size:.82rem}
+
+table.app{border-collapse:collapse;width:100%;min-width:800px;font-size:.85rem}
+table.app thead th{background:var(--surface2);color:var(--graphite);font-family:var(--mono);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--rule)}
+table.app td{padding:.55rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+table.app tr:last-child td{border-bottom:none}
+
+.note{border-left:2px solid var(--rule2);padding:.15rem 0 .15rem .9rem;font-size:.9rem;color:var(--graphite);max-width:70ch;margin:1.1rem 0}
+.callout{border:1px solid var(--signal);background:var(--signal-soft);padding:1rem 1.2rem;margin:1.4rem 0;max-width:70ch}
+.callout h3{color:var(--signal);margin-top:0}
+.callout p:last-child{margin-bottom:0}
+ol,ul{max-width:70ch}
+li{margin-bottom:.4rem}
+footer{border-top:2px solid var(--ink);margin-top:3rem;padding-top:1.2rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--graphite)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+@media print{
+ body{background:#fff;color:#111;font-size:9pt;padding:0}
+ .controls{display:none}
+ .tw{overflow:visible;border:none}
+ table.bank{min-width:0;width:100%;font-size:7.6pt}
+ table.bank thead th{position:static;background:#16211F;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ table.bank tbody tr{break-inside:avoid}
+ td.quote{font-size:8.2pt}
+ header{padding-top:0}
+ section{padding-top:14pt}
+ h1{font-size:26pt}
+ @page{size:A3 landscape;margin:12mm}
+}
+</style>
+<div class="wrap">
+
+<header>
+<p class="eyebrow">Customer-language bank &middot; Prepared for Prime &middot; August 2026</p>
+<h1>The NMN Quote&nbsp;Bank</h1>
+<p class="stand">110 things real buyers said, in their own words, tagged so your copy becomes transcription rather than invention. Every row carries at least three of the six quality criteria.</p>
+<div class="ebars"><div class="ebar"><span class="eswatch emo-Fear"></span><b>21</b><span>Fear</span></div><div class="ebar"><span class="eswatch emo-Shame"></span><b>18</b><span>Shame</span></div><div class="ebar"><span class="eswatch emo-Anger"></span><b>10</b><span>Anger</span></div><div class="ebar"><span class="eswatch emo-Grief"></span><b>12</b><span>Grief</span></div><div class="ebar"><span class="eswatch emo-Hope"></span><b>6</b><span>Hope</span></div><div class="ebar"><span class="eswatch emo-Relief"></span><b>22</b><span>Relief</span></div><div class="ebar"><span class="eswatch emo-Pride"></span><b>21</b><span>Pride</span></div></div>
+</header>
+
+<section>
+<p class="part">How it's built</p>
+<h2>One quote per row, four axes, six criteria</h2>
+<p>Quotes are verbatim from a corpus of 3,491 YouTube comments (~620,000 characters). They are trimmed for length only &mdash; no wording is changed, though adjacent sentences from a single comment may be joined. Anything that couldn't clear three criteria was moved to <a href="#below">Below the bar</a> rather than quietly dropped.</p>
+
+<div class="cols">
+<div class="col">
+<h3>The six criteria</h3>
+<table class="mini"><tbody><tr><td class="ck"><i class="c c-P">P</i></td><td>plain unbranded language</td><td class="num">110</td></tr><tr><td class="ck"><i class="c c-Q">Q</i></td><td>quotable in under twelve words</td><td class="num">100</td></tr><tr><td class="ck"><i class="c c-S">S</i></td><td>physical sensation / concrete detail</td><td class="num">58</td></tr><tr><td class="ck"><i class="c c-T">T</i></td><td>specific time or place</td><td class="num">49</td></tr><tr><td class="ck"><i class="c c-E">E</i></td><td>slightly embarrassing admission</td><td class="num">46</td></tr><tr><td class="ck"><i class="c c-F">F</i></td><td>comparison to a former self</td><td class="num">37</td></tr></tbody></table>
+<p class="note" style="margin-bottom:0">Rows carrying <b>F</b> &mdash; a comparison to a former self &mdash; are the rarest and the most valuable. Filter for them first.</p>
+</div>
+<div class="col">
+<h3>Jobs to be done &mdash; 18 distinct</h3>
+<table class="mini"><tbody><tr><td>Prove to myself this isn&#x27;t in my head</td><td class="num">16</td></tr><tr><td>Do the protocol correctly</td><td class="num">11</td></tr><tr><td>Get my energy back</td><td class="num">10</td></tr><tr><td>Justify the money to myself</td><td class="num">8</td></tr><tr><td>Stop feeling old before my time</td><td class="num">8</td></tr><tr><td>Know who to trust</td><td class="num">7</td></tr><tr><td>Not damage myself</td><td class="num">6</td></tr><tr><td>Recover like I used to</td><td class="num">6</td></tr><tr><td>Sleep properly</td><td class="num">5</td></tr><tr><td>Look like myself again</td><td class="num">5</td></tr><tr><td>Keep moving without stiffness</td><td class="num">5</td></tr><tr><td>Know I&#x27;m taking a real dose</td><td class="num">4</td></tr><tr><td>Protect the money I already spent</td><td class="num">4</td></tr><tr><td>Avoid getting ripped off</td><td class="num">4</td></tr><tr><td>Stay independent</td><td class="num">4</td></tr><tr><td>Get my energy back without the flush</td><td class="num">3</td></tr><tr><td>Think clearly at work</td><td class="num">2</td></tr><tr><td>Keep access to something that works</td><td class="num">2</td></tr></tbody></table>
+</div>
+</div>
+
+<div class="cols">
+<div class="col">
+<h3>Coverage</h3>
+<table class="mini"><tbody>
+<tr><td>Quotes on the main sheet</td><td class="num">110</td></tr>
+<tr><td>Benefit rows</td><td class="num">61</td></tr>
+<tr><td>Objection rows</td><td class="num">49</td></tr>
+<tr><td>Distinct trigger moments</td><td class="num">106</td></tr>
+<tr><td>Rows scoring 5 of 6</td><td class="num">16</td></tr>
+<tr><td>Rows scoring 4 of 6</td><td class="num">38</td></tr>
+<tr><td>Rows scoring 3 of 6</td><td class="num">56</td></tr>
+</tbody></table>
+</div>
+<div class="col">
+<h3>How to work the sheet</h3>
+<ul style="margin:0;padding-left:1.1rem">
+<li><b>Writing an ad</b> &mdash; filter Emotion + Type, lift the quote as your first line, use the Trigger moment as the opening shot.</li>
+<li><b>Briefing a creator</b> &mdash; filter by Segment, hand them the trigger moment as the scene and the quote as the line.</li>
+<li><b>Building the email flow</b> &mdash; sort by Trigger moment. Each one is a send.</li>
+<li><b>Finding hero testimonials</b> &mdash; filter Score 5 and criteria containing F.</li>
+<li><b>Naming the objection</b> &mdash; every Objection row is a headline for the page that answers it.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<p class="part">The bank</p>
+<h2>110 quotes, tagged</h2>
+
+<div class="controls">
+<label>Emotion</label>
+<button class="f" data-k="emotion" data-v="Fear" aria-pressed="false">Fear</button><button class="f" data-k="emotion" data-v="Shame" aria-pressed="false">Shame</button><button class="f" data-k="emotion" data-v="Anger" aria-pressed="false">Anger</button><button class="f" data-k="emotion" data-v="Grief" aria-pressed="false">Grief</button><button class="f" data-k="emotion" data-v="Hope" aria-pressed="false">Hope</button><button class="f" data-k="emotion" data-v="Relief" aria-pressed="false">Relief</button><button class="f" data-k="emotion" data-v="Pride" aria-pressed="false">Pride</button>
+<label style="margin-left:.6rem">Type</label>
+<button class="f" data-k="kind" data-v="Benefit" aria-pressed="false">Benefit</button>
+<button class="f" data-k="kind" data-v="Objection" aria-pressed="false">Objection</button>
+<label style="margin-left:.6rem">Score</label>
+<button class="f" data-k="score" data-v="4" aria-pressed="false">4+</button>
+<button class="f" data-k="score" data-v="5" aria-pressed="false">5</button>
+<span id="count"></span>
+</div>
+
+<div class="tw">
+<table class="bank" id="bank">
+<thead><tr>
+<th scope="col">ID</th><th scope="col">Quote</th><th scope="col">Emotion</th>
+<th scope="col">Job to be done</th><th scope="col">Objection / benefit</th>
+<th scope="col">Trigger moment</th><th scope="col">Criteria</th>
+<th scope="col">Segment</th><th scope="col">Use it for</th>
+</tr></thead>
+<tbody>
+<tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q001</td>
+<td class="quote">&ldquo;I get huge side effects from NMN.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Not damage myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Side effects</span></td>
+<td class="trig">First week on product</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Half-dose ramp-up protocol</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q002</td>
+<td class="quote">&ldquo;Had to discontinue NMN because it gave me heart palpitations.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Not damage myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Cardiac side effect</span></td>
+<td class="trig">Week one</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">&#x27;If you feel off&#x27; email; titration guidance</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q003</td>
+<td class="quote">&ldquo;It gave me insomnia so I stopped taking it.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Sleep properly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Too stimulating</span></td>
+<td class="trig">Third night awake</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Timing guidance: dose before noon</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="4">
+<td class="id">Q004</td>
+<td class="quote">&ldquo;I wake at 4am and can&#x27;t get back to sleep.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Sleep properly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Sleep disruption</span></td>
+<td class="trig">4am, in bed</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Timing guidance; day-2 email</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q005</td>
+<td class="quote">&ldquo;I never had worse headaches than when I took NMN.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Not damage myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Headaches</span></td>
+<td class="trig">After a heart-rate spike at the gym</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Titration content</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q006</td>
+<td class="quote">&ldquo;I feel sluggish and get terrible headaches.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Feels worse, not better</span></td>
+<td class="trig">Morning after dosing</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Start-low protocol</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q007</td>
+<td class="quote">&ldquo;Left me with serious insomnia!&rdquo;<span class="wc">5w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Sleep properly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Too stimulating</span></td>
+<td class="trig">Day three</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Timing guidance</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="4">
+<td class="id">Q008</td>
+<td class="quote">&ldquo;After a month, my brain fog only got worse.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Think clearly at work</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Opposite of the promised effect</span></td>
+<td class="trig">One month in, at work</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">&#x27;Five reasons NMN did nothing for you&#x27; page</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="4">
+<td class="id">Q009</td>
+<td class="quote">&ldquo;After two weeks my eyes started itching very badly.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Not damage myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Unexpected reaction</span></td>
+<td class="trig">Two weeks in</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Side-effect transparency page</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="4">
+<td class="id">Q010</td>
+<td class="quote">&ldquo;I got a horrible breakout on my arms, chest and back.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Look like myself again</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Skin reaction</span></td>
+<td class="trig">Two weeks in, in the mirror</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Start-at-half protocol</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q011</td>
+<td class="quote">&ldquo;Quit taking it due to cancer fears.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Not damage myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Cancer-growth fear</span></td>
+<td class="trig">After reading a study headline</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Evidentialist</td>
+<td class="use">Safety page: state what is and isn&#x27;t known</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q012</td>
+<td class="quote">&ldquo;I am prone to skin cancer.&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Not damage myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Personal cancer history</span></td>
+<td class="trig">Deciding whether to start</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Cautious first-timer</td>
+<td class="use">Consult-your-doctor language, warmly written</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q013</td>
+<td class="quote">&ldquo;I tried all kinds of dosage — meh!&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Know I&#x27;m taking a real dose</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">No agreed dose exists</span></td>
+<td class="trig">A year in, still fiddling</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Evidentialist</td>
+<td class="use">Dose-rationale content citing trial doses</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q014</td>
+<td class="quote">&ldquo;I need a quarter of a capsule or I don&#x27;t feel right.&rdquo;<span class="wc">12w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Needs to titrate down</span></td>
+<td class="trig">Morning dose</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><b>3</b></td>
+<td class="seg">Sensitive responder</td>
+<td class="use">Start-low protocol content</td>
+</tr><tr data-emotion="Anger" data-kind="Objection" data-score="4">
+<td class="id">Q015</td>
+<td class="quote">&ldquo;All the containers were hot. You got me scammed.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Protect the money I already spent</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Shipping heat degrades product</span></td>
+<td class="trig">Opening the box</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Stability claim; &#x27;we tested ours at 40°C&#x27;</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="4">
+<td class="id">Q016</td>
+<td class="quote">&ldquo;Does it get ruined shipped in the hot summer weather?&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Protect the money I already spent</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Heat in transit</span></td>
+<td class="trig">Waiting on a summer delivery</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">All buyers</td>
+<td class="use">Packaging insert; day-0 email</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q017</td>
+<td class="quote">&ldquo;I didn&#x27;t know you&#x27;re supposed to keep it cold.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Protect the money I already spent</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Storage never disclosed</span></td>
+<td class="trig">After watching a video post-purchase</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Anxious new buyer</td>
+<td class="use">Storage block on the PDP</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q018</td>
+<td class="quote">&ldquo;Do they melt in your hands?&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Protect the money I already spent</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Heat sensitivity</span></td>
+<td class="trig">Holding the capsules</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Anxious new buyer</td>
+<td class="use">Stability messaging</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q019</td>
+<td class="quote">&ldquo;Should I not take the one I bought?&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">I may have already ruined it</span></td>
+<td class="trig">Watching a video after purchase</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Anxious new buyer</td>
+<td class="use">Day-0 email subject line</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q020</td>
+<td class="quote">&ldquo;Well it looks I&#x27;ve been scammed out of hundreds of dollars.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Avoid getting ripped off</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Bought counterfeit product</span></td>
+<td class="trig">Watching a purity-test video</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Counterfeit Cynic</td>
+<td class="use">Certificate-led ad; &#x27;here&#x27;s our batch number&#x27;</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q021</td>
+<td class="quote">&ldquo;I wasted a lot of money on NMN.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Justify the money to myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">No perceived return</span></td>
+<td class="trig">Cancelling the subscription</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">&#x27;We&#x27;d rather you quit at day 60 than day 12&#x27;</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q022</td>
+<td class="quote">&ldquo;Wasted 90 dollars already.&rdquo;<span class="wc">4w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Justify the money to myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Sunk cost</span></td>
+<td class="trig">Looking at the half-empty bottle</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Guarantee copy</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q023</td>
+<td class="quote">&ldquo;I feel a little ripped off.&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Avoid getting ripped off</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Underdosed product</span></td>
+<td class="trig">Doing the serving math</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Reductionist</td>
+<td class="use">Cost-per-gram comparison page</td>
+</tr><tr data-emotion="Anger" data-kind="Objection" data-score="3">
+<td class="id">Q024</td>
+<td class="quote">&ldquo;I&#x27;m annoyed now knowing I&#x27;ve been likely ripped off.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Avoid getting ripped off</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Label claim not met</span></td>
+<td class="trig">After a third-party test result</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Counterfeit Cynic</td>
+<td class="use">COA-led creative</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q025</td>
+<td class="quote">&ldquo;I fell for the marketing campaign.&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Know who to trust</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Influencer-driven regret</span></td>
+<td class="trig">After a sponsored video</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Conflict Detector</td>
+<td class="use">&#x27;Yes, we sell it&#x27; disclosure copy</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="4">
+<td class="id">Q026</td>
+<td class="quote">&ldquo;I only continued because I paid for three months.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Justify the money to myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Finishing it out of obligation</span></td>
+<td class="trig">Week six with no effect</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Day-21 &#x27;what to watch for&#x27; email</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="4">
+<td class="id">Q027</td>
+<td class="quote">&ldquo;I knew it was a waste, nine months in.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Justify the money to myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Long trial, no result</span></td>
+<td class="trig">Nine months in</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Responder-refund offer</td>
+</tr><tr data-emotion="Grief" data-kind="Objection" data-score="4">
+<td class="id">Q028</td>
+<td class="quote">&ldquo;I&#x27;ve given them thousands of dollars over five years.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Justify the money to myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Years of spend, no proof</span></td>
+<td class="trig">Watching a debunking video</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Cost-per-gram page</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q029</td>
+<td class="quote">&ldquo;I don&#x27;t keep throwing good money after bad.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Justify the money to myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Refuses to sunk-cost</span></td>
+<td class="trig">Deciding on reorder</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Guarantee framing</td>
+</tr><tr data-emotion="Anger" data-kind="Objection" data-score="3">
+<td class="id">Q030</td>
+<td class="quote">&ldquo;60 caps at 250mg is 15 days — $120 a month.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Know I&#x27;m taking a real dose</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Underdosed relative to price</span></td>
+<td class="trig">Doing the math on the label</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Reductionist</td>
+<td class="use">Publish servings and cost-per-gram</td>
+</tr><tr data-emotion="Anger" data-kind="Objection" data-score="3">
+<td class="id">Q031</td>
+<td class="quote">&ldquo;3 months at 500mg and my aging score went up.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Test contradicted the promise</span></td>
+<td class="trig">Getting biological-age results</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Data-driven buyer</td>
+<td class="use">Never promise biomarker movement</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="4">
+<td class="id">Q032</td>
+<td class="quote">&ldquo;It&#x27;s affordable, but four months in I see no results.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Justify the money to myself</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Cheap but ineffective</span></td>
+<td class="trig">Four months in</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Disconfirmed Buyer</td>
+<td class="use">Value is not the same as efficacy</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q033</td>
+<td class="quote">&ldquo;I&#x27;m a smart person but I can&#x27;t grasp what NMN is.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Know who to trust</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Category is too complex</span></td>
+<td class="trig">Trying to research before buying</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">New to category</td>
+<td class="use">Plain-language explainer, zero jargon</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q034</td>
+<td class="quote">&ldquo;Sorry I&#x27;m dumb — does it turn into acid or nicotinamide?&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Know who to trust</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Confused by the science</span></td>
+<td class="trig">Mid-way through a debunking video</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">New to category</td>
+<td class="use">Explainer in their own words</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q035</td>
+<td class="quote">&ldquo;I&#x27;ve gone back and forth on these supplements.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Know who to trust</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Chronic indecision</span></td>
+<td class="trig">Reading yet another conflicting take</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Switcher</td>
+<td class="use">Comparison page; make the decision easy</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="3">
+<td class="id">Q036</td>
+<td class="quote">&ldquo;I just bought 6 packs but I&#x27;m confused, how do I eat it?&rdquo;<span class="wc">13w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">No usage instructions</span></td>
+<td class="trig">Bottle in hand, day one</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><b>3</b></td>
+<td class="seg">Powder buyer</td>
+<td class="use">Insert card; day-0 email</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="4">
+<td class="id">Q037</td>
+<td class="quote">&ldquo;How do you measure 250mg without a scale at home?&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Powder is hard to dose</span></td>
+<td class="trig">Kitchen counter, first scoop</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Powder buyer</td>
+<td class="use">Include a scoop and show it in creative</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q038</td>
+<td class="quote">&ldquo;Why can&#x27;t I find anywhere how and when to take this?&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">No usage guidance exists</span></td>
+<td class="trig">Bottle in hand, searching online</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Anxious new buyer</td>
+<td class="use">Insert card; day-0 email</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="4">
+<td class="id">Q039</td>
+<td class="quote">&ldquo;Damn, I just ordered without TMG. So confusing.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Missing co-factor</span></td>
+<td class="trig">Right after ordering</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Anxious new buyer</td>
+<td class="use">Bundle logic; day-2 TMG email</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q040</td>
+<td class="quote">&ldquo;So this, or TMG, or both?&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Stack confusion</span></td>
+<td class="trig">At the point of purchase</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Anxious new buyer</td>
+<td class="use">Answer on the PDP, not in a linked FAQ</td>
+</tr><tr data-emotion="Fear" data-kind="Objection" data-score="3">
+<td class="id">Q041</td>
+<td class="quote">&ldquo;With a meal or empty stomach?&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Timing unknown</span></td>
+<td class="trig">Standing in the kitchen</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Anxious new buyer</td>
+<td class="use">Insert card</td>
+</tr><tr data-emotion="Shame" data-kind="Objection" data-score="5">
+<td class="id">Q042</td>
+<td class="quote">&ldquo;We&#x27;d been getting embarrassing gas from the powder.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Digestive side effect</span></td>
+<td class="trig">Every morning after dosing</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">Powder buyer</td>
+<td class="use">Format guidance: capsule vs powder</td>
+</tr><tr data-emotion="Grief" data-kind="Benefit" data-score="5">
+<td class="id">Q043</td>
+<td class="quote">&ldquo;I&#x27;m 47 and I have lost all my energy and drive.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Energy is the entry problem</span></td>
+<td class="trig">Realising it isn&#x27;t a phase</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Top-of-funnel hook; mirror the line exactly</td>
+</tr><tr data-emotion="Hope" data-kind="Benefit" data-score="3">
+<td class="id">Q044</td>
+<td class="quote">&ldquo;What would you recommend to get a bit of mojo back?&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Hope">Hope</span></td>
+<td class="jtbd">Stop feeling old before my time</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Wants vitality, not longevity</span></td>
+<td class="trig">Asking a stranger online</td>
+<td class="crit"><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Ad hook: &#x27;getting your mojo back&#x27;</td>
+</tr><tr data-emotion="Hope" data-kind="Benefit" data-score="3">
+<td class="id">Q045</td>
+<td class="quote">&ldquo;I don&#x27;t want to live longer, I want to feel better.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Hope">Hope</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Healthspan over lifespan</span></td>
+<td class="trig">Reading longevity content</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">All bands</td>
+<td class="use">Positioning: sell the Tuesday, not the century</td>
+</tr><tr data-emotion="Hope" data-kind="Benefit" data-score="3">
+<td class="id">Q046</td>
+<td class="quote">&ldquo;I was going to buy NMN for my horrible fatigue.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Hope">Hope</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Fatigue is the trigger symptom</span></td>
+<td class="trig">Mid-purchase hesitation</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Cart-abandon retargeting</td>
+</tr><tr data-emotion="Hope" data-kind="Benefit" data-score="3">
+<td class="id">Q047</td>
+<td class="quote">&ldquo;I just ordered a year&#x27;s supply.&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Hope">Hope</span></td>
+<td class="jtbd">Keep access to something that works</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Stockpiling behaviour</span></td>
+<td class="trig">News of a possible ban</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Loyal repeat buyer</td>
+<td class="use">Subscription and stock-up messaging</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="3">
+<td class="id">Q048</td>
+<td class="quote">&ldquo;I never want to be without this again.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Keep access to something that works</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Loyalty after a felt result</span></td>
+<td class="trig">Reordering</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Loyal repeat buyer</td>
+<td class="use">Subscription copy</td>
+</tr><tr data-emotion="Hope" data-kind="Benefit" data-score="3">
+<td class="id">Q049</td>
+<td class="quote">&ldquo;I&#x27;ll try one bottle maybe?&rdquo;<span class="wc">5w</span></td>
+<td><span class="emo emo-Hope">Hope</span></td>
+<td class="jtbd">Justify the money to myself</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Low-commitment entry</span></td>
+<td class="trig">Mid-purchase hesitation</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">New buyer</td>
+<td class="use">Single-bottle trial offer</td>
+</tr><tr data-emotion="Hope" data-kind="Benefit" data-score="3">
+<td class="id">Q050</td>
+<td class="quote">&ldquo;I&#x27;ll report back in a month.&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Hope">Hope</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Self-experiment mindset</span></td>
+<td class="trig">Starting a new bottle</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Self-experimenter</td>
+<td class="use">Day-30 check-in email prompt</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q051</td>
+<td class="quote">&ldquo;I don&#x27;t get worn out halfway through the day anymore.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">No afternoon crash</span></td>
+<td class="trig">3pm at work</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Primary benefit claim; the 3pm hook</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q052</td>
+<td class="quote">&ldquo;My muscle stiffness in the morning vanished.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Keep moving without stiffness</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Morning stiffness gone</span></td>
+<td class="trig">Getting out of bed</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Morning-ritual creative</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="4">
+<td class="id">Q053</td>
+<td class="quote">&ldquo;Within a week I slept better and had more energy.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Sleep properly</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Sleep improves first</span></td>
+<td class="trig">End of week one</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">All bands</td>
+<td class="use">Honest-timeline content: sleep comes first</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q054</td>
+<td class="quote">&ldquo;My night vision came back and I&#x27;m 78.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Stay independent</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Unexpected secondary effect</span></td>
+<td class="trig">Driving at night</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">65+ band</td>
+<td class="use">Testimonial (screen for disease claims)</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="4">
+<td class="id">Q055</td>
+<td class="quote">&ldquo;I have not had one single pain in my knees.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Keep moving without stiffness</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Joint comfort</span></td>
+<td class="trig">Walking downstairs</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">65+ band</td>
+<td class="use">Mobility creative, structure/function wording</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q056</td>
+<td class="quote">&ldquo;I can put my pants on without holding on to something.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Stay independent</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Balance and function restored</span></td>
+<td class="trig">Getting dressed in the morning</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">65+ band</td>
+<td class="use">Strongest 65+ testimonial format</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="4">
+<td class="id">Q057</td>
+<td class="quote">&ldquo;My calf injury healed and I could play soccer again.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Recover like I used to</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Return to sport</span></td>
+<td class="trig">First game back</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Recovery-angle UGC</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="4">
+<td class="id">Q058</td>
+<td class="quote">&ldquo;After three months, my pain gradually went away.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Keep moving without stiffness</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Slow, real onset</span></td>
+<td class="trig">Three months in</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Honest-timeline content</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="3">
+<td class="id">Q059</td>
+<td class="quote">&ldquo;My brain fog is gone and I work out six days a week.&rdquo;<span class="wc">13w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Think clearly at work</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Cognitive clarity</span></td>
+<td class="trig">Getting through the workday</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><b>3</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Brain-fog angle</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q060</td>
+<td class="quote">&ldquo;The dry cracking during winter has completely stopped.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Look like myself again</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Skin condition improved</span></td>
+<td class="trig">Winter, hands cracking</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">All bands</td>
+<td class="use">Seasonal creative angle</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="3">
+<td class="id">Q061</td>
+<td class="quote">&ldquo;These issues were simply gone virtually overnight.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Stop feeling old before my time</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Fast, surprising onset</span></td>
+<td class="trig">Within days of starting</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Fast-responder testimonial</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q062</td>
+<td class="quote">&ldquo;8 months in and my stamina is back to normal.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Baseline recovered</span></td>
+<td class="trig">Eight months in</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Long-horizon testimonial</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q063</td>
+<td class="quote">&ldquo;I no longer get the bad body odor I used to.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Look like myself again</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Unglamorous, specific change</span></td>
+<td class="trig">Hours after a shower</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">High-credibility testimonial format</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q064</td>
+<td class="quote">&ldquo;I used to need a whole day to recover from work.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Recover like I used to</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Recovery capacity</span></td>
+<td class="trig">Day off after a night shift</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">Shift worker</td>
+<td class="use">Shift-worker segment creative</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q065</td>
+<td class="quote">&ldquo;Four months in I noticed that was much reduced.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Stay independent</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Urgency symptoms reduced</span></td>
+<td class="trig">Four months in</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">65+ band</td>
+<td class="use">Honest-timeline content</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="3">
+<td class="id">Q066</td>
+<td class="quote">&ldquo;I take half a capsule the first week so I don&#x27;t shock my body.&rdquo;<span class="wc">14w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Self-devised ramp-up</span></td>
+<td class="trig">First week on product</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><b>3</b></td>
+<td class="seg">Sensitive responder</td>
+<td class="use">Publish this as the official ramp-up</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="4">
+<td class="id">Q067</td>
+<td class="quote">&ldquo;I open the capsule under my tongue. No more gas, and cheaper.&rdquo;<span class="wc">12w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Do the protocol correctly</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">DIY sublingual workaround</span></td>
+<td class="trig">Every morning</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><b>4</b></td>
+<td class="seg">Powder buyer</td>
+<td class="use">Format guidance content</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="4">
+<td class="id">Q068</td>
+<td class="quote">&ldquo;I&#x27;ll be 57 and I can do more pushups than at 18.&rdquo;<span class="wc">12w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Stop feeling old before my time</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Beat a former-self benchmark</span></td>
+<td class="trig">Counting reps on the floor</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><b>4</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Hero testimonial; physical-benchmark format</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="5">
+<td class="id">Q069</td>
+<td class="quote">&ldquo;I went from 9:15 to 8:15 on the mile. I&#x27;m 61.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Recover like I used to</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Measurable performance gain</span></td>
+<td class="trig">Looking at the watch after a run</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Benchmark UGC; numbers beat adjectives</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q070</td>
+<td class="quote">&ldquo;Playing like a 30 year old and I&#x27;m 44.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Recover like I used to</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Age-defying performance</span></td>
+<td class="trig">On the pitch</td>
+<td class="crit"><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Short-form hook</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q071</td>
+<td class="quote">&ldquo;I&#x27;m 57 and feel like 27.&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Stop feeling old before my time</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Subjective age reversal</span></td>
+<td class="trig">Everyday self-assessment</td>
+<td class="crit"><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Six-word hook; test as a headline</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="4">
+<td class="id">Q072</td>
+<td class="quote">&ldquo;At 67 I feel better than I did at 57.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Stop feeling old before my time</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Trend reversal, not just relief</span></td>
+<td class="trig">Birthday reflection</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">65+ band</td>
+<td class="use">Long-horizon testimonial</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="5">
+<td class="id">Q073</td>
+<td class="quote">&ldquo;Eight months in, I was a beast at the gym.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Recover like I used to</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Training capacity</span></td>
+<td class="trig">Mid-set at the gym</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Gym-floor UGC</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="4">
+<td class="id">Q074</td>
+<td class="quote">&ldquo;Took it again, and after a while the beast came back.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Restart confirms the effect</span></td>
+<td class="trig">Restarting after a break</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Self-experimenter</td>
+<td class="use">Flagship stop-and-restart line</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="5">
+<td class="id">Q075</td>
+<td class="quote">&ldquo;I can easily run up a mountain, and I am 72.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Stay independent</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Capability at age</span></td>
+<td class="trig">On a hike</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">65+ band</td>
+<td class="use">65+ hero testimonial</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="4">
+<td class="id">Q076</td>
+<td class="quote">&ldquo;I&#x27;m 34 and get mistaken for a high schooler.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Look like myself again</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Visible youthfulness</span></td>
+<td class="trig">Being carded</td>
+<td class="crit"><i class="c c-F" title="comparison to a former self">F</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Under 38</td>
+<td class="use">Careful: young-user proof cuts both ways</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q077</td>
+<td class="quote">&ldquo;Most people can&#x27;t tell how old I am.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Look like myself again</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Stack pride</span></td>
+<td class="trig">Meeting new people</td>
+<td class="crit"><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Stack-coach content</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q078</td>
+<td class="quote">&ldquo;My biological age is 13 years younger.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Test-verified result</span></td>
+<td class="trig">Getting bloodwork back</td>
+<td class="crit"><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Data-driven buyer</td>
+<td class="use">Biomarker angle; avoid implying causation</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q079</td>
+<td class="quote">&ldquo;Sublingual makes a massive difference to my recovery.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Recover like I used to</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Format preference</span></td>
+<td class="trig">After a hard training week</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Endurance athlete</td>
+<td class="use">Format comparison content</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q080</td>
+<td class="quote">&ldquo;Sublingual is much more noticeable than capsules.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Know I&#x27;m taking a real dose</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Format preference</span></td>
+<td class="trig">Comparing two formats</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Self-experimenter</td>
+<td class="use">Format comparison content</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="4">
+<td class="id">Q081</td>
+<td class="quote">&ldquo;I take scoops of powder and put it under my tongue.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Know I&#x27;m taking a real dose</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Committed protocol behaviour</span></td>
+<td class="trig">Morning routine</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Powder buyer</td>
+<td class="use">Powder-user UGC</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q082</td>
+<td class="quote">&ldquo;It works, and the older you get the more noticeable. I&#x27;m 52.&rdquo;<span class="wc">12w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Stop feeling old before my time</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Age-dependent response</span></td>
+<td class="trig">Comparing notes with younger people</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><b>3</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Age-band targeting rationale</td>
+</tr><tr data-emotion="Anger" data-kind="Benefit" data-score="4">
+<td class="id">Q083</td>
+<td class="quote">&ldquo;I can&#x27;t take niacin without my skin catching on fire.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Get my energy back without the flush</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">The flush is the real switching cost</span></td>
+<td class="trig">20 minutes after a niacin dose</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Reductionist convert</td>
+<td class="use">Best counter to &#x27;just take niacin&#x27;</td>
+</tr><tr data-emotion="Shame" data-kind="Benefit" data-score="4">
+<td class="id">Q084</td>
+<td class="quote">&ldquo;Small niacin doses give me an intense cherry red flush.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Shame">Shame</span></td>
+<td class="jtbd">Get my energy back without the flush</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Flush is intolerable</span></td>
+<td class="trig">Shortly after dosing</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Reductionist convert</td>
+<td class="use">Flush-comparison creative</td>
+</tr><tr data-emotion="Anger" data-kind="Objection" data-score="4">
+<td class="id">Q085</td>
+<td class="quote">&ldquo;I&#x27;m going back to my itchy niacin.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Avoid getting ripped off</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Chooses cheap and unpleasant</span></td>
+<td class="trig">After a debunking video</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Reductionist</td>
+<td class="use">Acknowledge the trade-off honestly</td>
+</tr><tr data-emotion="Fear" data-kind="Benefit" data-score="3">
+<td class="id">Q086</td>
+<td class="quote">&ldquo;I developed a sudden rash and itch after taking niacin.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Fear">Fear</span></td>
+<td class="jtbd">Get my energy back without the flush</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Adverse reaction to the cheap option</span></td>
+<td class="trig">Shortly after dosing</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Reductionist convert</td>
+<td class="use">Flush-comparison creative</td>
+</tr><tr data-emotion="Grief" data-kind="Objection" data-score="4">
+<td class="id">Q087</td>
+<td class="quote">&ldquo;I used to be a fan.&rdquo;<span class="wc">6w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Know who to trust</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Lost faith in the figurehead</span></td>
+<td class="trig">After the betrayal story broke</td>
+<td class="crit"><i class="c c-F" title="comparison to a former self">F</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Conflict Detector</td>
+<td class="use">Rebuild trust with documents, not people</td>
+</tr><tr data-emotion="Anger" data-kind="Objection" data-score="3">
+<td class="id">Q088</td>
+<td class="quote">&ldquo;I can&#x27;t trust him going forward, or this company.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Know who to trust</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Influencer contamination spreads to brand</span></td>
+<td class="trig">After a failed sponsored purchase</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Conflict Detector</td>
+<td class="use">Pick creators carefully; brief them hard</td>
+</tr><tr data-emotion="Anger" data-kind="Objection" data-score="4">
+<td class="id">Q089</td>
+<td class="quote">&ldquo;I about spit out my coffee at 5:15.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Know who to trust</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Caught the pitch mid-video</span></td>
+<td class="trig">5:15 into a sponsored video</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Conflict Detector</td>
+<td class="use">Never bury the ad break</td>
+</tr><tr data-emotion="Anger" data-kind="Objection" data-score="3">
+<td class="id">Q090</td>
+<td class="quote">&ldquo;Where can I buy the so-called placebo supplements?&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Dismissive science framing</span></td>
+<td class="trig">After being told it&#x27;s placebo</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Placebo Self-Doubter</td>
+<td class="use">Never dismiss a felt result</td>
+</tr><tr data-emotion="Grief" data-kind="Benefit" data-score="4">
+<td class="id">Q091</td>
+<td class="quote">&ldquo;I ran out two months ago. I&#x27;m not that guy anymore.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Stop feeling old before my time</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Loss felt on stopping</span></td>
+<td class="trig">Two months after running out</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Stop-and-restart creative</td>
+</tr><tr data-emotion="Grief" data-kind="Benefit" data-score="5">
+<td class="id">Q092</td>
+<td class="quote">&ldquo;Stopped for 2 months. I felt tired. I felt old.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Withdrawal as proof</span></td>
+<td class="trig">Two months off it</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">Self-experimenter</td>
+<td class="use">Flagship stop-and-restart testimonial</td>
+</tr><tr data-emotion="Grief" data-kind="Benefit" data-score="4">
+<td class="id">Q093</td>
+<td class="quote">&ldquo;Last year I felt like I was 72 years old.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Illness-driven ageing</span></td>
+<td class="trig">After treatment</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Recovery-narrative testimonial</td>
+</tr><tr data-emotion="Grief" data-kind="Objection" data-score="4">
+<td class="id">Q094</td>
+<td class="quote">&ldquo;My doctor said my low energy is just getting older.&rdquo;<span class="wc">10w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Dismissed by a clinician</span></td>
+<td class="trig">Leaving the doctor&#x27;s office</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Hook: &#x27;just getting older&#x27; isn&#x27;t an answer</td>
+</tr><tr data-emotion="Grief" data-kind="Benefit" data-score="4">
+<td class="id">Q095</td>
+<td class="quote">&ldquo;I couldn&#x27;t run. I couldn&#x27;t even walk without pain.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Keep moving without stiffness</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Loss of basic function</span></td>
+<td class="trig">Trying to walk to the car</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Before-state in a recovery testimonial</td>
+</tr><tr data-emotion="Grief" data-kind="Benefit" data-score="4">
+<td class="id">Q096</td>
+<td class="quote">&ldquo;Now I feel an energy crash during the day. I am 66.&rdquo;<span class="wc">12w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Decline after stopping</span></td>
+<td class="trig">Mid-afternoon, a month after quitting</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><b>4</b></td>
+<td class="seg">65+ band</td>
+<td class="use">Win-back email for lapsed subscribers</td>
+</tr><tr data-emotion="Grief" data-kind="Benefit" data-score="4">
+<td class="id">Q097</td>
+<td class="quote">&ldquo;I was feeling like death in early 2024.&rdquo;<span class="wc">8w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Get my energy back</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Rock-bottom starting point</span></td>
+<td class="trig">A specific bad stretch</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">38-49 band</td>
+<td class="use">Before-state opener</td>
+</tr><tr data-emotion="Grief" data-kind="Benefit" data-score="4">
+<td class="id">Q098</td>
+<td class="quote">&ldquo;I felt old.&rdquo;<span class="wc">3w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Stop feeling old before my time</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">The core fear in three words</span></td>
+<td class="trig">Any ordinary day off it</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">All bands</td>
+<td class="use">Three-word hook; test as a headline</td>
+</tr><tr data-emotion="Grief" data-kind="Objection" data-score="3">
+<td class="id">Q099</td>
+<td class="quote">&ldquo;Old age and back surgeries, I guess.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Grief">Grief</span></td>
+<td class="jtbd">Keep moving without stiffness</td>
+<td><span class="kind k-Objection">Objection</span><span class="spec">Resignation to decline</span></td>
+<td class="trig">Explaining away symptoms</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">65+ band</td>
+<td class="use">Reactivation angle: resignation is the enemy</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="4">
+<td class="id">Q100</td>
+<td class="quote">&ldquo;I didn&#x27;t notice the benefits until I stopped for a few days.&rdquo;<span class="wc">12w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Self-designed proof</span></td>
+<td class="trig">A few days without it</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><b>4</b></td>
+<td class="seg">Placebo Self-Doubter</td>
+<td class="use">Flagship: name the test and invite it</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="4">
+<td class="id">Q101</td>
+<td class="quote">&ldquo;When I stop taking it, the pain comes back.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Reversible, repeatable effect</span></td>
+<td class="trig">Every time the bottle runs out</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">50-64 band</td>
+<td class="use">Stop-and-restart creative</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="5">
+<td class="id">Q102</td>
+<td class="quote">&ldquo;As soon as I stopped, my deep sleep tanked.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Sleep properly</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Wearable-verified change</span></td>
+<td class="trig">Checking the sleep app</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>5</b></td>
+<td class="seg">Data-driven buyer</td>
+<td class="use">Wearable-data UGC format</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="4">
+<td class="id">Q103</td>
+<td class="quote">&ldquo;Every time I stopped I felt like crap. I restart, I&#x27;m normal.&rdquo;<span class="wc">12w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Repeated on/off cycles</span></td>
+<td class="trig">Each time the bottle runs out</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><b>4</b></td>
+<td class="seg">Self-experimenter</td>
+<td class="use">Stop-and-restart creative</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q104</td>
+<td class="quote">&ldquo;We can&#x27;t be sure about us. The dog can&#x27;t have placebo.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Pet used as a control</span></td>
+<td class="trig">Watching an old dog play again</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Self-experimenter</td>
+<td class="use">Charming, high-trust proof device</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q105</td>
+<td class="quote">&ldquo;If that&#x27;s placebo, placebo is stronger than I imagined.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Concedes the frame, keeps the result</span></td>
+<td class="trig">Mid-run, feeling easy</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Placebo Self-Doubter</td>
+<td class="use">Confident, honest ad-copy tone</td>
+</tr><tr data-emotion="Anger" data-kind="Benefit" data-score="3">
+<td class="id">Q106</td>
+<td class="quote">&ldquo;Placebo does not improve eyesight.&rdquo;<span class="wc">5w</span></td>
+<td><span class="emo emo-Anger">Anger</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Objective marker as rebuttal</span></td>
+<td class="trig">Optometrist appointment</td>
+<td class="crit"><i class="c c-S" title="physical sensation / concrete detail">S</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Placebo Self-Doubter</td>
+<td class="use">Objective-marker testimonial</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q107</td>
+<td class="quote">&ldquo;If it&#x27;s a placebo, what a placebo.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Wry self-aware endorsement</span></td>
+<td class="trig">Six words into a long review</td>
+<td class="crit"><i class="c c-E" title="slightly embarrassing admission">E</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Placebo Self-Doubter</td>
+<td class="use">Copy-tone reference</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="3">
+<td class="id">Q108</td>
+<td class="quote">&ldquo;I got my NAD checked and it was optimal.&rdquo;<span class="wc">9w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Blood-test verification</span></td>
+<td class="trig">Receiving lab results</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Data-driven buyer</td>
+<td class="use">Biomarker content</td>
+</tr><tr data-emotion="Pride" data-kind="Benefit" data-score="4">
+<td class="id">Q109</td>
+<td class="quote">&ldquo;My A1C is 5.1, down from 6.4.&rdquo;<span class="wc">7w</span></td>
+<td><span class="emo emo-Pride">Pride</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Bloodwork as proof</span></td>
+<td class="trig">Reading a lab report</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-F" title="comparison to a former self">F</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>4</b></td>
+<td class="seg">Data-driven buyer</td>
+<td class="use">Numbers-led testimonial, no disease claims</td>
+</tr><tr data-emotion="Relief" data-kind="Benefit" data-score="3">
+<td class="id">Q110</td>
+<td class="quote">&ldquo;No result in a few days? You probably don&#x27;t need it.&rdquo;<span class="wc">11w</span></td>
+<td><span class="emo emo-Relief">Relief</span></td>
+<td class="jtbd">Prove to myself this isn&#x27;t in my head</td>
+<td><span class="kind k-Benefit">Benefit</span><span class="spec">Responder logic, self-taught</span></td>
+<td class="trig">Advising another commenter</td>
+<td class="crit"><i class="c c-T" title="specific time or place">T</i><i class="c c-P" title="plain unbranded language">P</i><i class="c c-Q" title="quotable in under twelve words">Q</i><b>3</b></td>
+<td class="seg">Self-experimenter</td>
+<td class="use">The responder frame in their own words</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="below">
+<p class="part">Appendix</p>
+<h2>Below the bar</h2>
+<p>These 16 lines are among the loudest in the corpus but they clear only two criteria. That is a finding, not an oversight: the FDA, authority and dose-math arguments are <b>ideological or arithmetic rather than sensory and personal</b>. They have no body in them and no former self to compare against.</p>
+<p>Which tells you exactly how to use them &mdash; they make excellent hooks and headlines, and terrible testimonials. Put them at the top of an ad, never in a customer's mouth.</p>
+<div class="tw" style="margin-top:1.2rem">
+<table class="app">
+<thead><tr><th scope="col">Quote</th><th scope="col">Emotion</th><th scope="col">Segment</th><th scope="col">Why it's here</th></tr></thead>
+<tbody><tr><td class="quote">&ldquo;Just take niacin, dude.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Reductionist</td><td class="use">Hook only — no lived detail to anchor a testimonial</td></tr><tr><td class="quote">&ldquo;NMN and NR are extremely expensive sources of plain B3.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Reductionist</td><td class="use">Hook / headline; answer it with the flush quotes above</td></tr><tr><td class="quote">&ldquo;Your bottle says 250mg. He takes a gram.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Reductionist</td><td class="use">Dose-math hook; pair with a cost-per-gram table</td></tr><tr><td class="quote">&ldquo;You&#x27;re too young. Your NAD is already high.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">50-64 band</td><td class="use">Casting note, not copy: never use under-35 talent as proof</td></tr><tr><td class="quote">&ldquo;Wait until you&#x27;re 50 or 60, then try again.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">50-64 band</td><td class="use">Casting note</td></tr><tr><td class="quote">&ldquo;So basically this is a commercial. Got it.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Conflict Detector</td><td class="use">Anti-pattern: what happens when you bury the pitch</td></tr><tr><td class="quote">&ldquo;This is you plugging a particular brand.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Conflict Detector</td><td class="use">Anti-pattern</td></tr><tr><td class="quote">&ldquo;He says so much without saying anything at all.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Conflict Detector</td><td class="use">Anti-pattern: be concrete or don&#x27;t publish</td></tr><tr><td class="quote">&ldquo;The more I learn about him the more I distrust him.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Conflict Detector</td><td class="use">Reason not to borrow scientist credibility</td></tr><tr><td class="quote">&ldquo;If the FDA doesn&#x27;t want you to have it, that means it works.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Contrarian</td><td class="use">Highest-liked sentiment in the corpus; do not say it yourself</td></tr><tr><td class="quote">&ldquo;They ban anything that has benefits.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Contrarian</td><td class="use">Audience belief, not brand copy</td></tr><tr><td class="quote">&ldquo;It&#x27;s all grifters calling out grifters.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Conflict Detector</td><td class="use">The trust environment you&#x27;re advertising into</td></tr><tr><td class="quote">&ldquo;Nobody knows what their safe dose actually is.&rdquo;</td><td><span class="emo emo-Fear">Fear</span></td><td class="seg">Evidentialist</td><td class="use">Answer with trial-dose rationale, not reassurance</td></tr><tr><td class="quote">&ldquo;Studies show 250mg had no effect even after 4 weeks.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Evidentialist</td><td class="use">Analysis, not experience; use in long-form</td></tr><tr><td class="quote">&ldquo;It&#x27;s now $100 a bottle.&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Price-sensitive</td><td class="use">Price-shock hook for the cost-per-gram page</td></tr><tr><td class="quote">&ldquo;Where are your results?&rdquo;</td><td><span class="emo emo-Anger">Anger</span></td><td class="seg">Conflict Detector</td><td class="use">The most repeated demand in the corpus, 558 likes at peak</td></tr></tbody>
+</table>
+</div>
+</section>
+
+<section>
+<p class="part">Before you run any of it</p>
+<h2>Claim guardrail</h2>
+<div class="callout">
+<h3>Structure and function only</h3>
+<p>Several quotes in the source corpus describe reversing Alzheimer's, resolving lung scarring and curing arthritis. Those are excluded from this bank on purpose &mdash; running them turns a supplement into an unapproved drug claim.</p>
+<p>Everything here stays inside structure/function language: supports cellular energy, supports healthy NAD+ levels, supports healthy aging. Keep the raw review, the date and the customer's consent on file for anything you run as an ad, and screen creator scripts the same way &mdash; a claim your creator makes is your claim.</p>
+</div>
+</section>
+
+<footer>
+<p>110 tagged quotes &middot; 16 below-bar lines &middot; source: 3,491 YouTube comments, ~620,000 characters &middot; verbatim, trimmed for length only</p>
+</footer>
+
+</div>
+<script>
+(function(){
+ var tb=document.getElementById('bank'), rows=[].slice.call(tb.tBodies[0].rows);
+ var state={emotion:null,kind:null,score:null};
+ function apply(){
+  var n=0;
+  rows.forEach(function(r){
+   var ok=(!state.emotion||r.dataset.emotion===state.emotion)
+        &&(!state.kind||r.dataset.kind===state.kind)
+        &&(!state.score||+r.dataset.score>=+state.score);
+   r.hidden=!ok; if(ok)n++;
+  });
+  document.getElementById('count').textContent=n+' of '+rows.length+' quotes';
+ }
+ [].slice.call(document.querySelectorAll('button.f')).forEach(function(b){
+  b.addEventListener('click',function(){
+   var k=b.dataset.k,v=b.dataset.v;
+   var on=state[k]===v; state[k]=on?null:v;
+   [].slice.call(document.querySelectorAll('button.f[data-k="'+k+'"]')).forEach(function(o){
+    o.setAttribute('aria-pressed', String(!on && o===b));
+   });
+   apply();
+  });
+ });
+ apply();
+})();
+</script>

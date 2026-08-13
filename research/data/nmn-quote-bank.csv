@@ -1,0 +1,111 @@
+ID,Quote (verbatim),Words,Emotion,Job to be done,Type,Objection / benefit,Trigger moment,Criteria met,Score,Segment,Use it for
+Q001,I get huge side effects from NMN.,7,Fear,Not damage myself,Objection,Side effects,First week on product,SPQ,3,Disconfirmed Buyer,Half-dose ramp-up protocol
+Q002,Had to discontinue NMN because it gave me heart palpitations.,10,Fear,Not damage myself,Objection,Cardiac side effect,Week one,SPQ,3,Disconfirmed Buyer,'If you feel off' email; titration guidance
+Q003,It gave me insomnia so I stopped taking it.,9,Fear,Sleep properly,Objection,Too stimulating,Third night awake,SPQ,3,Disconfirmed Buyer,Timing guidance: dose before noon
+Q004,I wake at 4am and can't get back to sleep.,10,Fear,Sleep properly,Objection,Sleep disruption,"4am, in bed",TSPQ,4,Disconfirmed Buyer,Timing guidance; day-2 email
+Q005,I never had worse headaches than when I took NMN.,10,Fear,Not damage myself,Objection,Headaches,After a heart-rate spike at the gym,SPQ,3,Disconfirmed Buyer,Titration content
+Q006,I feel sluggish and get terrible headaches.,7,Fear,Get my energy back,Objection,"Feels worse, not better",Morning after dosing,SPQ,3,Disconfirmed Buyer,Start-low protocol
+Q007,Left me with serious insomnia!,5,Fear,Sleep properly,Objection,Too stimulating,Day three,SPQ,3,Disconfirmed Buyer,Timing guidance
+Q008,"After a month, my brain fog only got worse.",9,Fear,Think clearly at work,Objection,Opposite of the promised effect,"One month in, at work",TSPQ,4,Disconfirmed Buyer,'Five reasons NMN did nothing for you' page
+Q009,After two weeks my eyes started itching very badly.,9,Fear,Not damage myself,Objection,Unexpected reaction,Two weeks in,TSPQ,4,Disconfirmed Buyer,Side-effect transparency page
+Q010,"I got a horrible breakout on my arms, chest and back.",11,Shame,Look like myself again,Objection,Skin reaction,"Two weeks in, in the mirror",SEPQ,4,Disconfirmed Buyer,Start-at-half protocol
+Q011,Quit taking it due to cancer fears.,7,Fear,Not damage myself,Objection,Cancer-growth fear,After reading a study headline,EPQ,3,Evidentialist,Safety page: state what is and isn't known
+Q012,I am prone to skin cancer.,6,Fear,Not damage myself,Objection,Personal cancer history,Deciding whether to start,SPQ,3,Cautious first-timer,"Consult-your-doctor language, warmly written"
+Q013,I tried all kinds of dosage — meh!,7,Fear,Know I'm taking a real dose,Objection,No agreed dose exists,"A year in, still fiddling",EPQ,3,Evidentialist,Dose-rationale content citing trial doses
+Q014,I need a quarter of a capsule or I don't feel right.,12,Fear,Do the protocol correctly,Objection,Needs to titrate down,Morning dose,SEP,3,Sensitive responder,Start-low protocol content
+Q015,All the containers were hot. You got me scammed.,9,Anger,Protect the money I already spent,Objection,Shipping heat degrades product,Opening the box,SEPQ,4,Disconfirmed Buyer,Stability claim; 'we tested ours at 40°C'
+Q016,Does it get ruined shipped in the hot summer weather?,10,Fear,Protect the money I already spent,Objection,Heat in transit,Waiting on a summer delivery,TSPQ,4,All buyers,Packaging insert; day-0 email
+Q017,I didn't know you're supposed to keep it cold.,9,Fear,Protect the money I already spent,Objection,Storage never disclosed,After watching a video post-purchase,EPQ,3,Anxious new buyer,Storage block on the PDP
+Q018,Do they melt in your hands?,6,Fear,Protect the money I already spent,Objection,Heat sensitivity,Holding the capsules,SPQ,3,Anxious new buyer,Stability messaging
+Q019,Should I not take the one I bought?,8,Fear,Do the protocol correctly,Objection,I may have already ruined it,Watching a video after purchase,EPQ,3,Anxious new buyer,Day-0 email subject line
+Q020,Well it looks I've been scammed out of hundreds of dollars.,11,Shame,Avoid getting ripped off,Objection,Bought counterfeit product,Watching a purity-test video,EPQ,3,Counterfeit Cynic,Certificate-led ad; 'here's our batch number'
+Q021,I wasted a lot of money on NMN.,8,Shame,Justify the money to myself,Objection,No perceived return,Cancelling the subscription,EPQ,3,Disconfirmed Buyer,'We'd rather you quit at day 60 than day 12'
+Q022,Wasted 90 dollars already.,4,Shame,Justify the money to myself,Objection,Sunk cost,Looking at the half-empty bottle,EPQ,3,Disconfirmed Buyer,Guarantee copy
+Q023,I feel a little ripped off.,6,Shame,Avoid getting ripped off,Objection,Underdosed product,Doing the serving math,EPQ,3,Reductionist,Cost-per-gram comparison page
+Q024,I'm annoyed now knowing I've been likely ripped off.,9,Anger,Avoid getting ripped off,Objection,Label claim not met,After a third-party test result,EPQ,3,Counterfeit Cynic,COA-led creative
+Q025,I fell for the marketing campaign.,6,Shame,Know who to trust,Objection,Influencer-driven regret,After a sponsored video,EPQ,3,Conflict Detector,"'Yes, we sell it' disclosure copy"
+Q026,I only continued because I paid for three months.,9,Shame,Justify the money to myself,Objection,Finishing it out of obligation,Week six with no effect,TEPQ,4,Disconfirmed Buyer,Day-21 'what to watch for' email
+Q027,"I knew it was a waste, nine months in.",9,Shame,Justify the money to myself,Objection,"Long trial, no result",Nine months in,TEPQ,4,Disconfirmed Buyer,Responder-refund offer
+Q028,I've given them thousands of dollars over five years.,9,Grief,Justify the money to myself,Objection,"Years of spend, no proof",Watching a debunking video,TEPQ,4,Disconfirmed Buyer,Cost-per-gram page
+Q029,I don't keep throwing good money after bad.,8,Shame,Justify the money to myself,Objection,Refuses to sunk-cost,Deciding on reorder,EPQ,3,Disconfirmed Buyer,Guarantee framing
+Q030,60 caps at 250mg is 15 days — $120 a month.,10,Anger,Know I'm taking a real dose,Objection,Underdosed relative to price,Doing the math on the label,TPQ,3,Reductionist,Publish servings and cost-per-gram
+Q031,3 months at 500mg and my aging score went up.,10,Anger,Prove to myself this isn't in my head,Objection,Test contradicted the promise,Getting biological-age results,TPQ,3,Data-driven buyer,Never promise biomarker movement
+Q032,"It's affordable, but four months in I see no results.",10,Shame,Justify the money to myself,Objection,Cheap but ineffective,Four months in,TEPQ,4,Disconfirmed Buyer,Value is not the same as efficacy
+Q033,I'm a smart person but I can't grasp what NMN is.,11,Shame,Know who to trust,Objection,Category is too complex,Trying to research before buying,EPQ,3,New to category,"Plain-language explainer, zero jargon"
+Q034,Sorry I'm dumb — does it turn into acid or nicotinamide?,10,Shame,Know who to trust,Objection,Confused by the science,Mid-way through a debunking video,EPQ,3,New to category,Explainer in their own words
+Q035,I've gone back and forth on these supplements.,8,Shame,Know who to trust,Objection,Chronic indecision,Reading yet another conflicting take,EPQ,3,Switcher,Comparison page; make the decision easy
+Q036,"I just bought 6 packs but I'm confused, how do I eat it?",13,Shame,Do the protocol correctly,Objection,No usage instructions,"Bottle in hand, day one",TEP,3,Powder buyer,Insert card; day-0 email
+Q037,How do you measure 250mg without a scale at home?,10,Shame,Do the protocol correctly,Objection,Powder is hard to dose,"Kitchen counter, first scoop",TEPQ,4,Powder buyer,Include a scoop and show it in creative
+Q038,Why can't I find anywhere how and when to take this?,11,Fear,Do the protocol correctly,Objection,No usage guidance exists,"Bottle in hand, searching online",EPQ,3,Anxious new buyer,Insert card; day-0 email
+Q039,"Damn, I just ordered without TMG. So confusing.",8,Shame,Do the protocol correctly,Objection,Missing co-factor,Right after ordering,TEPQ,4,Anxious new buyer,Bundle logic; day-2 TMG email
+Q040,"So this, or TMG, or both?",6,Fear,Do the protocol correctly,Objection,Stack confusion,At the point of purchase,EPQ,3,Anxious new buyer,"Answer on the PDP, not in a linked FAQ"
+Q041,With a meal or empty stomach?,6,Fear,Do the protocol correctly,Objection,Timing unknown,Standing in the kitchen,TPQ,3,Anxious new buyer,Insert card
+Q042,We'd been getting embarrassing gas from the powder.,8,Shame,Do the protocol correctly,Objection,Digestive side effect,Every morning after dosing,TSEPQ,5,Powder buyer,Format guidance: capsule vs powder
+Q043,I'm 47 and I have lost all my energy and drive.,11,Grief,Get my energy back,Benefit,Energy is the entry problem,Realising it isn't a phase,TSFPQ,5,38-49 band,Top-of-funnel hook; mirror the line exactly
+Q044,What would you recommend to get a bit of mojo back?,11,Hope,Stop feeling old before my time,Benefit,"Wants vitality, not longevity",Asking a stranger online,FPQ,3,50-64 band,Ad hook: 'getting your mojo back'
+Q045,"I don't want to live longer, I want to feel better.",11,Hope,Get my energy back,Benefit,Healthspan over lifespan,Reading longevity content,EPQ,3,All bands,"Positioning: sell the Tuesday, not the century"
+Q046,I was going to buy NMN for my horrible fatigue.,10,Hope,Get my energy back,Benefit,Fatigue is the trigger symptom,Mid-purchase hesitation,SPQ,3,38-49 band,Cart-abandon retargeting
+Q047,I just ordered a year's supply.,6,Hope,Keep access to something that works,Benefit,Stockpiling behaviour,News of a possible ban,EPQ,3,Loyal repeat buyer,Subscription and stock-up messaging
+Q048,I never want to be without this again.,8,Relief,Keep access to something that works,Benefit,Loyalty after a felt result,Reordering,EPQ,3,Loyal repeat buyer,Subscription copy
+Q049,I'll try one bottle maybe?,5,Hope,Justify the money to myself,Benefit,Low-commitment entry,Mid-purchase hesitation,EPQ,3,New buyer,Single-bottle trial offer
+Q050,I'll report back in a month.,6,Hope,Prove to myself this isn't in my head,Benefit,Self-experiment mindset,Starting a new bottle,TPQ,3,Self-experimenter,Day-30 check-in email prompt
+Q051,I don't get worn out halfway through the day anymore.,10,Relief,Get my energy back,Benefit,No afternoon crash,3pm at work,TSFPQ,5,50-64 band,Primary benefit claim; the 3pm hook
+Q052,My muscle stiffness in the morning vanished.,7,Relief,Keep moving without stiffness,Benefit,Morning stiffness gone,Getting out of bed,TSFPQ,5,50-64 band,Morning-ritual creative
+Q053,Within a week I slept better and had more energy.,10,Relief,Sleep properly,Benefit,Sleep improves first,End of week one,TSPQ,4,All bands,Honest-timeline content: sleep comes first
+Q054,My night vision came back and I'm 78.,8,Relief,Stay independent,Benefit,Unexpected secondary effect,Driving at night,TSFPQ,5,65+ band,Testimonial (screen for disease claims)
+Q055,I have not had one single pain in my knees.,10,Relief,Keep moving without stiffness,Benefit,Joint comfort,Walking downstairs,SFPQ,4,65+ band,"Mobility creative, structure/function wording"
+Q056,I can put my pants on without holding on to something.,11,Relief,Stay independent,Benefit,Balance and function restored,Getting dressed in the morning,TSFPQ,5,65+ band,Strongest 65+ testimonial format
+Q057,My calf injury healed and I could play soccer again.,10,Relief,Recover like I used to,Benefit,Return to sport,First game back,SFPQ,4,38-49 band,Recovery-angle UGC
+Q058,"After three months, my pain gradually went away.",8,Relief,Keep moving without stiffness,Benefit,"Slow, real onset",Three months in,TSPQ,4,50-64 band,Honest-timeline content
+Q059,My brain fog is gone and I work out six days a week.,13,Relief,Think clearly at work,Benefit,Cognitive clarity,Getting through the workday,SFP,3,38-49 band,Brain-fog angle
+Q060,The dry cracking during winter has completely stopped.,8,Relief,Look like myself again,Benefit,Skin condition improved,"Winter, hands cracking",TSFPQ,5,All bands,Seasonal creative angle
+Q061,These issues were simply gone virtually overnight.,7,Relief,Stop feeling old before my time,Benefit,"Fast, surprising onset",Within days of starting,TPQ,3,38-49 band,Fast-responder testimonial
+Q062,8 months in and my stamina is back to normal.,10,Relief,Get my energy back,Benefit,Baseline recovered,Eight months in,TSFPQ,5,50-64 band,Long-horizon testimonial
+Q063,I no longer get the bad body odor I used to.,11,Relief,Look like myself again,Benefit,"Unglamorous, specific change",Hours after a shower,SFEPQ,5,38-49 band,High-credibility testimonial format
+Q064,I used to need a whole day to recover from work.,11,Relief,Recover like I used to,Benefit,Recovery capacity,Day off after a night shift,TSFPQ,5,Shift worker,Shift-worker segment creative
+Q065,Four months in I noticed that was much reduced.,9,Relief,Stay independent,Benefit,Urgency symptoms reduced,Four months in,TSEPQ,5,65+ band,Honest-timeline content
+Q066,I take half a capsule the first week so I don't shock my body.,14,Relief,Do the protocol correctly,Benefit,Self-devised ramp-up,First week on product,TSP,3,Sensitive responder,Publish this as the official ramp-up
+Q067,"I open the capsule under my tongue. No more gas, and cheaper.",12,Relief,Do the protocol correctly,Benefit,DIY sublingual workaround,Every morning,TSEP,4,Powder buyer,Format guidance content
+Q068,I'll be 57 and I can do more pushups than at 18.,12,Pride,Stop feeling old before my time,Benefit,Beat a former-self benchmark,Counting reps on the floor,TSFP,4,50-64 band,Hero testimonial; physical-benchmark format
+Q069,I went from 9:15 to 8:15 on the mile. I'm 61.,11,Pride,Recover like I used to,Benefit,Measurable performance gain,Looking at the watch after a run,TSFPQ,5,50-64 band,Benchmark UGC; numbers beat adjectives
+Q070,Playing like a 30 year old and I'm 44.,9,Pride,Recover like I used to,Benefit,Age-defying performance,On the pitch,FPQ,3,38-49 band,Short-form hook
+Q071,I'm 57 and feel like 27.,6,Pride,Stop feeling old before my time,Benefit,Subjective age reversal,Everyday self-assessment,FPQ,3,50-64 band,Six-word hook; test as a headline
+Q072,At 67 I feel better than I did at 57.,10,Pride,Stop feeling old before my time,Benefit,"Trend reversal, not just relief",Birthday reflection,TFPQ,4,65+ band,Long-horizon testimonial
+Q073,"Eight months in, I was a beast at the gym.",10,Pride,Recover like I used to,Benefit,Training capacity,Mid-set at the gym,TSFPQ,5,38-49 band,Gym-floor UGC
+Q074,"Took it again, and after a while the beast came back.",11,Pride,Prove to myself this isn't in my head,Benefit,Restart confirms the effect,Restarting after a break,SFPQ,4,Self-experimenter,Flagship stop-and-restart line
+Q075,"I can easily run up a mountain, and I am 72.",11,Pride,Stay independent,Benefit,Capability at age,On a hike,TSFPQ,5,65+ band,65+ hero testimonial
+Q076,I'm 34 and get mistaken for a high schooler.,9,Pride,Look like myself again,Benefit,Visible youthfulness,Being carded,FEPQ,4,Under 38,Careful: young-user proof cuts both ways
+Q077,Most people can't tell how old I am.,8,Pride,Look like myself again,Benefit,Stack pride,Meeting new people,FPQ,3,38-49 band,Stack-coach content
+Q078,My biological age is 13 years younger.,7,Pride,Prove to myself this isn't in my head,Benefit,Test-verified result,Getting bloodwork back,FPQ,3,Data-driven buyer,Biomarker angle; avoid implying causation
+Q079,Sublingual makes a massive difference to my recovery.,8,Pride,Recover like I used to,Benefit,Format preference,After a hard training week,SPQ,3,Endurance athlete,Format comparison content
+Q080,Sublingual is much more noticeable than capsules.,7,Pride,Know I'm taking a real dose,Benefit,Format preference,Comparing two formats,SPQ,3,Self-experimenter,Format comparison content
+Q081,I take scoops of powder and put it under my tongue.,11,Pride,Know I'm taking a real dose,Benefit,Committed protocol behaviour,Morning routine,TSPQ,4,Powder buyer,Powder-user UGC
+Q082,"It works, and the older you get the more noticeable. I'm 52.",12,Pride,Stop feeling old before my time,Benefit,Age-dependent response,Comparing notes with younger people,TFP,3,50-64 band,Age-band targeting rationale
+Q083,I can't take niacin without my skin catching on fire.,10,Anger,Get my energy back without the flush,Benefit,The flush is the real switching cost,20 minutes after a niacin dose,SEPQ,4,Reductionist convert,Best counter to 'just take niacin'
+Q084,Small niacin doses give me an intense cherry red flush.,10,Shame,Get my energy back without the flush,Benefit,Flush is intolerable,Shortly after dosing,SEPQ,4,Reductionist convert,Flush-comparison creative
+Q085,I'm going back to my itchy niacin.,7,Anger,Avoid getting ripped off,Objection,Chooses cheap and unpleasant,After a debunking video,SEPQ,4,Reductionist,Acknowledge the trade-off honestly
+Q086,I developed a sudden rash and itch after taking niacin.,10,Fear,Get my energy back without the flush,Benefit,Adverse reaction to the cheap option,Shortly after dosing,SPQ,3,Reductionist convert,Flush-comparison creative
+Q087,I used to be a fan.,6,Grief,Know who to trust,Objection,Lost faith in the figurehead,After the betrayal story broke,FEPQ,4,Conflict Detector,"Rebuild trust with documents, not people"
+Q088,"I can't trust him going forward, or this company.",9,Anger,Know who to trust,Objection,Influencer contamination spreads to brand,After a failed sponsored purchase,EPQ,3,Conflict Detector,Pick creators carefully; brief them hard
+Q089,I about spit out my coffee at 5:15.,8,Anger,Know who to trust,Objection,Caught the pitch mid-video,5:15 into a sponsored video,TSPQ,4,Conflict Detector,Never bury the ad break
+Q090,Where can I buy the so-called placebo supplements?,8,Anger,Prove to myself this isn't in my head,Objection,Dismissive science framing,After being told it's placebo,EPQ,3,Placebo Self-Doubter,Never dismiss a felt result
+Q091,I ran out two months ago. I'm not that guy anymore.,11,Grief,Stop feeling old before my time,Benefit,Loss felt on stopping,Two months after running out,TFPQ,4,50-64 band,Stop-and-restart creative
+Q092,Stopped for 2 months. I felt tired. I felt old.,10,Grief,Prove to myself this isn't in my head,Benefit,Withdrawal as proof,Two months off it,TSFPQ,5,Self-experimenter,Flagship stop-and-restart testimonial
+Q093,Last year I felt like I was 72 years old.,10,Grief,Get my energy back,Benefit,Illness-driven ageing,After treatment,TFPQ,4,50-64 band,Recovery-narrative testimonial
+Q094,My doctor said my low energy is just getting older.,10,Grief,Get my energy back,Objection,Dismissed by a clinician,Leaving the doctor's office,TSPQ,4,38-49 band,Hook: 'just getting older' isn't an answer
+Q095,I couldn't run. I couldn't even walk without pain.,9,Grief,Keep moving without stiffness,Benefit,Loss of basic function,Trying to walk to the car,SFPQ,4,50-64 band,Before-state in a recovery testimonial
+Q096,Now I feel an energy crash during the day. I am 66.,12,Grief,Get my energy back,Benefit,Decline after stopping,"Mid-afternoon, a month after quitting",TSFP,4,65+ band,Win-back email for lapsed subscribers
+Q097,I was feeling like death in early 2024.,8,Grief,Get my energy back,Benefit,Rock-bottom starting point,A specific bad stretch,TSPQ,4,38-49 band,Before-state opener
+Q098,I felt old.,3,Grief,Stop feeling old before my time,Benefit,The core fear in three words,Any ordinary day off it,SFPQ,4,All bands,Three-word hook; test as a headline
+Q099,"Old age and back surgeries, I guess.",7,Grief,Keep moving without stiffness,Objection,Resignation to decline,Explaining away symptoms,EPQ,3,65+ band,Reactivation angle: resignation is the enemy
+Q100,I didn't notice the benefits until I stopped for a few days.,12,Pride,Prove to myself this isn't in my head,Benefit,Self-designed proof,A few days without it,TSFP,4,Placebo Self-Doubter,Flagship: name the test and invite it
+Q101,"When I stop taking it, the pain comes back.",9,Relief,Prove to myself this isn't in my head,Benefit,"Reversible, repeatable effect",Every time the bottle runs out,SFPQ,4,50-64 band,Stop-and-restart creative
+Q102,"As soon as I stopped, my deep sleep tanked.",9,Relief,Sleep properly,Benefit,Wearable-verified change,Checking the sleep app,TSFPQ,5,Data-driven buyer,Wearable-data UGC format
+Q103,"Every time I stopped I felt like crap. I restart, I'm normal.",12,Relief,Prove to myself this isn't in my head,Benefit,Repeated on/off cycles,Each time the bottle runs out,SFEP,4,Self-experimenter,Stop-and-restart creative
+Q104,We can't be sure about us. The dog can't have placebo.,11,Pride,Prove to myself this isn't in my head,Benefit,Pet used as a control,Watching an old dog play again,EPQ,3,Self-experimenter,"Charming, high-trust proof device"
+Q105,"If that's placebo, placebo is stronger than I imagined.",9,Pride,Prove to myself this isn't in my head,Benefit,"Concedes the frame, keeps the result","Mid-run, feeling easy",EPQ,3,Placebo Self-Doubter,"Confident, honest ad-copy tone"
+Q106,Placebo does not improve eyesight.,5,Anger,Prove to myself this isn't in my head,Benefit,Objective marker as rebuttal,Optometrist appointment,SPQ,3,Placebo Self-Doubter,Objective-marker testimonial
+Q107,"If it's a placebo, what a placebo.",7,Pride,Prove to myself this isn't in my head,Benefit,Wry self-aware endorsement,Six words into a long review,EPQ,3,Placebo Self-Doubter,Copy-tone reference
+Q108,I got my NAD checked and it was optimal.,9,Pride,Prove to myself this isn't in my head,Benefit,Blood-test verification,Receiving lab results,TPQ,3,Data-driven buyer,Biomarker content
+Q109,"My A1C is 5.1, down from 6.4.",7,Pride,Prove to myself this isn't in my head,Benefit,Bloodwork as proof,Reading a lab report,TFPQ,4,Data-driven buyer,"Numbers-led testimonial, no disease claims"
+Q110,No result in a few days? You probably don't need it.,11,Relief,Prove to myself this isn't in my head,Benefit,"Responder logic, self-taught",Advising another commenter,TPQ,3,Self-experimenter,The responder frame in their own words
