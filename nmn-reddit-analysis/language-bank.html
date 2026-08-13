@@ -1,0 +1,900 @@
+<title>The NMN Language Bank</title>
+<style>
+:root{
+  --paper:#EFF1F4; --surface:#FCFDFE; --surface-2:#F5F7F9;
+  --ink:#15181E; --ink-2:#4A515E; --ink-3:#727A88;
+  --rule:#D7DBE2; --rule-soft:#E4E8ED;
+  --accent:#0F5F63; --accent-soft:#DCEAEA;
+  --doubt:#9B2226; --doubt-soft:#F3E0DF;
+  --mixed:#8A5B14; --mixed-soft:#F3EADA;
+  --font-display:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-body:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101318; --surface:#171B21; --surface-2:#1C2129;
+    --ink:#E8EBF0; --ink-2:#A5ADBA; --ink-3:#7B8492;
+    --rule:#2A303A; --rule-soft:#232932;
+    --accent:#5AC8CC; --accent-soft:#153035;
+    --doubt:#E8807B; --doubt-soft:#2E1E1F;
+    --mixed:#D8A44E; --mixed-soft:#2B2318;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101318; --surface:#171B21; --surface-2:#1C2129;
+  --ink:#E8EBF0; --ink-2:#A5ADBA; --ink-3:#7B8492;
+  --rule:#2A303A; --rule-soft:#232932;
+  --accent:#5AC8CC; --accent-soft:#153035;
+  --doubt:#E8807B; --doubt-soft:#2E1E1F;
+  --mixed:#D8A44E; --mixed-soft:#2B2318;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font-body); font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+
+.topbar{position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--rule)}
+.topbar-inner{max-width:1220px; margin:0 auto; padding:10px 28px;
+  display:flex; align-items:center; gap:24px; flex-wrap:wrap}
+.brandmark{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); font-weight:600; white-space:nowrap}
+.navlinks{display:flex; gap:15px; flex-wrap:wrap; margin-left:auto}
+.navlinks a{font-family:var(--font-display); font-size:12px; font-weight:600;
+  letter-spacing:.02em; color:var(--ink-3); text-decoration:none}
+.navlinks a:hover,.navlinks a:focus-visible{color:var(--accent)}
+
+.wrap{max-width:1220px; margin:0 auto; padding:0 28px 96px}
+header.hero{padding:72px 0 40px; border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 20px}
+h1{font-family:var(--font-display); font-weight:800; letter-spacing:-.03em;
+  font-size:clamp(2.4rem,6vw,4rem); line-height:1.02; margin:0 0 24px;
+  text-wrap:balance; max-width:16ch}
+.standfirst{font-size:1.2rem; color:var(--ink-2); max-width:62ch; margin:0}
+
+section{padding:64px 0 8px; border-bottom:1px solid var(--rule-soft)}
+section:last-of-type{border-bottom:none}
+.sec-head{display:flex; gap:20px; align-items:baseline; margin-bottom:8px}
+.sec-num{font-family:var(--font-mono); font-size:12px; color:var(--accent);
+  font-weight:600; padding-top:6px; flex:none}
+h2{font-family:var(--font-display); font-weight:800; letter-spacing:-.022em;
+  font-size:clamp(1.6rem,3.4vw,2.2rem); line-height:1.12; margin:0; text-wrap:balance}
+.count{font-family:var(--font-mono); font-size:11px; color:var(--ink-3);
+  letter-spacing:.08em; text-transform:uppercase; margin:6px 0 0}
+.sec-intro{color:var(--ink-2); margin:14px 0 34px; max-width:68ch}
+h3{font-family:var(--font-display); font-weight:700; letter-spacing:-.012em;
+  font-size:1.14rem; line-height:1.3; margin:40px 0 6px; text-wrap:balance;
+  display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+.h3note{font-family:var(--font-body); font-weight:400; font-size:.9rem; color:var(--ink-3)}
+h4{font-family:var(--font-mono); font-weight:600; font-size:11px;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin:34px 0 12px;
+  padding-bottom:6px; border-bottom:1px solid var(--rule)}
+p{margin:0 0 16px; max-width:70ch}
+strong{font-weight:700; color:var(--ink)}
+a{color:var(--accent)}
+
+.tablewrap{overflow-x:auto; margin:18px 0 30px; border:1px solid var(--rule)}
+table{border-collapse:collapse; width:100%; min-width:600px; background:var(--surface)}
+th{font-family:var(--font-mono); font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:600; text-align:left;
+  padding:12px 14px; border-bottom:1px solid var(--rule); background:var(--surface-2); white-space:nowrap}
+td{padding:11px 14px; border-bottom:1px solid var(--rule-soft); font-size:.94rem; vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.said{font-family:var(--font-mono); font-size:.83rem; line-height:1.5; color:var(--ink)}
+td.who{font-family:var(--font-mono); font-size:.73rem; color:var(--ink-3); white-space:nowrap}
+td.n{font-family:var(--font-mono); font-size:.75rem; color:var(--ink-3);
+  font-variant-numeric:tabular-nums; text-align:right; width:34px}
+
+.pill{font-family:var(--font-mono); font-size:9px; letter-spacing:.09em;
+  text-transform:uppercase; font-weight:600; padding:3px 7px; border-radius:2px;
+  white-space:nowrap; display:inline-block}
+.pill.safe{background:var(--accent-soft); color:var(--accent)}
+.pill.testi{background:var(--mixed-soft); color:var(--mixed)}
+.pill.no{background:var(--doubt-soft); color:var(--doubt)}
+.pill.prime{background:var(--accent); color:var(--surface)}
+
+.callout{background:var(--surface); border:1px solid var(--rule);
+  border-left:3px solid var(--accent); padding:20px 24px; margin:28px 0}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{border-left-color:var(--doubt)}
+
+.lift{background:var(--surface); border:1px solid var(--rule); padding:20px 22px; margin:16px 0;
+  display:grid; grid-template-columns:34px 1fr; gap:0 16px}
+.lift .idx{font-family:var(--font-mono); font-size:11px; color:var(--accent);
+  font-weight:600; padding-top:5px}
+.lift .body{min-width:0}
+.lift .line{font-family:var(--font-display); font-weight:700; font-size:1.2rem;
+  letter-spacing:-.015em; line-height:1.3; margin:0 0 9px; text-wrap:balance}
+.lift .why{font-size:.92rem; color:var(--ink-2); margin:0}
+.lift .src{font-family:var(--font-mono); font-size:10px; color:var(--ink-3);
+  margin:9px 0 0; letter-spacing:.02em}
+
+.terr{background:var(--surface); border:1px solid var(--rule); padding:22px 24px; margin:18px 0}
+.terr-top{display:flex; gap:12px; align-items:baseline; flex-wrap:wrap; margin-bottom:10px}
+.terr-num{font-family:var(--font-mono); font-size:11px; color:var(--accent); font-weight:600}
+.terr h3{margin:0; font-size:1.14rem; flex:1 1 260px}
+.terr p{font-size:.94rem; margin:0 0 12px}
+.terr .meta{margin-top:14px; padding-top:12px; border-top:1px dashed var(--rule);
+  font-size:.9rem; display:grid; gap:8px}
+.terr .meta div{display:grid; grid-template-columns:88px 1fr; gap:12px}
+.terr .meta b{font-family:var(--font-mono); font-size:9.5px; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--ink-3); padding-top:3px}
+
+ul,ol{max-width:70ch; padding-left:22px; margin:0 0 18px}
+li{margin-bottom:9px}
+li::marker{color:var(--ink-3)}
+
+footer{padding:56px 0 0; color:var(--ink-3); font-size:.9rem;
+  border-top:2px solid var(--ink); margin-top:64px}
+footer p{max-width:70ch}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+</style>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <span class="brandmark">Prime Ingredients · Language Bank</span>
+    <div class="navlinks">
+      <a href="#how">How to use</a>
+      <a href="#symptoms">Symptoms</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#lift">Lift verbatim</a>
+      <a href="#ledger">Benefit ledger</a>
+      <a href="#side">Side-effect ledger</a>
+      <a href="#territories">Territories</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Companion to the Objection Map · verbatim extraction · built for Prime Elements NMN</p>
+  <h1>The NMN Language Bank</h1>
+  <p class="standfirst">Every way this market describes the problem, every way it describes the fix, the lines worth stealing outright, and 24 creative territories — drawn word-for-word from 161,000 words of Reddit and mapped onto your product.</p>
+</header>
+
+<!-- ===== HOW TO USE ===== -->
+<section id="how">
+  <div class="sec-head"><span class="sec-num">00</span><h2>How to use this</h2></div>
+  <div style="max-width:74ch">
+  <p>Left-hand columns are verbatim. Nothing has been tidied, corrected or smoothed — the typos and run-on sentences are the point, because that's the register that reads as human in an ad.</p>
+
+  <h4>Four rules</h4>
+  <ol>
+    <li><strong>Their words are shorter and more concrete than ours.</strong> They don't say "afternoon energy dip," they say "I crash hard at my desk around 2.30." Specificity is what makes a line feel observed rather than written.</li>
+    <li><strong>Benefits are described as subtraction, not addition.</strong> Fatigue "washes away," fog "lifts," slumps are "gone." Almost nobody says NMN <em>gave</em> them energy — they say it <em>removed</em> something. Write in that direction.</li>
+    <li><strong>Hedged copy outperforms confident copy here.</strong> Every top-upvoted positive testimonial contains a hedge. The audience's default response to enthusiasm is suspicion.</li>
+    <li><strong>Watch the claim flags.</strong> <span class="pill safe">Claimable</span> is generally structure/function-safe. <span class="pill testi">Testimonial only</span> means don't say it in brand voice — attributed customer quote only. <span class="pill no">Do not use</span> reads as a disease or drug claim. This is creative triage to speed you up, <em>not</em> legal advice — every claim needs your regulatory reviewer.</li>
+  </ol>
+
+  <h4>What I'm working from on your side</h4>
+  <p>Prime Ingredients / Prime Elements, St. Petersburg FL. NMN product <em>"Transform Your Cellular Energy for a Youthful Look,"</em> $29.98, daily oral, taken in the morning with water or coffee. Stated audience: <strong>women 40+</strong>. Line also carries Multi Collagen Peptides and Calcium Wrinkle Balms. Brand pillars: targeted formulations, simple daily rituals without complex stacks, straightforward honest messaging.</p>
+
+  <div class="callout">
+    <p><strong>Four things about your setup that matter more than you might think.</strong></p>
+    <p><strong>1. Women 40+ is the single best-evidenced, worst-served segment in the entire corpus.</strong> You are already pointed at the right people. The strongest human data anyone cites is insulin sensitivity in postmenopausal women; the warmest testimonials come from women 45–60; and their blocking questions — HRT interaction, hormonal effects — are answered by literally nobody in 161,000 words.</p>
+    <p><strong>2. $29.98 is at the low end of a category that runs $40–80/month.</strong> That's a genuine weapon against "waste of money" — but price alone will hurt you, because the corpus explicitly distrusts cheap NMN ("a lot of cheaper stuff on Amazon doesn't actually have the dose on the label"). Cheap <em>plus</em> visible third-party testing is the winning combination. Cheap alone reads as suspicious.</p>
+    <p><strong>3. Morning dosing is already your protocol — say why.</strong> Insomnia is the #1 reported side effect in the corpus and the #1 cause of people quitting a product that's working. You already have the fix built in. Nobody in the category explains it.</p>
+    <p><strong>4. "Without complex stacks" is a sharper position than it looks.</strong> The corpus is full of people taking 10+ things who say "Hard for me to say which one is helping. That's the trouble with that." Your anti-stack pillar answers a real, stated frustration.</p>
+  </div>
+
+  <div class="callout warn">
+    <p><strong>One flag on your own dossier.</strong> Three phrases in it would not survive a regulatory review as written: <em>"Slows biological cellular aging," "Enhances cellular insulin sensitivity,"</em> and the <em>"NAD+ drops up to 50% by middle age"</em> stat. The first two are disease/structure claims stated as fact; the third is contested in the corpus itself — one commenter argues "NAD+ doesn't decline much with age, and even that small drop is only because of inactivity." Use the 50% figure only with a citation you can defend, and soften the first two to "supports."</p>
+  </div>
+  </div>
+</section>
+
+<!-- ===== SYMPTOMS ===== -->
+<section id="symptoms">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Symptoms — how they describe the problem</h2></div>
+  <p class="count">32 verbatim entries · 7 clusters</p>
+  <p class="sec-intro">Your hook and headline inventory. Note how rarely anyone says "aging" — they describe a specific failure, in a specific hour, on a specific day. The ones marked <span class="pill prime">Prime fit</span> map directly onto your women-40+ audience.</p>
+
+  <h4>Cluster A — the vague onset <span class="h3note">most common entry point; least served by category copy</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td class="said">"Lately I've just been feeling kinda off. Not sick or anything, just low on energy and kinda foggy in the head more often than I'd like."</td><td class="who">mid-30s</td><td>Best problem statement in the corpus. Nearly a headline as-is.</td></tr>
+      <tr><td class="n">2</td><td class="said">"I'm starting to notice I can't get away with bad sleep, junk food, or skipping workouts like I used to"</td><td class="who">mid-30s</td><td>The "can't get away with it anymore" frame. Universally recognised.</td></tr>
+      <tr><td class="n">3</td><td class="said">"I'm really starting to feel my age now. Especially this year."</td><td class="who">u/superpowers335</td><td>"Especially this year" — the sudden-onset detail that makes it real.</td></tr>
+      <tr><td class="n">4</td><td class="said">"I'm hitting 40 soon and starting to feel it — energy's dipping, recovery is slower and my focus isn't what it used to be."</td><td class="who">~40</td><td><span class="pill prime">Prime fit</span> Three-symptom cluster at exactly your entry age.</td></tr>
+      <tr><td class="n">5</td><td class="said">"I woke up feeling like crap everyday. I'm fit, I'm healthy, I walk for miles every day, still woek part time and I should not feel like this."</td><td class="who">76F</td><td>The "I do everything right and still feel bad" injustice.</td></tr>
+      <tr><td class="n">6</td><td class="said">"My eyes were changing and my body ached when it should not have and my energy wasn't where it should have been"</td><td class="who">60+F</td><td><span class="pill prime">Prime fit</span> "When it should not have" — unfairness again.</td></tr>
+      <tr><td class="n">7</td><td class="said">"If you have aging aches and other signs like diminished eyesight or muscle building response is more challenging, despite being active and eating well"</td><td class="who">60+F</td><td>A ready-made qualification checklist for a quiz or landing page.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster B — energy &amp; the crash <span class="h3note">highest-frequency symptom in the corpus</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="n">8</td><td class="said">"Used to crash hard at my desk around 2.30pm/3"</td><td class="who">40M</td><td><strong>The most ownable symptom in the category.</strong> Specific, shared, self-verifiable, zero claim risk.</td></tr>
+      <tr><td class="n">9</td><td class="said">"my energy would just crash by 4 pm everyday… I would have to come home and just lie down for at least an hour."</td><td class="who">~40</td><td>The lie-down detail. Concrete and undignified — which is why it's believable.</td></tr>
+      <tr><td class="n">10</td><td class="said">"I used to be chronically fatigued and tired all the time and always had to go take a nap right after work"</td><td class="who">31M</td><td>The after-work nap as shorthand for decline.</td></tr>
+      <tr><td class="n">11</td><td class="said">"my energy is really bad in the mornings and only seems to get better at night which makes me stay up later"</td><td class="who">76F</td><td>Names the vicious cycle. Under-used insight.</td></tr>
+      <tr><td class="n">12</td><td class="said">"I'm sick of being tired, foggy and weak I can't exercise"</td><td class="who">50+F</td><td><span class="pill prime">Prime fit</span> "Sick of" is the emotional tell.</td></tr>
+      <tr><td class="n">13</td><td class="said">"always seemed to suffer from low energy level, been to the doctors plenty of time without luck"</td><td class="who">28M</td><td>The "doctors couldn't help me" origin story. Very common.</td></tr>
+      <tr><td class="n">14</td><td class="said">"Day 3 and I have an energy I haven't had in years"</td><td class="who">u/SPQRtacus</td><td>"In years" — the duration detail does the work.</td></tr>
+      <tr><td class="n">15</td><td class="said">"after a couple days my energy levels tank"</td><td class="who">28M</td><td>What running out feels like. Retention copy.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster C — cognitive &amp; fog</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="n">16</td><td class="said">"foggy in the head more often than I'd like"</td><td class="who">mid-30s</td><td>Softer and more relatable than the clinical "brain fog."</td></tr>
+      <tr><td class="n">17</td><td class="said">"I've had tiredness and head fog for years"</td><td class="who">49M</td><td>"Head fog" — the layman variant. Worth testing against "brain fog."</td></tr>
+      <tr><td class="n">18</td><td class="said">"terrible brain fog and always in pain"</td><td class="who">56F</td><td><span class="pill prime">Prime fit</span> Chronic-illness register. Handle carefully.</td></tr>
+      <tr><td class="n">19</td><td class="said">"tough workouts messed with my brain"</td><td class="who">u/godfather-ww</td><td>The cognitive cost of training. Nobody is using this angle.</td></tr>
+      <tr><td class="n">20</td><td class="said">"my focus isn't what it used to be"</td><td class="who">~40</td><td>Comparative decline, not absolute failure. Gentler, more true.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster D — pain, stiffness &amp; the old injury</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="n">21</td><td class="said">"aging aches"</td><td class="who">60+F</td><td>Two words, perfectly descriptive, low-clinical. Excellent.</td></tr>
+      <tr><td class="n">22</td><td class="said">"My shoulders were killing me"</td><td class="who">60+F</td><td><span class="pill prime">Prime fit</span> —</td></tr>
+      <tr><td class="n">23</td><td class="said">"Still have lower back and hip pain especially in bed at night"</td><td class="who">57F</td><td>"Especially in bed at night" — the detail that makes it visceral.</td></tr>
+      <tr><td class="n">24</td><td class="said">"the pain and stiffness in my ankle-heel I shattered and had surgery on 20 years ago"</td><td class="who">anon</td><td>Old injuries as the recurring villain.</td></tr>
+      <tr><td class="n">25</td><td class="said">"I can't be in pain 24/7"</td><td class="who">post-meno F</td><td>Desperation register. Do not build creative on this.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster E — hormonal &amp; life-stage <span class="h3note">your core audience, and the most under-served language in the corpus</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="n">26</td><td class="said">"Felt perimenopause coming on strong"</td><td class="who">u/Jealous-Self-127</td><td><span class="pill prime">Prime fit</span> "Coming on strong" — anticipatory dread is a real purchase trigger.</td></tr>
+      <tr><td class="n">27</td><td class="said">"Poor sleep, no energy, hair falling out and easily irritated"</td><td class="who">u/Jealous-Self-127</td><td><span class="pill prime">Prime fit</span> <strong>Her four-symptom perimenopause list. Use this exact cluster.</strong></td></tr>
+      <tr><td class="n">28</td><td class="said">"frozen shoulder symptoms of crashing hormones"</td><td class="who">60+F</td><td><span class="pill prime">Prime fit</span> "Crashing hormones" — her phrase, vivid and searchable.</td></tr>
+      <tr><td class="n">29</td><td class="said">"I'm 58 post menopausal" · "I'm a 57-year old, post-menopausal woman" · "I'm 45 and…"</td><td class="who">multiple</td><td>This segment always self-identifies by age <em>and</em> stage. Mirror it back.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster F — appearance <span class="h3note">where your NMN and collagen lines converge</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="n">30</td><td class="said">"Was is crepey or wrinkly before? Are you talking about the skin on your face or body or both?"</td><td class="who">u/Ok_Zombie8389</td><td><span class="pill prime">Prime fit</span> A question, not a symptom — but it gives you the exact vocabulary ("crepey") and the exact information gap.</td></tr>
+      <tr><td class="n">31</td><td class="said">"my finally-greying hair"</td><td class="who">60+F</td><td>"Finally" — greying framed as a long-delayed defeat.</td></tr>
+      <tr><td class="n">32</td><td class="said">"my lifelong dark under circles, always present regardless of how hydrated, how well rested, how good of a diet"</td><td class="who">u/costoaway1</td><td>The "I've tried everything" structure.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster G — the identity wound <span class="h3note">what is actually being bought</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="n">33</td><td class="said">"running a marathon breathing through a straw"</td><td class="who">u/godfather-ww</td><td><strong>Best metaphor in 161,000 words.</strong> Describes effortful living better than any clinical phrase.</td></tr>
+      <tr><td class="n">34</td><td class="said">"I felt so much 'older' in the past 6 months"</td><td class="who">u/SFajw204</td><td>Scare quotes on "older" — he doesn't accept it.</td></tr>
+      <tr><td class="n">35</td><td class="said">"I will try anything to feel young and frisky. With three grandkids and an elder parent to care for, I need all the zing I can get!"</td><td class="who">60F</td><td><span class="pill prime">Prime fit</span> The sandwich-generation motive. "Zing" is her word.</td></tr>
+      <tr><td class="n">36</td><td class="said">"I should not feel like this"</td><td class="who">76F</td><td>Five words. The category's entire emotional core.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section id="benefits">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Benefits — how they describe it working</h2></div>
+  <p class="count">38 verbatim entries · 9 clusters · claim-flagged</p>
+  <p class="sec-intro">Read these for register before content. Believers in this category understate. The moment your copy sounds more excited than your customer, it stops being believable.</p>
+
+  <h4>Cluster A — energy, described as subtraction <span class="h3note">the dominant and most persuasive pattern</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Claim</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td class="said">"about 5-10 minutes after ingestion, I feel like any lingering fatigue just washes away. Not that I'm wired or energized necessarily, only that I don't feel like I have any sleep debt to contend with. By the time the coffee is done brewing, I'm lucid and awake enough to appreciate it"</td><td class="who">47 upvotes</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">2</td><td class="said">"afternoon energy slumps basically gone"</td><td class="who">40M</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">3</td><td class="said">"steadier energy through the day, less brain fog mid-morning"</td><td class="who">u/YorNoob</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">4</td><td class="said">"my energy felt more steady throughout the day instead of crashing"</td><td class="who">u/Different_Pain5781</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">5</td><td class="said">"Nothing dramatic but I did notice…"</td><td class="who">u/Different_Pain5781</td><td>The credibility-buying preamble. Copy the structure, not just the words.</td></tr>
+      <tr><td class="n">6</td><td class="said">"a slight uptick in your energy"</td><td class="who">1yr user</td><td>Understatement as proof of honesty.</td></tr>
+      <tr><td class="n">7</td><td class="said">"background sustained energy"</td><td class="who">u/Ifimfeelinit-def60</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">8</td><td class="said">"I don't even take naps after work anymore"</td><td class="who">31M</td><td>Benefit as a behaviour that stopped. Strong format.</td></tr>
+      <tr><td class="n">9</td><td class="said">"I feel like my legs are already not as tired as they usually are at the end of a day"</td><td class="who">u/ChoicePollution9827</td><td>Hyper-specific and modest. Very believable.</td></tr>
+      <tr><td class="n">10</td><td class="said">"pure speed to me without the jitter"</td><td class="who">60F</td><td><span class="pill testi">Testimonial only</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster B — cognitive</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Claim</th></tr></thead>
+    <tbody>
+      <tr><td class="n">11</td><td class="said">"feel the brain fog lift"</td><td class="who">48M</td><td><span class="pill safe">Claimable</span> — best three words available.</td></tr>
+      <tr><td class="n">12</td><td class="said">"all brain fog is gone and I have a mental clarity I otherwise only had during the first days after vacation"</td><td class="who">u/godfather-ww</td><td>The vacation benchmark is superb. Borrow the comparison.</td></tr>
+      <tr><td class="n">13</td><td class="said">"Now the body feels tired but brain is clear"</td><td class="who">u/godfather-ww</td><td>Decouples physical from mental fatigue.</td></tr>
+      <tr><td class="n">14</td><td class="said">"I feel like I can formulate words quickly than before"</td><td class="who">hospital worker</td><td>Word-finding as the felt benefit. Badly underused, and very resonant for 45+ women.</td></tr>
+      <tr><td class="n">15</td><td class="said">"a focused calm energy… Have you ever gone to the gym and feel a focused calm energy after working out? It's like that."</td><td class="who">u/SPQRtacus</td><td>Analogy to a state everyone already knows.</td></tr>
+      <tr><td class="n">16</td><td class="said">"Like super Brain! Happy, motivated, smart as a tack, all of it."</td><td class="who">u/RealUltrarealist</td><td><span class="pill testi">Testimonial only</span> — too hot for brand voice.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster C — the morning <span class="h3note">emotionally loaded, and almost never used in category advertising</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Claim</th></tr></thead>
+    <tbody>
+      <tr><td class="n">17</td><td class="said">"I woke up feeling young again and full of energy"</td><td class="who">76F</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">18</td><td class="said">"I noticed a big difference in how I feel in the morning"</td><td class="who">76F</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">19</td><td class="said">"I started waking up feeling more rested even with fewer hours"</td><td class="who">u/YorNoob</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">20</td><td class="said">"I feel like I'm more awake during the day, I take it before 8am no food needed"</td><td class="who">58F post-meno</td><td><span class="pill prime">Prime fit</span> Matches your dosing protocol exactly.</td></tr>
+      <tr><td class="n">21</td><td class="said">"my wife said she wakes up better, less headache"</td><td class="who">u/godfather-ww</td><td>Second-hand report — reads as more honest than first-person.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster D — pain &amp; mobility <span class="h3note">most dramatic reports, highest claim risk</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Claim</th></tr></thead>
+    <tbody>
+      <tr><td class="n">22</td><td class="said">"My hips didn't hurt, I was moving like nothing was wrong!"</td><td class="who">u/Past-Watercress-9591</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">23</td><td class="said">"Shoulders are returned fully to normal and I can sleep on my side again"</td><td class="who">60+F</td><td>The concrete restored ability. Best-shaped pain testimonial in the corpus.</td></tr>
+      <tr><td class="n">24</td><td class="said">"I didn't buy NMN with any expectation that it would help my ankle at all? but 2 weeks in I noticed my foot wasn't hurting and realized it hadn't been hurting in awhile"</td><td class="who">anon</td><td>Structurally the most persuasive testimonial type — the involuntary discovery.</td></tr>
+      <tr><td class="n">25</td><td class="said">"Range of motion insanely increased, less pain, taking nearly no NSAIDs"</td><td class="who">u/costoaway1</td><td><span class="pill no">Do not use</span> — implies drug replacement.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster E — performance &amp; recovery <span class="h3note">most defensible territory you have</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Claim</th></tr></thead>
+    <tbody>
+      <tr><td class="n">26</td><td class="said">"I recover faster from workouts"</td><td class="who">u/YorNoob</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">27</td><td class="said">"Went from 17 chin ups to 22. Im 40 soon so past my best"</td><td class="who">u/Fresh_Parsley_1186</td><td>Countable proof plus self-deprecation. Ideal testimonial shape.</td></tr>
+      <tr><td class="n">28</td><td class="said">"NMN makes me workout better"</td><td class="who">15 upvotes</td><td>Four words, upvoted. Sometimes that's the whole ad.</td></tr>
+      <tr><td class="n">29</td><td class="said">"Got energy to start exercising again"</td><td class="who">perimenopausal F</td><td><span class="pill prime">Prime fit</span> <strong>The gateway benefit.</strong> Not fitness — the ability to <em>begin</em>.</td></tr>
+      <tr><td class="n">30</td><td class="said">"everything is easy, work the gym more work after the gym into the evening not a problem at all"</td><td class="who">u/Ifimfeelinit-def60</td><td>Capacity across a whole day, not one session.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster F — skin &amp; appearance <span class="h3note">your NMN–collagen bridge</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Claim</th></tr></thead>
+    <tbody>
+      <tr><td class="n">31</td><td class="said">"people have been noticing the glow in my face!"</td><td class="who">2wk user</td><td><span class="pill prime">Prime fit</span> Third-party observation — the strongest appearance proof there is.</td></tr>
+      <tr><td class="n">32</td><td class="said">"The only thing I've noticed objectively is my skin is looking better. I took photos of face and arms before and a month and 3 months after."</td><td class="who">63F, 2yr user</td><td>"Objectively" + photos. <strong>Model your entire UGC ask on this.</strong></td></tr>
+      <tr><td class="n">33</td><td class="said">"People say I look younger too."</td><td class="who">perimenopausal F</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">34</td><td class="said">"skin lasticity is improved"</td><td class="who">post-meno F</td><td>Note the typo. That's what real reviews look like — don't over-edit yours.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster G — mood &amp; stress <span class="h3note">an open content gap: asked about, never answered</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Claim</th></tr></thead>
+    <tbody>
+      <tr><td class="n">35</td><td class="said">"Can anybody tell me what effects it has on moods?"</td><td class="who">u/Economy_Emphasis4554</td><td><strong>Zero replies.</strong> An unanswered question is a content brief.</td></tr>
+      <tr><td class="n">36</td><td class="said">"I feel more energized, less stress, I feel like I can formulate words quickly"</td><td class="who">hospital worker, 12hr shifts</td><td><span class="pill safe">Claimable</span> as stress support</td></tr>
+      <tr><td class="n">37</td><td class="said">"crankiness completely disappeared" <em>(of her dog)</em></td><td class="who">60+F</td><td>Mood benefit reported in an animal — placebo-proof by construction.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Cluster H — global &amp; identity <span class="h3note">use sparingly, always attributed</span></h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th style="width:52%">Verbatim</th><th>Speaker</th><th>Claim</th></tr></thead>
+    <tbody>
+      <tr><td class="n">38</td><td class="said">"I feel like I am in my 30's again with body strength and energy and health and lack of aches"</td><td class="who">60+F</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">39</td><td class="said">"It was like a new lease on life"</td><td class="who">u/subterfuge</td><td><span class="pill testi">Testimonial only</span> — and note his effect faded within a week.</td></tr>
+      <tr><td class="n">40</td><td class="said">"I feel a tremendous difference in my energy and mood… I sometimes miss a day, and I can absolutely tell the difference on those days."</td><td class="who">57F post-meno</td><td><span class="pill prime">Prime fit</span> Benefit plus stop-start proof in one quote. The perfect review.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>The register rule.</strong> Every top-upvoted positive testimonial hedges: "I can't speak to any huge impacts, but…", "Nothing dramatic but…", "though hard to quantify exactly", "maybe it was a placebo effect". Build the hedge into your line. In this category understatement is not weakness — it is the price of being believed.</p>
+  </div>
+</section>
+
+<!-- ===== LIFT ===== -->
+<section id="lift">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Phrases to lift almost verbatim</h2></div>
+  <p class="count">24 lines · sorted by job</p>
+  <p class="sec-intro">Each is a direct quote or a minimal edit of one, with why it works and where it came from.</p>
+
+  <h4>Hooks &amp; headlines</h4>
+
+  <div class="lift"><span class="idx">01</span><div class="body">
+    <p class="line">"Not sick. Just… off."</p>
+    <p class="why">The most common entry state in the corpus and the one no competitor addresses, because it isn't a condition. Qualifies the reader instantly while claiming nothing.</p>
+    <p class="src">From: "Not sick or anything, just low on energy and kinda foggy in the head"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">02</span><div class="body">
+    <p class="line">"The 2:30 crash isn't a coffee problem."</p>
+    <p class="why">Specific enough to feel observed rather than written. Names a moment the reader can verify today and reframes it away from the obvious fix.</p>
+    <p class="src">From: "Used to crash hard at my desk around 2.30pm/3"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">03</span><div class="body">
+    <p class="line">"You can't get away with it like you used to."</p>
+    <p class="why">The universal 35–45 realisation. Accusatory in a way that flatters — it implies they used to get away with plenty.</p>
+    <p class="src">From: "I can't get away with bad sleep, junk food, or skipping workouts like I used to"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">04</span><div class="body">
+    <p class="line">"Like running a marathon breathing through a straw."</p>
+    <p class="why">The best metaphor in 161,000 words. Describes effortful living better than any clinical phrase, and it's visual enough to carry a campaign on its own.</p>
+    <p class="src">u/godfather-ww</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">05</span><div class="body">
+    <p class="line">"I do everything right. I still wake up feeling like this."</p>
+    <p class="why">The injustice frame. Speaks to the fit, active 45+ woman who has already ruled out lifestyle — and pre-empts the "fix your sleep first" objection before it lands.</p>
+    <p class="src">From: "I'm fit, I'm healthy, I walk for miles every day… and I should not feel like this"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">06</span><div class="body">
+    <p class="line">"Poor sleep. No energy. Hair falling out. Easily irritated."</p>
+    <p class="why">A real woman's own perimenopause list, in her own order. Reads as recognition rather than marketing, and it's the highest-intent audience you have.</p>
+    <p class="src">u/Jealous-Self-127 — verbatim</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">07</span><div class="body">
+    <p class="line">"Crashing hormones."</p>
+    <p class="why">Her phrase, not a clinician's. Vivid, searchable, and instantly identifies the reader to herself.</p>
+    <p class="src">From: "frozen shoulder symptoms of crashing hormones"</p>
+  </div></div>
+
+  <h4>Positioning</h4>
+
+  <div class="lift"><span class="idx">08</span><div class="body">
+    <p class="line">"You can't raise it above normal. You can only get back to normal."</p>
+    <p class="why">The depletion model in one line — the community's own consensus explanation, so it reads as recognition rather than persuasion. Quietly defuses the "blood levels ≠ cell levels" objection.</p>
+    <p class="src">From u/GlitteringAirport938's "you cant really raise NAD+ levels supraphysiologically"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">09</span><div class="body">
+    <p class="line">"It's not your age. It's your last ten years."</p>
+    <p class="why">Moves the axis from age to depletion — drinking, stress, poor sleep, hard training. Legitimately widens your market without contradicting the community's own gatekeepers.</p>
+    <p class="src">Synthesised from the depletion thread</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">10</span><div class="body">
+    <p class="line">"Topping up a recycling system, not adding a new one."</p>
+    <p class="why">Sidesteps the Attia liver objection rather than arguing with it. You're not claiming delivery to a location — you're describing a system running slower than it used to.</p>
+    <p class="src">Synthesised from the salvage-pathway explanations</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">11</span><div class="body">
+    <p class="line">"One capsule. Not eleven."</p>
+    <p class="why">Your anti-stack pillar, aimed at a real stated pain. The corpus is full of people taking a dozen things who admit they have no idea which one is working.</p>
+    <p class="src">From: "I take so many supplements. That's the trouble with that."</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">12</span><div class="body">
+    <p class="line">"Collagen rebuilds the structure. NAD+ powers the cells that build it."</p>
+    <p class="why">The honest version of your cross-sell. Collagen is the one anti-aging supplement this audience already believes in — use it as the credibility bridge into the contested one, not the other way round.</p>
+    <p class="src">Synthesised from your product line + the collagen thread</p>
+  </div></div>
+
+  <h4>Expectation-setting <span class="h3note">retention copy — worth more than acquisition copy in this category</span></h4>
+
+  <div class="lift"><span class="idx">13</span><div class="body">
+    <p class="line">"It's not caffeine. Nothing will happen on day one."</p>
+    <p class="why">Filters refund-seekers, sets a survivable horizon, and reads as honesty in a category built on instant-miracle promises.</p>
+    <p class="src">From: "NMN isn't like caffeine or anything where you feel it right away"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">14</span><div class="body">
+    <p class="line">"Most people quit at week four. It usually shows up around week six."</p>
+    <p class="why">Addresses the corpus's most common failure mode — quitting just before it works. Multiple users report nothing for 4–8 weeks, then a clear shift.</p>
+    <p class="src">From: "I took 2 entire bottles and felt nothing, but when I got to my 3rd bottle I definitely feel it working"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">15</span><div class="body">
+    <p class="line">"You'll stop feeling it. That doesn't mean it stopped working."</p>
+    <p class="why">Pre-empts the delta trap — the biggest cause of churn among people for whom the product is <em>succeeding</em>. Follow it with the stop-and-notice test.</p>
+    <p class="src">From: "like you're in a car that is steady at 60 mph after having felt the acceleration from 30-60"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">16</span><div class="body">
+    <p class="line">"Take it in the morning. There's a reason."</p>
+    <p class="why">Prevents the #1 side effect and the #1 cause of early quitting. You already dose in the morning — explaining <em>why</em> converts a routine instruction into evidence that you know what you're doing.</p>
+    <p class="src">From: "Causes insomnia if taken after lunch"</p>
+  </div></div>
+
+  <h4>Proof &amp; anti-placebo</h4>
+
+  <div class="lift"><span class="idx">17</span><div class="body">
+    <p class="line">"Can't placebo that."</p>
+    <p class="why">Their line, already upvoted. Deploy it only after objective evidence — a tracked number, a third-party observation, an animal. Never after a feeling.</p>
+    <p class="src">u/costoaway1 · 14 upvotes</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">18</span><div class="body">
+    <p class="line">"I notice when I don't take it."</p>
+    <p class="why">The stop-start natural experiment in six words. Appears independently from at least five separate users, which is exactly why it reads as authentic.</p>
+    <p class="src">Multiple users</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">19</span><div class="body">
+    <p class="line">"I didn't buy it for that."</p>
+    <p class="why">The involuntary-discovery frame. Placebo can't easily explain a benefit you weren't looking for — and this audience knows it.</p>
+    <p class="src">From: "I didn't buy NMN with any expectation that it would help my ankle at all"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">20</span><div class="body">
+    <p class="line">"She wouldn't have placebo effect."</p>
+    <p class="why">From the corpus's most-praised testimonial — a woman who dosed her limping dog before she'd try it herself. The most powerful anti-placebo device available to this category.</p>
+    <p class="src">u/StrixNebulosaBisou · 35 upvotes</p>
+  </div></div>
+
+  <h4>Honesty &amp; qualification <span class="h3note">counter-intuitive, and the strongest trust play available to you</span></h4>
+
+  <div class="lift"><span class="idx">21</span><div class="body">
+    <p class="line">"Fix your sleep first. Then come back."</p>
+    <p class="why">Agrees with the most reasonable objection in the category instead of fighting it. Costs a few bad-fit customers and earns the forum's respect — and the forum is where this category is actually decided.</p>
+    <p class="src">From: "If you can't get away with bad sleep and junk food, I guess you know what to do"</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">22</span><div class="body">
+    <p class="line">"Most people should not buy this."</p>
+    <p class="why">High-risk, high-differentiation. Then qualify: if you're under 35, healthy, sleeping well and not drinking, you probably won't feel much. That paragraph would be the most trustworthy thing in the category.</p>
+    <p class="src">Synthesised from the age-gating consensus</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">23</span><div class="body">
+    <p class="line">"$1 a day. And here's the lab report."</p>
+    <p class="why">Your price is genuinely low for this category — but cheap alone reads as suspicious here, because underdosed Amazon NMN is a known problem. Price plus proof is the combination that works. Never price alone.</p>
+    <p class="src">Your $29.98 vs corpus norms of $40–80/month</p>
+  </div></div>
+
+  <div class="lift"><span class="idx">24</span><div class="body">
+    <p class="line">"Here's the study that didn't go our way."</p>
+    <p class="why">The 2025 systematic review will be quoted at you regardless. Raising it yourself — then making the endpoint-mismatch point the community already upvoted — converts your biggest liability into your credibility proof.</p>
+    <p class="src">Synthesised from the 2025 review thread</p>
+  </div></div>
+
+  <div class="callout warn">
+    <p><strong>One line never to use, however tempting:</strong> "The supplement they tried to ban." It sells, and it draws exactly the customers who churn fastest while raising your regulatory profile. The safe substitute with the same emotional payload is already in the corpus: <strong>NMN occurs naturally in human breast milk</strong> — "the very first foods humans eat after they are born."</p>
+  </div>
+</section>
+
+<!-- ===== BENEFIT LEDGER ===== -->
+<section id="ledger">
+  <div class="sec-head"><span class="sec-num">04</span><h2>The benefit ledger</h2></div>
+  <p class="count">24 benefits · frequency · evidence · claim status</p>
+  <p class="sec-intro">Every benefit reported anywhere in the corpus. Frequency counts distinct users, not mentions. Some entries are attributed to collagen rather than NMN — flagged, and relevant to you because you sell both.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th>Benefit</th><th>Freq.</th><th>Evidence behind it</th><th>Say it?</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td><strong>Steady energy / fatigue removal</strong></td><td>Very high</td><td>Overwhelming anecdote, no hard outcome data. Always described as subtraction.</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">2</td><td><strong>Brain fog clearing</strong></td><td>Very high</td><td>Second-most cited. Consistently mid-morning or afternoon.</td><td><span class="pill safe">Claimable</span> as clarity/focus</td></tr>
+      <tr><td class="n">3</td><td><strong>Exercise recovery</strong></td><td>High</td><td><strong>Strongest position available.</strong> Named by Charles Brenner as the clearest benefit for healthy people.</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">4</td><td><strong>Joint &amp; old-injury pain</strong></td><td>High</td><td>Strikingly consistent — knees, shoulders, hips, ankles. Often the involuntary discovery.</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">5</td><td><strong>Physical capacity / walking</strong></td><td>Med-high</td><td>The 600mg trial claimed 50% improvement in 6-min walk — manufacturer-funded and dismantled in-thread.</td><td><span class="pill safe">Claimable</span> — but don't cite that trial</td></tr>
+      <tr><td class="n">6</td><td><strong>Strength / countable performance</strong></td><td>Medium</td><td>Chin-ups 17→22; "past my best" self-framing. Anecdote only.</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">7</td><td><strong>Sleep quality</strong></td><td>Med · bidirectional</td><td>Improves for some, destroys it for others. Roughly even split, timing-dependent.</td><td><span class="pill testi">Testimonial only</span> + timing warning</td></tr>
+      <tr><td class="n">8</td><td><strong>Skin appearance / "glow"</strong></td><td>Medium</td><td>Multiple reports, one with before/after photos. <span class="pill prime">Prime fit</span> Overlaps your collagen line.</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">9</td><td><strong>Skin elasticity</strong></td><td>Medium</td><td>Reported for both NMN and collagen. Your dossier claims it directly.</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">10</td><td><strong>Mood</strong></td><td>Medium</td><td>Reported repeatedly, never discussed. One direct question got zero replies. <strong>Open territory.</strong></td><td><span class="pill safe">Claimable</span> as mood/stress support</td></tr>
+      <tr><td class="n">11</td><td><strong>Stress resilience</strong></td><td>Medium</td><td>Shift workers and 12-hour-shift nurses report it specifically.</td><td><span class="pill safe">Claimable</span></td></tr>
+      <tr><td class="n">12</td><td><strong>Perimenopause symptom relief</strong></td><td>Medium</td><td><span class="pill prime">Prime fit</span> Strongest human data anyone cites — insulin sensitivity in postmenopausal women. Also the strongest anecdotes <em>and</em> the biggest unmanaged risk.</td><td><span class="pill no">Do not claim</span> — needs medical review</td></tr>
+      <tr><td class="n">13</td><td><strong>Verbal fluency / word-finding</strong></td><td>Low-med</td><td>"formulate words quickly than before." Highly resonant for 45+ women, almost never marketed.</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">14</td><td><strong>Metabolic / insulin sensitivity</strong></td><td>Low-med</td><td>The best-supported endpoint in the literature — and your dossier claims it. Still a health claim.</td><td><span class="pill no">Do not claim</span> as stated</td></tr>
+      <tr><td class="n">15</td><td><strong>HRV improvement</strong></td><td>Low-med</td><td>Two users with wearable data (91→109; mid-80s→110s). One reports the <em>opposite</em> after quitting.</td><td><span class="pill testi">Testimonial only</span></td></tr>
+      <tr><td class="n">16</td><td><strong>Hair — thickness, regrowth</strong></td><td>Low</td><td>Postpartum regrowth; "hair got longer." Emotional payload, no support.</td><td><span class="pill no">Do not claim</span></td></tr>
+      <tr><td class="n">17</td><td><strong>Hair — greying reversal</strong></td><td>Low</td><td>One dramatic report. Unsupportable and would attract scrutiny.</td><td><span class="pill no">Do not claim</span></td></tr>
+      <tr><td class="n">18</td><td><strong>Eyesight</strong></td><td>Low but vivid</td><td>Three independent reports of reduced reading-glasses dependence, incl. one dog. Unexplained.</td><td><span class="pill no">Do not claim</span></td></tr>
+      <tr><td class="n">19</td><td><strong>Allergy reduction</strong></td><td>Low but vivid</td><td>Two long-term users, independent, both unprompted. Classic involuntary discovery.</td><td><span class="pill no">Do not claim</span></td></tr>
+      <tr><td class="n">20</td><td><strong>Breathing / cardio endurance</strong></td><td>Low</td><td>One asthmatic reporting improvement. Respiratory claim territory.</td><td><span class="pill no">Do not claim</span></td></tr>
+      <tr><td class="n">21</td><td><strong>Dark under-eye circles</strong></td><td>Low</td><td>Attributed to niacin, not NMN. Noted for completeness.</td><td><span class="pill no">Do not claim</span></td></tr>
+      <tr><td class="n">22</td><td><strong>Hangover / alcohol recovery</strong></td><td>Low</td><td>Several reports, mostly IV. Long-standing IV-clinic use. Off-brand for women 40+.</td><td><span class="pill no">Do not claim</span></td></tr>
+      <tr><td class="n">23</td><td><strong>Appetite reduction</strong></td><td>Low</td><td>Two mentions, unexplored. One user reports the opposite ("I feel hungrier").</td><td><span class="pill no">Do not claim</span></td></tr>
+      <tr><td class="n">24</td><td><strong>Pet mobility</strong></td><td>Low but potent</td><td>Multiple owners dosing ageing dogs and cats with dramatic results. Not a product line — a proof asset.</td><td><span class="pill testi">Testimonial only</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>Read the ledger diagonally and your strategy appears.</strong> Everything you can legally claim — steady energy, clarity, recovery, capacity, mood, stress — is exactly what your 40–60 woman wants. Everything you <em>can't</em> claim — joints, skin, eyesight, hair, perimenopause — is what generates the most vivid testimonials. So <strong>claim the first set and collect the second.</strong> Your review pipeline should be doing the work your advertising legally can't.</p>
+  </div>
+</section>
+
+<!-- ===== SIDE EFFECT LEDGER ===== -->
+<section id="side">
+  <div class="sec-head"><span class="sec-num">05</span><h2>The side-effect ledger</h2></div>
+  <p class="count">21 issues · with pre-emption copy</p>
+  <p class="sec-intro">Nobody in this category warns about any of this. Every row is a refund, a churned subscription or a one-star review that honest copy would have prevented — and because the audience already knows, disclosing it reads as confidence rather than risk.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="n">#</th><th>Issue</th><th>In their words</th><th>What it costs you</th><th>Pre-emption</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td><strong>Insomnia</strong><br><span style="color:var(--ink-3);font-size:.82rem">#1 by a wide margin</span></td><td class="said">"Causes insomnia if taken after lunch" · "I can't sleep but I feel fine. So I don't know whether to continue it or stop"</td><td>Churn from people it's <em>working</em> for.</td><td><span class="pill prime">You already fix this</span> Morning dosing — say why, on the label.</td></tr>
+      <tr><td class="n">2</td><td><strong>Paradoxical fatigue</strong></td><td class="said">"It made me tired and sluggish" · "l was falling asleep at work, it took me months to realise it's was the NMN"</td><td>Silent churn — they don't complain, they tell the forum.</td><td>Name it. "A minority feel drowsy instead. If that's you, stop."</td></tr>
+      <tr><td class="n">3</td><td><strong>Stomach upset</strong></td><td class="said">"Take it with food to reduce stomach discomfort" · "truniagen gave me terrible cramps"</td><td>Week-one quitting.</td><td>One line of dosing guidance.</td></tr>
+      <tr><td class="n">4</td><td><strong>Headaches</strong></td><td class="said">"take it with food to reduce stomach discomfort and headaches"</td><td>Early abandonment.</td><td>Same line. Pair with food.</td></tr>
+      <tr><td class="n">5</td><td><strong>Methylation burden</strong></td><td class="said">"need two other methyl donor (eg betaine) while you're taking it"</td><td>Loses the informed buyer, who reads silence as ignorance.</td><td>Address TMG. Up to ~40% may methylate inefficiently.</td></tr>
+      <tr><td class="n">6</td><td><strong>MTHFR sensitivity</strong></td><td class="said">"I'm homocygot C667T, and I can't take than 25mg niacin"</td><td>A self-identifying sub-audience actively seeking brands that acknowledge them.</td><td>One FAQ line wins a whole niche.</td></tr>
+      <tr><td class="n">7</td><td><strong>Periods restarting</strong></td><td class="said">"having my periods restart after 7 months… my iron levels dropped by half. I felt fantastic before starting NMN then it all went to hell"</td><td><span class="pill prime">Critical for you</span> Your core segment, blocked at purchase.</td><td>Medically-reviewed content. Do not wing this.</td></tr>
+      <tr><td class="n">8</td><td><strong>HRT interaction anxiety</strong></td><td class="said">"I'm on HRT. I don't want to have a period again thanks. Not sure I will try."</td><td><span class="pill prime">Critical for you</span> A purchase lost to an unanswered question.</td><td>The single highest-value page you could commission.</td></tr>
+      <tr><td class="n">9</td><td><strong>Endometriosis flare</strong></td><td class="said">"my symptoms of endometriosis have returned hard core after being gone since entering menopause 10 years ago"</td><td>Severe, single-source, but devastating if it recurs.</td><td>Include in the medical review scope.</td></tr>
+      <tr><td class="n">10</td><td><strong>Tolerance / plateau</strong></td><td class="said">"It does build up tolerance though, so it's important to cycle it"</td><td>Month 2–3 cancellations.</td><td>Have a position on cycling. Teach the delta trap first.</td></tr>
+      <tr><td class="n">11</td><td><strong>Honeymoon fade</strong></td><td class="said">"I noticed a huge energy boost immediately… and it went away a week later. I'm still trying to unravel the mystery."</td><td>The most demoralising churn pattern there is.</td><td>Set the expectation at purchase, not at cancellation.</td></tr>
+      <tr><td class="n">12</td><td><strong>Rebound after stopping</strong></td><td class="said">"my HRV scores have remained noticeably depressed [6 months]… I suspect I am now a little less healthy than before I started"</td><td>Blocks purchase entirely — reframes risk from wasted money to lasting harm.</td><td>Address on the PDP. Say what's known and what isn't.</td></tr>
+      <tr><td class="n">13</td><td><strong>Muscle pain on quitting</strong></td><td class="said">"horrendous muscle aches, fatigue and even worsening eyesight… way below baseline"</td><td>Feeds the rebound fear above.</td><td>Same disclosure.</td></tr>
+      <tr><td class="n">14</td><td><strong>Racey / jittery feeling</strong></td><td class="said">"I was a little bit racey on it but now I've adjusted to it"</td><td>Day 1–3 returns.</td><td>"Some people feel a bit wired for the first few days."</td></tr>
+      <tr><td class="n">15</td><td><strong>Heart-rate awareness</strong></td><td class="said">"First time I took 2 capsules and felt my heart rate increase a bit so I only took one today"</td><td>Alarming without context; solved by dose guidance.</td><td>Start-low guidance on pack.</td></tr>
+      <tr><td class="n">16</td><td><strong>Raised RBC / polycythemia</strong></td><td class="said">"I had mild polycythemia (high RBCs, high hemocrit)… I stopped taking it, and my follow up CBC was normal"</td><td>Single source, but a real bloodwork finding.</td><td>Include in medical review; don't volunteer unprompted.</td></tr>
+      <tr><td class="n">17</td><td><strong>Over-supplementation</strong></td><td class="said">"raised them over 100, using the jinfiniti test. That was too high. So I cut back"</td><td>Undermines "more is better" upsells.</td><td>Supports your single-dose, no-stack position.</td></tr>
+      <tr><td class="n">18</td><td><strong>Degradation in storage</strong></td><td class="said">"NMN is fragile—it breaks down easily with heat and light" · "It cost me $170 and I've probably been doing more harm than good"</td><td>Undermines confidence in product already bought.</td><td>Publish stability data. Largely uncontested territory.</td></tr>
+      <tr><td class="n">19</td><td><strong>Underdosing / counterfeits</strong></td><td class="said">"a lot of cheaper stuff on Amazon doesn't actually have the dose on the label"</td><td><span class="pill prime">Critical for you</span> Your $29.98 price triggers exactly this suspicion.</td><td>COA with batch number, publicly, always.</td></tr>
+      <tr><td class="n">20</td><td><strong>Drug/condition interaction anxiety</strong></td><td class="said">"concerned about adding it to the list of meds 😔" · "not sure if it would interact with my meds"</td><td>The 50+ segment's most common reason not to buy.</td><td>A plain "talk to your doctor if you take X" page.</td></tr>
+      <tr><td class="n">21</td><td><strong>Cost fatigue</strong></td><td class="said">"I paid nearly $600 for 6 months" · "It's quite exspensive do u think it's worth it" · "lighter wallet let me walk a little faster"</td><td>The objection underneath every other objection.</td><td><span class="pill prime">Your advantage</span> $29.98 wins here — but pair with proof, never price alone.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>The disclosure play, in one move.</strong> Put the five most common side effects on your PDP under a heading like <em>"What to expect — including the annoying parts."</em> In a category where every competitor is silent, that page will out-convert your hero claim, because the audience's default assumption is that you're hiding something and this is the only way to prove you aren't.</p>
+  </div>
+</section>
+
+<!-- ===== TERRITORIES ===== -->
+<section id="territories">
+  <div class="sec-head"><span class="sec-num">06</span><h2>24 creative territories</h2></div>
+  <p class="count">Positioning platforms · campaign angles · content formats</p>
+  <p class="sec-intro">Each derives from something specific in the corpus or your product, not from category convention. "Neutralises" names the objection it defuses; "Format" is where it lives. Roughly ordered by how much of the objection map each one clears.</p>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">01</span><h3>Refill, don't add</h3></div>
+    <p>The depletion model as positioning. "You can't raise NAD+ above normal. You can only get back to normal." It explains who it works for, why some feel nothing, why studies on healthy young people come back null, and why the plateau happens — all at once. Modest, which is the point.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Blood≠cells · the 2025 review · fundamentals-first · expert deadlock</span></div>
+      <div><b>Format</b><span>Brand platform. Homepage, PDP header, all top-of-funnel.</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">02</span><h3>Deplete, don't age</h3></div>
+    <p>Replace the age axis with a depletion axis — drinking, shift work, chronic stress, illness, hard training, menopause, poor sleep are all named in-thread as NAD+ drains. Reaches people the category's own gatekeepers turn away, without contradicting them.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The age-gate — the biggest addressable-market constraint in the category</span></div>
+      <div><b>Format</b><span>Paid social, quiz, segmented landing pages</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">03</span><h3>Perimenopause, actually answered</h3></div>
+    <p>Your core audience asks about HRT interaction, returning periods and hormone effects constantly, and gets nothing back. A medically-reviewed hub covering what's known, what isn't, and who shouldn't take it. The highest-value asset in this entire document for your brand specifically.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The purchase blocker for your best-evidenced, worst-served segment</span></div>
+      <div><b>Format</b><span>Content hub + email sequence + named medical reviewer</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">04</span><h3>The honest label</h3></div>
+    <p>Anti-marketing as the marketing. Lead with what it won't do, who shouldn't buy, what the unflattering studies found, what remains unknown. The corpus proves the mechanism: people trust negative testimonials <em>because there's no motive to lie</em>. Volunteer your downsides and you borrow that credibility.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Industry-is-rigged · fear of being the mark · fake-review suspicion</span></div>
+      <div><b>Format</b><span>PDP section, packaging, founder video</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">05</span><h3>Week six</h3></div>
+    <p>A retention platform built on expectation. "It's not caffeine." "Nothing on day one." "Most people quit at week four." Then teach the stop-and-notice test. The corpus is full of people who quit just before it worked, and people who couldn't feel it any more and assumed it stopped.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The delta trap · premature churn · "how long?"</span></div>
+      <div><b>Format</b><span>Email flow — days 1, 7, 21, 42, 60</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">06</span><h3>Can't placebo that</h3></div>
+    <p>A UGC and review platform built to the community's own evidence hierarchy: involuntary discoveries, stop-start experiments, third-party observations, tracked numbers. Publish in that structure with the caveats intact.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The placebo objection · anecdote fatigue</span></div>
+      <div><b>Format</b><span>Review request rewrite + social proof redesign</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">07</span><h3>Own 3pm</h3></div>
+    <p>The single most specific, most shared, most self-verifiable symptom in the corpus — and it carries zero claim risk. Build a campaign entirely around the afternoon crash: when it happens, what it feels like, what it isn't.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Vagueness · claim risk · "will I notice anything?"</span></div>
+      <div><b>Format</b><span>Paid social, dayparted to 2–4pm</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">08</span><h3>The morning report</h3></div>
+    <p>How you feel when you wake up is the 55+ customer's real KPI, and it's entirely claim-safe. It also aligns with your morning dosing ritual — the product and the benefit share a moment.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Abstraction · the "what does anti-aging even mean" problem</span></div>
+      <div><b>Format</b><span>Email, packaging, retention creative</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">09</span><h3>The creatine argument</h3></div>
+    <p>The highest-scoring objection in the corpus is a cancer researcher saying NAD+ is "just an electron carrier, so supplementation won't help." A commenter replied: creatine is just a phosphate carrier too, and it obviously works. The researcher never answered. That's your single best owned argument — and it's borrowed from the audience.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The credentialed dismissal — the hardest objection in the category</span></div>
+      <div><b>Format</b><span>Long-form explainer, founder video, comment-section reply</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">10</span><h3>Inside and out</h3></div>
+    <p>Collagen is the one anti-aging supplement this audience believes without argument — top-voted answer in the corpus's biggest "what actually works" thread, at 69 upvotes, above NMN. You sell both. Collagen supplies the structure; NAD+ powers the cells that build it. Lead acquisition with the believed product, expand into the contested one.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Category skepticism at the point of first purchase</span></div>
+      <div><b>Format</b><span>Bundle, cross-sell flow, hero campaign</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">11</span><h3>One capsule, not eleven</h3></div>
+    <p>Your anti-stack pillar, aimed at a real stated frustration. The corpus is full of people taking a dozen supplements who admit they have no idea which is doing anything. Simplicity as a diagnostic advantage, not just convenience.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Stack fatigue · attribution confusion · cost stacking</span></div>
+      <div><b>Format</b><span>Comparison creative, PDP, packaging</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">12</span><h3>Price plus proof</h3></div>
+    <p>$29.98 is genuinely low for this category. But cheap alone is dangerous here — underdosed budget NMN is a documented, discussed problem. Always pair the price with the lab report. Never run price as a standalone claim.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Cost fatigue · but only when paired with the COA</span></div>
+      <div><b>Format</b><span>Always-on: price module locked to testing module</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">13</span><h3>The COA in public</h3></div>
+    <p>Certificate of analysis, batch number visible, updated per production run. The highest-trust phrase set in the entire category, and most of the long tail doesn't do it. Given your price point, this isn't optional — it's what makes the price an asset instead of a liability.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Counterfeits · underdosing · "which brand is real?"</span></div>
+      <div><b>Format</b><span>Permanent page, QR on pack</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">14</span><h3>Why morning</h3></div>
+    <p>You already dose in the morning. Insomnia is the #1 reported side effect and the #1 reason people quit a working product. Explaining the reason turns a routine instruction into evidence that you understand the molecule.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The #1 side effect and its churn</span></div>
+      <div><b>Format</b><span>Label, welcome email, PDP</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">15</span><h3>NMN vs NR, honestly</h3></div>
+    <p>"The NMN vs NR debate is tiring… it's hard to know what to do" — 11 upvotes, unresolved. An even-handed explainer that names the commercial interests on both sides, <em>including yours</em>, captures the highest-intent unanswered query in the category.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Expert deadlock — the paralysis that stops ready buyers</span></div>
+      <div><b>Format</b><span>SEO cornerstone article</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">16</span><h3>Stop shooting in the dark</h3></div>
+    <p>Baseline NAD+ testing as hero, product as follow-through. Answers the loudest procedural criticism in the category, self-qualifies customers, manufactures top-tier evidence, and converts the plateau from a churn risk into a retest moment. Longer lead time; clearest structural gap in the market.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Placebo · "am I too young?" · the delta trap</span></div>
+      <div><b>Format</b><span>Product bundle or partnership</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">17</span><h3>Fix your sleep first</h3></div>
+    <p>Actively disqualify people. Tell the 32-year-old to check ferritin, D and B12 before buying. Costs a handful of bad-fit customers; earns the trust of the forum where this category is actually decided. Sequence yourself as step four, not step one.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Fundamentals-first — the most reasonable objection in the corpus</span></div>
+      <div><b>Format</b><span>Quiz outcome, blog, ad copy</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">18</span><h3>What we don't know yet</h3></div>
+    <p>Publish the open questions: what happens when you stop, whether cycling matters, why some people feel nothing. Uncertainty stated plainly is the strongest trust signal available in a category defined by overclaiming.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The rebound fear · industry-is-rigged</span></div>
+      <div><b>Format</b><span>Standing page, updated as evidence lands</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">19</span><h3>The first food</h3></div>
+    <p>NMN occurs naturally in human breast milk — "the very first foods humans eat after they are born." Same emotional payload as the FDA-conspiracy angle (this is natural, this is fundamental) with none of the regulatory exposure. Especially resonant for your audience.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>"Is this even natural?" · safety anxiety</span></div>
+      <div><b>Format</b><span>Brand story, PDP, packaging</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">20</span><h3>She wouldn't have placebo effect</h3></div>
+    <p>The corpus's most-praised testimonial is a woman who dosed her limping dog before she'd try it herself. Multiple owners report the same. Not a product line — a content asset, and the most powerful anti-placebo device this category has.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The placebo objection, at its root</span></div>
+      <div><b>Format</b><span>Organic social, UGC solicitation</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">21</span><h3>I didn't buy it for that</h3></div>
+    <p>A UGC format built purely on involuntary discovery — the benefit nobody was looking for. Structurally the most persuasive testimonial shape in the corpus, and free to prompt: just ask "what changed that you weren't expecting?"</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Placebo · testimonial fatigue</span></div>
+      <div><b>Format</b><span>Review prompt + social series</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">22</span><h3>Not a biohacker</h3></div>
+    <p>Every visual cue in this category — syringes, wearables, male, clinical — belongs to a subculture your 52-year-old customer is not part of. She said so herself: "I'd really like to hear from people who've actually used it, especially if you're not, like, a hardcore biohacker." Own the anti-biohacker position outright.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>Category alienation for your actual target</span></div>
+      <div><b>Format</b><span>Art direction, casting, tone across everything</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">23</span><h3>The stop-and-notice test</h3></div>
+    <p>A ritual you give customers at month two: stop for five days, then notice. It solves the delta trap, generates the most persuasive testimonial type in the corpus, and is astonishingly confident — no other brand would dare suggest a pause.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The delta trap · placebo doubt · plateau churn</span></div>
+      <div><b>Format</b><span>Email + insert card</span></div>
+    </div>
+  </div>
+
+  <div class="terr">
+    <div class="terr-top"><span class="terr-num">24</span><h3>The study that didn't go our way</h3></div>
+    <p>Address the 2025 systematic review head-on before someone else does. Cite it honestly, then make the endpoint-mismatch argument the community itself upvoted above the attack. Being the brand that raises its own inconvenient evidence is worth more than any claim you could make instead.</p>
+    <div class="meta">
+      <div><b>Neutralises</b><span>The 2025 review · industry-is-rigged · expert deadlock</span></div>
+      <div><b>Format</b><span>Long-form post, founder video, PR</span></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>If you run only three:</strong> <strong>03 (Perimenopause, actually answered)</strong> because it unblocks your best segment at the point of purchase; <strong>10 (Inside and out)</strong> because collagen is the believed product that earns you the right to sell the contested one; and <strong>14 (Why morning)</strong> because it's free, you already do it, and it prevents the single biggest cause of churn in the category.</p>
+  </div>
+</section>
+
+<footer>
+  <p>All left-column text is verbatim from the source corpus — 18 Reddit threads on NMN, NR and NAD+ across r/Biohackers, r/NMN, r/longevity, r/nicotinamideriboside and peptide communities, approx. 161,000 words. Typos, capitalisation and punctuation preserved. Speaker labels reflect self-reported age and sex where stated. Frequency counts distinct users, not mentions.</p>
+  <p>Product details from the Prime Ingredients / Prime Elements brand dossier. The website could not be reached from this environment, so on-site copy, current pricing and dose per serving are unverified — confirm before anything ships.</p>
+  <p>Claim-risk flags are creative-strategy triage to speed up review, not legal or regulatory advice. Every claim should be checked against the advertising rules of each market before it runs.</p>
+</footer>
+
+</div>
