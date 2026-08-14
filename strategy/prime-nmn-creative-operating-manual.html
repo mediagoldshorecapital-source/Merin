@@ -1,0 +1,1232 @@
+<title>Prime NMN Operating Manual</title>
+<style>
+:root{
+  --paper:#EFF1F4; --surface:#FCFDFE; --surface-2:#F5F7F9; --surface-3:#EAEDF1;
+  --ink:#15181E; --ink-2:#4A515E; --ink-3:#727A88;
+  --rule:#D7DBE2; --rule-soft:#E4E8ED;
+  --accent:#0F5F63; --accent-soft:#DCEAEA;
+  --doubt:#9B2226; --doubt-soft:#F3E0DF;
+  --mixed:#8A5B14; --mixed-soft:#F3EADA;
+  --fourth:#3F4E7A; --fourth-soft:#E2E6F0;
+  --font-display:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-body:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101318; --surface:#171B21; --surface-2:#1C2129; --surface-3:#222831;
+    --ink:#E8EBF0; --ink-2:#A5ADBA; --ink-3:#7B8492;
+    --rule:#2A303A; --rule-soft:#232932;
+    --accent:#5AC8CC; --accent-soft:#153035;
+    --doubt:#E8807B; --doubt-soft:#2E1E1F;
+    --mixed:#D8A44E; --mixed-soft:#2B2318;
+    --fourth:#93A4D6; --fourth-soft:#1B2030;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101318; --surface:#171B21; --surface-2:#1C2129; --surface-3:#222831;
+  --ink:#E8EBF0; --ink-2:#A5ADBA; --ink-3:#7B8492;
+  --rule:#2A303A; --rule-soft:#232932;
+  --accent:#5AC8CC; --accent-soft:#153035;
+  --doubt:#E8807B; --doubt-soft:#2E1E1F;
+  --mixed:#D8A44E; --mixed-soft:#2B2318;
+  --fourth:#93A4D6; --fourth-soft:#1B2030;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font-body); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- nav ---------- */
+.topbar{position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--rule)}
+.topbar-inner{max-width:1240px; margin:0 auto; padding:10px 28px;
+  display:flex; align-items:center; gap:24px; flex-wrap:wrap}
+.brandmark{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); font-weight:600; white-space:nowrap}
+.navlinks{display:flex; gap:15px; flex-wrap:wrap; margin-left:auto}
+.navlinks a{font-family:var(--font-display); font-size:12px; font-weight:600;
+  letter-spacing:.02em; color:var(--ink-3); text-decoration:none}
+.navlinks a:hover,.navlinks a:focus-visible{color:var(--accent)}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1240px; margin:0 auto; padding:0 28px 96px}
+.col{max-width:74ch}
+
+/* ---------- hero ---------- */
+header.hero{padding:72px 0 40px; border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 20px}
+h1{font-family:var(--font-display); font-weight:800; letter-spacing:-.032em;
+  font-size:clamp(2.3rem,5.6vw,3.8rem); line-height:1.02; margin:0 0 24px;
+  text-wrap:balance; max-width:19ch}
+.standfirst{font-size:1.2rem; color:var(--ink-2); max-width:64ch; margin:0}
+
+/* ---------- sections ---------- */
+section{padding:64px 0 8px; border-bottom:1px solid var(--rule-soft)}
+section:last-of-type{border-bottom:none}
+.sec-head{display:flex; gap:20px; align-items:baseline; margin-bottom:8px}
+.sec-num{font-family:var(--font-mono); font-size:12px; color:var(--accent);
+  font-weight:600; padding-top:6px; flex:none}
+h2{font-family:var(--font-display); font-weight:800; letter-spacing:-.022em;
+  font-size:clamp(1.6rem,3.4vw,2.2rem); line-height:1.12; margin:0; text-wrap:balance}
+.sec-intro{color:var(--ink-2); margin:14px 0 34px; max-width:70ch}
+h3{font-family:var(--font-display); font-weight:700; letter-spacing:-.012em;
+  font-size:1.18rem; line-height:1.3; margin:40px 0 10px; text-wrap:balance}
+h4{font-family:var(--font-mono); font-weight:600; font-size:11px;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3);
+  margin:32px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--rule)}
+h5{font-family:var(--font-display); font-weight:700; font-size:1.02rem;
+  margin:24px 0 8px; letter-spacing:-.008em}
+p{margin:0 0 16px; max-width:72ch}
+strong{font-weight:700; color:var(--ink)}
+em{font-style:italic}
+a{color:var(--accent)}
+
+/* ---------- quotes ---------- */
+.q{margin:20px 0; padding:12px 0 12px 20px; border-left:3px solid var(--ink-3); max-width:74ch}
+.q p{font-family:var(--font-mono); font-size:.88rem; line-height:1.6; margin:0 0 8px; color:var(--ink)}
+.q cite{font-family:var(--font-mono); font-style:normal; font-size:10.5px;
+  color:var(--ink-3); letter-spacing:.02em; display:block}
+.q.doubt{border-left-color:var(--doubt)}
+.q.belief{border-left-color:var(--accent)}
+.q.mixed{border-left-color:var(--mixed)}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto; margin:20px 0 30px; border:1px solid var(--rule)}
+table{border-collapse:collapse; width:100%; min-width:620px; background:var(--surface)}
+th{font-family:var(--font-mono); font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:600; text-align:left;
+  padding:12px 14px; border-bottom:1px solid var(--rule); background:var(--surface-2);
+  white-space:nowrap; vertical-align:bottom}
+td{padding:11px 14px; border-bottom:1px solid var(--rule-soft); font-size:.93rem; vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.said{font-family:var(--font-mono); font-size:.82rem; line-height:1.5; color:var(--ink)}
+td.who{font-family:var(--font-mono); font-size:.72rem; color:var(--ink-3)}
+td.id{font-family:var(--font-mono); font-size:.72rem; color:var(--accent); font-weight:600; white-space:nowrap}
+td.n,.num{font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; font-family:var(--font-mono); font-size:.82rem}
+tbody tr:hover td{background:var(--surface-2)}
+
+/* dossier table: first column is the label rail */
+table.dossier th:first-child,table.dossier td:first-child{
+  position:sticky; left:0; background:var(--surface-2); z-index:1;
+  border-right:1px solid var(--rule); min-width:150px; max-width:170px}
+table.dossier tbody tr:hover td:first-child{background:var(--surface-3)}
+table.dossier td{min-width:250px; font-size:.88rem; line-height:1.55}
+table.dossier{min-width:1100px}
+.rail{font-family:var(--font-mono); font-size:10px; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:600}
+
+/* script table */
+table.script{min-width:720px}
+table.script td:first-child{width:38%; color:var(--ink-2); font-size:.89rem}
+table.script td:last-child{width:62%}
+table.script .tc{font-family:var(--font-mono); font-size:.7rem; color:var(--accent);
+  display:block; margin-bottom:5px; letter-spacing:.06em}
+.vo{font-family:var(--font-body)}
+.ost{font-family:var(--font-mono); font-size:.8rem; color:var(--ink-2);
+  display:block; margin-top:7px; padding-left:9px; border-left:2px solid var(--rule)}
+
+/* ---------- pills ---------- */
+.pill{font-family:var(--font-mono); font-size:9px; letter-spacing:.09em;
+  text-transform:uppercase; font-weight:600; padding:3px 7px; border-radius:2px;
+  white-space:nowrap; display:inline-block}
+.pill.safe{background:var(--accent-soft); color:var(--accent)}
+.pill.testi{background:var(--mixed-soft); color:var(--mixed)}
+.pill.no{background:var(--doubt-soft); color:var(--doubt)}
+.pill.m{background:var(--accent-soft); color:var(--accent)}
+.pill.r{background:var(--mixed-soft); color:var(--mixed)}
+.pill.i{background:var(--surface-3); color:var(--ink-3)}
+
+/* ---------- callouts ---------- */
+.callout{background:var(--surface); border:1px solid var(--rule);
+  border-left:3px solid var(--accent); padding:20px 24px; margin:26px 0}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{border-left-color:var(--doubt)}
+.callout.note{border-left-color:var(--mixed)}
+.callout h5{margin-top:0}
+
+/* ---------- ICP header cards ---------- */
+.icp-head{background:var(--surface); border:1px solid var(--rule);
+  border-top:4px solid var(--accent); padding:22px 26px; margin:44px 0 20px}
+.icp-head.e2{border-top-color:var(--mixed)}
+.icp-head.e3{border-top-color:var(--doubt)}
+.icp-head.e4{border-top-color:var(--fourth)}
+.icp-head h3{margin:0 0 6px; font-size:1.5rem; letter-spacing:-.02em}
+.icp-head .sub{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 14px}
+.icp-head p{margin:0; font-size:.97rem; color:var(--ink-2)}
+.statrow{display:flex; flex-wrap:wrap; gap:0; margin:18px 0 0;
+  border:1px solid var(--rule); background:var(--rule)}
+.stat{background:var(--surface-2); padding:12px 16px; flex:1 1 130px; min-width:130px}
+.stat b{display:block; font-family:var(--font-mono); font-size:1.15rem; font-weight:600;
+  color:var(--ink); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.stat span{display:block; font-family:var(--font-mono); font-size:9.5px;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin-top:3px}
+
+/* ---------- misc ---------- */
+ul,ol{max-width:72ch; padding-left:22px; margin:0 0 18px}
+li{margin-bottom:9px}
+li::marker{color:var(--ink-3)}
+.grid{display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); margin:26px 0}
+@media(min-width:820px){.grid.two{grid-template-columns:1fr 1fr}
+  .grid.three{grid-template-columns:1fr 1fr 1fr}}
+.card{background:var(--surface); padding:20px 22px}
+.card h5{margin:0 0 8px}
+.card p{font-size:.93rem; margin:0 0 10px; color:var(--ink-2)}
+.card p:last-child{margin-bottom:0}
+.kicker{font-family:var(--font-mono); font-size:10px; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--accent); font-weight:600; display:block; margin-bottom:7px}
+footer{padding:52px 0 0; color:var(--ink-3); font-size:.9rem;
+  border-top:2px solid var(--ink); margin-top:64px}
+footer p{max-width:72ch}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+</style>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <span class="brandmark">Prime Ingredients · NMN 1000mg</span>
+    <div class="navlinks">
+      <a href="#economics">Economics</a>
+      <a href="#icp">1 · Four ICPs</a>
+      <a href="#golden">2 · 15 Lines</a>
+      <a href="#pillars">3 · Pillars</a>
+      <a href="#grid">4 · 24 Concepts</a>
+      <a href="#scripts">5 · Scripts</a>
+      <a href="#ops">6 · Compliance &amp; Buying</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Creative Strategy Operating Manual &amp; Customer Intelligence Dossier · Built 14 Aug 2026</p>
+  <h1>Ten ads that fill a real gap beat fifty that say the same thing in different fonts</h1>
+  <p class="standfirst">Prime Ingredients · β-Nicotinamide Mononucleotide 1000mg. Four buyers, six pillars, twenty-four concepts, three shoot-ready scripts, and the media-buying rules that decide which of them survive the week.</p>
+</header>
+
+<!-- ============ EXEC SUMMARY ============ -->
+<section id="economics">
+  <div class="sec-head"><span class="sec-num">00</span><h2>Executive summary</h2></div>
+  <div class="col">
+
+  <p>This account does not have a creative volume problem. It has a <strong>creative coverage problem sitting on top of an operational fire</strong>, and the two are now feeding each other. The comment corpus under live ads is 35 rows of anger and 26 of fear against 6 of relief and 2 of pride — that ratio is not what a category looks like, it is what a fulfilment backlog looks like when it surfaces in public under a paid impression.</p>
+
+  <p>Read that ratio honestly before you brief a single asset. Every dollar of the $1,600–$2,100 daily spend buys a placement whose comment thread currently contains the sentence <em>"Where's my order???????? It's been two weeks no tracking number nothing !!! Scam!!!!"</em> The creative below is written to be worth running. It will not be, until the four operational items in the gap analysis are closed.</p>
+
+  <h4>The arithmetic the whole plan rests on</h4>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Metric</th><th class="num">Value</th><th>Derivation / what it forces</th></tr></thead>
+    <tbody>
+      <tr><td>Gross AOV</td><td class="num">$92.21</td><td>Pre-discount basket.</td></tr>
+      <tr><td>Net AOV</td><td class="num">$56.56</td><td>The number every CPA target is built on.</td></tr>
+      <tr><td>Meta site CVR</td><td class="num">4.18–4.40%</td><td>Across 102,212 sessions. Tablet 5.11%, mobile 4.21%, desktop 1.86%.</td></tr>
+      <tr><td>Target outbound CPC</td><td class="num">$1.24</td><td>At 1.2% outbound CTR this is a $14.88 CPM ceiling; at 0.9% CTR, $11.16.</td></tr>
+      <tr><td>Target CPA</td><td class="num">$28.25</td><td><strong>$1.24 ÷ 4.39% CVR.</strong> There is no slack in this — see below.</td></tr>
+      <tr><td>Break-even ROAS</td><td class="num">1.43×</td><td>At 70% gross margin. Break-even CPA is therefore $39.55.</td></tr>
+      <tr><td>Target blended ROAS</td><td class="num">1.80–2.00×</td><td>$56.56 ÷ $28.25 = exactly 2.00×.</td></tr>
+      <tr><td>Contribution per order at target</td><td class="num">$11.34</td><td>($56.56 × 70%) − $28.25.</td></tr>
+      <tr><td>Orders required at $1,800/day</td><td class="num">63.7</td><td>Needs 1,524 sessions/day at 4.18% CVR, which is $1,890 at $1.24 CPC.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <h5>Three reconciliation items. Do not brief around them — brief with them visible.</h5>
+    <p><strong>1. The CPA target assumes the top of the CVR range, permanently.</strong> $1.24 ÷ 4.18% = <strong>$29.67</strong>, five per cent over target. $1.24 ÷ 4.40% = $28.18. The plan only works at 4.39% and above. Every landing-page friction item in the gap analysis — the subscription checkout in particular — is therefore a media-efficiency item, not a UX nicety.</p>
+    <p><strong>2. The stated discount does not close.</strong> $92.21 less 34% is $60.86, not $56.56. The residual $4.30 per order is an effective discount of 38.7%, or roughly $274/day of unattributed leakage at 63.7 orders — shipping subsidy, partial refunds, chargebacks, or all three. At $8,200/month it is worth an afternoon of finance time before it is worth another ad.</p>
+    <p><strong>3. "70% of orders are 4+ bottles" is no longer true.</strong> If it were, units per order could not fall below 3.10 (0.7 × 4 + 0.3 × 1). Measured units per order is <strong>2.94</strong>. Back-solved, the four-plus share is now ~65% and falling. Bundle decay is the AOV problem, and it is the single cheapest thing on this list to fix with creative.</p>
+  </div>
+
+  <div class="callout warn">
+    <h5>The number that should govern the quarter</h5>
+    <p>The warehouse reports <strong>−$21.95 contribution on an acquisition order</strong> against <strong>+$37.34 on a re-bill</strong>. At $56.56 net AOV and 70% margin, a −$21.95 contribution implies a realised acquisition CPA of <strong>$61.54</strong> — <strong>2.18× the $28.25 target</strong>, and 1.56× break-even.</p>
+    <p>That $33.29 gap between plan and reality is what this manual exists to close. It will not close through better hooks alone. Roughly a third of it is creative coverage (Sections 3 and 4), a third is landing-page and checkout friction (Gap 3), and a third is the trust damage documented in the comment corpus (Gaps 1, 2 and 6). Anyone who tells you it is only the first third has not read the comments.</p>
+  </div>
+
+  <h4>What the creative has to sell</h4>
+  <p>Not a bottle. The offer ladder is <strong>Buy 2 Get 2 Free at $79.97–$82.86</strong> and <strong>Buy 3 Get 3 Free at $99.98–$100.16</strong>. Six bottles at 60 capsules and two capsules a day is a <strong>180-day supply for $99.98 — 55.5¢ a day</strong>, against $29.98 for a single bottle, which is 99.9¢ a day. The per-bottle anchor moves from <strong>$29.98 to $16.66</strong>.</p>
+  <p>Zero discount codes were used across 4,770 orders. She is not hunting a code; she is responding to bundle structure. So the creative sells a <em>six-month decision</em>, made once, in one sitting, on a tablet, in the evening. Every concept in Section 4 is scored on whether it can carry that decision, not whether it can carry a click.</p>
+
+  <h4>The four ICPs at a glance</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>ICP</th><th>Who</th><th class="num">Size</th><th class="num">LTV</th><th class="num">Repeat</th><th>Why they matter</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 · Linda B.</strong></td><td>The Reclaimer · F 55–68</td><td class="num">~55–60%</td><td class="num">$71.10</td><td class="num">13.5%</td><td>The volume. Everything else is measured against her.</td><td><span class="pill m">M</span> <span class="pill r">R</span></td></tr>
+      <tr><td><strong>2 · Dana</strong></td><td>The Juggler / Linda-Clarity · F 42–54</td><td class="num">Unsized</td><td class="num">n/a</td><td class="num">n/a</td><td>The most acute fear in the research; the least addressed in the account.</td><td><span class="pill r">R</span> <span class="pill i">I</span></td></tr>
+      <tr><td><strong>3 · Margaret</strong></td><td>The Mirror · F 48–62</td><td class="num">323 · 4.7%</td><td class="num">$98.44</td><td class="num">26.9%</td><td><strong>+38% LTV, 2× repeat rate.</strong> Zero ads written to her.</td><td><span class="pill m">M</span></td></tr>
+      <tr><td><strong>4 · Robert</strong></td><td>The Refuser · M 58–72</td><td class="num">765 · 11.2%</td><td class="num">~$82.48</td><td class="num">—</td><td><strong>+16% LTV, highest ROAS.</strong> Not one ad in the account speaks to him.</td><td><span class="pill m">M</span> <span class="pill r">R</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><span class="pill m">M</span> measured in the warehouse or the 468-comment corpus &nbsp; <span class="pill r">R</span> from the NMN Deep Customer Intelligence Report, 20 May 2026 &nbsp; <span class="pill i">I</span> inferred — hypothesis, not observation.</p>
+
+  <div class="callout note">
+    <h5>The single largest uncontested opportunity in the account</h5>
+    <p>There are 6,491 NMN-only customers at $71.10 LTV. Margaret — the same woman, who happened to add Astaxanthin on a second order — is worth $98.44. Moving <strong>10% of NMN-only buyers into the ASTA attach adds roughly $27.34 each: ~$17,700 of LTV, on traffic you have already paid for.</strong> Nobody has ever sent her an ad about it. Two of the twenty-four concepts below exist solely to do this.</p>
+  </div>
+  </div>
+</section>
+
+<!-- ============ 01 · FOUR-ICP DOSSIER ============ -->
+<section id="icp">
+  <div class="sec-head"><span class="sec-num">01</span><h2>The four-ICP customer intelligence dossier</h2></div>
+  <p class="sec-intro">Four buyers, twelve standardised parts each. Every claim carries a confidence marker — <span class="pill m">M</span> measured, <span class="pill r">R</span> research, <span class="pill i">I</span> inferred. Do not treat them as equivalent, and do not let an <span class="pill i">I</span> get promoted to fact because it made a good slide.</p>
+
+  <!-- ======== ICP 1 · LINDA ======== -->
+  <div class="icp-head">
+    <p class="sub">ICP 1 · The volume</p>
+    <h3>Linda B. — The Reclaimer</h3>
+    <p>62, female, Phoenix. Retired teacher. She wakes unrested after eight hours, and that is the symptom that convinced her this is structural and not lifestyle. The surface pain is "I'm tired all the time." The real one is that her body is betraying the person she still believes she is.</p>
+    <div class="statrow">
+      <div class="stat"><b>~55–60%</b><span>of NMN buyers <span class="pill i">I</span></span></div>
+      <div class="stat"><b>$71.10</b><span>LTV <span class="pill m">M</span></span></div>
+      <div class="stat"><b>13.5%</b><span>repeat rate <span class="pill m">M</span></span></div>
+      <div class="stat"><b>1.18</b><span>orders per customer <span class="pill m">M</span></span></div>
+      <div class="stat"><b>2.94</b><span>units per order <span class="pill m">M</span></span></div>
+      <div class="stat"><b>5,031 / 5,033</b><span>orders are US <span class="pill m">M</span></span></div>
+    </div>
+  </div>
+
+  <h4>Part 1 · Demographics &amp; tech profile</h4>
+  <p>Born 1955–1975, sweet spot 58–68 <span class="pill r">R</span>. American — 97.8% of traffic, and 5,031 of 5,033 orders <span class="pill m">M</span>. Roughly <strong>40% carry legacy email</strong> — AOL, Yahoo, Comcast, Juno — meaning she adopted email 20–25 years ago and never moved <span class="pill r">R</span>. First names cluster to the 1940s–70s: Darlene, Polly, Janis, Peggy, Maureen. Retired or working part-time. Married; her husband regards her as fine.</p>
+  <p><strong>Device is the buried finding.</strong> Tablet converts at <strong>5.11%</strong>, mobile at 4.21%, desktop at 1.86% <span class="pill r">R</span>. She buys on an iPad, in a recliner, at 7 PM. Every asset gets QC'd at 4:5 and 9:16 on a 10-inch screen at arm's length before it ships — not on a monitor at 100%.</p>
+
+  <h4>Part 2 · Dayparting order windows &amp; hourly peaks</h4>
+  <p>Use the warehouse, not the report. Order volume is <strong>essentially flat from 8 AM to midnight ET</strong>, and the report's "11 AM is your single best hour" no longer holds <span class="pill m">M</span>.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Window (ET)</th><th class="num">Orders</th><th>Rank</th><th>What to run in it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>7:00 PM</strong></td><td class="num">296</td><td>1st</td><td>Peak. Recliner, TV on, Facebook Reels. Long-form UGC, unmuted, story-led.</td></tr>
+      <tr><td><strong>6:00 PM</strong></td><td class="num">291</td><td>2nd</td><td>Same posture. Best slot for the 45–60s scripts.</td></tr>
+      <tr><td>11:00 AM</td><td class="num">276</td><td>5th</td><td>Post-errand scroll. Shorter, static-and-carousel weighted.</td></tr>
+      <tr><td>11 PM – 1 AM</td><td class="num">127–206/hr</td><td>—</td><td>Unusually high for this demographic. Belongs to Dana — see ICP 2.</td></tr>
+      <tr><td>2:00 – 7:00 AM</td><td class="num">dead</td><td>—</td><td>The only genuine dead window. Nothing else is worth excluding.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Day of week, controlled for spend:</strong> Friday is best at <strong>1.25 ROAS / $48.47 CPA</strong>; Tuesday is worst at <strong>0.99</strong>. Saturday is mid-pack, Monday is fine <span class="pill m">M</span>. Note what that Friday number actually says: <em>the account's best day still returns a CPA 72% above target.</em> That is the coverage gap, stated in media terms.</p>
+
+  <h4>Part 3 · Traffic channel split &amp; conversion rates</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Channel</th><th class="num">Share of orders</th><th class="num">CVR</th><th>Read</th></tr></thead>
+    <tbody>
+      <tr><td>Facebook</td><td class="num">~60%</td><td class="num">—</td><td>The engine. Reels and in-feed video.</td></tr>
+      <tr><td>Instagram</td><td class="num">~34%</td><td class="num">—</td><td>Together with FB, 94% of orders.</td></tr>
+      <tr><td><strong>Google</strong></td><td class="num">0.4%</td><td class="num"><strong>5.08%</strong></td><td><strong>The highest-converting source in the business, and it is a rounding error of the volume.</strong> This is a channel decision, not a creative one, but it is Dana's natural home.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>She is a bundle buyer at ~2.94 units per order <span class="pill m">M</span> — down from the report's implied ~4.1 <span class="pill r">R</span>. <strong>Bundle size has fallen and that is a live AOV problem</strong>, worth roughly $18 of gross basket per order at the ladder's own pricing.</p>
+
+  <h4>Part 4 · Geography &amp; regional indexing</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Volume markets</th><th class="num">Orders</th><th>Premium AOV markets</th><th class="num">AOV</th><th>Weak AOV markets</th><th class="num">AOV</th></tr></thead>
+    <tbody>
+      <tr><td>California</td><td class="num">588</td><td><strong>Tucson, AZ</strong></td><td class="num"><strong>$82</strong></td><td>Houston, TX</td><td class="num">$43</td></tr>
+      <tr><td>Florida</td><td class="num">396</td><td>Chicago, IL</td><td class="num">$72</td><td>Miami, FL</td><td class="num">$47</td></tr>
+      <tr><td>Texas</td><td class="num">391</td><td>Henderson, NV</td><td class="num">$67</td><td>—</td><td class="num">—</td></tr>
+      <tr><td>New York</td><td class="num">219</td><td>New York, NY</td><td class="num">$66</td><td>—</td><td class="num">—</td></tr>
+      <tr><td>IL 167 · OH 162 · GA 162 · AZ 157</td><td class="num">—</td><td>—</td><td class="num">—</td><td>—</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Sun Belt and retirement corridor <span class="pill r">R</span>. She lives where it is warm, in a house with a yard, near other retirees <span class="pill i">I</span>. <strong>The AZ/NV premium markets carry nearly double Houston's basket</strong> — that is where the six-bottle tier and the ASTA attach get tested first.</p>
+
+  <h4>Part 5 · Core inner monologue</h4>
+  <p>Ranked, from the research <span class="pill r">R</span>: (1) I'm becoming invisible — she sits while others do; (2) I can't keep up with my grandchildren; (3) my body stopped listening to me; (4) I'm falling behind my friends; (5) I've been scammed before; (6) I can't afford to waste money; (7) my husband doesn't understand.</p>
+  <div class="q doubt"><p>"I should not feel like this"</p><cite>76F · r/Biohackers — five words, and the category's entire emotional core</cite></div>
+  <div class="q doubt"><p>"I woke up feeling like crap everyday. I'm fit, I'm healthy, I walk for miles every day, still woek part time and I should not feel like this."</p><cite>76F · r/Biohackers — note the typo. Real reviews look like this. <strong>Anger, not sadness.</strong></cite></div>
+  <div class="q doubt"><p>"My doctor said my low energy is just getting older."</p><cite>YouTube corpus · Grief — the hook is that "just getting older" is not an answer</cite></div>
+  <div class="q mixed"><p>"I'm 70 I look 30, and I don't even use that stuff. How about that"</p><cite>Meta ad comment · 24 Jul 2026 — the defiant refusal of the premise. She is in your audience too.</cite></div>
+
+  <h4>Part 6 · A day in the life — observable sensory moments</h4>
+  <p><strong>6:30 AM.</strong> Awake after eight hours, unrested. This is the moment that convinced her it is structural. <strong>7:00.</strong> Coffee and the existing supplement stack — she already takes six things and cannot attribute any of them. <strong>8:30–10:00.</strong> Errands or volunteering; she walks the dog at 8. <strong>10:30.</strong> Sits down and scrolls. <strong>2:00–4:00 PM.</strong> The crash lands and she considers a nap. <strong>7:00 PM.</strong> Recliner, TV on, phone in hand, Facebook Reels — <em>this is now the peak buying window.</em> <strong>10:30.</strong> Bed, and she will wake tired again.</p>
+  <div class="q mixed"><p>"my energy would just crash by 4 pm everyday. I felt so much 'older' in the past 6 months. I would have to come home and just lie down for at least an hour."</p><cite>~40 · r/Biohackers — the lie-down detail is undignified, which is why it is believable</cite></div>
+
+  <h4>Part 7 · What she secretly wants (product regimen)</h4>
+  <p><strong>Tier 1:</strong> sleep support — she is demonstrably awake and ordering at midnight <span class="pill m">M</span>; cognitive support; an ASTA + NMN bundle; a collagen + NMN bundle. <strong>Tier 2:</strong> menopause support, joint and mobility, eye health, a consolidated daily pack.</p>
+  <div class="callout"><p><strong>Her stack already exists. She wants it simplified, not extended</strong> <span class="pill i">I</span>. The "without complex stacks" position is sharper than it looks — the corpus is full of people taking ten things who say <em>"I take so many supplements. That's the trouble with that."</em> Sell subtraction.</p></div>
+  <p><strong>The protocol she wants written down:</strong> 2 capsules, morning, on an empty stomach, 30–60 minutes before food, with water. Never after lunch. She is currently learning this from other commenters instead of from you — see Gap 7.</p>
+
+  <h4>Part 8 · Retention &amp; LTV profile — 30 / 60 / 90-day window</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Window</th><th>What is happening</th><th>The verbatim</th><th>The asset that saves it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Day 7</strong></td><td>First churn window. She expected caffeine and got nothing.</td><td class="said">"Im a week in using this stuff and nothing yet."</td><td>Day 3 "how to take it" + Day 7 "you won't feel it yet, here's why" email.</td></tr>
+      <tr><td><strong>Day 30</strong></td><td>Second and larger churn window. Refund requests cluster here.</td><td class="said">"I have taken them for over a month and nothing has changed"</td><td>Day 21 "what to watch for" — name three subtractions, not one addition.</td></tr>
+      <tr><td><strong>Day 60</strong></td><td>The delta trap. It is working and she can no longer feel it.</td><td class="said">"It was like a new lease on life and it went away a week later."</td><td>Day 60 stop-and-notice week. Give her the test; she'll convince herself.</td></tr>
+      <tr><td><strong>Day 75–120</strong></td><td>Reorder window. Day 75 email is the difference between a reorder and a defection.</td><td class="said">"I never want to be without this again."</td><td>Day 75 reorder + ASTA attach offer (see Margaret).</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>13.5% of NMN-only buyers order more than once; 1.18 orders, $71.11 LTV <span class="pill m">M</span>. Since June the subscription programme has overtaken this — <strong>97% of orders now carry the subscription flag</strong> while the Subscribe &amp; Save SKUs have sold nine units in total, which means enrolment is happening <em>at checkout</em>, not by product choice <span class="pill m">M</span>. That is Gap 3, and it is why re-bills at +$37.34 are the only profitable order type.</p>
+
+  <h4>Part 9 · Meta comment matrix — public vs. private tone</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>She says in public</th><th>She means in private</th><th>Your in-thread reply</th></tr></thead>
+    <tbody>
+      <tr><td class="said">"How can I buy it without a subscription? I only want 1 bottle to start"</td><td>I have been burned by a supplement subscription and I will not be again.</td><td>Link the one-time SKU directly. Do not explain the discount ladder first.</td></tr>
+      <tr><td class="said">"There is no phone number to call. Don't trust companies that make you email"</td><td>If this goes wrong I have no way to reach a human.</td><td>Publish the number. This is a trust asset, not a cost centre.</td></tr>
+      <tr><td class="said">"How do you get a discount code? Don't want to order then see a discount code…"</td><td>I am afraid of feeling stupid after I pay.</td><td>"There isn't one — the bundle <em>is</em> the discount." True, and it closes.</td></tr>
+      <tr><td class="said">"You have to take three capsules at once. Why"</td><td>This is more than I expected and nobody explained it.</td><td>The dose rationale in one sentence. See Gap 7.</td></tr>
+      <tr><td class="said">"Because no one wants to be like the Kardashians. Be a Beth!"</td><td>Your spokesperson is not me and you clearly do not know who I am.</td><td>Nothing. Recast. See Gap 5.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Part 10 · Reasoned objections &amp; proof demands</h4>
+  <p>Zero discount codes used across 4,770 orders — the 75% is bundle structure, not a code <span class="pill r">R</span>. She responds to the per-bottle anchor ($29.98 → $16.66), not to a percentage. The "buy 3 get 3" works as <strong>a trust signal disguised as a discount</strong>: a company that gives you six months of product is not planning to disappear next week.</p>
+  <p>Her three standing proof demands: <strong>(1)</strong> is this the company that actually ships? <strong>(2)</strong> can I take it with what I already take? <strong>(3)</strong> what does a real month look like? None of the three is answered anywhere in the current account.</p>
+
+  <h4>Part 11 · Two-thread story</h4>
+  <div class="grid two">
+    <div class="card"><span class="kicker">Thread A — the one that works</span>
+      <p>Linda, 62, Phoenix. Husband Bill, four grandchildren; the three-year-old is everything. She wakes unrested, walks the dog at 8, and by evening she is in the recliner with the TV on and her phone in her hand.</p>
+      <p>She sees your ad, thinks <em>that is exactly how I feel</em>, and taps. She reads two reviews from women who sound like her, picks a bundle and pays with Apple Pay in four minutes. Three months later she runs out. Email her at Day 75 and she reorders; miss it and she buys elsewhere.</p></div>
+    <div class="card"><span class="kicker">Thread B — the one running right now</span>
+      <p>She taps. Before she reaches the page she reads the comments, because she is 62 and she has been scammed before and reading the comments is what careful people do.</p>
+      <p>The top comment says <em>"Beware! Took my money and never sent product!"</em> The second says the bottle in the video has an M on the cap and the one on the shop page says Prime. She closes the app. You paid $1.24 for that.</p></div>
+  </div>
+
+  <h4>Part 12 · Emotion / job-to-be-done / trigger matrix</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Axis</th><th>Linda B. — The Reclaimer</th></tr></thead>
+    <tbody>
+      <tr><td class="rail">Emotion</td><td><strong>Grief</strong>, for the person she used to be, under a surface of tiredness. Not sadness — grief has anger in it.</td></tr>
+      <tr><td class="rail">Job to be done</td><td>"Get me back to being the one who does things, not the one who watches."</td></tr>
+      <tr><td class="rail">Core objection</td><td>"I've wasted money on supplements before and I'd be ashamed to do it again."</td></tr>
+      <tr><td class="rail">Trigger moments</td><td>Sitting down while everyone else keeps moving · the 3 PM crash · declining something she'd once have said yes to · a grandchild asking her to come outside.</td></tr>
+      <tr><td class="rail">Ad she needs</td><td>A woman her own age, filmed badly, in a real kitchen, saying one specific thing that stopped happening.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ======== ICP 2 · DANA ======== -->
+  <div class="icp-head e2">
+    <p class="sub">ICP 2 · The unserved fear</p>
+    <h3>Dana — The Juggler <span style="font-weight:400;color:var(--ink-3)">/ Linda-Clarity</span></h3>
+    <p>Same woman as Linda, different 3 AM thought. She is not tired so much as frightened. She forgot her grandson's name at his birthday and sat in the car afterwards. She has not told anyone, including her husband. She wants a smaller, fixable explanation than the one she is afraid of.</p>
+    <div class="statrow">
+      <div class="stat"><b>42–54</b><span>age band <span class="pill r">R</span></span></div>
+      <div class="stat"><b>Unsized</b><span>not in the warehouse <span class="pill r">R</span></span></div>
+      <div class="stat"><b>127–206</b><span>orders/hr, 11 PM–1 AM <span class="pill m">M</span></span></div>
+      <div class="stat"><b>5.08%</b><span>Google CVR — her channel <span class="pill r">R</span></span></div>
+    </div>
+  </div>
+
+  <div class="callout warn"><p><strong>Read this before you spend against her.</strong> ICP 2 rests on ManyChat self-selection (tags <code>NMN_Focus</code>, <code>NMN_Longevity</code>), which is not in the warehouse. She cannot be sized, costed or tied to revenue with any data available here. <strong>She is a creative hypothesis, not a measured segment.</strong> If the hypothesis fails, she collapses back into Linda–Energy and you have lost two concepts, not a quarter.</p></div>
+
+  <h4>Part 1 · Demographics &amp; tech profile</h4>
+  <p>Demographically indistinguishable from Linda — same geography, devices, email providers <span class="pill r">R</span>. <strong>The difference is motivation, not profile.</strong> She skews younger at the front of the band: high-stress professional or newly perimenopausal, still working, often still managing a parent and a child at once. She reads the mechanism before she reads the offer <span class="pill i">I</span>, which makes her the only one of the four who will finish a 90-second explainer.</p>
+
+  <h4>Part 2 · Dayparting order windows &amp; hourly peaks</h4>
+  <p>Same daytime pattern as Linda <span class="pill m">M</span>, with one difference worth a dedicated ad set: <strong>her fear is worst at night, and overnight ordering is unusually high for this demographic — 127 to 206 orders an hour between 11 PM and 1 AM</strong> <span class="pill m">M</span>. Rumination is a plausible driver <span class="pill i">I</span>.</p>
+  <p><strong>Test:</strong> a 10 PM–1 AM ad set carrying only mechanism creative — no offer, no urgency, no countdown. The 11 PM buyer is not looking for a deal. She is looking for a reason to stop worrying.</p>
+
+  <h4>Part 3 · Traffic channel split &amp; conversion rates</h4>
+  <p>Same Meta channels as Linda <span class="pill r">R</span>. But she is the most likely of the four to research before buying, which makes her <strong>the natural fit for the one channel you are not using</strong>: Google converts at 5.08% and delivers 0.4% of orders. The queries are already in the corpus — "NMN vs NR", "does NMN interact with HRT", "NMN dosage", "why does NMN keep me awake". Nobody in 161,000 words of forum text is answering them honestly.</p>
+
+  <h4>Part 4 · Geography &amp; regional indexing</h4>
+  <p>Indistinguishable from Linda–Energy <span class="pill r">R</span>. Do not build a separate geo strategy for her; build a separate <em>message</em> strategy inside the same geos.</p>
+
+  <h4>Part 5 · Core inner monologue</h4>
+  <p>Ranked: (1) <strong>Am I losing my mind</strong> — she watched her mother, aunt or friend go through dementia, and every forgotten name lands as a cold wave; (2) I'm running out of time; (3) I'll become a burden to my children; (4) losing the word mid-sentence in front of people <span class="pill r">R</span>.</p>
+  <div class="callout warn"><p><strong>This is the most acute fear in the entire research and the least addressed in the creative.</strong> It is also the one with shame attached, which is why it never appears in the comments — you will not find it by reading Meta. It has to be harvested (post-purchase survey, ManyChat free-text) or it stays a hypothesis.</p></div>
+  <div class="q doubt"><p>"terrible brain fog and always in pain"</p><cite>56F · r/Biohackers · <span class="pill no">Do not use</span> — condition-adjacent register</cite></div>
+  <div class="q mixed"><p>"foggy in the head more often than I'd like"</p><cite>mid-30s · r/Biohackers — softer and more usable than the clinical "brain fog"</cite></div>
+  <div class="q mixed"><p>"I've had tiredness and head fog for years"</p><cite>49M · "head fog" is the layman variant. Test it against "brain fog."</cite></div>
+
+  <h4>Part 6 · A day in the life — observable sensory moments</h4>
+  <p>Her moments are <strong>social rather than physical</strong>, which is the entire creative brief for her. Blanking on a grandchild's name at a birthday party. Stopping mid-sentence at dinner while five people wait for the word. Re-reading the same paragraph three times. Walking into the kitchen and standing there. Saying "the thing, you know, the thing" and watching someone else supply it.</p>
+  <p>She does not talk about any of it, including to her husband <span class="pill r">R</span>. <strong>The ad that works for her does the admitting on her behalf.</strong></p>
+
+  <h4>Part 7 · What she secretly wants (product regimen)</h4>
+  <p>Cognitive support is the clearest Tier 1 opportunity in the report and maps directly to her <span class="pill r">R</span>. Eye health next — <code>ASTA_Eye_Health</code> is an existing tag. <strong>She would buy a memory-specific SKU before she would buy a second energy SKU</strong> <span class="pill i">I</span>.</p>
+  <p>For the existing range: NMN 1000mg framed as <em>mechanism</em>, not <em>energy</em>. The line she needs is the depletion model — "you cannot raise NAD+ above capacity; you can only replete it" — because it explains away every negative review she has read and turns "will this work for me" into "am I depleted", which she answers yes to.</p>
+
+  <h4>Part 8 · Retention &amp; LTV profile — 30 / 60 / 90-day window</h4>
+  <p>Not separable in the warehouse <span class="pill i">I</span>. <strong>Hypothesis worth testing:</strong> fear-driven buyers retain better than benefit-driven ones, because the fear does not resolve. A woman who bought because her energy was low churns when her energy is fine. A woman who bought because she is frightened of forgetting does not get to stop being frightened, so the subscription is easier to justify to herself.</p>
+  <p><strong>If true, she is your best retention segment and the ManyChat integration is worth engineering time. If false, the whole ICP collapses into Linda.</strong> One cohort readout at Day 90 settles it. Run it before you build a SKU.</p>
+
+  <h4>Part 9 · Meta comment matrix — public vs. private tone</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>She says in public</th><th>She means in private</th><th>Your in-thread reply</th></tr></thead>
+    <tbody>
+      <tr><td class="said">"Does this help with neuropathy? I'm seeing mixed reports."</td><td>I have a specific symptom and I am trying to find out if it has a name I can live with.</td><td>Structure/function only, plus a link to the eligibility FAQ. Never improvise.</td></tr>
+      <tr><td class="said">"I'd like to purchase but not subscription as well. Is it too late if you are already in your 50's?"</td><td>Have I already missed the window?</td><td>"No — and here's the depletion reason why." Two blockers, answer both.</td></tr>
+      <tr><td class="said">"I was getting an NAD shots then I switched to this and I don't notice it working."</td><td>I paid for the expensive version and downgraded and now I am worried I was right the first time.</td><td>Honest timeline. Oral is slower and steadier; name the weeks.</td></tr>
+      <tr><td class="said">"That's because if you have early stage cancer it was found to encourage its growth."</td><td>I read something frightening and I want someone to tell me the truth.</td><td><strong>Nothing, until medical review.</strong> Do not answer this in a comment box.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Part 10 · Reasoned objections &amp; proof demands</h4>
+  <p>Price is least important to her of the four <span class="pill i">I</span>. <strong>Third-party testing, dosage transparency and mechanism are what convert her</strong> — and the corpus shows exactly these being challenged in public under live ads:</p>
+  <div class="q doubt"><p>"LOL, Proprietary Blend, we don't want to disclose how much of each ingredient we put in our products because it's not enough to make a difference"</p><cite>Meta ad comment · 15 Jul 2026</cite></div>
+  <p>Her proof demands, in order: the mechanism in plain English; the batch COA with a number on it; what happens when you stop; and whether it interacts with what she already takes. The fourth is answered by nobody in the entire category.</p>
+
+  <h4>Part 11 · Two-thread story</h4>
+  <div class="grid two">
+    <div class="card"><span class="kicker">Thread A — the birthday</span>
+      <p>Her grandson turned six on Saturday. She got to the cake, opened her mouth to say his name and it was not there. Two seconds. Her daughter filled it in without looking up.</p>
+      <p>She sat in the car for eleven minutes before she drove home. That night, at 11:40, she is on her phone in bed and an ad says <em>"I lost a word at my grandson's birthday party."</em> She does not tap the offer. She watches the whole ninety seconds twice.</p></div>
+    <div class="card"><span class="kicker">Thread B — what she does next</span>
+      <p>She does not buy from the ad. She googles the brand, the ingredient, and the phrase "does NMN help with memory", and she reads for forty minutes.</p>
+      <p>Whoever wrote the honest NMN-vs-NR explainer gets her. Right now nobody has, and Google is 0.4% of your orders at the highest CVR in the business. <strong>She is not a Meta problem. She is a content problem with a Meta first touch.</strong></p></div>
+  </div>
+
+  <h4>Part 12 · Emotion / job-to-be-done / trigger matrix</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Axis</th><th>Dana — The Juggler / Linda-Clarity</th></tr></thead>
+    <tbody>
+      <tr><td class="rail">Emotion</td><td><strong>Fear</strong>, sharp and specific, with shame attached to admitting it.</td></tr>
+      <tr><td class="rail">Job to be done</td><td>"Give me a reason this is fixable and not the thing I watched my mother go through."</td></tr>
+      <tr><td class="rail">Core objection</td><td>"Prove the mechanism; don't sell me hope."</td></tr>
+      <tr><td class="rail">Trigger moments</td><td>The witnessed blank · the pause at the dinner table while everyone waits · re-reading the same paragraph · 11:40 PM in bed with the phone.</td></tr>
+      <tr><td class="rail">Ad she needs</td><td>Whiteboard or founder VO. Mechanism first, offer last, no urgency, no countdown, no music bed.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ======== ICP 3 · MARGARET ======== -->
+  <div class="icp-head e3">
+    <p class="sub">ICP 3 · The best customer you have</p>
+    <h3>Margaret — The Mirror</h3>
+    <p>Margaret bought NMN for her energy in March. By May she noticed her skin looked better and went looking for why. She added Astaxanthin on her second order and now buys both. She spends 38% more over her lifetime than a Linda who never made that jump, and she orders twice as often. <strong>Nobody has ever sent her an ad about it.</strong></p>
+    <div class="statrow">
+      <div class="stat"><b>323</b><span>customers · 4.7% <span class="pill m">M</span></span></div>
+      <div class="stat"><b>$98.44</b><span>LTV vs $71.10 <span class="pill m">M</span></span></div>
+      <div class="stat"><b>26.9%</b><span>repeat vs 13.5% <span class="pill m">M</span></span></div>
+      <div class="stat"><b>4.70</b><span>units/order vs 3.48 <span class="pill m">M</span></span></div>
+      <div class="stat"><b>+38.4%</b><span>LTV premium <span class="pill m">M</span></span></div>
+      <div class="stat"><b>462</b><span>ASTA units since June <span class="pill m">M</span></span></div>
+    </div>
+  </div>
+
+  <h4>Part 1 · Demographics &amp; tech profile</h4>
+  <p>Same demographic core as Linda — <strong>she is identified by behaviour, not profile</strong>: she has bought Astaxanthin alongside NMN <span class="pill m">M</span>. 323 customers between January and August. She is the most valuable buyer in the business on every measure available. She skews 48–62 and premium: she already spends on skincare and has an opinion about it.</p>
+
+  <h4>Part 2 · Dayparting order windows &amp; hourly peaks</h4>
+  <p>Same windows as Linda <span class="pill m">M</span>. But her distinct moment is <strong>the mirror</strong> — catching her reflection in a shop window, or seeing a photo somebody else tagged her in. That moment is not time-of-day bound, <strong>which makes her a retargeting opportunity rather than a dayparting one</strong> <span class="pill i">I</span>.</p>
+  <p><strong>Operationally:</strong> she is bought on a 30/60/90-day post-purchase window off the NMN customer list, not on a prospecting daypart. Two of the twenty-four concepts run only there.</p>
+
+  <h4>Part 3 · Traffic channel split &amp; conversion rates</h4>
+  <p><strong>She does not usually arrive on an ASTA ad — she arrives on NMN and adds ASTA later</strong> <span class="pill r">R</span>. ASTA is $12,475 gross across 206 orders at $42 AOV in the report period; 462 units since June <span class="pill m">M</span>. <strong>The attach is the mechanic. It is not the acquisition.</strong> Anyone proposing a cold ASTA prospecting campaign is reading the LTV number backwards.</p>
+
+  <h4>Part 4 · Geography &amp; regional indexing</h4>
+  <p>Indistinguishable from Linda <span class="pill m">M</span>. Worth testing against the premium AZ/NV markets, where the higher AOVs suggest more headroom for a two-product basket <span class="pill i">I</span> — Tucson at $82 is already carrying a basket close to the B2G2 tier.</p>
+
+  <h4>Part 5 · Core inner monologue</h4>
+  <p>(1) <strong>I look older than I feel inside</strong> — the mirror is lying, and the person she sees does not match the person she feels like; (2) I'm falling behind my friends; (3) the same energy fears as Linda, underneath <span class="pill r">R</span>.</p>
+  <div class="callout note"><p><strong>The research is explicit that this is an identity crisis rather than vanity, and copy that treats it as vanity will miss.</strong> The failure mode is visible in your own comment threads — see Gap 5, where a cosmetic-surgery-coded spokesperson produced personally offended replies from the exact women you sell to.</p></div>
+  <div class="q doubt"><p>"Liar,...it's all plastic surgery...please pls don't believe anything this woman says...."</p><cite>Meta ad comment · 27 Jul 2026 — this is a Margaret, and you lost her</cite></div>
+  <div class="q belief"><p>"Nick Vujnovich thank you. I'm going to continue on an empty stomach. My skin looks better too."</p><cite>Meta ad comment · 8 Aug 2026 · <strong>COPY-READY</strong> — the one unprompted positive skin comment in the entire corpus</cite></div>
+
+  <h4>Part 6 · A day in the life — observable sensory moments</h4>
+  <p>Identical to Linda's until the mirror moment. Then: the shop window on the way to the car. The group photo from the reunion that somebody posted without asking. The lighting in a dressing room. Her own face on a video call, in the small square, for forty minutes.</p>
+  <p><strong>The single most important observation in this dossier:</strong> skin improvement is being <em>discovered</em> as a side effect of NMN, not sold. That is the most persuasive testimonial shape there is — the involuntary discovery — and it is currently happening by accident.</p>
+
+  <h4>Part 7 · What she secretly wants (product regimen)</h4>
+  <p>The <strong>ASTA + NMN "total transformation" bundle</strong> is the clearest Tier 1 opportunity in the report and she is the proof it works <span class="pill r">R</span> <span class="pill m">M</span>. Collagen "inside and outside" pairing next.</p>
+  <div class="callout"><p><strong>Calcium Balm currently carries a 40.9% discount on 68 units with null COGS</strong> <span class="pill m">M</span>. She is the only plausible buyer for it. It should be a <em>gift-with-purchase at her bundle tier</em>, not an ad spend line. That is a margin decision disguised as a merchandising one.</p></div>
+
+  <h4>Part 8 · Retention &amp; LTV profile — 30 / 60 / 90-day window</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Window</th><th>What happens now</th><th>What should happen</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Day 0–30</strong></td><td>She buys NMN for energy, like everyone else.</td><td>Nothing changes. Do not sell ASTA on day one; you have no permission yet.</td></tr>
+      <tr><td><strong>Day 30–60</strong></td><td>She notices her skin and goes looking for why, unassisted.</td><td><strong>The "did anyone else notice this?" email.</strong> Ask the question; harvest the answer; it becomes the UGC ask.</td></tr>
+      <tr><td><strong>Day 60–90</strong></td><td>She finds ASTA on her own, if she finds it.</td><td>The attach offer, framed as <em>inside and outside</em>, at her existing bundle tier.</td></tr>
+      <tr><td><strong>Steady state</strong></td><td>26.9% repeat, 1.33 orders, $98.44 LTV.</td><td>Move 10% of the 6,491 NMN-only base here: <strong>~$17,700 in LTV, no new traffic.</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Part 9 · Meta comment matrix — public vs. private tone</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>She says in public</th><th>She means in private</th><th>Your in-thread reply</th></tr></thead>
+    <tbody>
+      <tr><td class="said">"Is it true that a lot of people are selling fake astaxthantin?"</td><td>I already believe the category is dirty; prove yours isn't.</td><td>Batch COA, named form, named source. Same answer as NMN.</td></tr>
+      <tr><td class="said">"How about if your 70 and just starting glp1? I'm losing weight but want to take it slow bc don't want yo hollow out my face"</td><td>I am losing volume in my face and I am frightened of how I will look.</td><td><strong>Eligibility FAQ, medically reviewed.</strong> This is the highest-intent unanswered comment in the corpus.</td></tr>
+      <tr><td class="said">"Seriously. A woman that had ribs taken out so her waist would shrink. This is your spokesperson"</td><td>You think I want to look artificial. I want to look like me.</td><td>Nothing. Recast.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Part 10 · Reasoned objections &amp; proof demands</h4>
+  <p>Her objection is species-level: <em>"is this the real form of the ingredient, or another cheap one?"</em> The corpus contains an ASTA-specific version of exactly this anxiety <span class="pill m">M</span>, and it is the same category-quality anxiety that makes <strong>"not all X is created equal" the best-performing creative structure in the account</strong> <span class="pill m">M</span>.</p>
+  <p>Her proof demand is visual and longitudinal: <em>before and after, same light, same phone, ninety days apart.</em> One customer in the corpus already ran that experiment on herself, unprompted — <em>"I took photos of face and arms before and a month and 3 months after."</em> Model the UGC ask on her.</p>
+
+  <h4>Part 11 · Two-thread story</h4>
+  <div class="grid two">
+    <div class="card"><span class="kicker">Thread A — the reunion photo</span>
+      <p>Somebody posted the group shot from the reunion. She is third from the left and she does not look like the person who was standing there.</p>
+      <p>She bought NMN in March for energy. In May a colleague said "you look really well" and she could not think why. She went looking, found astaxanthin in a forum thread, and added it to her second order herself. Neither purchase was prompted by you.</p></div>
+    <div class="card"><span class="kicker">Thread B — the 323</span>
+      <p>There are 323 of her. They are worth $98.44 each against $71.10, they order twice as often, and they buy 4.70 units against 3.48.</p>
+      <p>They found the second product without help, in a category they distrust, from a brand whose comment section says "scam." <strong>Imagine what they do when you actually ask them.</strong></p></div>
+  </div>
+
+  <h4>Part 12 · Emotion / job-to-be-done / trigger matrix</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Axis</th><th>Margaret — The Mirror</th></tr></thead>
+    <tbody>
+      <tr><td class="rail">Emotion</td><td><strong>Grief moving to hope.</strong> The mirror is the wound; the improvement is the reward.</td></tr>
+      <tr><td class="rail">Job to be done</td><td>"Make the outside match the person I still feel like inside."</td></tr>
+      <tr><td class="rail">Core objection</td><td>"Is this the real form of the ingredient, or another cheap one?"</td></tr>
+      <tr><td class="rail">Trigger moments</td><td>The reflection in a shop window · a photo someone else tagged her in · a compliment she did not expect · her own face in the video-call square.</td></tr>
+      <tr><td class="rail">Ad she needs</td><td>Involuntary discovery. "I didn't buy it for my skin." Peer-age talent, no filter, no ring light, no celebrity.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ======== ICP 4 · ROBERT ======== -->
+  <div class="icp-head e4">
+    <p class="sub">ICP 4 · The buyer with no ads</p>
+    <h3>Robert — The Refuser</h3>
+    <p>Robert, 66, Henderson. Retired tradesman. He watched his father stop driving at 71 and swore he would not go that way. He is a step slower and nobody else has noticed yet. He will read a supplement facts panel before he reads a headline, and he will buy the big bundle if the numbers hold up. <strong>There is not one ad in your account written to him.</strong></p>
+    <div class="statrow">
+      <div class="stat"><b>765</b><span>customers · 11.2% <span class="pill m">M</span></span></div>
+      <div class="stat"><b>+16%</b><span>LTV vs Linda <span class="pill m">M</span></span></div>
+      <div class="stat"><b>~$82.48</b><span>implied LTV <span class="pill i">I</span></span></div>
+      <div class="stat"><b>Highest</b><span>ROAS of the four <span class="pill r">R</span></span></div>
+    </div>
+  </div>
+
+  <div class="callout warn"><p><strong>Honesty about the source.</strong> The underlying dossier records "—" against Robert for Parts 1 through 9: the only hard facts are his count (765, name-inferred), his LTV premium (+16%), and his objection, which he stated himself in a public comment. <strong>Everything below marked <span class="pill i">I</span> is reasoned, not observed.</strong> He is the highest-confidence <em>opportunity</em> and the lowest-confidence <em>profile</em> in this document. Build two concepts, not eight, until the post-purchase survey is live.</p></div>
+
+  <h4>Part 1 · Demographics &amp; tech profile</h4>
+  <p>Male, 58–72. Retired tradesman, veteran, or small-business owner who did physical work for forty years <span class="pill i">I</span>. Identified in the warehouse by first-name inference, which is why the 765 figure is "named buyers" and not a clean segment <span class="pill m">M</span>. Desktop-weighted relative to the women <span class="pill i">I</span> — which matters, because desktop CVR is 1.86% against tablet's 5.11%. If he is a desktop buyer, <strong>his true CPA is worse than his LTV premium suggests</strong> and the landing page is doing more of the work.</p>
+
+  <h4>Part 2 · Dayparting order windows &amp; hourly peaks</h4>
+  <p>Not measured <span class="pill i">I</span>. The reasoned position: he is retired, so his day is not structured by work, and the account-wide flat 8 AM–midnight curve probably describes him too. <strong>Do not build a Robert daypart. Build a Robert ad set and let delivery find the hours</strong>, then read the hourly breakdown after 200 conversions and write this section properly.</p>
+
+  <h4>Part 3 · Traffic channel split &amp; conversion rates</h4>
+  <p>Not separated in the warehouse <span class="pill i">I</span>. He is the most likely of the four to leave the platform to verify a claim before returning to buy — which means <strong>his ad's job is not to close, it is to survive a Google search.</strong> One comment in the corpus is him doing exactly this in public:</p>
+  <div class="q doubt"><p>"Just curious, I googled the top 5 NMN products, and your NMN was never mentioned. And this was after clicking on about 5 links reporting the top 5. So what makes your NMN better?"</p><cite>Meta ad comment · 13 Jun 2026</cite></div>
+
+  <h4>Part 4 · Geography &amp; regional indexing</h4>
+  <p>Not separated <span class="pill i">I</span>. Henderson NV at $67 AOV and Tucson AZ at $82 are the two markets where a male retiree profile is most plausible on demographics alone, and both are premium-basket markets. That is a coincidence worth one test, not a strategy.</p>
+
+  <h4>Part 5 · Core inner monologue</h4>
+  <p>He will not describe any of this as fear. It arrives as pride and defiance, and the copy has to arrive the same way.</p>
+  <div class="q mixed"><p>"I'm becoming my father."</p><cite>The sentence he will not say out loud. Everything below is a version of it.</cite></div>
+  <div class="q belief"><p>"I'll be 57 and I can do more pushups than at 18."</p><cite>YouTube corpus · Pride · score 4 — the benchmark format. Numbers beat adjectives.</cite></div>
+  <div class="q belief"><p>"I went from 9:15 to 8:15 on the mile. I'm 61."</p><cite>YouTube corpus · Pride · score 5 — hero testimonial shape for him</cite></div>
+  <div class="q doubt"><p>"Old age and back surgeries, I guess."</p><cite>65+ band · Grief — resignation is the enemy, and it is the state he is one bad month from</cite></div>
+  <p><strong>Never offer him reassurance.</strong> Reassurance implies he needs it. Offer him a specification and let him decide.</p>
+
+  <h4>Part 6 · A day in the life — observable sensory moments</h4>
+  <p>He notices <strong>duration, not sensation</strong>. The garage job that used to take an afternoon takes two. He puts a hand on the truck bed getting out. He sits down to put his boots on and does not remark on it, and then one day he does. He watches a friend his age stop doing something and files it. He does not mention any of this to his wife, who has noticed all of it.</p>
+  <p><strong>Creative implication:</strong> his before-state is not a feeling, it is a stopwatch. Show the task, not the face.</p>
+
+  <h4>Part 7 · What he secretly wants (product regimen)</h4>
+  <p>He wants the <strong>largest bundle, once, with the numbers shown</strong>. He is the natural B3G3 buyer: six bottles, 180 days, 55.5¢ a day, one decision, no subscription. Given a visible one-time-purchase option he is the highest-value single transaction in the account; given the current forced-subscription checkout he is the most likely of the four to abandon and post about it.</p>
+  <p>Regimen he'll accept: 2 capsules, morning, empty stomach, water. Told once, told plainly, with the milligram rationale attached. Effectively none of the ASTA/collagen crossover applies to him — ASTA's skin positioning has no male analogue in the current range <span class="pill i">I</span>.</p>
+
+  <h4>Part 8 · Retention &amp; LTV profile — 30 / 60 / 90-day window</h4>
+  <p>+16% LTV over Linda, implying <strong>~$82.48</strong> <span class="pill m">M</span> <span class="pill i">I</span>. The 30/60/90 shape is not measured. The reasoned position: he buys larger and less often, so his churn risk is not at Day 30 — <strong>it is at Day 180, when the bundle runs out and he has to make the decision again.</strong> A Day 150 email built on his own stop-and-restart logic is the retention asset:</p>
+  <div class="q belief"><p>"Every time I stopped I felt like crap. I restart, I'm normal."</p><cite>Self-experimenter · score 4 — this is the win-back email, written by a customer</cite></div>
+
+  <h4>Part 9 · Meta comment matrix — public vs. private tone</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>He says in public</th><th>He means in private</th><th>Your in-thread reply</th></tr></thead>
+    <tbody>
+      <tr><td class="said">"Yes, 1,000 mg is the best dose. However, This is not Third party tested. Also not GMP."</td><td>You got the dose right and the proof wrong. I want to buy this.</td><td><strong>The whole Robert objection in one comment.</strong> Answer with a document, not a sentence: batch number, assay, facility.</td></tr>
+      <tr><td class="said">"This is NOT NMN. I've tested it. It's garbage."</td><td>Nobody in this category will show me a receipt.</td><td>Publish the COA. Invite him to send you his test.</td></tr>
+      <tr><td class="said">"LOL, Proprietary Blend… we just want your money for our under-dosed products"</td><td>Hiding a dose means the dose is embarrassing.</td><td>Full disclosure panel. You have no proprietary blend — say so loudly.</td></tr>
+      <tr><td class="said">"Susan, notice the extra 10 ingredients in this NMN."</td><td>I have done the work and I am now defending the choice to a peer.</td><td><strong>Nothing.</strong> He is selling for you. Do not step on it.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Part 10 · Reasoned objections &amp; proof demands</h4>
+  <p><strong>Spec converts him where story converts her</strong> <span class="pill i">I</span>. Milligrams, purity, third-party testing, in the first ten seconds. His demands, in order:</p>
+  <ol>
+    <li><strong>Milligram math.</strong> 1000mg per serving, 2 capsules, 60 capsules, 30 servings. Say all four numbers or he does the arithmetic himself and posts it.</li>
+    <li><strong>Batch-specific COA.</strong> Not "third-party tested" as a phrase — a lot number, an assay result, a date.</li>
+    <li><strong>99%+ purity, stated with a method.</strong> HPLC, and what the other &lt;1% is.</li>
+    <li><strong>An expiration date printed on the bottle.</strong> The competitor corpus is full of people rejecting products for having only a manufacture date.</li>
+    <li><strong>A one-time purchase button he can see.</strong> Everything above is wasted if the checkout enrols him in a subscription.</li>
+  </ol>
+
+  <h4>Part 11 · Two-thread story</h4>
+  <div class="grid two">
+    <div class="card"><span class="kicker">Thread A — the truck</span>
+      <p>His father stopped driving at 71. Robert remembers the conversation and the way his father looked at the keys on the table, and he decided in that kitchen that he would not do it that way.</p>
+      <p>He is 66. Last Tuesday he put his hand on the truck bed getting out and noticed himself doing it. He has not told anyone. He is not sad about it — he is <em>furious</em>, which is a much better emotion to sell into.</p></div>
+    <div class="card"><span class="kicker">Thread B — the panel</span>
+      <p>He sees an ad. He does not watch it. He goes straight to the site, scrolls past the headline, past the reviews, past the founder photo, and finds the supplement facts panel.</p>
+      <p>He reads the milligrams. He looks for a lot number. He does not find one. He types the brand name and the word "review" into Google, finds nothing, and leaves. <strong>765 of him bought anyway. Consider what happens when the panel is there.</strong></p></div>
+  </div>
+
+  <h4>Part 12 · Emotion / job-to-be-done / trigger matrix</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Axis</th><th>Robert — The Refuser</th></tr></thead>
+    <tbody>
+      <tr><td class="rail">Emotion</td><td><strong>Fear reframed as pride and defiance.</strong> He will not describe it as fear, and copy that names it as fear loses him in three seconds.</td></tr>
+      <tr><td class="rail">Job to be done</td><td>"Keep me capable and independent, and don't make me ask for help."</td></tr>
+      <tr><td class="rail">Core objection</td><td>"Show me the dosage, the purity and the third-party test, or you're selling hope."</td></tr>
+      <tr><td class="rail">Trigger moments</td><td>A task that used to be easy taking noticeably longer · watching a peer decline · a hand on the truck bed · his father's face at the kitchen table.</td></tr>
+      <tr><td class="rail">Ad he needs</td><td>Static teardown or founder VO over a label. Numbers on screen inside four seconds. No music. No smiling.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ 02 · THE 15 GOLDEN LINES ============ -->
+<section id="golden">
+  <div class="sec-head"><span class="sec-num">02</span><h2>The fifteen golden copy-ready verbatim lines</h2></div>
+  <p class="sec-intro">Every line below is transcription, not invention. Each clears at least three of the five quality flags — <b>T</b> specific time or place, <b>S</b> physical sensation, <b>F</b> comparison to a former self, <b>P</b> plain unbranded language, <b>Q</b> under twelve words. The rarest flag is F, and the F lines are the hero testimonials. Spelling and punctuation are the customer's own; do not tidy them, because the typos are what make the register read as human in a feed.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="num">#</th><th style="width:30%">The line, verbatim</th><th>Emotion</th><th>Job to be done</th><th>Trigger moment</th><th>Flags</th><th>ICP · use it for</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="said">"I should not feel like this"</td><td>Anger</td><td>Wake up feeling like myself again</td><td>Waking up exhausted despite doing everything right</td><td class="who">F · P · Q</td><td>Linda · <strong>Headline. Five words. Test it naked on a black card.</strong></td></tr>
+      <tr><td class="num">2</td><td class="said">"Used to crash hard at my desk around 2.30pm/3"</td><td>Grief</td><td>Get through the afternoon without crashing</td><td>The 2:30 desk crash</td><td class="who">T · S · F · P · Q</td><td>Linda / Dana · <strong>The most ownable symptom in the category. Zero claim risk.</strong></td></tr>
+      <tr><td class="num">3</td><td class="said">"I felt old."</td><td>Grief</td><td>Stop feeling old before my time</td><td>Any ordinary day off it</td><td class="who">S · F · P · Q</td><td>All · Three-word hook. Works as an opening frame or a closing card.</td></tr>
+      <tr><td class="num">4</td><td class="said">"Stopped for 2 months. I felt tired. I felt old."</td><td>Grief</td><td>Prove to myself this isn't in my head</td><td>Two months off it</td><td class="who">T · S · F · P · Q</td><td>Robert · <strong>Flagship stop-and-restart testimonial. Withdrawal as proof.</strong></td></tr>
+      <tr><td class="num">5</td><td class="said">"I ran out two months ago. I'm not that guy anymore."</td><td>Grief</td><td>Stop feeling old before my time</td><td>Two months after running out</td><td class="who">T · F · P · Q</td><td>Robert · Win-back email subject line. Also the best male hook in the corpus.</td></tr>
+      <tr><td class="num">6</td><td class="said">"I don't get worn out halfway through the day anymore."</td><td>Relief</td><td>Get my energy back</td><td>3 PM at work</td><td class="who">T · S · F · P · Q</td><td>Linda · Primary benefit claim. The 3 PM payoff line.</td></tr>
+      <tr><td class="num">7</td><td class="said">"I don't even take naps after work anymore"</td><td>Pride</td><td>Stop being tired</td><td>3 months in</td><td class="who">T · F · P · Q</td><td>Linda · <strong>Benefit stated as a behaviour that stopped. Strongest format there is.</strong></td></tr>
+      <tr><td class="num">8</td><td class="said">"My muscle stiffness in the morning vanished."</td><td>Relief</td><td>Keep moving without stiffness</td><td>Getting out of bed</td><td class="who">T · S · F · P · Q</td><td>Linda / Robert · Morning-ritual creative. Note "vanished," not "improved."</td></tr>
+      <tr><td class="num">9</td><td class="said">"I can put my pants on without holding on to something."</td><td>Relief</td><td>Stay independent</td><td>Getting dressed in the morning</td><td class="who">T · S · F · P · Q</td><td>Robert / 65+ · <strong>The single best 65+ testimonial format: a restored ability, named exactly.</strong></td></tr>
+      <tr><td class="num">10</td><td class="said">"feel the brain fog lift"</td><td>Relief</td><td>Stay sharp at work</td><td>Within minutes of the morning dose</td><td class="who">S · P · Q</td><td>Dana · <strong>The best three words available.</strong> Subtraction, not addition.</td></tr>
+      <tr><td class="num">11</td><td class="said">"I feel like I can formulate words quickly than before"</td><td>Pride</td><td>Stay sharp at work</td><td>Mid-shift at work</td><td class="who">S · F · P · Q</td><td>Dana · Badly underused. Word-finding is <em>her</em> fear, named as a benefit. Keep the grammar error.</td></tr>
+      <tr><td class="num">12</td><td class="said">"running a marathon breathing through a straw"</td><td>Grief</td><td>Stop being tired</td><td>Everything feeling harder than it should</td><td class="who">S · P · Q</td><td>All · <strong>Best metaphor in 161,000 words.</strong> Campaign-level, not ad-level.</td></tr>
+      <tr><td class="num">13</td><td class="said">"My hips didn't hurt, I was moving like nothing was wrong!"</td><td>Relief</td><td>Keep moving without pain</td><td>Day after the first dose</td><td class="who">S · F · P · Q</td><td>Linda · <span class="pill testi">Testimonial only</span> — attributed, never in brand voice.</td></tr>
+      <tr><td class="num">14</td><td class="said">"people have been noticing the glow in my face!"</td><td>Pride</td><td>Look the way I feel</td><td>Others commenting unprompted</td><td class="who">S · E · P · Q</td><td>Margaret · <strong>Third-party observation — the strongest skin proof shape.</strong></td></tr>
+      <tr><td class="num">15</td><td class="said">"I'll be 57 and I can do more pushups than at 18."</td><td>Defiance</td><td>Stop feeling old before my time</td><td>Counting reps on the floor</td><td class="who">T · S · F · P · Q</td><td>Robert · Hero benchmark testimonial. Numbers beat adjectives, every time.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout note">
+    <h5>Two rules for using these</h5>
+    <p><strong>Do not improve them.</strong> "Used to crash hard at my desk around 2.30pm/3" is worse English and better copy than "I experienced an afternoon energy decline." The half-written time stamp is the credibility.</p>
+    <p><strong>Do not stack them.</strong> One line per asset. The temptation is to build a montage of all fifteen; the result reads as a category ad and converts like one. Ten ads that each own one line beat one ad that owns fifteen.</p>
+  </div>
+
+  <div class="callout warn">
+    <h5>Provenance guardrail — read before anything is published</h5>
+    <p>These lines are mined from Reddit, YouTube and competitor review corpora. <strong>They are research input for your own copy, not social proof you can publish as your own customers' words.</strong> To run any of them as an attributed testimonial you need a Prime Ingredients customer who said it, on the record, with a material-connection disclosure if they were compensated.</p>
+    <p>Claim guardrail: structure/function language only — <em>supports cellular energy</em>, <em>supports healthy NAD+ levels</em>. Never run any line implying treatment or cure of a disease, however compelling. That applies to your copy, your creators' scripts, and your replies in the comments.</p>
+  </div>
+</section>
+
+<!-- ============ 03 · GAP ANALYSIS & PILLARS ============ -->
+<section id="pillars">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Strategic account gap analysis &amp; the six content pillars</h2></div>
+  <p class="sec-intro">The gaps first, because four of the seven are not creative problems and no amount of hook testing will move them. Then the six pillars, then the awareness ladder that allocates spend across them.</p>
+
+  <h3>The seven public customer allegations</h3>
+  <p>Every one of these is being made <em>publicly, in the comment thread under a live ad</em>, where the next prospect reads it before she reaches your landing page. That is what makes them media problems and not support problems.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>#</th><th>Gap</th><th>Severity</th><th>What customers actually say</th><th>Creative consequence</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="id">G1</td><td><strong>Fulfilment &amp; delivery outcry</strong></td><td><span class="pill no">Critical</span></td>
+        <td class="said">"Where's my order???????? It's been two weeks no tracking number nothing !!! Scam!!!!" · "I'll comment SCAM and continue to get this rogue company off Facebook. Just reported and intend to escalate further"</td>
+        <td>The largest negative theme in the corpus, and buyers are <strong>organising to report the page</strong>. For a business taking 100% of paid traffic from Meta this is an existential risk, not a CX ticket. <strong>No creative brief should be approved until the unshipped backlog is on a dashboard.</strong></td>
+      </tr>
+      <tr>
+        <td class="id">G2</td><td><strong>Visual packaging discrepancy</strong></td><td><span class="pill no">Critical</span></td>
+        <td class="said">"The labels you have are BLUE in the video! The ones for sale on the shop now button are PURPLE! That a RED flag for me!" · "Hers has the letter M at the top of the bottle and the one that would be purchased says Prime up top?"</td>
+        <td>~22 usable comments — the largest single identifiable theme. Customers are <em>zooming in on your footage</em>. <strong>Every asset showing packaging that is not the shipped purple Prime bottle comes down today.</strong> This is legal exposure as well as trust damage, and it invalidates a chunk of the current library at a stroke.</td>
+      </tr>
+      <tr>
+        <td class="id">G3</td><td><strong>Subscription checkout friction</strong></td><td><span class="pill no">Critical</span></td>
+        <td class="said">"I wanna order but I don't want a subscription and it says you can opt out below but I can't find the opt out selection or I would've purchased" · "They have hidden an automatic renewal"</td>
+        <td>At least eight commenters say plainly they wanted to buy and did not. Corroborated by the warehouse: <strong>97% subscription flag against nine Subscribe &amp; Save units sold</strong> — enrolment happens at checkout, not by choice. This is the CVR item that decides whether $28.25 or $29.67 is your real CPA. <strong>It also bans the "cancel any time" concept until it is true.</strong></td>
+      </tr>
+      <tr>
+        <td class="id">G4</td><td><strong>"Half-empty bottle" &amp; capsule count</strong></td><td><span class="pill testi">High</span></td>
+        <td class="said">"It says 120 in the bottle but mine only had 30 in each one, why?" · "I got 6 bottles, barely enough pills in each bottle to cover the bottom, I literally dumped all six into one &amp; there's still room"</td>
+        <td>Two complaint shapes — people who counted, and people who describe the fill level. It poisons the offer: at 30 capsules and 2/day a bottle is a fortnight, which makes the per-bottle anchor look <em>dishonest rather than generous</em>. <strong>Reconcile the count in every ad and on the PDP, then rebuild the per-day maths from the true figure.</strong></td>
+      </tr>
+      <tr>
+        <td class="id">G5</td><td><strong>Demographic mismatch</strong></td><td><span class="pill testi">High</span></td>
+        <td class="said">"Because no one wants to be like the Kardashians. Be a Beth!" · "Liar,...it's all plastic surgery...please pls don't believe anything this woman says"</td>
+        <td>Women in the exact target band reacting with <em>personal offence</em>, not indifference. This audience compares herself to her peer group; an artificial spokesperson breaks the mirror the whole Margaret strategy depends on. <strong>Peer-age unbranded talent against the celebrity cut, this week.</strong> The teardown already shows plain beating polished in this account.</td>
+      </tr>
+      <tr>
+        <td class="id">G6</td><td><strong>Unanswered medical interactions</strong></td><td><span class="pill testi">High</span></td>
+        <td class="said">"Can I take this of o have gastric by pass 8 years ago" · "Is NMNs good for women who have osteoporosis?????" · "How about if your 70 and just starting glp1?"</td>
+        <td>Sincere eligibility questions from people <em>far enough down the funnel to ask</em>, met with silence. Gastric bypass, dialysis, osteoporosis, neuropathy, blood pressure, GLP-1, and one early-stage-cancer concern. Silence reads as evasion to an audience already primed to distrust. <strong>Publish a medically reviewed eligibility FAQ. Do not improvise the cancer answer in a comment box.</strong></td>
+      </tr>
+      <tr>
+        <td class="id">G7</td><td><strong>Dosing contradictions</strong></td><td><span class="pill safe">Medium</span></td>
+        <td class="said">"Some say take on an empty stomach, some say take with food? Which is it?… Geesh.." · "I forgot to take it in the morning a few times, so I took it in the evening. I wouldn't recommend that, it led to a few sleepless nights."</td>
+        <td>Customers are teaching each other your protocol because you have not. Cheapest gap on the list with the most direct retention consequence: <strong>someone who takes it at 4 PM, sleeps badly and quits at week two never reaches the re-bill your economics depend on.</strong> One page, three places: Day 3 email, packaging insert, pinned comment.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <p><strong>The uncomfortable summary.</strong> G1, G2, G3 and G4 are operational. Together they account for the majority of the negative corpus and — on the −$21.95 contribution figure — a meaningful share of the $33.29 gap between planned and realised CPA. <strong>The creative in Sections 4 and 5 is built to be worth running. Running it into an unfixed G1 buys you paid distribution for the word "scam."</strong></p>
+  </div>
+
+  <h3>The six content pillars</h3>
+  <p>Each pillar owns one job, one emotion and one proof device. A concept that cannot name its pillar is not a concept, it is a variation.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Pillar</th><th>The territory</th><th>Primary ICP</th><th>Proof device</th><th>Verbatim spine</th><th class="num">Spend</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="id">P1<br><strong>Energy Reclaim</strong></td>
+        <td>"It's not just aging" — the 3:00 PM crash, filmed live. The specific hour, not the abstract symptom.</td>
+        <td>Linda</td>
+        <td>The behaviour that stopped. No naps. No lie-down.</td>
+        <td class="said">"Used to crash hard at my desk around 2.30pm/3"</td>
+        <td class="num">30%</td>
+      </tr>
+      <tr>
+        <td class="id">P2<br><strong>The Mind</strong></td>
+        <td>The word that wouldn't come. Sharp for the 2:30 meeting. The witnessed blank, not the clinical term.</td>
+        <td>Dana</td>
+        <td>Mechanism — the depletion model, drawn not asserted.</td>
+        <td class="said">"feel the brain fog lift"</td>
+        <td class="num">15%</td>
+      </tr>
+      <tr>
+        <td class="id">P3<br><strong>Trust &amp; Purity</strong></td>
+        <td>"Is this a scam?" 64% of tested products fail label claim. Read the label with me, on camera.</td>
+        <td>Robert / all</td>
+        <td>Batch COA, lot number, assay result, expiry date.</td>
+        <td class="said">"Yes, 1,000 mg is the best dose. However, This is not Third party tested."</td>
+        <td class="num">20%</td>
+      </tr>
+      <tr>
+        <td class="id">P4<br><strong>The Bundle Math</strong></td>
+        <td>$29.98 vs $16.66. The free-bottle logic. 55¢ a day, said out loud, with the arithmetic shown.</td>
+        <td>Linda / Robert</td>
+        <td>On-screen arithmetic. No percentages — per-bottle and per-day only.</td>
+        <td class="said">"It's quite exspensive do u think it's worth it"</td>
+        <td class="num">15%</td>
+      </tr>
+      <tr>
+        <td class="id">P5<br><strong>Identity &amp; Presence</strong></td>
+        <td>"I sit while others do." "I'm turning into my father." The refusal, not the complaint.</td>
+        <td>Robert / Linda</td>
+        <td>A restored ability, named exactly. The stopwatch, not the face.</td>
+        <td class="said">"I can put my pants on without holding on to something."</td>
+        <td class="num">12%</td>
+      </tr>
+      <tr>
+        <td class="id">P6<br><strong>The Mirror</strong></td>
+        <td>Appearance and cellular rejuvenation from the inside out. The thing she did not buy it for.</td>
+        <td>Margaret</td>
+        <td>Involuntary discovery + third-party observation.</td>
+        <td class="said">"people have been noticing the glow in my face!"</td>
+        <td class="num">8%</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>Why P3 carries 20% on a product with no efficacy problem.</strong> Because the account's measured failure is not persuasion, it is credibility: the largest themes in the corpus are non-delivery, a competitor's bottle in the footage, and a hidden subscription. In a category where <em>"the shop is filled with 5 star reviews though which makes me wonder about it"</em>, restraint is a performance advantage and disclosure is the differentiator. Every claim you do not make buys credibility for the ones you do.</p>
+  </div>
+
+  <h3>The Eugene Schwartz five-stage awareness ladder</h3>
+  <p>Spend allocation, target CPA and the exact structural obligation at each rung. The blended CPA of this allocation is <strong>$28.02</strong> — inside the $28.25 target with 23¢ of slack, which is all the slack there is.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Stage</th><th class="num">Spend</th><th class="num">$/day @ $1,800</th><th class="num">Target CPA</th><th>The angle</th><th>The claim it is allowed to make</th><th>Ad structure</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Unaware</strong></td><td class="num">45%</td><td class="num">$810</td><td class="num">$38</td>
+        <td>She does not know NAD+ exists and does not care. Enter on the <em>symptom in its hour</em>: 3 PM, the recliner, the word that wouldn't come. Never mention the category in the first five seconds.</td>
+        <td>Nothing. It describes a state. The product does not appear until second 20 at the earliest.</td>
+        <td>UGC talking head, :45–:60, unmuted, peer-age talent, phone-shot. Hook is a first-person sentence from Section 2.</td>
+      </tr>
+      <tr>
+        <td><strong>Problem-Aware</strong></td><td class="num">12%</td><td class="num">$216</td><td class="num">$29</td>
+        <td>She knows she is exhausted and has decided it is age. The job is to <strong>rename the problem</strong>: "sleep doesn't fix it, because it isn't a sleep problem." Depletion, not decline.</td>
+        <td>Structure/function only — supports cellular energy, supports healthy NAD+ levels. No biomarker promises.</td>
+        <td>Split-screen or whiteboard, :30–:45. Problem stated in her words, mechanism drawn in under 20 seconds.</td>
+      </tr>
+      <tr>
+        <td><strong>Solution-Aware</strong></td><td class="num">8%</td><td class="num">$144</td><td class="num">$27</td>
+        <td>She knows about NMN and is stuck between brands, formats and the NMN-vs-NR deadlock. <strong>Resolve the deadlock honestly, including your own commercial interest.</strong></td>
+        <td>Comparative on <em>specification</em>, never on efficacy. Dose, form, purity, format, cost per gram.</td>
+        <td>Teardown static or founder VO. Side-by-side panel comparison. This is the one rung where long copy outperforms.</td>
+      </tr>
+      <tr>
+        <td><strong>Product-Aware</strong></td><td class="num">25%</td><td class="num">$450</td><td class="num">$23</td>
+        <td>She knows Prime and has not bought, or has read the comments. <strong>Answer the objection by name.</strong> The COA, the purple bottle, the one-time button, the capsule count.</td>
+        <td>Full product claims within structure/function. Named proof: lot number, assay, expiry.</td>
+        <td>Founder VO over the actual label · teardown static · a 15s "we heard you" addressing one gap per asset.</td>
+      </tr>
+      <tr>
+        <td><strong>Most-Aware</strong></td><td class="num">10%</td><td class="num">$180</td><td class="num">$17</td>
+        <td>She has bought before or abandoned a cart. <strong>Offer and arithmetic only.</strong> 55¢ a day. Six months. One decision.</td>
+        <td>Everything the PDP says, said faster.</td>
+        <td>:06–:15 static or bumper. Price, bottle, button. No story, no music, no hook.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout note">
+    <p><strong>Why Unaware carries 45% in an account that cannot afford it.</strong> Because the 25% Product-Aware and 10% Most-Aware budgets are capped by audience size, not by appetite — you can only retarget people who arrived. Unaware is the only rung that grows the pool, and at $38 CPA it is still $1.55 inside break-even ($39.55). <strong>Problem-Aware and Solution-Aware are deliberately thin at 20% combined: they are cheap to produce, fast to saturate, and they exist as a swing budget you move into Unaware or Product-Aware on a weekly read — not as a standing allocation.</strong></p>
+  </div>
+</section>
+
+<!-- ============ 04 · 24-CONCEPT GRID ============ -->
+<section id="grid">
+  <div class="sec-head"><span class="sec-num">04</span><h2>The twenty-four concept testing grid</h2></div>
+  <p class="sec-intro">Concept ID reads <code>[Persona]_[Awareness]_[Pillar]_[Angle]_[Format]</code> so that any row in a Meta report tells you which hypothesis died without opening the asset. Concept count per rung is weighted to the spend allocation, not spread evenly — ten Unaware concepts against three Most-Aware is deliberate, because Unaware is where you have no coverage and Most-Aware is where you have no audience.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr>
+      <th>Concept ID</th><th>Persona</th><th>Aware</th><th>Pillar</th><th style="width:26%">Angle &amp; hook premise</th><th>Format</th><th>Primary metric</th><th class="num">Target CPA</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="id">C01_Linda_UA_Energy_3pmCrash_UGC</td><td>Linda</td><td>UA</td><td>P1</td><td>Opens on a kitchen clock reading 3:04. "I used to crash hard at my desk around 2:30." No product for 22 seconds.</td><td>UGC talking head</td><td>Cost per outbound click</td><td class="num">$38</td></tr>
+      <tr><td class="id">C02_Linda_UA_Energy_NoNapAnymore_UGC</td><td>Linda</td><td>UA</td><td>P1</td><td>Benefit as a behaviour that stopped. "I don't even take naps after work anymore." Ends on the empty couch.</td><td>UGC talking head</td><td>Cost per outbound click</td><td class="num">$38</td></tr>
+      <tr><td class="id">C03_Linda_UA_Identity_SitWhileOthersDo_UGC</td><td>Linda</td><td>UA</td><td>P5</td><td>"I noticed I'm the one sitting down now." Family barbecue, she's in the chair, everyone else is moving.</td><td>UGC talking head</td><td>3s hold rate ≥30%</td><td class="num">$38</td></tr>
+      <tr><td class="id">C04_Dana_UA_Mind_TheWordThatWouldntCome_UGC</td><td>Dana</td><td>UA</td><td>P2</td><td>"I lost a word at my grandson's birthday party. Two seconds. My daughter filled it in." The witnessed blank.</td><td>UGC talking head</td><td>Thruplay rate</td><td class="num">$38</td></tr>
+      <tr><td class="id">C05_Robert_UA_Identity_BecomingMyFather_FounderVO</td><td>Robert</td><td>UA</td><td>P5</td><td><strong>Script 2.</strong> "My father stopped driving at 71. I'm not doing it that way." Refusal, then milligram math.</td><td>Founder VO + B-roll</td><td>Cost per outbound click</td><td class="num">$38</td></tr>
+      <tr><td class="id">C06_Robert_UA_Identity_TheStopwatch_UGC</td><td>Robert</td><td>UA</td><td>P5</td><td>The garage job that took an afternoon now takes two. Timer on screen. No face until second 30.</td><td>UGC / task B-roll</td><td>3s hold rate ≥30%</td><td class="num">$38</td></tr>
+      <tr><td class="id">C07_Margaret_UA_Mirror_ReunionPhoto_UGC</td><td>Margaret</td><td>UA</td><td>P6</td><td>"Someone posted the group photo and I didn't look like the person who was standing there."</td><td>UGC talking head</td><td>Cost per outbound click</td><td class="num">$38</td></tr>
+      <tr><td class="id">C08_Linda_UA_Energy_BreathingThroughAStraw_SplitScreen</td><td>Linda</td><td>UA</td><td>P1</td><td>"Like running a marathon breathing through a straw." Literalise the metaphor in the first two seconds.</td><td>Split-screen</td><td>3s hold rate ≥35%</td><td class="num">$38</td></tr>
+      <tr><td class="id">C09_Linda_UA_Identity_GrandchildAsked_UGC</td><td>Linda</td><td>UA</td><td>P5</td><td>"He asked me to come outside and I said maybe later. I've been saying maybe later for a year."</td><td>UGC talking head</td><td>Thruplay rate</td><td class="num">$38</td></tr>
+      <tr><td class="id">C10_Dana_UA_Mind_ReReadingTheParagraph_UGC</td><td>Dana</td><td>UA</td><td>P2</td><td>Same paragraph, three times, on a real page. "I thought I was just tired." Runs 10 PM–1 AM only.</td><td>UGC + insert B-roll</td><td>Thruplay rate</td><td class="num">$38</td></tr>
+
+      <tr><td class="id">C11_Linda_PA_Energy_SleepDoesntFixIt_Whiteboard</td><td>Linda</td><td>PA</td><td>P1</td><td><strong>Script 3.</strong> "Eight hours, and you wake up at 6:30 already tired. That isn't a sleep problem."</td><td>Whiteboard animation</td><td>Outbound CTR ≥1.2%</td><td class="num">$29</td></tr>
+      <tr><td class="id">C12_Dana_PA_Mind_DepletionNotDecline_Whiteboard</td><td>Dana</td><td>PA</td><td>P2</td><td>The depletion model, drawn: you can't raise NAD+ above capacity, only replete it. Reframes every "did nothing" review.</td><td>Whiteboard animation</td><td>Outbound CTR ≥1.2%</td><td class="num">$29</td></tr>
+      <tr><td class="id">C13_Robert_PA_Energy_ItsNotAge_SplitScreen</td><td>Robert</td><td>PA</td><td>P1</td><td>"My doctor said it's just getting older." Two men, same age, one still working. Renames the problem without a claim.</td><td>Split-screen</td><td>Outbound CTR ≥1.2%</td><td class="num">$29</td></tr>
+
+      <tr><td class="id">C14_Robert_SA_Trust_NMNvsNR_Teardown</td><td>Robert</td><td>SA</td><td>P3</td><td>The honest NMN-vs-NR explainer that names the commercial interest on both sides — <em>including yours</em>. Owns the deadlock.</td><td>Teardown static (carousel)</td><td>Cost per ATC</td><td class="num">$27</td></tr>
+      <tr><td class="id">C15_Linda_SA_Trust_NotAllNMN_Teardown</td><td>Linda</td><td>SA</td><td>P3</td><td>"Not all NMN is created equal" — the best-performing structure in the account, run on specification only: dose, form, purity, format.</td><td>Teardown static</td><td>Cost per ATC</td><td class="num">$27</td></tr>
+
+      <tr><td class="id">C16_Robert_PdA_Trust_IsPrimeAScam_FounderVO</td><td>Robert</td><td>PdA</td><td>P3</td><td><strong>Script 1.</strong> Asks the question the comments are already asking. Batch COA on camera, challenge guarantee at the end.</td><td>Founder VO, direct</td><td>CPA</td><td class="num">$23</td></tr>
+      <tr><td class="id">C17_Robert_PdA_Trust_ReadTheLabelWithMe_Teardown</td><td>Robert</td><td>PdA</td><td>P3</td><td>Hand, label, magnifier. 1000mg · 2 capsules · 60 capsules · 30 servings · lot no. · expiry. No voice for the first 8 seconds.</td><td>Teardown static / macro</td><td>CPA</td><td class="num">$23</td></tr>
+      <tr><td class="id">C18_All_PdA_Trust_ThePurpleBottle_FounderVO</td><td>All</td><td>PdA</td><td>P3</td><td><strong>Answers Gap 2 by name.</strong> "You've asked why the bottle in some ads looked different. Here's the bottle we ship." Purple bottle, whole spot.</td><td>Founder VO, direct</td><td>CPA + comment sentiment</td><td class="num">$23</td></tr>
+      <tr><td class="id">C19_All_PdA_Math_SixtyCapsulesCounted_Teardown</td><td>All</td><td>PdA</td><td>P4</td><td><strong>Answers Gap 4 by name.</strong> Capsules counted onto a white surface, in one unbroken shot, on screen. Then the true per-day cost.</td><td>Teardown / one-take</td><td>CPA + refund rate</td><td class="num">$23</td></tr>
+      <tr><td class="id">C20_Linda_PdA_Trust_HowToTakeIt_UGC</td><td>Linda</td><td>PdA</td><td>P3</td><td><strong>Answers Gap 7 by name.</strong> Morning, empty stomach, water, 30–60 min before food. Never after lunch — and why.</td><td>UGC talking head</td><td>CPA + D30 retention</td><td class="num">$23</td></tr>
+      <tr><td class="id">C21_Margaret_PdA_Mirror_IDidntBuyItForMySkin_UGC</td><td>Margaret</td><td>PdA</td><td>P6</td><td>Involuntary discovery. "I bought it in March for my energy. In May someone said I looked well and I couldn't think why."</td><td>UGC talking head</td><td>CPA + ASTA attach rate</td><td class="num">$23</td></tr>
+
+      <tr><td class="id">C22_Linda_MA_Math_55CentsADay_Static</td><td>Linda</td><td>MA</td><td>P4</td><td>Six bottles. 180 days. 55¢ a day. One decision. Arithmetic on screen, no voiceover.</td><td>Static / :06 bumper</td><td>ROAS ≥2.4×</td><td class="num">$17</td></tr>
+      <tr><td class="id">C23_Robert_MA_Math_2998vs1666_Static</td><td>Robert</td><td>MA</td><td>P4</td><td>$29.98 → $16.66 per bottle, side by side. The free-bottle logic stated as a fact, not an offer.</td><td>Static</td><td>ROAS ≥2.4×</td><td class="num">$17</td></tr>
+      <tr><td class="id">C24_Margaret_MA_Mirror_InsideAndOutside_Static</td><td>Margaret</td><td>MA</td><td>P6</td><td><strong>Post-purchase window only, D30–D90 off the NMN list.</strong> The ASTA attach: inside and outside. Not a prospecting concept.</td><td>Static / carousel</td><td>Attach rate → LTV</td><td class="num">$17</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid three">
+    <div class="card"><span class="kicker">Coverage check — persona</span>
+      <p>Linda 9 · Robert 7 · Dana 3 · Margaret 3 · All 2.</p>
+      <p><strong>Robert is deliberately over-indexed against his 11.2% share.</strong> He is +16% LTV and has zero existing coverage — the cheapest incremental volume in the account is the ad he has never been shown.</p></div>
+    <div class="card"><span class="kicker">Coverage check — pillar</span>
+      <p>P3 Trust 6 · P1 Energy 5 · P5 Identity 4 · P2 Mind 3 · P4 Math 3 · P6 Mirror 3.</p>
+      <p>Trust leads on count because the account's measured failure is credibility, not persuasion. Four of the six Trust concepts answer a named public allegation.</p></div>
+    <div class="card"><span class="kicker">Coverage check — format</span>
+      <p>UGC 10 · Teardown 4 · Founder VO 3 · Static 3 · Whiteboard 2 · Split-screen 2.</p>
+      <p>UGC dominates because plain beats polished in this account and because Gap 5 says the audience actively rejects produced talent. Shoot cheap, shoot many, shoot peer-age.</p></div>
+  </div>
+
+  <div class="callout warn">
+    <p><strong>Four concepts in this grid are blocked until an operational fix ships.</strong> C18 cannot run until the offending assets are pulled and the shipped bottle is confirmed. C19 cannot run until the capsule count in ads, on the PDP and in the box are the same number. C20's retention claim is worthless while G3 stands. And no concept mentioning "cancel any time" may be produced at all until a self-serve cancel link exists. <strong>Write them now; do not upload them yet.</strong></p>
+  </div>
+</section>
+
+<!-- ============ 05 · SCRIPTS ============ -->
+<section id="scripts">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Three priority-zero shoot-ready scripts</h2></div>
+  <p class="sec-intro">Production-ready as written. Left column is what the camera does; right column is what is heard and what is on screen. On-screen text is set in mono and marked <span class="ost" style="display:inline;border:none;padding:0">OST</span>. Every claim carries its substantiation obligation inline — if the obligation is not met before the shoot, the line is cut, not softened.</p>
+
+  <!-- ---- SCRIPT 1 ---- -->
+  <h3>Script 1 · "Is Prime Ingredients a Scam?"</h3>
+  <p><code>C16_Robert_PdA_Trust_IsPrimeAScam_FounderVO</code> · Pillar 3 · Product-Aware · Target CPA $23 · Runtime 0:72 · Founder, direct to camera, one location, natural light, no music.</p>
+  <div class="callout note"><p><strong>Why this is the first thing you shoot.</strong> The word "scam" is already in your comment threads under paid impressions. You are going to be judged on that word whether or not you say it. Saying it first — and then answering it with a document — converts your largest liability into your most defensible asset. This is the anti-marketing that <em>is</em> the marketing in a category where <em>"the shop is filled with 5 star reviews which makes me wonder about it."</em></p></div>
+
+  <div class="tablewrap">
+  <table class="script">
+    <thead><tr><th>Visual / B-roll</th><th>Audio / on-screen text / spoken voice</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="tc">0:00–0:04</span>Hard cut to founder, mid-shot, seated, plain room. No logo, no lower third. He is holding a purple Prime bottle at his side, not up to camera.</td>
+        <td><span class="tc">VO — DIRECT</span><span class="vo">"Somebody wrote 'scam' under one of our ads on Tuesday. I read it. So let's do this properly."</span><span class="ost">OST: none. Let the sentence land clean.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:04–0:12</span>Cut to a phone screen, real, unretouched, scrolling the actual comment thread. Names blurred. Hold on two comments long enough to read.</td>
+        <td><span class="vo">"There are three things people accuse us of. The bottle in the ad. What's actually in the capsule. And whether the order turns up. I'm going to answer all three and you can decide."</span><span class="ost">OST: 1. THE BOTTLE &nbsp; 2. THE CAPSULE &nbsp; 3. THE ORDER</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:12–0:22</span>Founder holds the purple Prime bottle directly to lens, steady, ten seconds, no cutaway. Label fully legible.</td>
+        <td><span class="vo">"This is the bottle. Purple label. Prime Ingredients on the cap. This is what arrives at your door, and if you've seen a different bottle in one of our videos, that was our mistake and those videos are down."</span><span class="ost">OST: THIS IS THE BOTTLE WE SHIP.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:22–0:34</span>Macro insert: thumb turning the bottle to the lot number and expiry date. Rack focus onto the printed digits. Then a printed COA sheet placed on the table, lot number circled in pen, on camera.</td>
+        <td><span class="vo">"Independent testing has repeatedly found NMN products that don't contain what the label says. So here's ours: lot number, printed on the bottle. Expiry date, printed on the bottle. And the certificate of analysis for that exact lot, with the assay result on it."</span><span class="ost">OST: LOT # ______ · EXP __/__ · 99%+ β-NMN · HPLC</span>
+        <span class="ost" style="border-left-color:var(--doubt)">SUBSTANTIATION: the "64% fail label claim" statistic may only be voiced if a named, dated, citable third-party study is on file and the citation is on screen. Absent that, the line above is what runs — it makes the same point without borrowing an unsourced number.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:34–0:46</span>Cut to the supplement facts panel, full frame, held still. Cursor or finger traces each figure as it is spoken.</td>
+        <td><span class="vo">"One thousand milligrams. Two capsules. Sixty capsules in the bottle. Thirty servings. That's a month. We don't run a proprietary blend, so there's nothing hidden in that panel — what you see is the whole formula."</span><span class="ost">OST: 1000mg · 2 CAPS · 60 CAPS · 30 SERVINGS · NO PROPRIETARY BLEND</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:46–0:58</span>Back to founder. Slightly closer. He does not smile here.</td>
+        <td><span class="vo">"On the third one — orders. Some of you have waited too long and some of you couldn't reach anybody. That's on us, it's being fixed, and there's a phone number on the screen that a person answers."</span><span class="ost">OST: [PHONE NUMBER] · A PERSON ANSWERS THIS.</span>
+        <span class="ost" style="border-left-color:var(--doubt)">GATE: this segment may not be shot until the fulfilment SLA and the staffed line are both real. Saying it before it is true converts one liability into two.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:58–1:08</span>Founder sets the bottle down on the table. Hands flat. Static frame.</td>
+        <td><span class="vo">"So here's the challenge. Buy it, send it to any lab you like, and if the assay doesn't match the certificate, we'll refund the order and pay for the test."</span><span class="ost">OST: SEND IT TO ANY LAB. IF IT DOESN'T MATCH, WE PAY.</span>
+        <span class="ost" style="border-left-color:var(--doubt)">LEGAL: the challenge guarantee needs written terms live on site before this line ships. Cap, window and process defined.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">1:08–1:12</span>End card. Purple bottle, price ladder, single CTA. No countdown, no starburst.</td>
+        <td><span class="ost">OST: 1 BOTTLE $29.98 &nbsp;·&nbsp; 6 BOTTLES $99.98 = $16.66 EACH<br>ONE-TIME PURCHASE AVAILABLE. NO SUBSCRIPTION REQUIRED.</span><span class="vo" style="font-size:.9rem;color:var(--ink-3)">Compliance footer: These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure or prevent any disease.</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ---- SCRIPT 2 ---- -->
+  <h3>Script 2 · "I'm Becoming My Father"</h3>
+  <p><code>C05_Robert_UA_Identity_BecomingMyFather_FounderVO</code> · Pillar 5 → Pillar 3 · Unaware · Target CPA $38 · Runtime 0:60 · Male VO, 58–72, non-actor. B-roll only for the first 30 seconds — no talking head until the turn.</p>
+  <div class="callout note"><p><strong>Casting note, and it is not optional.</strong> Never use talent under 50 in this spot. The corpus punishes it explicitly — <em>"You're too young. Your NAD is already high"</em> — and a young face reading these lines destroys the asset in two seconds. The voice should sound like it has done physical work. Do not direct for warmth.</p></div>
+
+  <div class="tablewrap">
+  <table class="script">
+    <thead><tr><th>Visual / B-roll</th><th>Audio / on-screen text / spoken voice</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="tc">0:00–0:05</span>Close on a man's hand gripping the edge of a truck bed as he steps down. Hold on the hand a beat too long. No face.</td>
+        <td><span class="tc">VO — FLAT, UNSENTIMENTAL</span><span class="vo">"I put my hand on the truck last Tuesday getting out. I never used to do that."</span><span class="ost">OST: none.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:05–0:14</span>Garage. Wide. Tools on a bench, half a job finished. A clock on the wall in shot. Cut: same wide, light has changed, job still half finished.</td>
+        <td><span class="vo">"That job used to take an afternoon. Now it takes two, and I don't tell anybody, and my wife has noticed anyway."</span><span class="ost">OST: THE JOB DIDN'T GET HARDER.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:14–0:24</span>Insert: an old photograph on a kitchen counter — an older man, work clothes. Hand slides it away. Do not linger; this must not become sentimental.</td>
+        <td><span class="vo">"My father stopped driving at seventy-one. I was in the kitchen when they took the keys off the table. I'm sixty-six and I'm not doing it that way."</span><span class="ost">OST: I'M NOT DOING IT THAT WAY.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:24–0:30</span>Hard cut. Black frame, one second. Then: the supplement facts panel, full screen, cold light.</td>
+        <td><span class="vo">"So I read the panel before I read the ad."</span><span class="ost">OST: THE TURN — spec from here on.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:30–0:42</span>Macro. Finger moves down the panel, figure by figure. Then a split frame: Prime's panel left, a generic 250mg competitor panel right, both legible.</td>
+        <td><span class="vo">"A thousand milligrams a serving. Two capsules. Most of what's on the shelf is two-fifty, which means four of theirs to get one of these, and at that point you're paying for the capsule, not the ingredient."</span><span class="ost">OST: 1000mg vs 250mg &nbsp;·&nbsp; 4 CAPSULES TO MATCH 2</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:42–0:50</span>Insert: lot number and expiry on the bottle base. Then the COA sheet, briefly, assay figure legible.</td>
+        <td><span class="vo">"Ninety-nine per cent purity, with a lot number on the bottle and a certificate for that lot. No proprietary blend. Nothing to hide behind."</span><span class="ost">OST: 99%+ PURITY · LOT # ON BOTTLE · COA PUBLISHED</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:50–0:56</span>First and only appearance of the speaker: mid-shot, garage doorway, work clothes, not looking at camera at first, then he does.</td>
+        <td><span class="vo">"I'm not trying to live to a hundred. I'm trying to finish the job in an afternoon."</span><span class="ost">OST: none. This line carries alone.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:56–1:00</span>End card. Purple bottle on the workbench, not a studio surface. Price ladder. Single CTA.</td>
+        <td><span class="ost">OST: 6 BOTTLES · 180 DAYS · 55¢ A DAY<br>ONE-TIME PURCHASE. NO SUBSCRIPTION.</span><span class="vo" style="font-size:.9rem;color:var(--ink-3)">Compliance footer: These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure or prevent any disease.</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ---- SCRIPT 3 ---- -->
+  <h3>Script 3 · "Sleep Doesn't Fix It"</h3>
+  <p><code>C11_Linda_PA_Energy_SleepDoesntFixIt_Whiteboard</code> · Pillar 1 → Pillar 2 · Problem-Aware · Target CPA $29 · Runtime 0:50 · Female VO 55–68. Whiteboard/hand-drawn animation intercut with one real bedroom.</p>
+  <div class="callout note"><p><strong>The claim discipline in this script is the whole point.</strong> It renames a problem; it does not promise a result. Every mechanism line is structure/function — <em>supports cellular energy</em>, <em>supports healthy NAD+ levels</em> — and the word "restores" appears nowhere. Note also that the contested "NAD+ drops 50% by middle age" figure has been deliberately left out; the script uses "declines with age," which is defensible, in place of a number that one commenter in your own corpus already disputes.</p></div>
+
+  <div class="tablewrap">
+  <table class="script">
+    <thead><tr><th>Visual / B-roll</th><th>Audio / on-screen text / spoken voice</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="tc">0:00–0:06</span>Real bedroom, morning light, 6:31 on a bedside clock. A woman sits on the edge of the bed, not moving. Held wide. No music.</td>
+        <td><span class="tc">VO — HER OWN VOICE, UNPERFORMED</span><span class="vo">"Eight hours. And at half past six I'm sitting on the edge of the bed already tired."</span><span class="ost">OST: 6:31 AM</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:06–0:14</span>Cut to hand-drawn animation on white. A simple bar labelled SLEEP fills up. An arrow labelled ENERGY does not move.</td>
+        <td><span class="vo">"I kept trying to fix it with sleep. Earlier nights. Naps. It never worked, and I couldn't work out why."</span><span class="ost">OST: MORE SLEEP → SAME MORNING</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:14–0:24</span>Animation: a single cell drawn in outline. Inside it, a small loop labelled NAD+ turning. Then the loop slows — drawn slower, not smaller.</td>
+        <td><span class="vo">"Sleep is when your body gets the chance to recover. But the recovery itself happens inside your cells, and it runs on something called NAD+ — which your body makes, recycles, and makes less of as you get older."</span><span class="ost">OST: NAD+ · YOUR BODY ALREADY MAKES IT · IT RECYCLES IT MORE SLOWLY WITH AGE</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:24–0:32</span>The loop stays slow. Text is added beside it, one line at a time, in the same hand.</td>
+        <td><span class="vo">"So it isn't that you're sleeping badly. It's that the thing sleep is supposed to switch on isn't switching on the way it used to."</span><span class="ost">OST: IT'S NOT A SLEEP PROBLEM.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:32–0:40</span>Purple bottle drawn into the frame, then live-action insert: two capsules into a palm, a glass of water, a kitchen at 7 AM.</td>
+        <td><span class="vo">"NMN is a building block your body uses to top that system back up. Two capsules, in the morning, on an empty stomach, with water. Not in the afternoon — that's how people end up awake at two."</span><span class="ost">OST: 1000mg · MORNING · EMPTY STOMACH · NEVER AFTER LUNCH<br>Supports cellular energy production. Supports healthy NAD+ levels.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:40–0:46</span>Back to the bedroom. Same frame as the opening, same light. She is not there — the bed is made and the door is open. Hold.</td>
+        <td><span class="vo">"It isn't caffeine. You won't feel it on Tuesday. Give it the full bottle before you decide anything."</span><span class="ost">OST: IT'S NOT CAFFEINE. GIVE IT 30 DAYS.</span></td>
+      </tr>
+      <tr>
+        <td><span class="tc">0:46–0:50</span>End card. Purple bottle, price ladder, single CTA.</td>
+        <td><span class="ost">OST: 6 BOTTLES · 180 DAYS · 55¢ A DAY · ONE-TIME PURCHASE AVAILABLE</span><span class="vo" style="font-size:.9rem;color:var(--ink-3)">Compliance footer: These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure or prevent any disease.</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <h5>One production note that applies to all three</h5>
+    <p><strong>Shoot the 9:16 as the master.</strong> 94% of orders come from Facebook and Instagram, the peak buying hour is 7 PM in a recliner, and the highest-converting device is a tablet at 5.11%. Frame for vertical, then crop out to 4:5 and 1:1 — never the reverse. QC every cut on a 10-inch screen at arm's length with the sound off before it is approved, because that is the object the money is actually spent on.</p>
+  </div>
+</section>
+
+<!-- ============ 06 · COMPLIANCE & MEDIA BUYING ============ -->
+<section id="ops">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Meta compliance &amp; media buying operating rules</h2></div>
+  <p class="sec-intro">Two halves. First, the translation engine that keeps assets alive through review. Second, the buying protocol that decides which of the twenty-four survive the week — launch day, dayparting, kill and scale thresholds, and the ladder that turns one winner into fifteen assets.</p>
+
+  <h3>The compliance translation engine</h3>
+  <p>Meta's personal attributes policy prohibits copy that <em>asserts or implies knowledge of a personal characteristic</em> — age, health condition, physical state. The tell is almost always <strong>second person plus an assertion</strong>. "Are you exhausted?" implies you know the reader is exhausted. "I was exhausted" asserts nothing about anybody.</p>
+  <p>The conversion is mechanical, and it usually produces better copy anyway, because first-person specificity is exactly what the fifteen golden lines are made of.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="num">#</th><th style="width:26%">Violating — second person, asserted</th><th style="width:30%">Compliant — first person, testified</th><th>Why the rewrite passes, and why it converts better</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td>
+        <td class="said">"Are you exhausted all the time?"</td>
+        <td class="said">"I was tired in a way sleep couldn't fix."</td>
+        <td>Removes the implied knowledge of the reader's health state. Also swaps a category adjective for a <em>specific failure</em>, which is the register the corpus rewards.</td></tr>
+      <tr><td class="num">2</td>
+        <td class="said">"Feeling your age at 60? Your NAD+ is depleted."</td>
+        <td class="said">"I'm 62. Here's what my mornings used to look like."</td>
+        <td>Two violations in one line — implied age <em>and</em> an asserted physiological state about the reader. The rewrite makes age a disclosure by the speaker, which is permitted and is also the casting signal that keeps Robert and Linda watching.</td></tr>
+      <tr><td class="num">3</td>
+        <td class="said">"Your brain fog is not normal — fix it."</td>
+        <td class="said">"I stopped assuming my brain fog was just how it is now."</td>
+        <td>Drops both the diagnosis of the reader and the implied cure. "Stopped assuming" carries the same reframe with none of the claim, and mirrors Dana's actual internal sentence.</td></tr>
+      <tr><td class="num">4</td>
+        <td class="said">"Struggling to keep up with your grandkids?"</td>
+        <td class="said">"He asked me to come outside and I said maybe later. I'd been saying maybe later for a year."</td>
+        <td>Removes the implied family status and the implied physical limitation. It is also eleven times more specific, and specificity is the only thing that makes this territory land instead of pander.</td></tr>
+      <tr><td class="num">5</td>
+        <td class="said">"You're losing NAD+ every year after 40 — restore it now."</td>
+        <td class="said">"NAD+ declines with age. Mine included. NMN is a building block the body uses to support healthy NAD+ levels."</td>
+        <td>Three fixes: second person removed; "restore" — an efficacy verb — downgraded to "supports"; and the contested percentage dropped entirely. One commenter in your own corpus already argues the decline figure is overstated, so citing it invites the fight in public.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid two">
+    <div class="card"><span class="kicker">Rules of thumb for the writers' room</span>
+      <p><strong>Ban "you" in the first five seconds.</strong> Not a compliance rule, a survival rule. If the opening line can be rewritten as "I…" it should be.</p>
+      <p><strong>Verb ladder:</strong> <em>restores / reverses / boosts / treats</em> → <span class="pill no">reject</span>. <em>improves / increases</em> → <span class="pill testi">testimonial only</span>. <em>supports / helps maintain</em> → <span class="pill safe">claimable</span>.</p>
+      <p><strong>A number you cannot cite on screen is a number you do not say.</strong> That covers the 64% lab-failure figure, the 50% NAD+ decline figure, and any biomarker movement.</p></div>
+    <div class="card"><span class="kicker">The three lines that can never run</span>
+      <p><strong>"Slows biological cellular aging"</strong> and <strong>"enhances cellular insulin sensitivity"</strong> — both are stated as fact and both read as disease/structure claims. Soften to "supports," or cut.</p>
+      <p><strong>Any quote implying treatment or replacement of a medication</strong>, however compelling. The corpus contains beautiful lines about NSAIDs and blood pressure. They are unusable, in every form, including as attributed testimonials.</p>
+      <p>Creator content needs its material connection disclosed. Every performance claim you echo needs its own substantiation, not the original speaker's.</p></div>
+  </div>
+
+  <h3>Media buying &amp; testing protocol</h3>
+
+  <h4>Launch day — why Thursday</h4>
+  <p>The account's own day-of-week data, controlled for spend: <strong>Friday is the best day at 1.25 ROAS and $48.47 CPA. Tuesday is the worst at 0.99.</strong> Saturday is mid-pack, Monday is fine.</p>
+  <p>A new ad set spends its first 24–48 hours in learning, where delivery is least efficient and the algorithm is most sensitive to early signal. <strong>Launch Thursday and that fragile window is followed immediately by the account's strongest day</strong>, then rides Friday–Saturday peak volume into a weekend that generates enough conversions to exit learning. Launch Tuesday and the asset spends its most vulnerable 48 hours in the account's worst-performing window, then gets judged on it.</p>
+  <div class="callout"><p><strong>The rule:</strong> new concepts go live Thursday 09:00 ET. No launches Sunday through Tuesday. If an asset misses Thursday it waits — a four-day delay costs less than a bad learning phase, because the bad learning phase does not just delay the asset, it mislabels it as a loser.</p></div>
+
+  <h4>Dayparting windows</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Window (ET)</th><th>Status</th><th>What runs</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><strong>11:00 AM</strong></td><td><span class="pill safe">Spike</span></td><td>Shorter cuts, static and carousel weighted. Product-Aware and Most-Aware.</td><td>Post-errand scroll, shorter attention, higher intent. 276 orders — 5th ranked hour.</td></tr>
+      <tr><td><strong>6:00–7:00 PM</strong></td><td><span class="pill safe">Peak</span></td><td>The :45–:60 UGC. Unmuted, story-led, full scripts.</td><td><strong>The two highest hours in the account</strong> — 291 and 296 orders. Recliner, TV on, tablet in hand.</td></tr>
+      <tr><td>11:00 PM–1:00 AM</td><td><span class="pill testi">Test</span></td><td>Dana's mechanism creative only. No offer, no urgency, no countdown.</td><td>127–206 orders/hour, unusually high for the demographic. Rumination, not shopping.</td></tr>
+      <tr><td>2:00–7:00 AM</td><td><span class="pill no">Excluded</span></td><td>Nothing.</td><td>The only genuinely dead window in the data. Everything else stays on.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Do not over-daypart.</strong> Volume is essentially flat from 8 AM to midnight; the report's old "11 AM is your single best hour" is out of date and building a schedule around it costs reach for no efficiency. Run the two spike windows as <em>bid or budget emphasis</em>, not as hard exclusions.</p>
+
+  <h4>Kill &amp; scale rules</h4>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Decision</th><th>Threshold</th><th>The arithmetic behind it</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hard kill</strong></td><td>$85 spent, zero purchases</td><td><strong>3.0× target CPA.</strong> At $28.25, three CPAs of spend with no conversion puts the true CPA above break-even ($39.55) even if the very next impression converts.</td><td>Off. No pause-and-revive, no budget nudge. Archive and log the hypothesis that died.</td></tr>
+      <tr><td>Soft kill</td><td>$56.50 spent, zero ATC</td><td>2.0× target CPA with no add-to-cart is a hook or landing-page mismatch, not a variance problem.</td><td>Off, but flag for a hook-swap rebuild rather than archiving the concept.</td></tr>
+      <tr><td>Hold</td><td>CPA $28.26–$39.54</td><td>Above target, inside break-even. Contributing margin, just not enough of it.</td><td>Leave running at current budget. Do not increase. Re-read in 72 hours.</td></tr>
+      <tr><td><strong>Scale</strong></td><td>CPA ≤ $28 for 3 consecutive days</td><td>Three days removes day-of-week noise — critical in an account where Friday returns 1.25 ROAS and Tuesday 0.99.</td><td><strong>+20–25% budget, no more than once every 48 hours.</strong> Larger steps re-enter learning and hand back the result.</td></tr>
+      <tr><td>Aggressive scale</td><td>CPA ≤ $23 for 3 consecutive days</td><td>Product-Aware territory. $23 CPA on $56.56 AOV is 2.46× ROAS.</td><td>Duplicate into a broader audience at 2× budget rather than pushing the original harder.</td></tr>
+      <tr><td>Guardrail</td><td>Any day above $39.55 CPA</td><td>Break-even. Below this line the asset is buying revenue with margin.</td><td>Cut budget 50% same day. Two consecutive days: hard kill.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout warn"><p><strong>The rule everyone breaks.</strong> A concept that hits $85 with no purchase is dead <em>as an execution</em>, not necessarily <em>as an idea</em>. Log which of the two you are killing. The 24-concept grid exists so that when C08 dies you know you killed "the straw metaphor as a split-screen," not "the straw metaphor" — and the iteration ladder below tells you which one to try next.</p></div>
+
+  <h4>The iteration ladder — one winner into eight to fifteen assets</h4>
+  <p>Run the rungs in order. Each one changes exactly one variable so the readout stays legible. Steps 1–3 are cheap and run off existing footage; steps 4–6 need a shoot day. Derivatives of a proven concept beat cold new concepts on hit rate in this account for the obvious reason — the argument is already validated and only the container is being tested. Track your own parent-vs-derivative win rate from week one; that ratio, not an industry rule of thumb, is what should set the split between iteration and net-new production.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Rung</th><th>Move</th><th>What changes</th><th class="num">Assets</th><th>Read it on</th></tr></thead>
+    <tbody>
+      <tr><td class="id">1</td><td><strong>Hook swap</strong></td><td>Five new opening three-second segments cut onto the identical body and end card. Pull each hook from a different line in Section 2.</td><td class="num">5</td><td>3s hold rate, then cost per outbound click. The body is constant, so any delta is the hook.</td></tr>
+      <tr><td class="id">2</td><td><strong>Length ladder</strong></td><td>The winning hook + body cut to :45, :30, :15 and a :06 bumper. No new footage.</td><td class="num">+4</td><td>Thruplay and CPA by placement. Reels rewards :15–:30; in-feed tolerates :45–:60.</td></tr>
+      <tr><td class="id">3</td><td><strong>Proof-object swap</strong></td><td>Same script, different thing held up: batch COA → capsule count on a white surface → the price arithmetic → the purple bottle beside the ad still.</td><td class="num">+3</td><td>CPA and comment sentiment. This rung is where the operational gaps get answered at scale.</td></tr>
+      <tr><td class="id">4</td><td><strong>Format transposition</strong></td><td>The winning <em>argument</em> re-shot in a different container: UGC → teardown static → split-screen → whiteboard.</td><td class="num">+2–3</td><td>Cost per ATC. A message that survives a format change is a territory, not an ad.</td></tr>
+      <tr><td class="id">5</td><td><strong>Persona re-cast</strong></td><td>Same script, different talent: Linda's script read by a Robert, Dana's read by a Margaret. Change nothing but the speaker.</td><td class="num">+2–3</td><td>CPA by age/gender breakdown. This is how you find out whether you built a persona or a mood.</td></tr>
+      <tr><td class="id">6</td><td><strong>Awareness shift</strong></td><td>Rewrite the same asset one rung <em>down</em> the ladder — the Unaware winner becomes a Product-Aware cut that names the objection in second one.</td><td class="num">+2</td><td>CPA against the lower rung's own target, not the parent's. Different rung, different bar.</td></tr>
+      <tr><td><strong>Total</strong></td><td colspan="2"><strong>From one proven concept</strong></td><td class="num"><strong>8–15</strong></td><td>Ship in that order. Do not start at rung 4.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <h5>The weekly operating rhythm</h5>
+    <p><strong>Monday</strong> — read the week. Kill anything past guardrail. Log dead hypotheses against the concept grid. <strong>Tuesday</strong> — build derivatives off last week's winners, rungs 1–3. <strong>Wednesday</strong> — compliance and substantiation pass; anything without a citable number gets cut, not softened. <strong>Thursday 09:00 ET</strong> — launch. <strong>Friday</strong> — hands off. The best day in the account is not the day to touch budgets. <strong>Weekend</strong> — accumulate conversions and exit learning.</p>
+  </div>
+
+  <div class="callout warn">
+    <h5>What this manual cannot do</h5>
+    <p>It cannot make an unshipped order arrive. Of the seven gaps, four are operational, and on the account's own contribution figures they plausibly carry a third of the $33.29 distance between the $28.25 plan and the $61.54 reality. <strong>Ten ads that fill a real gap beat fifty that say the same thing in different fonts — but zero ads beat any number of them if the comment thread underneath still says the order never came.</strong></p>
+    <p>Fix G1, G2 and G3. Then shoot Script 1. Then everything else in this document is worth the money.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Prime Ingredients · NMN 1000mg · Creative Strategy Operating Manual &amp; Customer Intelligence Dossier.</strong> Built 14 August 2026.</p>
+  <p>Sources: the Prime ICP dossier and 468-comment Meta corpus; the Prime customer language bank (169 rows, Reddit); the NMN YouTube quote bank (110 rows, 3,491 comments / ~620,000 characters); the competitor voice-of-customer bank (189 rows, ProHealth · Nutricost · Double Wood · 4Well · ForestLeaf · Tru Niagen · Renue By Science); and the Triple Whale warehouse.</p>
+  <p>Confidence markers are load-bearing. <span class="pill m">M</span> measured · <span class="pill r">R</span> research, some of it now out of date · <span class="pill i">I</span> inferred, and explicitly not observed. Quotes are verbatim, trimmed for length only; spelling and punctuation are the customer's own. Competitor-corpus quotes are research input, not publishable social proof.</p>
+  <p>Nothing here is legal, regulatory or medical advice. Every claim needs your own regulatory reviewer before it ships, and the eligibility and interaction questions in Gap 6 need a qualified medical reviewer before they are answered anywhere — including in a comment box.</p>
+</footer>
+
+</div>
