@@ -1,0 +1,507 @@
+<title>Seedance Ad Directors</title>
+<style>
+  :root {
+    --ground:      #F5F6F3;
+    --surface:     #FFFFFF;
+    --surface-alt: #ECEEE9;
+    --ink:         #1B1C1A;
+    --ink-soft:    #5E615B;
+    --ink-faint:   #8B8F87;
+    --rule:        #D9DBD4;
+    --rule-firm:   #B9BDB3;
+    --tally:       #D62F1C;
+    --tally-soft:  #FBEAE7;
+    --shadow:      0 1px 2px rgba(27,28,26,.05), 0 8px 24px -16px rgba(27,28,26,.18);
+
+    --f-display: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+    --f-body:    Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --f-mono:    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #15161A;
+      --surface:     #1D1F24;
+      --surface-alt: #24272D;
+      --ink:         #E9EAE6;
+      --ink-soft:    #A2A6A0;
+      --ink-faint:   #767A74;
+      --rule:        #2E3138;
+      --rule-firm:   #454951;
+      --tally:       #FF5B45;
+      --tally-soft:  #2C1D1B;
+      --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #15161A;
+    --surface:     #1D1F24;
+    --surface-alt: #24272D;
+    --ink:         #E9EAE6;
+    --ink-soft:    #A2A6A0;
+    --ink-faint:   #767A74;
+    --rule:        #2E3138;
+    --rule-firm:   #454951;
+    --tally:       #FF5B45;
+    --tally-soft:  #2C1D1B;
+    --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 47rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 56px 0 32px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+  }
+
+  .tally {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--tally);
+    flex: none;
+  }
+
+  h1 {
+    font-family: var(--f-display);
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    line-height: 1.04;
+    letter-spacing: -.028em;
+    font-weight: 700;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: 1.13rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 34rem;
+  }
+
+  /* ---------- sections ---------- */
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  h2 {
+    font-family: var(--f-display);
+    font-size: 1.6rem;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    font-weight: 700;
+    margin: 24px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule-firm);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--f-display);
+    font-size: 1.08rem;
+    letter-spacing: -.008em;
+    font-weight: 700;
+    margin: 12px 0 0;
+  }
+
+  p { margin: 0; }
+
+  a { color: var(--tally); }
+
+  strong { font-weight: 700; }
+
+  em { font-style: italic; }
+
+  code {
+    font-family: var(--f-mono);
+    font-size: .855em;
+    background: var(--surface-alt);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: .1em .34em;
+  }
+
+  ul { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 7px; }
+  li { padding-left: .15rem; }
+  li::marker { color: var(--ink-faint); }
+
+  /* ---------- numbered workflow ---------- */
+
+  ol.steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    counter-reset: step;
+  }
+
+  ol.steps > li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 2.1rem 1fr;
+    gap: 14px;
+    padding: 0;
+  }
+
+  ol.steps > li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: var(--tally);
+    padding-top: .42em;
+  }
+
+  /* ---------- pull note ---------- */
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--tally);
+    border-radius: 0 5px 5px 0;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: var(--shadow);
+  }
+
+  .note .label {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--tally);
+  }
+
+  .note p { font-size: .97rem; line-height: 1.55; }
+
+  /* ---------- comparison table ---------- */
+
+  .scroller { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--f-display);
+    font-size: .9rem;
+    min-width: 34rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+
+  thead th {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule-firm);
+    font-weight: 400;
+  }
+
+  tbody th {
+    font-weight: 400;
+    color: var(--ink-soft);
+    width: 11rem;
+  }
+
+  tbody td { font-weight: 600; }
+
+  tbody tr:last-child th,
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* ---------- spec block ---------- */
+
+  pre {
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 18px 20px;
+    margin: 0;
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+  }
+
+  /* ---------- glossary ---------- */
+
+  dl.glossary {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  dl.glossary dt {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: .98rem;
+    letter-spacing: -.005em;
+    margin-bottom: 3px;
+  }
+
+  dl.glossary dd {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: .97rem;
+    line-height: 1.6;
+  }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    border-top: 2px solid var(--ink);
+    padding-top: 20px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: .05em;
+    color: var(--ink-faint);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; padding: 0 18px 72px; }
+    tbody th { width: auto; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow"><span class="tally"></span> Field guide &nbsp;·&nbsp; Seedance 2.0</p>
+    <h1>Your two ad skills, explained</h1>
+    <p class="standfirst">What these things actually are, what they do, and how to use them — written for a human, not a machine.</p>
+  </header>
+
+  <section>
+    <h2>First: what even is a “skill”?</h2>
+    <p>A <strong>skill</strong> is a written instruction sheet that Claude reads before it starts working.</p>
+    <p>That’s genuinely all it is. It’s a text file. There’s no code, no software, no integration. If you printed it out and handed it to a freelance copywriter, they could follow it.</p>
+    <p>The only clever part is <em>when</em> it gets read. Claude keeps a list of every skill you’ve installed, along with a one-line summary of each. When you ask for something that matches one of those summaries, Claude opens that file and follows it. You don’t have to say “use the skill” — you just say “make me an ad for my collagen powder,” and the right instruction sheet loads on its own.</p>
+    <p>Think of it as the difference between explaining your brand rules to a new freelancer every single time, versus handing them a folder they already know to reach for.</p>
+    <p><strong>Why bother?</strong> Because the instructions are long and specific. Nobody wants to retype “never use the word cinematic, always describe the light source, write dialogue with filler words” every time they want an ad. You write it once. It applies forever.</p>
+  </section>
+
+  <section>
+    <h2>What these two skills actually do</h2>
+    <p>Both do the same fundamental job: <strong>they write prompts for a video AI called Seedance 2.0.</strong></p>
+
+    <div class="note">
+      <span class="label">Worth being clear about</span>
+      <p>Neither skill makes video. They make <em>text</em> — very detailed text — that you then paste into Seedance, which makes the video. The skill is the director writing the shot list. Seedance is the camera crew.</p>
+    </div>
+
+    <p>The output is a “director’s brief” — a document containing casting links, shot descriptions, and dialogue, formatted so you can work through it top to bottom.</p>
+
+    <h3>Skill 1 — <code>seedance-20-ugc-ad-director</code></h3>
+    <p><strong>The format:</strong> One person, talking to their phone, recommending a product. The kind of ad that looks like a friend’s Instagram story rather than a commercial.</p>
+    <p><strong>What it gives you:</strong></p>
+    <ul>
+      <li><strong>Pinterest links to cast your creator.</strong> It writes the search URLs for you. You click through, find a face you like, save that photo. That one photo is used in every shot so the same person appears throughout.</li>
+      <li><strong>More Pinterest links</strong> for settings and product-holding poses, if you want them.</li>
+      <li><strong>The prompts themselves</strong> — one per 15-second segment, broken into 5-second beats, each describing the camera, the person, their hands, their expression, the lighting, and the background in obsessive detail.</li>
+      <li><strong>Dialogue</strong> written to sound unscripted — contractions, “honestly,” “like,” half-finished sentences.</li>
+      <li><strong>A checklist</strong> for reviewing and stitching the clips together.</li>
+    </ul>
+    <p><strong>Structure:</strong> Hook → Problem/Proof → Benefit/Demo → CTA. Standard direct-response shape.</p>
+
+    <h3>Skill 2 — <code>street-interview-ad-director</code></h3>
+    <p><strong>The format:</strong> A host stops strangers on the street and asks them about a product. Several different people, cut together. The “man-on-the-street” or “vox pop” format.</p>
+    <p><strong>What it gives you:</strong> The same shape of deliverable — casting links, prompts, dialogue, checklist — but adapted throughout for a format with multiple people in it.</p>
+    <p><strong>Structure:</strong> Question Hook → Skeptic Reactions → The Turn → Verdict/CTA.</p>
+  </section>
+
+  <section>
+    <h2>The one idea that separates them</h2>
+    <p>This is worth understanding properly, because it explains nearly every difference between the two files.</p>
+    <p><strong>A talking-head UGC ad is believable because the same person appears in every shot.</strong> If the creator’s face changed halfway through, you’d notice instantly and the ad would fall apart. So that skill’s most emphatic rule is: pick one person, use them everywhere, never change them.</p>
+    <p><strong>A street interview is believable because different people appear in every shot.</strong> That variety <em>is</em> the evidence. Six strangers, six opinions — that’s what makes it feel like a real sample rather than a paid testimonial. If everyone looked similar, it would read as staged.</p>
+    <p>So the two formats need opposite rules about the same thing. The question the fork had to answer was: if the person can’t be the constant, what is? The answer is <strong>the place</strong>.</p>
+
+    <div class="note">
+      <span class="label">The continuity contract</span>
+      <p>A viewer believes a street interview when the block, the light, and the mic stay the same while the faces change. That’s what says <em>“we stood on one corner for an afternoon”</em> rather than <em>“we shot six unrelated clips.”</em></p>
+    </div>
+
+    <p>So in the street interview skill, these stay locked across every shot: the host, the street, the direction of the sunlight, the microphone, and the product. And these change freely: the respondent, their age, their style, their opinion.</p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">UGC Ad Director</th>
+            <th scope="col">Street Interview Director</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">What stays the same</th><td>The creator’s face</td><td>The street, light, host, and mic</td></tr>
+          <tr><th scope="row">What changes</th><td>Setting, beat of the ad</td><td>The person answering</td></tr>
+          <tr><th scope="row">People on camera</th><td>One</td><td>Two per shot, many across the ad</td></tr>
+          <tr><th scope="row">Voices in the audio</th><td>One</td><td>Two — interviewer and respondent</td></tr>
+          <tr><th scope="row">Segment length</th><td>15 seconds, uniform</td><td>6–15 seconds, deliberately varied</td></tr>
+          <tr><th scope="row">Where it’s shot</th><td>Indoors, usually</td><td>Outdoors, one location</td></tr>
+          <tr><th scope="row">Use it when</th><td>One creator vouches for the product</td><td>Strangers react to the product</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>The jargon, decoded</h2>
+    <p>The skill files are written for a machine, so they’re dense with shorthand. Here’s what all of it means.</p>
+
+    <dl class="glossary">
+      <div>
+        <dt>UGC</dt>
+        <dd>“User-Generated Content.” Industry term for ads deliberately made to look like an ordinary person filmed them, not an agency. The whole point is that it doesn’t look like an ad.</dd>
+      </div>
+      <div>
+        <dt>Vox pop / man-on-the-street</dt>
+        <dd>Both mean the same thing: interviewing random members of the public. “Vox pop” is short for <em>vox populi</em>, Latin for “voice of the people.” A journalism term that migrated into advertising.</dd>
+      </div>
+      <div>
+        <dt>9:16</dt>
+        <dd>The shape of the frame. Tall and narrow, the shape of a phone held upright. This is what TikTok, Reels, and Shorts want.</dd>
+      </div>
+      <div>
+        <dt>@Image1 / @Image2 / @Image3</dt>
+        <dd>Labels for photos you upload to Seedance. When a prompt says “@Image1 is the creator,” it’s telling the AI <em>“the person in the first photo I gave you is the one in this scene.”</em> It’s how you keep the same face across multiple generations.</dd>
+      </div>
+    </dl>
+
+    <p>Here’s how each skill assigns them:</p>
+
+    <pre>UGC Ad Director                  Street Interview Director
+─────────────────                ─────────────────────────
+@Image1 = the creator            @Image1 = the host        (same every shot)
+          (same every shot)      @Image2 = the respondent  (differs every shot)
+@Image2 = setting reference      @Image3 = the product     (same every shot)
+@Image3 = the product</pre>
+
+    <p>Notice that in the street interview version, <code>@Image2</code> gets taken away from “setting” and given to the respondent. The setting has to be written out in words instead — which turns out to be necessary anyway, since the background must be described identically in every prompt to stay consistent.</p>
+
+    <dl class="glossary">
+      <div>
+        <dt>Room tone</dt>
+        <dd>The particular quiet sound of a specific space. A bathroom has a slight echo off the tiles. A car sounds muffled and close. A street has traffic and footsteps. Recording engineers capture this deliberately because silence sounds fake — total silence is the sound of a recording studio, and it makes everything feel staged.</dd>
+      </div>
+      <div>
+        <dt>“Anti-cinematic”</dt>
+        <dd>Both skills carry a long list of banned words: <em>cinematic</em>, <em>lens flare</em>, <em>bokeh</em>, <em>color grade</em>, <em>gimbal</em>, camera brands like ARRI and RED. These all make video AI produce beautiful, expensive-looking footage — which is exactly wrong here. Beautiful footage reads as an advertisement and gets scrolled past. The skills push hard the other way — handheld, shaky, natural light, phone-quality — because that’s what makes someone stop and watch.</dd>
+      </div>
+      <div>
+        <dt>Lipsync</dt>
+        <dd>The mouth movements matching the words. Seedance 2.0 generates speech and matching mouth movement together, which is why both skills forbid telling you to “add voiceover in post.” You don’t need to. It’s already there.</dd>
+      </div>
+      <div>
+        <dt>Segment</dt>
+        <dd>One generated clip. Seedance produces 4–15 seconds at a time, so a 60-second ad is built as several segments and stitched together afterward in an editor.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>How you actually use one</h2>
+    <p>The workflow is the same for both.</p>
+
+    <ol class="steps">
+      <li><strong>Describe your ad.</strong> Tell Claude the product and roughly what you want. “Make me a street interview ad for our $80 collagen powder, angle is that people think it’s overpriced until they hear what’s in it.” You don’t need to name the skill — the right one loads on its own.</li>
+      <li><strong>Get your brief.</strong> Claude outputs the whole thing in one response. It won’t ask follow-up questions; both skills specifically instruct it to make the creative decisions itself and deliver everything at once.</li>
+      <li><strong>Cast from Pinterest.</strong> Click the search links. Find faces you like. Save those photos.</li>
+      <li><strong>Upload and generate.</strong> Into Seedance, one segment at a time. Attach the right photos as @Image1, @Image2, @Image3. Paste the prompt. Generate.</li>
+      <li><strong>Check consistency.</strong> Does the same face appear throughout (UGC)? Do the street, light, and mic match across cuts (street interview)? Regenerate anything that drifted.</li>
+      <li><strong>Stitch and export.</strong> Assemble in order. For street interviews, cut tight — trim the dead air at the start and end of each answer, because the format lives on pace.</li>
+    </ol>
+
+    <div class="note">
+      <span class="label">The one rule that actually matters</span>
+      <p>At step 3, only save <strong>clean</strong> photos. No emoji stickers, no watermarks, no text overlays, no app interface visible. Seedance rebuilds everything it sees as a physical object in the scene — so a watermark becomes a weird floating artifact in your finished ad.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Two opinions baked into the street interview skill</h2>
+    <p>Worth knowing about, since they’re editorial calls rather than technical ones. Both are a couple of lines to change if you disagree.</p>
+    <p><strong>It tells the AI to include one bad answer.</strong> An ad where all six strangers love the product is the exact thing that makes viewers suspicious. One lukewarm or unconvinced response buys credibility for every other answer in the cut. It’s counterintuitive, and it works.</p>
+    <p><strong>It defaults the host to off-camera.</strong> You hear their voice and see a hand holding the mic into frame, but never their face. This is easier to produce — you’re not fighting to keep a second face consistent across every shot — and it’s extremely common in the real format. On-camera is available when you want the host’s reactions to be part of the ad.</p>
+  </section>
+
+  <section>
+    <h2>Moving these to Google Gemini</h2>
+    <p>You can rebuild both as <strong>Gems</strong>, which are Gemini’s version of the same idea: a saved set of instructions that Gemini follows whenever you chat with it. The mechanics differ in a few ways that affect how the instructions have to be written.</p>
+
+    <h3>A skill loads itself. A Gem doesn’t.</h3>
+    <p>Claude decides to open a skill based on what you asked for. A Gem is simply always on for as long as you’re talking to it — you pick it from a list and then it’s in effect. This means the description field stops being functional and becomes purely a label for you. It also means each format needs its own separate Gem; there’s no automatic switching between them.</p>
+
+    <h3>Gems have no file structure.</h3>
+    <p>A skill can be a folder with reference documents and scripts that get loaded when needed. A Gem is one text box. Everything has to live in it. Fine for these two — they’re single files already — but it caps how far you can grow them.</p>
+
+    <h3>Gemini needs to be told to shut up more firmly.</h3>
+    <p>It tends to open with “Certainly! Here’s your brief:” and close with an offer to revise. It also asks clarifying questions more readily than Claude does. The Gem instructions include explicit lines to suppress all three, because the whole value here is getting a clean, complete, copy-pasteable document in one go.</p>
+
+    <h3>Gemini needs a persona statement.</h3>
+    <p>Skills can open by describing a job. Gems work noticeably better when you start with a direct “You are a…” — so both Gem versions begin that way.</p>
+
+    <p>The two Gem specs — name, description, and full instruction text ready to paste — are in the files alongside this one.</p>
+  </section>
+
+  <footer>
+    Merin · docs/skills-explained.md<br>
+    Companion files: gem-ugc-ad-director.md · gem-street-interview-ad-director.md
+  </footer>
+
+</div>
