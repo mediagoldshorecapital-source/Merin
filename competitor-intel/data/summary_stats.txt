@@ -1,0 +1,98 @@
+
+DATASET
+-------
+unique ads: 736   static: 375   video: 361   advertisers: 17
+
+PER-ADVERTISER MIX AND LONGEVITY
+--------------------------------
+ADVERTISER                  ADS  STATIC  %STAT MED_DAY MAX_DAY   >30d   >60d
+Timeline Longevity          196     107    55%    26.5   116.0     78     44
+Renue By Science            175      21    12%    15.4    70.4     62     30
+Omre                         79      43    54%     5.3     6.3      0      0
+NOVOS                        61      59    97%     1.4    95.3      6      6
+Elysium Health               51      47    92%     8.5    32.5     14      0
+Wonderfeel                   34      19    56%    14.4   117.3      8      8
+Tru Niagen                   34      20    59%     6.8    25.3      0      0
+UNATTRIBUTED                 30       8    27%    29.4    58.4      9      0
+ProHealth Longevity          23      15    65%   127.3   165.3     21     15
+Double Wood Supplements      21      20    95%    50.3   133.3     16     10
+Clark Reilly                 20       7    35%    51.9    58.4     14      0
+Medvi                         6       5    83%    13.9    23.4      0      0
+
+CREATIVE MODULARITY (how much gets reused)
+------------------------------------------
+ADVERTISER                  ADS   IMAGES    COPIES ADS/IMAGE  IMGS/COPY
+Timeline Longevity          196       70        54      2.80       2.43
+Renue By Science            175       22       119      7.95       1.77
+Omre                         79       43        11      1.84       6.00
+NOVOS                        61       56        34      1.09       1.75
+Elysium Health               51       34        14      1.50       3.31
+Wonderfeel                   34       17        20      2.00       1.09
+Tru Niagen                   34       11        10      3.09       2.75
+UNATTRIBUTED                 30        7         0      4.29       0.00
+ProHealth Longevity          23       10         6      2.30       7.50
+Double Wood Supplements      21       15         9      1.40       1.88
+Clark Reilly                 20        7         2      2.86       3.50
+
+STATIC COPY PATTERNS (share of 375 static ads)
+----------------------------------------------
+ 66.1%   248  Mechanism / molecule named
+ 49.1%   184  Clinical proof language
+ 25.3%    95  Question hook
+ 28.0%   105  Offer / price / urgency
+  7.7%    29  Symptom or pain enumeration
+  6.9%    26  Age / decade callout
+  5.6%    21  Identity / status framing
+ 13.3%    50  Authority / doctor
+ 13.1%    49  Social proof / press / rating
+  6.1%    23  Comparison / category takedown
+ 61.3%   230  Second person (you / your)
+
+STATIC COPY SHAPE
+-----------------
+primary text chars — p25 205 / median 284 / p75 353 / max 1081
+headline chars — median 31 / p90 55
+two or more paragraphs: 49%
+
+HOW LONG STATICS SURVIVE
+------------------------
+0-7d       141   37.6%
+7-30d      111   29.6%
+30-60d      63   16.8%
+60-100d     32    8.5%
+100d+       28    7.5%
+
+PROVEN (>=60d) VS FRESH (<14d) STATICS — copy-layer index
+---------------------------------------------------------
+proven n=60   fresh n=191
+Mechanism / molecule named       proven   55%  fresh   63%  index 0.87
+Clinical proof language          proven   62%  fresh   34%  index 1.84
+Question hook                    proven   10%  fresh   29%  index 0.35
+Offer / price / urgency          proven   22%  fresh   29%  index 0.74
+Symptom or pain enumeration      proven    7%  fresh   10%  index 0.64
+Age / decade callout             proven    0%  fresh   12%  index 0.00
+Identity / status framing        proven    0%  fresh    7%  index 0.00
+Authority / doctor               proven    0%  fresh    8%  index 0.00
+Social proof / press / rating    proven    0%  fresh   20%  index 0.00
+Comparison / category takedown   proven    0%  fresh    7%  index 0.00
+Second person (you / your)       proven   53%  fresh   61%  index 0.87
+
+LAUNCH CADENCE (new ads first seen, by month)
+---------------------------------------------
+2026-03     4  
+2026-04    41  #####
+2026-05    14  #
+2026-06   109  #############
+2026-07   188  #######################
+2026-08   378  ###############################################
+
+CTA MIX
+-------
+  567  SHOP_NOW
+   96  LEARN_MORE
+   37  SEE_DETAILS
+   31  
+    2  GET_OFFER_VIEW
+    1  ORDER_NOW
+    1  null
+    1  LISTEN_NOW
