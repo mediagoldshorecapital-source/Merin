@@ -1,0 +1,854 @@
+<title>The Longevity Ad Swipe File</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --ink:#141a22;
+    --ink-2:#3d4854;
+    --ink-3:#6b7684;
+    --ground:#f7f6f3;
+    --surface:#ffffff;
+    --surface-2:#efeeea;
+    --rule:#d8d6d0;
+    --rule-soft:#e7e5e0;
+    --accent:#c2410c;
+    --accent-soft:#fde8d7;
+    --data:#0f5c63;
+    --data-soft:#d9ecec;
+    --good:#1f6b3f;
+    --bad:#a12a2a;
+    --shadow:0 1px 2px rgba(20,26,34,.06), 0 8px 24px -12px rgba(20,26,34,.14);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ink:#eceae5;
+      --ink-2:#b4bcc6;
+      --ink-3:#8892a0;
+      --ground:#14181e;
+      --surface:#1b2129;
+      --surface-2:#232a33;
+      --rule:#333c47;
+      --rule-soft:#282f38;
+      --accent:#fb923c;
+      --accent-soft:#3a2113;
+      --data:#5fc8ce;
+      --data-soft:#123037;
+      --good:#63c98d;
+      --bad:#e88a8a;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eceae5;
+    --ink-2:#b4bcc6;
+    --ink-3:#8892a0;
+    --ground:#14181e;
+    --surface:#1b2129;
+    --surface-2:#232a33;
+    --rule:#333c47;
+    --rule-soft:#282f38;
+    --accent:#fb923c;
+    --accent-soft:#3a2113;
+    --data:#5fc8ce;
+    --data-soft:#123037;
+    --good:#63c98d;
+    --bad:#e88a8a;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Public Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px 96px}
+
+  /* ---------- masthead ---------- */
+  .masthead{padding:72px 0 40px;border-bottom:2px solid var(--ink)}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 20px;
+  }
+  h1{
+    font-family:Fraunces,Georgia,"Times New Roman",serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.4rem,6.5vw,3.9rem);
+    line-height:1.02;
+    letter-spacing:-.022em;
+    margin:0 0 20px;
+    text-wrap:balance;
+  }
+  .dek{font-size:1.16rem;line-height:1.55;color:var(--ink-2);max-width:60ch;margin:0}
+
+  .figures{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);
+    margin:40px 0 0;
+  }
+  .fig{background:var(--ground);padding:16px 18px}
+  .fig b{
+    display:block;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:1.75rem;font-weight:700;line-height:1.1;
+    font-variant-numeric:tabular-nums;letter-spacing:-.03em;
+  }
+  .fig span{
+    display:block;margin-top:6px;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  }
+
+  /* ---------- generic type ---------- */
+  h2{
+    font-family:Fraunces,Georgia,serif;font-optical-sizing:auto;
+    font-weight:600;font-size:clamp(1.65rem,3.6vw,2.15rem);
+    line-height:1.12;letter-spacing:-.018em;
+    margin:0 0 8px;text-wrap:balance;
+  }
+  h3{
+    font-family:Fraunces,Georgia,serif;font-optical-sizing:auto;
+    font-weight:600;font-size:1.28rem;line-height:1.25;
+    margin:0 0 10px;text-wrap:balance;
+  }
+  p{margin:0 0 18px;max-width:68ch}
+  a{color:var(--accent)}
+  strong{font-weight:600}
+  section{padding-top:64px}
+  .lede{font-size:1.06rem;color:var(--ink-2);max-width:66ch}
+
+  .sect-head{margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .sect-head .eyebrow{margin-bottom:12px;color:var(--ink-3)}
+
+  ul,ol{max-width:68ch;padding-left:22px;margin:0 0 18px}
+  li{margin-bottom:9px}
+  li::marker{color:var(--ink-3)}
+
+  /* ---------- tables ---------- */
+  .scroll{overflow-x:auto;margin:0 0 24px;border:1px solid var(--rule);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:.93rem}
+  th{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;font-weight:500;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--ink-3);text-align:left;
+    padding:12px 14px;border-bottom:1px solid var(--rule);white-space:nowrap;
+  }
+  td{padding:11px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  .num{text-align:right;font-variant-numeric:tabular-nums;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86rem;white-space:nowrap}
+  .days{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;
+    font-variant-numeric:tabular-nums;color:var(--accent);white-space:nowrap;
+  }
+  tbody tr:hover{background:var(--surface-2)}
+  .bar{display:block;height:3px;background:var(--data);margin-top:5px;border-radius:2px;min-width:2px}
+
+  /* ---------- framework blocks ---------- */
+  .fw{
+    margin:0 0 8px;padding:32px 0 0;border-top:1px solid var(--rule);
+  }
+  .fw:first-of-type{border-top:0;padding-top:0}
+  .fw-head{display:flex;gap:16px;align-items:baseline;margin-bottom:6px}
+  .fw-n{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.8rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums;flex:none;padding-top:5px;
+  }
+  .star{
+    display:inline-block;margin-left:8px;vertical-align:middle;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+    color:var(--accent);background:var(--accent-soft);
+    padding:3px 7px;border-radius:2px;white-space:nowrap;
+  }
+  .who{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;line-height:1.5;color:var(--ink-3);
+    margin:0 0 16px;max-width:68ch;
+  }
+  .who b{color:var(--ink-2);font-weight:500}
+
+  .skeleton{
+    background:var(--surface-2);border-left:3px solid var(--data);
+    padding:18px 20px;margin:0 0 22px;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.8rem;line-height:1.85;color:var(--ink-2);
+    overflow-x:auto;
+  }
+  .skeleton .k{color:var(--data);font-weight:700}
+
+  /* ---------- specimen cards ---------- */
+  .spec{
+    background:var(--surface);border:1px solid var(--rule);
+    box-shadow:var(--shadow);margin:0 0 22px;
+  }
+  .spec-meta{
+    display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;
+    padding:10px 20px;border-bottom:1px solid var(--rule-soft);
+    background:var(--surface-2);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+  }
+  .spec-meta .brand{color:var(--ink);font-weight:700;letter-spacing:.06em}
+  .spec-meta .run{color:var(--accent);font-weight:700}
+  .spec-body{padding:20px 22px;font-size:.97rem;line-height:1.6}
+  .spec-body p{margin:0 0 12px;max-width:64ch}
+  .spec-body p:last-child{margin-bottom:0}
+  .spec-body .tick{color:var(--good)}
+  .spec-body .cross{color:var(--bad)}
+  .spec-body mark{background:var(--accent-soft);color:var(--ink);padding:1px 3px;border-radius:2px}
+  .annot{
+    display:block;font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--accent);margin-top:3px;
+  }
+
+  .note{
+    border-left:3px solid var(--accent);padding:2px 0 2px 18px;
+    margin:0 0 22px;color:var(--ink-2);max-width:66ch;
+  }
+  .note p:last-child{margin-bottom:0}
+
+  /* ---------- template blocks ---------- */
+  .tpl{
+    background:var(--surface);border:1px solid var(--rule);
+    padding:0;margin:0 0 26px;box-shadow:var(--shadow);
+  }
+  .tpl-head{
+    padding:12px 20px;border-bottom:1px solid var(--rule-soft);background:var(--surface-2);
+    display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;
+  }
+  .tpl-head .id{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;font-weight:700;
+    color:var(--accent);letter-spacing:.08em;
+  }
+  .tpl-head .nm{font-weight:600;font-size:.98rem}
+  .tpl-form{
+    padding:18px 20px;font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.79rem;line-height:1.9;color:var(--ink-2);overflow-x:auto;
+    border-bottom:1px dashed var(--rule);
+  }
+  .tpl-form .k{color:var(--data);font-weight:700}
+  .tpl-ex{padding:18px 20px}
+  .tpl-ex .lbl{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);
+    display:block;margin-bottom:10px;
+  }
+  .tpl-ex p{margin:0 0 11px;font-size:.97rem;line-height:1.6;max-width:62ch}
+  .tpl-ex p:last-child{margin-bottom:0}
+
+  .checklist{counter-reset:step;list-style:none;padding:0;max-width:68ch}
+  .checklist li{
+    counter-increment:step;position:relative;padding-left:42px;margin-bottom:16px;
+  }
+  .checklist li::before{
+    content:counter(step,decimal-leading-zero);position:absolute;left:0;top:1px;
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.74rem;font-weight:700;
+    color:var(--accent);background:var(--accent-soft);
+    padding:3px 7px;border-radius:2px;
+  }
+
+  footer{
+    margin-top:80px;padding-top:24px;border-top:2px solid var(--ink);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;line-height:1.8;color:var(--ink-3);
+  }
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    .wrap{padding:0 18px 64px}
+    .masthead{padding:48px 0 32px}
+    .fw-head{gap:11px}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Competitor teardown · Meta Ad Library</p>
+    <h1>What the longevity brands actually run</h1>
+    <p class="dek">Ten copy frameworks reverse-engineered from 562 live ads across 22 advertisers —
+      ranked by how long each one survived the kill decision.</p>
+
+    <div class="figures">
+      <div class="fig"><b>562</b><span>unique ads</span></div>
+      <div class="fig"><b>203</b><span>distinct copies</span></div>
+      <div class="fig"><b>22</b><span>advertisers</span></div>
+      <div class="fig"><b>342</b><span>median chars</span></div>
+      <div class="fig"><b>133</b><span>longest run, days</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sect-head">
+      <p class="eyebrow">Method</p>
+      <h2>How I decided what counts as a winner</h2>
+    </div>
+    <p>The Ad Library doesn't publish spend. It publishes <strong>time running</strong> — and in
+      direct response, that's nearly as good. An ad still live at 60, 90, 120 days is an ad that
+      kept beating the kill threshold. An ad live for four days is a test.</p>
+    <p>So every copy block here is weighted two ways: how many days it stayed live, and how many
+      separate creatives ran it. A copy that 14 different creatives carried for 122 days is where
+      a competitor put real money.</p>
+
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Days live</th><th>Advertiser</th><th>Opening line</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="days">133</td><td>Double Wood</td><td>"Say goodbye to mediocre supplements…"</td></tr>
+          <tr><td class="days">124</td><td>ProHealth</td><td>"Most NAD supplements don't live up to the hype."</td></tr>
+          <tr><td class="days">122</td><td>ProHealth <span style="color:var(--ink-3)">×14</span></td><td>"For men who care about staying sharp and active past 40…"</td></tr>
+          <tr><td class="days">117</td><td>Felice Gersh MD <span style="color:var(--ink-3)">creator</span></td><td>"The importance of NAD for energy… for women in menopause"</td></tr>
+          <tr><td class="days">94</td><td>Jinfiniti</td><td>"The afternoon crash isn't normal. It's not 'just being a mom.'"</td></tr>
+          <tr><td class="days">86</td><td>Jinfiniti</td><td>"A 90-second quiz reveals which of your systems are aging fastest"</td></tr>
+          <tr><td class="days">83</td><td>NOVOS</td><td>"Your skincare routine stops at your skin's surface."</td></tr>
+          <tr><td class="days">70</td><td>Renue By Science</td><td>"130 bottles of wine = 1 clinical dose of resveratrol."</td></tr>
+          <tr><td class="days">58</td><td>Clark Reilly <span style="color:var(--ink-3)">×19</span></td><td>"I honestly can't believe how fast this worked."</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-head">
+      <p class="eyebrow">Section 01 · Baseline</p>
+      <h2>The structural fingerprint</h2>
+    </div>
+    <p class="lede">Measured across all 203 unique copies. This is the category's house style —
+      the shape of an ad that gets approved and funded here.</p>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Feature</th><th class="num">Of copies</th><th class="num">Of live ads</th></tr></thead>
+        <tbody>
+          <tr><td>Second person — "you / your"<span class="bar" style="width:73%"></span></td><td class="num">72.9%</td><td class="num">78.2%</td></tr>
+          <tr><td>Names the molecule (NAD+)<span class="bar" style="width:45%"></span></td><td class="num">44.8%</td><td class="num">41.4%</td></tr>
+          <tr><td>Hard number or percentage<span class="bar" style="width:24%"></span></td><td class="num">24.1%</td><td class="num">25.5%</td></tr>
+          <tr><td>Question in the hook line<span class="bar" style="width:22%"></span></td><td class="num">21.7%</td><td class="num">25.8%</td></tr>
+          <tr><td>Offer or promo code<span class="bar" style="width:18%"></span></td><td class="num">18.2%</td><td class="num">16.7%</td></tr>
+          <tr><td>Emoji checkmark stack<span class="bar" style="width:18%"></span></td><td class="num">17.7%</td><td class="num">26.1%</td></tr>
+          <tr><td>Proof credential (clinical, COA, NSF)<span class="bar" style="width:16%"></span></td><td class="num">16.3%</td><td class="num">15.3%</td></tr>
+          <tr><td>"Declines with age" mechanism<span class="bar" style="width:13%"></span></td><td class="num">13.3%</td><td class="num">17.2%</td></tr>
+          <tr><td>Explicit CTA line in body<span class="bar" style="width:11%"></span></td><td class="num">10.8%</td><td class="num">12.4%</td></tr>
+          <tr><td>Borrowed authority (TIME, Vogue, MD)<span class="bar" style="width:8%"></span></td><td class="num">8.4%</td><td class="num">8.9%</td></tr>
+          <tr><td>First-person testimonial voice<span class="bar" style="width:8%"></span></td><td class="num">7.9%</td><td class="num">9.7%</td></tr>
+          <tr><td>Competitor takedown<span class="bar" style="width:3%"></span></td><td class="num">2.5%</td><td class="num">2.7%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Five mechanics every long-runner shares</h3>
+    <ul>
+      <li><strong>Line one is a standalone sentence, then a blank line.</strong> Meta truncates at
+        roughly 125 characters behind "See more." Every 60-day ad puts the whole idea before the cut.</li>
+      <li><strong>One idea per ad.</strong> Not one ad covering five benefits — five ads covering
+        one benefit each.</li>
+      <li><strong>Emoji are functional, never decorative.</strong> <span style="color:var(--good)">✅</span> benefit,
+        <span style="color:var(--bad)">❌</span> competitor fault, ⚡⏳🧠 visual bullets, 👉 the CTA line.
+        Never mid-sentence.</li>
+      <li><strong>Compliance verbs throughout.</strong> "Supports", "helps support", "designed to",
+        "studied for." Never cures or treats. NOVOS goes further and discloses
+        "AI-generated performer — not a real person" plus "individual results will vary."</li>
+      <li><strong>Volume is the strategy.</strong> Renue runs ~90 distinct copies across six SKUs.
+        Omre runs four hooks across 40+ permutations. They're testing hooks, not polishing one.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sect-head">
+      <p class="eyebrow">Section 02 · The frameworks</p>
+      <h2>Ten structures, ranked by money behind them</h2>
+    </div>
+    <p class="lede">Each one shows the skeleton, then the live ad it was extracted from.
+      The numbering is a ranking, not a sequence — 01 is the structure this category
+      bets hardest on.</p>
+
+    <!-- 1 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">01</span>
+        <h3>The Mechanism Ladder <span class="star">workhorse</span></h3></div>
+      <p class="who"><b>RUN BY</b> Jinfiniti · Omre · Wonderfeel · Elysium · Renue · NOVOS</p>
+      <p>The customer knows the symptom but not the cause. You sell them the cause — and the
+        product becomes the only logical response to it.</p>
+      <div class="skeleton">
+<span class="k">1 SYMPTOM</span>    Name 2–3 physical, daily symptoms in their own words<br>
+<span class="k">2 ABSOLVE</span>    Tell them it isn't their fault, isn't discipline<br>
+<span class="k">3 MECHANISM</span>  Reveal the hidden cause — name the molecule<br>
+<span class="k">4 STAKES</span>     "When it drops, nothing else you do matters"<br>
+<span class="k">5 RESOLVE</span>    Product addresses it at the source<br>
+<span class="k">6 CTA</span>        Soft next step
+      </div>
+      <div class="spec">
+        <div class="spec-meta"><span class="brand">Jinfiniti</span><span>Image</span><span class="run">33 days live</span><span>4 variants</span></div>
+        <div class="spec-body">
+          <p>You've done everything the health experts told you to do. And you still hit a wall
+            every afternoon that three cups of coffee can't fix.</p>
+          <p>You still wake up tired after a full night of sleep.</p>
+          <p>Your brain feels like it's wading through fog before noon.</p>
+          <p>Here's what nobody talks about: as we get older, our cells stop producing the energy
+            they used to. <mark>Not because you're doing something wrong.</mark> Because there's a
+            cellular fuel called NAD+ that depletes naturally with age.</p>
+          <p>When it drops, it doesn't matter how disciplined you are. Your body just can't keep up.</p>
+          <p>The people who fix this don't work harder. They find out what's actually causing it.</p>
+          <p>Click the link to see how easy it is to measure your NAD+ levels and get back your energy.</p>
+        </div>
+      </div>
+      <div class="note">
+        <p>Omre compresses the identical six steps into 40 words and runs it across
+          <strong>16 creatives</strong>: <em>"Feeling slower, foggier, and more tired as you age?
+          That's declining NAD+ at work… ✅ Boosts energy ✅ Sharpens focus ✅ Support healthy
+          aging. Thousands of customers say it changed their life. Will you be next?"</em></p>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">02</span>
+        <h3>The Absolution Hook <span class="star">94-day champion</span></h3></div>
+      <p class="who"><b>RUN BY</b> Jinfiniti — longest-running non-creator ad in the set</p>
+      <p>A sub-move of the ladder, powerful enough to stand alone. You name the excuse the reader
+        has been telling themselves, then reject it on their behalf.</p>
+      <div class="skeleton">
+<span class="k">[SYMPTOM]</span> isn't <span class="k">[the normal explanation]</span>.<br>
+It's not "<span class="k">[the excuse they tell themselves]</span>."<br>
+It's not "<span class="k">[the second excuse]</span>."<br>
+It's <span class="k">[your mechanism]</span>.
+      </div>
+      <div class="spec">
+        <div class="spec-meta"><span class="brand">Jinfiniti</span><span>Image</span><span class="run">94 days live</span></div>
+        <div class="spec-body">
+          <p><mark>The afternoon crash isn't normal. It's not "just being a mom." It's not "just
+            getting older." It's your cells running on empty.</mark></p>
+          <p>A free 2-minute quiz from Jinfiniti Labs shows you exactly what's draining your energy
+            and what to do about it 👉</p>
+        </div>
+      </div>
+      <p>Note the quotation marks. They're quoting the reader's own inner voice back at them —
+        pattern interrupt plus permission, in two sentences. The 62-day sibling runs the same move:
+        <em>"Brain fog. Bad sleep. No energy. Joints that complain. You're not lazy. You're not
+        'just stressed.'"</em></p>
+    </article>
+
+    <!-- 3 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">03</span>
+        <h3>The Category Callout</h3></div>
+      <p class="who"><b>RUN BY</b> ProHealth (124d) · Renue · Tru Niagen · NOVOS</p>
+      <p>Don't argue that you're good. Argue that the <em>category</em> is bad, then prove you're
+        the exception. The buyer already suspects it — you're agreeing with them.</p>
+      <div class="skeleton">
+<span class="k">1 ATTACK</span>   "Most [category] doesn't live up to the hype"<br>
+<span class="k">2 ❌ STACK</span>  3–4 specific, checkable failures<br>
+<span class="k">3 ✅ STACK</span>  Your mirror-image proof, same order<br>
+<span class="k">4 STAKES</span>   "If you take this seriously, it should matter"<br>
+<span class="k">5 RISK OFF</span> Guarantee that kills the last objection
+      </div>
+      <div class="spec">
+        <div class="spec-meta"><span class="brand">ProHealth Longevity</span><span>Video</span><span class="run">124 days live</span></div>
+        <div class="spec-body">
+          <p>Most NAD supplements don't live up to the hype—and they're often built on zero real science.</p>
+          <p><span class="cross">❌</span> Fake purity certificates<br>
+             <span class="cross">❌</span> Cheap fillers that dilute potency<br>
+             <span class="cross">❌</span> Ingredients that don't match the label<br>
+             <span class="cross">❌</span> Only support NAD in one way</p>
+          <p>At ProHealth Longevity, we do things differently:</p>
+          <p><span class="tick">✅</span> Real-time purity reports you can read yourself<br>
+             <span class="tick">✅</span> No fillers—just research-backed ingredients<br>
+             <span class="tick">✅</span> Formulated by top-tier longevity scientists and doctors<br>
+             <span class="tick">✅</span> Boosts NAD in three distinct ways for maximum impact</p>
+          <p>If you take your health seriously, this should matter.</p>
+          <p><mark>Try NAD Triple Boost Ultra™ risk-free for 100 days. Not satisfied? Return it—even
+            if the bottle's empty—for a full refund.</mark></p>
+        </div>
+      </div>
+      <p>The ❌ items are <strong>specific and verifiable</strong> — fake certificates, filler,
+        label mismatch — not vague quality complaints. That specificity is what makes the ✅ column
+        credible. And the empty-bottle guarantee is the strongest risk reversal in the entire
+        dataset; it ran 124 days and <em>nobody else copied it.</em></p>
+    </article>
+
+    <!-- 4 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">04</span>
+        <h3>The Proof Stack</h3></div>
+      <p class="who"><b>RUN BY</b> Tru Niagen (their entire strategy) · Elysium · NOVOS</p>
+      <p>For the expensive, research-minded, skeptical buyer. One line of thesis, a wall of
+        verifiable credentials, then the offer.</p>
+      <div class="skeleton">
+<span class="k">1 THESIS</span>  "You've heard of us — here's why it's worth it"<br>
+<span class="k">2 CLAIM</span>   The hard number, up front<br>
+<span class="k">3 ✅ STACK</span> Award / clinical claim / certification / eligibility<br>
+<span class="k">4 QUOTE</span>   A named authority who bought it themselves<br>
+<span class="k">5 OFFER</span>   Subscription discount
+      </div>
+      <div class="spec">
+        <div class="spec-meta"><span class="brand">Tru Niagen</span><span>Video</span><span class="run">25 days live</span></div>
+        <div class="spec-body">
+          <p>Most NAD+ supplements make big claims. Tru Niagen backs them.</p>
+          <p>Clinically proven to raise NAD+ levels by up to 150%, supported by 45+ peer-reviewed
+            human studies, NSF Certified for Sport, and backed by a Nobel Prize-winning biochemist.</p>
+          <p><mark>"I do take Tru Niagen — they don't pay me, I buy it."</mark> — Andrew Huberman,
+            Huberman Lab podcast. Dr. Rhonda Patrick takes it too.</p>
+          <p>🏆 Healthy Aging Ingredient of the Year '24<br>
+             ✔️ Clinically proven to increase NAD+ by up to 150%<br>
+             ✔️ Backed by 45+ human clinical studies &amp; 25+ years of science<br>
+             💊 HSA/FSA eligible<br>
+             🔁 Subscribe for the best discount + free shipping</p>
+        </div>
+      </div>
+      <p><strong>The best line in the whole dataset:</strong> <em>"they don't pay me, I buy it."</em>
+        An endorsement that pre-empts the exact objection it triggers. A real one of those is worth
+        more than everything else in the ad.</p>
+    </article>
+
+    <!-- 5 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">05</span>
+        <h3>Borrowed Authority</h3></div>
+      <p class="who"><b>RUN BY</b> Wonderfeel (this <em>is</em> their paid strategy) · Elysium · Tru Niagen</p>
+      <p>You never claim to be the best. You quote someone else saying it, verbatim, with the
+        handle — then thank them. The gratitude framing makes the brag socially acceptable.</p>
+      <div class="skeleton">
+<span class="k">1 VERDICT</span>  "[Publication] named us [superlative]"<br>
+<span class="k">2 QUOTE</span>    Verbatim pull-quote, in quotation marks<br>
+<span class="k">3 EXPERT</span>   A named MD or PhD attached to the verdict<br>
+<span class="k">4 THANKS</span>   "Thank you @publication"<br>
+<span class="k">5 TAGS</span>     Category hashtags
+      </div>
+      <div class="spec">
+        <div class="spec-meta"><span class="brand">Wonderfeel</span><span>DCO</span><span class="run">14 days live</span></div>
+        <div class="spec-body">
+          <p>"The best of the best according to longevity experts," says @Vogue about Wonderfeel
+            Youngr™ and calls it "the best NMN-based NAD supplement."</p>
+          <p>"The brand has an impressive list of medical advisors and scientific experts on board,"
+            says Amanda Kahn MD, a medical expert consulted by Vogue for this article.</p>
+          <p>Thank you, @Vogue and @amandakahnmd for the kind words.</p>
+        </div>
+      </div>
+      <p>Wonderfeel ran this exact shape for Vogue, New York Post, Entrepreneur, mindbodygreen, an
+        Innocos award, and the Inc. 5000. <strong>One PR win becomes a quarter of ad creative.</strong></p>
+      <div class="note">
+        <p><strong>The creator channel is the other half.</strong> The single longest-running ad in
+          the entire dataset — <strong>117 days</strong> — is a whitelisted MD creator post for
+          Wonderfeel: a menopause-and-NAD explainer that teaches the mechanism, names the product as
+          "my favorite," and discloses the sponsorship. Dr. Caroline Leaf (27d), Doctor Motley (27d),
+          and Biohack-it (26d) run the identical pattern. Renue does the beauty-creator equivalent
+          at 20 days each.</p>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">06</span>
+        <h3>The Concrete Analogy <span class="star">least contested</span></h3></div>
+      <p class="who"><b>RUN BY</b> Renue By Science (their signature) · NOVOS</p>
+      <p>The category's hardest problem: nobody can <em>feel</em> a molecule. So every abstract
+        mechanism gets one vivid, checkable, slightly absurd image. This produced several of
+        Renue's longest runners.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>The line</th><th>What it makes visible</th></tr></thead>
+          <tbody>
+            <tr><td><strong>"130 bottles of wine = 1 clinical dose of resveratrol.</strong> Your liver would quit before your cells got benefits."</td><td>Dose adequacy</td></tr>
+            <tr><td>"Getting these from whole foods means <strong>5,000 strawberries, 20+ pounds of leafy greens</strong> — every single day. We'll pass."</td><td>Dose adequacy</td></tr>
+            <tr><td><strong>"Nobody insures a house after the fire."</strong></td><td>Why prevention, not treatment</td></tr>
+            <tr><td><strong>"You wouldn't choose between food and water.</strong> So why choose between NMN and NR?"</td><td>Why a combo formula</td></tr>
+            <tr><td>"It's easy to make things look legit on the surface, but when you cut into them — surprise, they might just be <strong>fake (or cake!)</strong>."</td><td>Purity testing</td></tr>
+            <tr><td><strong>"Your skin can't write a shopping list.</strong> But if it could, science would probably make the cut."</td><td>Ingredient selection</td></tr>
+            <tr><td>"Your skincare routine stops at your skin's surface… <strong>That's why you drink it.</strong>"</td><td>Oral vs topical</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>This turns a claim the reader has to <em>trust</em> into an argument they can <em>check</em>.
+        "130 bottles of wine" is arithmetic, not marketing. Highest-skill framework in the set, and
+        the one with the least competition.</p>
+    </article>
+
+    <!-- 7 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">07</span>
+        <h3>The Objection as Headline</h3></div>
+      <p class="who"><b>RUN BY</b> Renue By Science — roughly 10 variants of a single question</p>
+      <p>Take the question your buyers google most, make it the hook, then dissolve the choice so
+        your product is the only answer.</p>
+      <div class="skeleton">
+<span class="k">[The question they google]</span>?<br>
+A better question: <span class="k">[reframe that dissolves the choice]</span>.<br>
+<span class="k">[Why the either/or is false]</span>.<br>
+That's why <span class="k">[product]</span> includes all of it.
+      </div>
+      <div class="spec">
+        <div class="spec-meta"><span class="brand">Renue By Science</span><span>Video</span><span class="run">×10 variants</span></div>
+        <div class="spec-body">
+          <p>NMN or NR for boosting NAD+?</p>
+          <p><mark>A better question: Why choose between them?</mark></p>
+          <p>There are four biochemical pathways that can help your cells generate NAD+…
+            That's why we've included all of them in NAD+ Complete. Because we care about your
+            biology, not hyping one ingredient over another.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">08</span>
+        <h3>Segment-Targeted Opening</h3></div>
+      <p class="who"><b>RUN BY</b> ProHealth (122d, 14 variants — their biggest bet) · Omre · NOVOS · Wonderfeel</p>
+      <p>The first six words name a <em>person</em>, not a benefit. Same product, different door —
+        and critically, a different landing page behind each door.</p>
+      <ul>
+        <li>"<strong>For men who care about staying sharp and active past 40</strong>, ProHealth NMN isn't hype…" — 122 days</li>
+        <li>"<strong>For high performers</strong>, even small slips are hard to ignore." — Omre</li>
+        <li>"<strong>On GLP-1?</strong> By the time skin looks like it has changed…" — NOVOS</li>
+        <li>"<strong>Over 25?</strong> This is when things start to shift." — Wonderfeel</li>
+      </ul>
+      <p>Omre's execution is the one to steal: one product, four segment hooks, four matching
+        landing pages — <code>/first-order-energy</code>, <code>/mobility-and-independence</code>,
+        <code>/first-order-fitness</code>, <code>/7-reasons-you-start-losing-your-edge</code>.
+        The hook and the page tell the same story. That's how one SKU supports 80 live ads.</p>
+    </article>
+
+    <!-- 9 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">09</span>
+        <h3>Offer as News</h3></div>
+      <p class="who"><b>RUN BY</b> ProHealth (122–124d) · Double Wood (63–133d) · Tru Niagen · Renue</p>
+      <p>A discount without a reason reads as desperation. A discount <em>with a mechanism</em>
+        reads as news.</p>
+      <div class="spec">
+        <div class="spec-meta"><span class="brand">ProHealth Longevity</span><span>Image</span><span class="run">122 days live</span><span>14 variants</span></div>
+        <div class="spec-body">
+          <p>For men who care about staying sharp and active past 40, ProHealth NMN isn't hype —
+            it's a smarter way to support energy, recovery, and longevity at the source.</p>
+          <p><mark>The only thing that just changed? The price. We cut it by up to 25% — effective
+            immediately.</mark> If you've been waiting for the right time to start — this is it!</p>
+        </div>
+      </div>
+      <p>Two details worth stealing. <strong>"We renegotiated our supply agreement and passed the
+        savings directly to you"</strong> gives the discount a cause. And <strong>"Same formula.
+        New price."</strong> kills the did-they-cheapen-it objection in four words.</p>
+      <p>Their promo codes are named per angle, never generic — <code>AGELESS</code> for NMN,
+        <code>GLOWDEEPER</code> for serum, <code>BERB10</code> for berberine. The code carries the
+        positioning and lets you attribute revenue per angle.</p>
+    </article>
+
+    <!-- 10 -->
+    <article class="fw">
+      <div class="fw-head"><span class="fw-n">10</span>
+        <h3>The Qualification Funnel <span class="star">most transferable</span></h3></div>
+      <p class="who"><b>RUN BY</b> Medvi / Clark Reilly / Modern Men's Health (ED telehealth) · Jinfiniti</p>
+      <p>The most portable finding in this teardown: <strong>for cold traffic, the
+        highest-longevity ads don't ask for a purchase. They ask for a quiz.</strong> Three of the
+        top runners here — 94, 86 and 58 days — all end in one.</p>
+      <div class="spec">
+        <div class="spec-meta"><span class="brand">Clark Reilly</span><span>Video</span><span class="run">58 days live</span><span>19 variants</span></div>
+        <div class="spec-body">
+          <p>I honestly can't believe how fast this worked.<span class="annot">result first — no setup</span></p>
+          <p>One dose under my tongue and 10 minutes later I felt like I was 25 again.<span class="annot">specific time</span></p>
+          <p>The assessment took a few minutes and I was approved right away. No doctor visit, no
+            pharmacy, nothing.<span class="annot">the process is easy</span></p>
+          <p>Delivered straight to my door in a plain package.<span class="annot">removes the shame</span></p>
+          <p>My wife says it's like the first night we met 😏<span class="annot">third-party validation</span></p>
+          <p>👉 Tap below to take the assessment and see if you qualify.<span class="annot">soft CTA — qualification, not purchase</span></p>
+        </div>
+      </div>
+      <p>Every line does exactly one job, in the order a skeptical buyer needs them. And the CTA
+        converts the click into "am I eligible?" curiosity rather than "do I want to spend money?"
+        resistance. A quiz is also a lower-friction conversion event, feeds the algorithm more
+        signal, segments the lead before you sell, and hands you a personalised result to sell with.</p>
+    </article>
+  </section>
+
+  <section>
+    <div class="sect-head">
+      <p class="eyebrow">Section 03 · Opportunity</p>
+      <h2>Where the whole category is weak</h2>
+    </div>
+    <p class="lede">Unoccupied positions. Each of these is nearly free differentiation, because
+      almost nobody in 203 ad copies is doing it.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Gap</th><th>The evidence</th><th>The opening</th></tr></thead>
+        <tbody>
+          <tr><td><strong>First-person testimonial</strong></td><td>Only 7.9% of longevity copies use "I / my". The ED advertisers do — and theirs ran 58 days across 19 creatives.</td><td>Customer-voice copy is nearly vacant here. Renue outsources it entirely to creators.</td></tr>
+          <tr><td><strong>Time-to-result</strong></td><td>Almost nobody promises a window. The ED cluster says "10 minutes" and runs forever.</td><td>An honest "week 1 / week 4 / week 12" timeline is unclaimed.</td></tr>
+          <tr><td><strong>Risk reversal</strong></td><td>Exactly <em>one</em> guarantee in 203 copies — and it ran 124 days.</td><td>Ship a specific, generous guarantee.</td></tr>
+          <tr><td><strong>Cost anchoring</strong></td><td>Only Omre ("under $2 a day") and NOVOS ("5,000 strawberries").</td><td>Anchor against the alternative — a latte, a facial, an under-dosed competitor.</td></tr>
+          <tr><td><strong>Founder story</strong></td><td>Zero instances across all 22 advertisers.</td><td>The one thing competitors literally cannot copy.</td></tr>
+          <tr><td><strong>How to evaluate</strong></td><td>Everyone leads with the molecule's decline; nobody teaches buyers how to judge one.</td><td>"How to read a label" owns top-of-funnel and pre-frames you as the honest option.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-head">
+      <p class="eyebrow">Section 04 · Application</p>
+      <h2>Swipe templates for Prime Ingredients</h2>
+    </div>
+    <p class="lede">The frameworks above, converted into fill-in-the-blank forms with worked
+      examples for Multi Collagen Peptides. All written in compliance-safe language —
+      supports, helps support, designed to — matching the category norm.</p>
+
+    <div class="tpl">
+      <div class="tpl-head"><span class="id">T1</span><span class="nm">Mechanism Ladder</span></div>
+      <div class="tpl-form">
+<span class="k">[Specific daily symptom, in their words.]</span><br><br>
+<span class="k">[Second symptom.] [Third symptom.]</span><br><br>
+Here's what nobody tells you: <span class="k">[cause]</span>, and it starts <span class="k">[when]</span>.<br><br>
+Not because you're doing something wrong. Because <span class="k">[mechanism]</span>.<br><br>
+<span class="k">[Product]</span> supports <span class="k">[the mechanism]</span> at the source — <span class="k">[proof]</span>.<br><br>
+👉 <span class="k">[Soft CTA]</span>
+      </div>
+      <div class="tpl-ex">
+        <span class="lbl">Worked example</span>
+        <p>Your skin bounces back slower than it used to. Your knees announce the stairs. Your hair
+          doesn't hold like it did.</p>
+        <p>Here's what nobody tells you: your body's collagen production starts dropping in your
+          mid-20s, and by 40 you're making meaningfully less of it every year.</p>
+        <p>That's not a discipline problem. No amount of moisturiser reaches the layer where
+          collagen is actually built.</p>
+        <p>Prime Multi Collagen Peptides delivers types I, II, III, V &amp; X — the five your skin,
+          joints and hair actually use — with Vitamin C, the cofactor your body needs to put them
+          to work.</p>
+        <p>👉 One scoop. Take the 90-day test.</p>
+      </div>
+    </div>
+
+    <div class="tpl">
+      <div class="tpl-head"><span class="id">T2</span><span class="nm">Absolution Hook</span></div>
+      <div class="tpl-form">
+<span class="k">[The symptom]</span> isn't <span class="k">[normal]</span>.<br>
+It's not "<span class="k">[their excuse]</span>." It's not "<span class="k">[second excuse]</span>."<br>
+It's <span class="k">[your mechanism]</span>.<br><br>
+<span class="k">[One line on what to do]</span> 👉
+      </div>
+      <div class="tpl-ex">
+        <span class="lbl">Worked example</span>
+        <p>Stiff mornings aren't just "getting older." It's not "you slept wrong." It's not "you
+          need to stretch more." It's connective tissue that's lost the raw material to rebuild
+          itself.</p>
+        <p>Take the 60-second quiz to see which collagen types your routine is missing 👉</p>
+      </div>
+    </div>
+
+    <div class="tpl">
+      <div class="tpl-head"><span class="id">T3</span><span class="nm">Category Callout</span></div>
+      <div class="tpl-form">
+Most <span class="k">[category]</span> doesn't do what it claims. Here's why:<br><br>
+❌ <span class="k">[Specific, checkable failure ×4]</span><br><br>
+At <span class="k">[brand]</span>, we do it differently:<br><br>
+✅ <span class="k">[Mirror-image proof, same order ×4]</span><br><br>
+If you take <span class="k">[outcome]</span> seriously, this should matter.<br><br>
+<span class="k">[Guarantee]</span>
+      </div>
+      <div class="tpl-ex">
+        <span class="lbl">Worked example</span>
+        <p>Most collagen powders don't do what the label implies. Here's why:</p>
+        <p><span class="cross">❌</span> One collagen type, sold as "complete"<br>
+           <span class="cross">❌</span> Under-dosed scoops that look bigger than they are<br>
+           <span class="cross">❌</span> No Vitamin C — so your body can't actually use what you took<br>
+           <span class="cross">❌</span> No third-party test you're allowed to read</p>
+        <p>At Prime Ingredients, we do it differently:</p>
+        <p><span class="tick">✅</span> Five collagen types — I, II, III, V &amp; X<br>
+           <span class="tick">✅</span> Full serving per scoop, no proprietary-blend hiding<br>
+           <span class="tick">✅</span> Vitamin C, Biotin and Hyaluronic Acid included, not sold separately<br>
+           <span class="tick">✅</span> Third-party tested — Certificate of Analysis published every batch</p>
+        <p>If you take your skin and joints seriously, this should matter.</p>
+        <p>Try it for 90 days. Not satisfied? Send it back — even if the tub is empty.</p>
+      </div>
+    </div>
+
+    <div class="tpl">
+      <div class="tpl-head"><span class="id">T6</span><span class="nm">Concrete Analogy</span></div>
+      <div class="tpl-form">
+<span class="k">[Vivid, checkable comparison that makes the dose or mechanism real.]</span><br><br>
+<span class="k">[Therefore the product logic is obvious.]</span><br><br>
+<span class="k">[Product + one specific.]</span>
+      </div>
+      <div class="tpl-ex">
+        <span class="lbl">Three worked angles</span>
+        <p>"Matching one scoop of Multi Collagen from food alone means roughly [X] cups of bone
+          broth — simmered for 24 hours. Every day. We'll pass."</p>
+        <p>"Collagen cream is like watering a plant by wiping the leaves. The roots are three
+          layers down, and that's where collagen is actually built."</p>
+        <p>"Taking collagen without Vitamin C is like delivering bricks with no mortar. Your body
+          literally cannot assemble it. That's why ours ships with both."</p>
+      </div>
+    </div>
+
+    <div class="tpl">
+      <div class="tpl-head"><span class="id">T7</span><span class="nm">Objection as Headline</span></div>
+      <div class="tpl-ex">
+        <span class="lbl">Worked example</span>
+        <p>Marine or bovine collagen?</p>
+        <p>A better question: why are you choosing? They're different types serving different
+          tissues — marine leans type I for skin, bovine brings I and III, chicken brings II for
+          joints.</p>
+        <p>Prime Multi Collagen has all five types. One scoop. No trade-off.</p>
+      </div>
+    </div>
+
+    <div class="tpl">
+      <div class="tpl-head"><span class="id">T10</span><span class="nm">Qualification Funnel</span></div>
+      <div class="tpl-ex">
+        <span class="lbl">Worked example</span>
+        <p>Not every collagen is right for every body.</p>
+        <p>A 60-second quiz shows you which collagen types your skin, joints and hair actually need
+          — and what your current routine is missing. Free, no email wall until the end.</p>
+        <p>👉 Take the quiz</p>
+      </div>
+    </div>
+
+    <p style="color:var(--ink-3);font-size:.92rem">Templates T4 (Proof Stack), T5 (Borrowed
+      Authority), T8 (Segment Opening) and T9 (Offer as News) are in the repo README — they need
+      your live credentials, press mentions and offer terms to fill in.</p>
+  </section>
+
+  <section>
+    <div class="sect-head">
+      <p class="eyebrow">Section 05 · Next</p>
+      <h2>How to deploy this</h2>
+    </div>
+    <ol class="checklist">
+      <li><strong>Build the hook bank before the ad.</strong> Write 20 hooks — line one only —
+        across frameworks 01, 02, 03, 06 and 08. Kill on hook performance before writing bodies.</li>
+      <li><strong>One idea per ad.</strong> Five ads about one benefit each beats one ad about five.</li>
+      <li><strong>Front-load the first 125 characters.</strong> That's the "See more" cut.</li>
+      <li><strong>Match every hook to its own landing page.</strong> Segment-hook ads that dump into
+        a generic PDP leak. Omre runs 80 ads off one SKU because each door has its own room.</li>
+      <li><strong>Test the soft CTA against the hard one.</strong> Quiz CTAs hold three of the top
+        longevity spots here. Give it a dedicated cell.</li>
+      <li><strong>Ship the guarantee.</strong> One competitor in 203 copies has real risk reversal
+        and it ran 124 days. Cheapest differentiation available.</li>
+      <li><strong>Start the creator flywheel.</strong> The longest-running ad in this whole set is a
+        whitelisted MD post. Whitelisting a credible practitioner beats brand-voice ads on duration
+        by a wide margin.</li>
+      <li><strong>Keep the compliance verbs.</strong> Supports, helps support, designed to, studied
+        for. Add the FDA disclaimer to structure/function claims and "individual results will vary"
+        to anything testimonial-shaped.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>Source: 12 Facebook Ad Library exports, deduplicated on Ad ID → 562 unique ads,
+      203 distinct copy blocks, 22 advertisers.<br>
+      Days-live figures are as reported by the Ad Library at time of export and are used as a
+      proxy for spend, not a measure of it.<br>
+      Full copy corpus and the analysis script: <code>research/meta-ads-copy-patterns/</code></p>
+  </footer>
+
+</div>
