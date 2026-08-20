@@ -316,60 +316,93 @@ Five ready-to-post questions, ordered by how much each one blocks the SOP. **Pos
 
 ---
 
-### Post 2 — Testing cadence and campaign structure
 
-> **Title:** New testing campaign per batch, or one persistent campaign you rotate ad sets through?
->
-> We're producing ~25 new creatives every 3–5 days and I want to get the structure right before we scale the volume up.
->
-> 1. **New campaign per batch, or one persistent testing campaign with ad sets rotating in and out?** The playbook's naming convention (`CBO_Test_PainRelief_May24`) reads like one campaign per theme/month, which would mean persistent. But it never says so outright. My worry with a campaign per batch at this cadence is that we'd be permanently in learning and never accumulate campaign-level signal.
-> 2. **If persistent — what's your cap on active ad sets?** At 1 ad per ad set and a 25-creative batch, we hit ~25 ad sets immediately, and more if the previous batch is still running. Where does it stop being a test and start being fragmentation?
-> 3. **Does a 3–5 day batch cadence even work with a 5–7 day hands-off window?** They overlap by design. Batch 2 launches while batch 1 is still in its untouched period, splitting the CBO budget across two batches' worth of ad sets. Do you stagger, extend to a strict 7-day cycle, or run separate campaigns per batch specifically to avoid this?
-> 4. **Small one:** the playbook says "25+ creatives" in the body and "10–20" in its own checklist, and "5–7 days untouched" in the body vs. "72 hours minimum" in the checklist. Which is the live version?
+### Post 2 — Testing cadence & structure
 
----
-
-### Post 3 — Consolidating a bloated account (real numbers)
-
-> **Title:** 100+ ad sets across testing and scaling — how would you consolidate this?
+> **Should I make a new testing campaign every time, or keep one and swap the ads?**
 >
-> Account is badly fragmented and I want a second opinion before my buyer starts cutting. Current state:
+> We make about 25 new ads every 3–5 days. Before we scale the volume up, I want to get the setup right.
 >
-> - **Testing CBO — $350/day:** 1 campaign, **56 ad sets, 226 ads** (3 creatives per ad set), new ad sets launched on a rolling basis, plus a dedicated "winner mix" ad set holding 5–10 historical top performers.
-> - **Scaling CBO — $120–200/day:** 1 campaign, **56 ad sets with 1 ad each**, plus one flexible ad set with 20+ winning assets.
-> - Budget is spread so thin nothing stabilises, and our **testing spend is higher than our scaling spend**.
+> **1. One campaign or many?**
+> Every time we have a new batch of 25 ads, should we build a brand new testing campaign? Or keep one testing campaign running permanently and just add new ad sets and switch off the old ones? My worry with building a new campaign every few days is that it's always stuck in learning and never builds up any history.
 >
-> Where I've landed reading the playbook, and where I'd like a sanity check:
+> **2. How many ad sets is too many?**
+> We run 1 ad per ad set. So one batch of 25 ads means 25 ad sets straight away. If the previous batch is still running, that's 50. At what number does this stop being a test and just become budget spread too thin?
 >
-> 1. **Kill the "winner mix" ad set inside the testing campaign.** My reasoning: in a CBO, a proven winner will always beat a cold test creative on day one, so that ad set is absorbing the budget that's supposed to be *discovering* the next winner. Agree? And if you do want a performance baseline in your testing campaign, **how do you get one without the control eating the budget?**
-> 2. **1 ad per ad set, not 3.** With 3 ads per ad set Meta picks a winner inside the ad set and starves the other two, so we're paying for 226 ads and getting ~56 clean reads. Is that right, or is 2–3 per ad set fine in practice?
-> 3. **Flexible Ads for scaling — yes or no?** The playbook doesn't mention them at all. Is stacking 20+ winning assets into one Flexible Ad actually effective, or better to consolidate into a few standard CBO ad sets at 2–3 creatives each? Two things I can't figure out with the flexible approach: how do you preserve **post-ID social proof**, and how do you read **share of spend per asset** to catch one asset hogging delivery?
-> 4. **What testing : scaling : retargeting split** should we be running? The playbook only specifies retargeting at 10–15% of account spend. I'm assuming scaling should be the biggest line by a wide margin and ours is inverted — but what ratio do you actually run?
+> **3. Our batches overlap.**
+> We launch every 3–5 days, but the playbook says leave ads alone for 5–7 days. So batch 2 goes live while batch 1 is still in its don't-touch window, and now the same budget is split across two batches. How do you handle that? Slow down to a strict 7-day cycle? Or give each batch its own campaign?
+>
+> **4. Quick one.**
+> The playbook says "25+ creatives" in one place and "10–20" in another. It also says "leave it 5–7 days" in one place and "72 hours minimum" in another. Which numbers do you actually use?
 
 ---
 
-### Post 4 — Vertical and horizontal scaling triggers
+### Post 3 — Consolidating the account
 
-> **Title:** What's your actual budget-increase rule on a winning campaign?
+> **My account has over 100 ad sets. How would you clean it up?**
 >
-> The playbook gives a clean **graduation** rule — start Push at 2–3× what the creative spent in Prove — but nothing about what happens after that. Trying to nail down the two scaling levers:
+> Our budget is spread so thin that nothing gets going. Here's what we have:
 >
-> 1. **Vertical:** what's your rule for raising budget on a winner? Something like +20% every 48h while CPA holds, or do you move in bigger jumps? What's the gate you check before each increase — CPA within X% of target, frequency under a threshold, a minimum conversion count in the window?
-> 2. **Horizontal:** what makes you **duplicate a winner into a fresh campaign or high-budget CBO** instead of just raising the budget where it already is? Is there a spend level where vertical stops working and duplication is the only option?
-> 3. My read of the playbook is that its version of "horizontal" isn't new audiences at all — it's **more creative variants and more campaign types** (manual CBO → ASC → retargeting), with broad staying broad the whole way. Audience segmentation only shows up in Prove and in retargeting. Is that how you run it, or are you still building cold audience duplicates to scale?
-> 4. **Advantage+ Audience and Advantage+ Placements** — the playbook says "broad 18–65+, no interests, automatic placements," which was written before Meta made a lot of this the default. Are you still setting anything manually here, or letting it all run on defaults?
+> **Testing campaign — $350/day**
+> 1 campaign, 56 ad sets, 226 ads. 3 ads in each ad set. We add new ad sets as we go. Plus one extra ad set holding 5–10 of our best-ever ads.
+>
+> **Scaling campaign — $120–200/day**
+> 1 campaign, 56 ad sets with 1 ad in each. Plus one flexible ad set with 20+ winning assets.
+>
+> **The main problem:** we spend more on testing than on scaling. That feels backwards.
+>
+> Here's what I think we should do. Tell me if I've got it wrong:
+>
+> **1. Delete the "best-ever ads" ad set out of the testing campaign.**
+> My thinking: in a CBO, Meta gives the budget to whatever performs best. A proven winner will always beat a brand new untested ad on day one. So that ad set is eating the money that's meant to be finding our *next* winner. Do you agree? And if you do want a benchmark inside your testing campaign, how do you stop it swallowing the budget?
+>
+> **2. Should it be 1 ad per ad set instead of 3?**
+> With 3 ads in one ad set, Meta picks a favourite and barely spends on the other two. So we're paying for 226 ads but only really learning from about 56. Is that right, or is 2–3 per ad set fine in practice?
+>
+> **3. Flexible Ads — good or bad for scaling?**
+> Is putting 20+ winning assets into one Flexible Ad actually effective? Or should we go back to a few normal ad sets with 2–3 ads each? Two things I can't work out with Flexible Ads: how do you keep the likes and comments from the original post, and how do you see which asset is actually getting the spend?
+>
+> **4. What budget split should we run?**
+> How much should go to testing vs scaling vs retargeting? Ours is clearly upside down and I'd like a number to aim at.
 
 ---
 
-### Post 5 — Do these benchmarks survive Q4?
+### Post 4 — Scaling triggers
 
-> **Title:** Do standard creative-testing benchmarks still hold through BFCM?
+> **When do you raise the budget on a winner, and when do you duplicate it instead?**
 >
-> Consolidating our account ahead of Q4 and I've realised every benchmark I'm working from was written for normal trading conditions. The playbook has no Q4 guidance at all. For those who've traded a few peaks:
+> The playbook tells me how to *start* scaling — launch at 2–3× what the ad spent during testing. But it says nothing about what happens after that. Two things I'm stuck on:
 >
-> 1. **Which benchmarks move?** Does the CTR ≥ 1.5% bar shift when CPMs inflate? Do hook rate 30% / hold rate 20% still apply, or do you loosen them because traffic quality changes?
-> 2. **Does the frequency > 2.2 remix trigger still hold?** My instinct is you tolerate higher frequency in a promo window because the offer carries it and the window is short — but I'd rather not guess with peak budget.
-> 3. **When do you start ramping, and how fast?** Are you scaling up ahead of peak to get campaigns through learning before CPMs spike, or holding and going hard on the day?
-> 4. **Does the testing:scaling split shift going into peak** — do you cut testing back and pile everything into proven winners, or keep testing running because creative fatigue accelerates under high frequency?
+> **1. Raising the budget.**
+> What's your rule? Something like +20% every 2 days as long as CPA stays good? Or bigger jumps? And what do you check before each increase — CPA, frequency, number of sales?
 >
-> Happy to report back with what we see if it's useful to anyone.
+> **2. Duplicating.**
+> When do you copy a winner into a new campaign instead of just raising the budget on the one you already have? Is there a spend level where raising the budget stops working?
+>
+> **3. Does "scaling out" mean new audiences at all?**
+> My reading of the playbook is that it doesn't. It means more creative variants and more campaign types — manual CBO, then ASC, then retargeting — while the targeting stays broad the whole way. Is that how you do it, or are you still building new cold audiences to scale?
+>
+> **4. Advantage+ Audience and Advantage+ Placements.**
+> The playbook says "broad, 18–65+, no interests, automatic placements." That was written before Meta turned most of this on by default. Are you still setting anything by hand, or just leaving it on defaults?
+
+---
+
+### Post 5 — Q4
+
+> **Do the normal benchmarks still work during Black Friday?**
+>
+> We're cleaning up our account before Q4, and I've realised every number I'm working from was written for a normal trading month. For anyone who's traded a few Q4s:
+>
+> **1. Which numbers change?**
+> CPMs go up in Q4. Does the 1.5% CTR target still hold? Do hook rate 30% and hold rate 20% still apply, or do you accept lower?
+>
+> **2. Frequency.**
+> Normally we swap in a fresh version once frequency goes past 2.2. Do you still do that in Q4? My gut says you can let it run higher during a promo because the offer carries it and the window is short — but I don't want to guess with peak budget on the line.
+>
+> **3. When do you start scaling up?**
+> Do you ramp before the peak so campaigns are out of learning by the time CPMs spike? Or hold, then go big on the day?
+>
+> **4. Do you still test during Q4?**
+> Or do you cut testing right back and put everything into proven winners? Ads seem to burn out faster when frequency is high, so I can see it going either way.
+>
+> Happy to report back with what we find.
