@@ -341,28 +341,43 @@ Five ready-to-post questions, ordered by how much each one blocks the SOP. **Pos
 
 > **My account has over 100 ad sets. How would you clean it up?**
 >
-> Our budget is spread so thin that nothing gets going. Here's what we have:
+> Our budget is spread so thin that nothing gets going. I want to rebuild the whole thing around a much simpler structure before Q4, and I'd like a sanity check before we start cutting.
 >
-> **Testing campaign — $350/day**
-> 1 campaign, 56 ad sets, 226 ads. 3 ads in each ad set. We add new ad sets as we go. Plus one extra ad set holding 5–10 of our best-ever ads.
+> **What we have now**
 >
-> **Scaling campaign — $120–200/day**
-> 1 campaign, 56 ad sets with 1 ad in each. Plus one flexible ad set with 20+ winning assets.
+> Testing campaign — $350/day. One CBO campaign, 56 ad sets, 226 ads, 3 ads in each ad set. We keep adding new ad sets as we go. Plus one extra ad set holding 5–10 of our best-ever ads.
 >
-> **The main problem:** we spend more on testing than on scaling. That feels backwards.
+> Scaling campaign — $120–200/day. One CBO campaign, 56 ad sets with 1 ad in each. Plus one flexible ad set with 20+ winning assets.
 >
-> Here's what I think we should do. Tell me if I've got it wrong:
+> On top of that, we spend more on testing than we do on scaling, which feels backwards.
 >
-> **1. Delete the "best-ever ads" ad set out of the testing campaign.**
-> My thinking: in a CBO, Meta gives the budget to whatever performs best. A proven winner will always beat a brand new untested ad on day one. So that ad set is eating the money that's meant to be finding our *next* winner. Do you agree? And if you do want a benchmark inside your testing campaign, how do you stop it swallowing the budget?
+> **What we want to move to**
 >
-> **2. Should it be 1 ad per ad set instead of 3?**
-> With 3 ads in one ad set, Meta picks a favourite and barely spends on the other two. So we're paying for 226 ads but only really learning from about 56. Is that right, or is 2–3 per ad set fine in practice?
+> One testing CBO campaign with just two ad sets in it:
 >
-> **3. Flexible Ads — good or bad for scaling?**
-> Is putting 20+ winning assets into one Flexible Ad actually effective? Or should we go back to a few normal ad sets with 2–3 ads each? Two things I can't work out with Flexible Ads: how do you keep the likes and comments from the original post, and how do you see which asset is actually getting the spend?
+> - **Punch ad set** — all 25 new ads go in here on broad targeting. Let Meta pick its favourites.
+> - **Prove ad set** — we duplicate the winners out of Punch into this ad set and force a minimum spend of 25% of the total campaign budget into it, so they get a proper run instead of fighting for scraps. This ad set uses warmer MOF/BOF audiences rather than broad, so we get a better read on who's actually buying.
 >
-> **4. What budget split should we run?**
+> Anything that hits our metrics in Prove gets promoted into the Push (scaling) campaign.
+>
+> **My questions**
+>
+> **1. Does 25 ads in one ad set actually work?**
+> My worry is that Meta picks 3 or 4 favourites in the first day and the other 20 barely get any impressions, so they never really get tested. Is that a real problem, or does it even out over 5–7 days? If it is a problem, do you cap the number of ads per ad set, or just raise the budget?
+>
+> **2. Is 25% the right forced minimum spend for the Prove ad set?**
+> Too low and the winners don't get enough spend to prove anything. Too high and we starve the Punch ad set that's supposed to be finding the next batch. What number do you actually use?
+>
+> **3. Should Prove use MOF/BOF audiences, or stay broad?**
+> Our thinking is that warmer audiences tell us more about who's buying. But I'm worried the numbers will look great on a warm audience and then fall apart when we scale the same ad broad in Push. Does a warm-audience test actually predict cold performance, or are we setting ourselves up for a nasty surprise at the scaling stage?
+>
+> **4. What do we do with the old "best-ever ads" ad set?**
+> It's currently sitting in the testing campaign holding historical winners. Is that basically the same thing as a Prove ad set, or is it a different animal? My instinct is that old winners belong in the scaling campaign, not the testing one, and leaving them in testing means they eat budget that should be finding new winners. Second opinion welcome.
+>
+> **5. Flexible Ads for scaling — good or bad?**
+> Is putting 20+ winning assets into one Flexible Ad actually effective, or should we go back to a few normal ad sets with 2–3 ads each? Two things I can't work out with Flexible Ads: how do you keep the likes and comments from the original post, and how do you see which asset is actually getting the spend?
+>
+> **6. What budget split should we run?**
 > How much should go to testing vs scaling vs retargeting? Ours is clearly upside down and I'd like a number to aim at.
 
 ---
