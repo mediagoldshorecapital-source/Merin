@@ -294,33 +294,82 @@ Because it: keeps all social proof attached, prevents Meta from restarting perfo
 
 ---
 
-## Open Questions for the Skool community
+## Skool posts — the questions the Playbook doesn't answer
 
-Not answerable from the playbook. Ordered by how much they block the SOP.
+Five ready-to-post questions, ordered by how much each one blocks the SOP. **Post them one at a time, a few days apart** — dumping all of these into a single thread reliably gets zero useful replies. Post 1 is the one that actually unblocks the SOP; if you only post one, post that.
 
-**Kill / evaluation rules**
-1. **What is the maximum spend an ad should reach before a kill decision** — 1× target CPA, 2× target CPA, or a fixed dollar figure? The playbook kills on time and signal only and gives no spend ceiling at all. This is the single biggest hole in turning it into an SOP.
-2. **What minimum conversion volume** confirms a winner or loser statistically? The doc says "consistent conversions" without a number. Is there a per-ad purchase floor before a Prove → Push decision?
-3. **How is the 72-hour vs. 5–7 day contradiction resolved?** Checklist says 72h minimum; body says 5–7 days untouched.
-4. **Is the target 10–20 creatives per Punch round, or 25+?** The doc says both.
-5. **If an ad clears Hook/Hold/CTR but produces zero purchases through a full Prove cycle, is there a defined salvage protocol** (which variant type to try first, how many attempts) before the angle is abandoned?
+---
 
-**Structure & cadence**
-6. **Persistent testing campaign vs. campaign per batch** — and at what point should a testing campaign be retired and rebuilt? Any rule for a **maximum number of active ad sets** in a Punch CBO?
-7. **Is a 3–5 day batch cadence compatible with a 5–7 day hands-off window?** They overlap — is batch N+1 supposed to launch while batch N is still in its untouched period, and does that break the CBO read?
-8. **What is the correct budget split** across Punch / Prove / Push? Only the retargeting figure (10–15% of account spend) is documented.
-9. **Should a benchmark/control creative live in the testing campaign at all** — and if so, how do you stop a proven winner from absorbing the CBO's budget away from cold tests?
+### Post 1 — Kill thresholds: what's the actual spend and conversion floor?
 
-**Prove mechanics**
-10. **What minimum spend should be forced per Prove ad set?** The doc says to "force minimal spend" via ABO but gives no percentage or dollar amount. Is 25% of daily budget / $25/day right?
-11. **Is the Prove → Push ROAS bar really breakeven, or should it be higher** (e.g. 2.0–2.5×) for a store with healthy margins?
+> **Title:** What spend / conversion floor do you use before killing a test ad?
+>
+> Working through the Creative Testing Playbook and building it into a written SOP for my media buyer. The framework itself is clear, but the kill rules are all time-and-signal based — 5–7 days in Punch, pause anything under 0.75% CTR — and I can't find a **spend** threshold or a **conversion count** anywhere in it.
+>
+> That's fine for the obvious losers, but it leaves the messy middle undefined. Concretely:
+>
+> 1. **What's the max spend a single test ad should reach before you make the kill/keep call?** 1× target CPA? 1.5×? 2×? A flat dollar number? Right now my buyer has no ceiling, so borderline ads just keep drinking budget until someone notices.
+> 2. **What's your minimum purchase count** before you'll call something a genuine winner or a genuine loser? The playbook says "consistent conversions" but never puts a number on it. Is 3 enough? 5? 10?
+> 3. **How do you handle the ad that clears every front-end metric but never converts?** Hook rate 35%+, hold rate above 20%, CTR fine — and after 1–2 weeks, zero purchases. My read of the playbook is that the hook is validated and the close is broken, so you keep the angle and rebuild the middle/CTA rather than killing it outright. Is that how you'd play it, or is that just me being sentimental about a creative that isn't working? And how many rebuild attempts before you drop the angle entirely?
+>
+> Real numbers from your own account would help more than theory here.
 
-**Scaling**
-12. **Is there a vertical scaling rule** — what % increase, at what interval, gated on what? (e.g. +20% every 48h while CPA holds.) The playbook only defines the one-time 2–3× step-up at graduation.
-13. **When should a winner be duplicated into a fresh campaign/audience rather than having its budget raised?** No explicit trigger in the doc.
-14. **Are Flexible Ads recommended for scaling?** The playbook predates or omits them entirely. Specifically: does stacking 15–20+ winning assets into one Flexible Ad beat 2–3 creatives in a standard CBO ad set — and how do you preserve post-ID social proof and read per-asset share-of-spend inside one?
-15. **How does Advantage+ Audience / Advantage+ Placements interact** with the "broad, 18–65+, no interests" instruction now that Meta has largely made these defaults?
+---
 
-**Q4-specific**
-16. **Do these benchmarks hold through BFCM/Q4?** With CPMs inflating, is the frequency > 2.2 remix trigger still right, does the CTR ≥ 1.5% bar move, and should the testing:scaling split shift going into peak?
-17. **What is the correct budget ramp schedule into Q4** — when to start scaling ahead of peak, and how aggressively?
+### Post 2 — Testing cadence and campaign structure
+
+> **Title:** New testing campaign per batch, or one persistent campaign you rotate ad sets through?
+>
+> We're producing ~25 new creatives every 3–5 days and I want to get the structure right before we scale the volume up.
+>
+> 1. **New campaign per batch, or one persistent testing campaign with ad sets rotating in and out?** The playbook's naming convention (`CBO_Test_PainRelief_May24`) reads like one campaign per theme/month, which would mean persistent. But it never says so outright. My worry with a campaign per batch at this cadence is that we'd be permanently in learning and never accumulate campaign-level signal.
+> 2. **If persistent — what's your cap on active ad sets?** At 1 ad per ad set and a 25-creative batch, we hit ~25 ad sets immediately, and more if the previous batch is still running. Where does it stop being a test and start being fragmentation?
+> 3. **Does a 3–5 day batch cadence even work with a 5–7 day hands-off window?** They overlap by design. Batch 2 launches while batch 1 is still in its untouched period, splitting the CBO budget across two batches' worth of ad sets. Do you stagger, extend to a strict 7-day cycle, or run separate campaigns per batch specifically to avoid this?
+> 4. **Small one:** the playbook says "25+ creatives" in the body and "10–20" in its own checklist, and "5–7 days untouched" in the body vs. "72 hours minimum" in the checklist. Which is the live version?
+
+---
+
+### Post 3 — Consolidating a bloated account (real numbers)
+
+> **Title:** 100+ ad sets across testing and scaling — how would you consolidate this?
+>
+> Account is badly fragmented and I want a second opinion before my buyer starts cutting. Current state:
+>
+> - **Testing CBO — $350/day:** 1 campaign, **56 ad sets, 226 ads** (3 creatives per ad set), new ad sets launched on a rolling basis, plus a dedicated "winner mix" ad set holding 5–10 historical top performers.
+> - **Scaling CBO — $120–200/day:** 1 campaign, **56 ad sets with 1 ad each**, plus one flexible ad set with 20+ winning assets.
+> - Budget is spread so thin nothing stabilises, and our **testing spend is higher than our scaling spend**.
+>
+> Where I've landed reading the playbook, and where I'd like a sanity check:
+>
+> 1. **Kill the "winner mix" ad set inside the testing campaign.** My reasoning: in a CBO, a proven winner will always beat a cold test creative on day one, so that ad set is absorbing the budget that's supposed to be *discovering* the next winner. Agree? And if you do want a performance baseline in your testing campaign, **how do you get one without the control eating the budget?**
+> 2. **1 ad per ad set, not 3.** With 3 ads per ad set Meta picks a winner inside the ad set and starves the other two, so we're paying for 226 ads and getting ~56 clean reads. Is that right, or is 2–3 per ad set fine in practice?
+> 3. **Flexible Ads for scaling — yes or no?** The playbook doesn't mention them at all. Is stacking 20+ winning assets into one Flexible Ad actually effective, or better to consolidate into a few standard CBO ad sets at 2–3 creatives each? Two things I can't figure out with the flexible approach: how do you preserve **post-ID social proof**, and how do you read **share of spend per asset** to catch one asset hogging delivery?
+> 4. **What testing : scaling : retargeting split** should we be running? The playbook only specifies retargeting at 10–15% of account spend. I'm assuming scaling should be the biggest line by a wide margin and ours is inverted — but what ratio do you actually run?
+
+---
+
+### Post 4 — Vertical and horizontal scaling triggers
+
+> **Title:** What's your actual budget-increase rule on a winning campaign?
+>
+> The playbook gives a clean **graduation** rule — start Push at 2–3× what the creative spent in Prove — but nothing about what happens after that. Trying to nail down the two scaling levers:
+>
+> 1. **Vertical:** what's your rule for raising budget on a winner? Something like +20% every 48h while CPA holds, or do you move in bigger jumps? What's the gate you check before each increase — CPA within X% of target, frequency under a threshold, a minimum conversion count in the window?
+> 2. **Horizontal:** what makes you **duplicate a winner into a fresh campaign or high-budget CBO** instead of just raising the budget where it already is? Is there a spend level where vertical stops working and duplication is the only option?
+> 3. My read of the playbook is that its version of "horizontal" isn't new audiences at all — it's **more creative variants and more campaign types** (manual CBO → ASC → retargeting), with broad staying broad the whole way. Audience segmentation only shows up in Prove and in retargeting. Is that how you run it, or are you still building cold audience duplicates to scale?
+> 4. **Advantage+ Audience and Advantage+ Placements** — the playbook says "broad 18–65+, no interests, automatic placements," which was written before Meta made a lot of this the default. Are you still setting anything manually here, or letting it all run on defaults?
+
+---
+
+### Post 5 — Do these benchmarks survive Q4?
+
+> **Title:** Do standard creative-testing benchmarks still hold through BFCM?
+>
+> Consolidating our account ahead of Q4 and I've realised every benchmark I'm working from was written for normal trading conditions. The playbook has no Q4 guidance at all. For those who've traded a few peaks:
+>
+> 1. **Which benchmarks move?** Does the CTR ≥ 1.5% bar shift when CPMs inflate? Do hook rate 30% / hold rate 20% still apply, or do you loosen them because traffic quality changes?
+> 2. **Does the frequency > 2.2 remix trigger still hold?** My instinct is you tolerate higher frequency in a promo window because the offer carries it and the window is short — but I'd rather not guess with peak budget.
+> 3. **When do you start ramping, and how fast?** Are you scaling up ahead of peak to get campaigns through learning before CPMs spike, or holding and going hard on the day?
+> 4. **Does the testing:scaling split shift going into peak** — do you cut testing back and pile everything into proven winners, or keep testing running because creative fatigue accelerates under high frequency?
+>
+> Happy to report back with what we see if it's useful to anyone.
