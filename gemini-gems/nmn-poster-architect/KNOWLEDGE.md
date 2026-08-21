@@ -515,6 +515,101 @@ a batch.
 
 ---
 
+## 8A · Differentiation axes — the working vocabulary
+
+Concrete values to rotate between, so a batch diverges on substance rather than on adjectives.
+Axes 1–5 are visual and carry almost all the perceptual weight; 6–8 are copy.
+
+### 1 · Dominant colour field
+| Value | What it looks like |
+|---|---|
+| Light ground | `#F7F5F7` field, purple `#553C7A` type, product photographed on the surface. The cleanest read |
+| Purple panel | Solid `#6B4E96` block carrying reversed white type, photograph confined to the remainder |
+| Full-bleed photo | Photograph edge to edge, one floating card or one type block over it. Highest realism |
+| Split field | Photograph one side, flat colour the other, seam running vertically |
+
+Rotating this axis alone changes the thumbnail more than any other single move.
+
+### 2 · Human presence
+| Value | Note |
+|---|---|
+| No person — product still life | Object-led. Reads as a catalogue shot unless the staging is genuinely domestic |
+| Hands only in frame | Her hands on a counter, holding the bottle, on a steering wheel. Strong: the hands must read 58–68 |
+| Person soft-focus in background | Product sharp in front, her out of focus behind. The transcript's default |
+| Person mid-ground, engaged | She is doing something and the product shares the frame. Highest warmth risk — hold the flat register |
+
+### 3 · Crop and scale
+Wide room (context, furniture, doorways) · mid-shot at counter or standing height · tight tabletop
+(the product and two objects) · overhead flat lay (desk, planner, keys, bottle from directly above).
+
+### 4 · Layout skeleton and bottle anchor
+Template T1–T6, paired with where the bottle sits: centred · right-aligned · lower-right floating ·
+inside a left column · straddling a split seam. A different template with the bottle in the same
+place is only half a change.
+
+### 5 · Setting and clock time
+From §8. Never repeat a setting inside a batch, or across the previous batch in the same
+conversation. Time of day should move with it — a 7:30 AM kitchen and a 2:30 PM living room are two
+different pictures; a 7:30 AM kitchen and an 8:00 AM breakfast nook are one picture twice.
+
+### 6 · Copy structure
+The three measured skeletons from §4: symptom question · category-quality contrast · warning +
+named mechanism. Never the soft-educational or first-person-story shapes.
+
+### 7 · Headline shape
+Short declarative, 3–5 words · question · long, 8–12 words · direct comparison. A batch where every
+headline is a question is a batch with one headline in it.
+
+### 8 · CTA verb
+Shop · Discover · Reclaim · Fuel · Start · Simplify · Join · Build · Support. One per concept.
+
+---
+
+## 8B · Transcreation bank
+
+The rule: **same meaning, same claim level, different words.** A rewrite that lands harder because
+it climbed the verb ladder is a failure, not a variation.
+
+### Headlines — one idea, several shapes
+| Declarative | Question | Long form | Comparison |
+|---|---|---|---|
+| Done With the 3 PM Crash | Why does the afternoon disappear? | The afternoon that used to be yours, back where it belongs | A third coffee, or a steady afternoon |
+| Get Your Day Back | Where does your day go after lunch? | Stop planning the rest of the day around one bad hour | A full day, not a half one |
+| Feel Like Yourself Again | Ready to feel more like yourself? | The person you still are, on the outside as well | Yourself, not a slower version |
+| When Your Energy Runs Out | What happens when the tank empties? | The hour your energy stops answering, and what sits underneath it | Empty by 3, or steady to 6 |
+| Wake Up Ready for Your Day | Still tired after a full night? | Eight hours of sleep that actually arrive as energy | Rested, not just awake |
+| Not All NMN Is Created Equal | What are you actually buying? | Two labels. One of them prints the dose | 1,000 mg, or a number nobody prints |
+
+### Callouts — the same benefit, restated
+| As supplied | Safe restatements | 🔴 Escalation — never |
+|---|---|---|
+| Steadier Daily Energy | Steady energy, all day · Energy that holds · Level, not spiky | Constant energy · Never crash again |
+| Less Afternoon Slump | Easier afternoons · The 2 PM wall, softened · Made for the back half of the day | No more 3 PM crash · Slump eliminated |
+| Support for Cellular Energy | Supports your cells · Cellular-level support · Works where energy is made | Fixes your cells · Restores cellular energy |
+| More Energy for Your Day | More in the tank · Energy for the whole day · Enough left for the evening | Unlimited energy · Doubles your energy |
+| Stay Active Longer | Keep going longer · Still moving at six · Built for long days | Never tire · Endless stamina |
+| Feel More Like Yourself | Sounds like you again · Recognisably you · Back to your own pace | Feel 20 years younger · Reverses aging |
+| Get More Done Without the Nap | Skip the sit-down · The afternoon without the chair · Through to dinner | Eliminates the need for sleep |
+| Keep Up With the People You Love | On the floor, not the sofa · In it, not watching it · Present for the whole visit | Outrun your grandchildren |
+| Supports Energy Metabolism | Supports how your body makes energy · Backs the process itself | Boosts metabolism · Speeds metabolism |
+| 1000mg NMN Complex | A full 1,000 mg · 1,000 mg per serving · The whole gram | Clinical-strength dose · Maximum potency |
+
+### Body lines
+| As supplied | Restatements |
+|---|---|
+| Clean cellular support made for your daily routine. | One clean step, taken every morning. · Cellular support, built into the routine you already have. · The same 1,000 mg complex, taken once, before the day gets away. |
+| Steady cellular fuel that lasts past mid-afternoon. | Support that is still there at four. · Made for the back half of the day. · Fuel that does not run out at two. |
+| One simple morning step. No overwhelming supplement stacks. | One bottle instead of ten. · A morning routine you will actually keep. · Simple enough to do every day. |
+
+Note on the last row: the product is a 10-in-1 formula, so "no complex stacks" means **one bottle
+instead of ten**, never a single-ingredient claim. See §7.
+
+### What must never move in a transcreation
+The offer · the price anchor `$29.98 → $16.66` · the dose `1,000 mg per serving` · the dosing
+protocol · the claim level · the persona. Everything else is fair to restate.
+
+---
+
 ## 9 · Production rules, with the number behind each
 
 | Rule | The measured number |
