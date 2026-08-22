@@ -1,0 +1,640 @@
+<title>Prime Creative Selection Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+:root{
+  --bg:#F6F5F9; --surface:#FFFFFF; --surface-2:#EFEDF4; --surface-3:#E7E4F0;
+  --ink:#1A1626; --ink-2:#54506B; --ink-3:#847EA1;
+  --line:#DEDBE9; --line-2:#C9C4DC;
+  --accent:#5B3FA8; --accent-ink:#4A3190; --accent-soft:#ECE6F9;
+  --ok:#1C7551; --ok-soft:#DFF0E7;
+  --warn:#8E5C06; --warn-soft:#F8ECD4;
+  --risk:#A93636; --risk-soft:#F8E3E3;
+  --shadow:0 1px 2px rgba(26,22,38,.05), 0 8px 24px -16px rgba(26,22,38,.28);
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --disp:"Archivo","IBM Plex Sans",-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121020; --surface:#1A172C; --surface-2:#221E39; --surface-3:#2B2646;
+    --ink:#EDEAF7; --ink-2:#B3ADCC; --ink-3:#8781A6;
+    --line:#2C2745; --line-2:#3B3559;
+    --accent:#AE96F2; --accent-ink:#C4B2F8; --accent-soft:#282146;
+    --ok:#54C295; --ok-soft:#17322A;
+    --warn:#DDA84A; --warn-soft:#332811;
+    --risk:#EC8080; --risk-soft:#3A1E20;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121020; --surface:#1A172C; --surface-2:#221E39; --surface-3:#2B2646;
+  --ink:#EDEAF7; --ink-2:#B3ADCC; --ink-3:#8781A6;
+  --line:#2C2745; --line-2:#3B3559;
+  --accent:#AE96F2; --accent-ink:#C4B2F8; --accent-soft:#282146;
+  --ok:#54C295; --ok-soft:#17322A;
+  --warn:#DDA84A; --warn-soft:#332811;
+  --risk:#EC8080; --risk-soft:#3A1E20;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  margin:0; padding:0 24px 96px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto}
+
+/* ---------- masthead ---------- */
+.mast{
+  padding:56px 0 28px; border-bottom:2px solid var(--ink);
+  display:flex; flex-direction:column; gap:18px;
+}
+.eyebrow{
+  font-family:var(--mono); font-size:11px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
+  display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center;
+}
+.eyebrow .sep{color:var(--line-2)}
+h1{
+  font-family:var(--disp); font-weight:800; font-size:clamp(2.1rem,5.4vw,3.4rem);
+  line-height:1.02; letter-spacing:-.028em; margin:0; text-wrap:balance;
+}
+.standfirst{
+  font-size:1.06rem; color:var(--ink-2); max-width:60ch; margin:0;
+}
+.standfirst b{color:var(--ink); font-weight:600}
+
+/* ---------- source strip ---------- */
+.source{
+  display:flex; flex-wrap:wrap; gap:0; margin:0; padding:0; list-style:none;
+  border:1px solid var(--line); border-radius:3px; overflow:hidden; background:var(--surface);
+}
+.source li{
+  flex:1 1 150px; padding:12px 16px; border-right:1px solid var(--line);
+}
+.source li:last-child{border-right:none}
+.source dt{
+  font-family:var(--mono); font-size:10px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 3px;
+}
+.source dd{
+  margin:0; font-family:var(--mono); font-size:.95rem; font-weight:600;
+  color:var(--ink); font-variant-numeric:tabular-nums;
+}
+
+/* ---------- sections ---------- */
+section{padding-top:52px}
+h2{
+  font-family:var(--disp); font-weight:700; font-size:clamp(1.35rem,3vw,1.85rem);
+  letter-spacing:-.018em; margin:0 0 6px; text-wrap:balance; line-height:1.15;
+}
+h3{
+  font-family:var(--disp); font-weight:600; font-size:1.06rem;
+  letter-spacing:-.008em; margin:32px 0 10px;
+}
+.lede{color:var(--ink-2); margin:0 0 22px; max-width:66ch}
+.sec-rule{
+  display:flex; align-items:baseline; gap:12px; margin-bottom:14px;
+  border-top:1px solid var(--line-2); padding-top:14px;
+}
+.sec-tag{
+  font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-3); white-space:nowrap;
+}
+
+/* ---------- findings ---------- */
+.findings{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.finding{
+  background:var(--surface); border:1px solid var(--line); border-radius:4px;
+  padding:18px 20px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:9px;
+}
+.finding .flag{
+  font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+  font-weight:600; padding:3px 8px; border-radius:2px; align-self:flex-start;
+}
+.flag.warn{background:var(--warn-soft); color:var(--warn)}
+.flag.risk{background:var(--risk-soft); color:var(--risk)}
+.finding h4{font-family:var(--disp); font-size:1rem; font-weight:600; margin:0; letter-spacing:-.008em}
+.finding p{margin:0; font-size:.93rem; color:var(--ink-2)}
+.finding .do{
+  margin:0; font-size:.88rem; color:var(--ink); border-top:1px dashed var(--line-2);
+  padding-top:9px;
+}
+.finding .do b{
+  font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); display:block; margin-bottom:3px; font-weight:600;
+}
+
+/* ---------- scorecard ---------- */
+.score{
+  position:sticky; top:0; z-index:20; background:var(--bg);
+  padding:10px 0 12px; margin-top:10px;
+  border-bottom:1px solid var(--line);
+}
+.score-inner{
+  display:flex; flex-wrap:wrap; gap:7px; align-items:center;
+}
+.chip{
+  display:inline-flex; align-items:baseline; gap:7px;
+  font-family:var(--mono); font-size:11px; font-weight:500;
+  padding:5px 10px; border-radius:2px; border:1px solid var(--line-2);
+  background:var(--surface); color:var(--ink-2); white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.chip .n{font-weight:600; font-size:.85rem; color:var(--ink)}
+.chip.met{border-color:var(--ok); background:var(--ok-soft); color:var(--ok)}
+.chip.met .n{color:var(--ok)}
+.chip.short{border-color:var(--warn); background:var(--warn-soft); color:var(--warn)}
+.chip.short .n{color:var(--warn)}
+.chip.total{border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink)}
+.chip.total .n{color:var(--accent-ink); font-size:.95rem}
+.score-note{
+  font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); margin:8px 0 0;
+}
+
+/* ---------- ad rows ---------- */
+.block{margin-bottom:6px}
+.block-head{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 14px;
+  padding:14px 0 8px; border-bottom:1px solid var(--line-2);
+}
+.block-head h3{margin:0; font-size:1.12rem}
+.req{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-3);
+}
+.req b{color:var(--ok); font-weight:600}
+
+.ads{list-style:none; margin:0; padding:0}
+.ad{
+  display:grid;
+  grid-template-columns:26px 62px minmax(0,1fr) minmax(0,1.55fr);
+  gap:0 16px; align-items:start;
+  padding:14px 8px 14px 6px; border-bottom:1px solid var(--line);
+  border-radius:3px;
+}
+.ad:hover{background:var(--surface-2)}
+.ad.picked{background:var(--accent-soft)}
+.ad input[type=checkbox]{
+  width:16px; height:16px; margin:4px 0 0; accent-color:var(--accent); cursor:pointer;
+}
+.ad input[type=checkbox]:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.id{
+  font-family:var(--mono); font-size:.9rem; font-weight:600; color:var(--accent-ink);
+  padding-top:2px; letter-spacing:.01em;
+}
+.who{display:flex; flex-direction:column; gap:3px; min-width:0}
+.name{font-family:var(--disp); font-weight:600; font-size:.98rem; letter-spacing:-.006em}
+.meta{
+  font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--ink-3); display:flex; flex-wrap:wrap; gap:4px 8px;
+}
+.meta .fmt{color:var(--accent)}
+.why{font-size:.92rem; color:var(--ink-2); padding-top:1px; min-width:0}
+.why b{color:var(--ink); font-weight:600}
+.why .hook{
+  display:block; font-family:var(--mono); font-size:.82rem; color:var(--ink-3);
+  margin-top:5px; padding-left:9px; border-left:2px solid var(--line-2);
+}
+@media (max-width:720px){
+  .ad{grid-template-columns:24px 1fr; gap:4px 12px}
+  .id{grid-column:2}
+  .who,.why{grid-column:2}
+  .why{padding-top:6px}
+}
+
+/* ---------- launch ten ---------- */
+.ten{list-style:none; margin:0; padding:0; counter-reset:t}
+.ten li{
+  display:grid; grid-template-columns:34px 66px 1fr; gap:14px; align-items:baseline;
+  padding:11px 0; border-bottom:1px solid var(--line);
+}
+.ten .rank{
+  font-family:var(--mono); font-size:.95rem; font-weight:600; color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+.ten .rid{font-family:var(--mono); font-size:.9rem; font-weight:600; color:var(--accent-ink)}
+.ten .txt{font-size:.95rem}
+.ten .txt b{font-family:var(--disp); font-weight:600}
+.ten .txt span{color:var(--ink-2)}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto; border:1px solid var(--line); border-radius:4px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.92rem; min-width:560px}
+th{
+  text-align:left; font-family:var(--mono); font-size:10px; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:600;
+  padding:11px 14px; border-bottom:1px solid var(--line-2); background:var(--surface-2);
+  vertical-align:bottom;
+}
+td{padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-2)}
+tr:last-child td{border-bottom:none}
+td b{color:var(--ink); font-weight:600}
+td code, .mono{font-family:var(--mono); font-size:.85rem; color:var(--accent-ink)}
+
+/* ---------- bench ---------- */
+.bench{display:flex; flex-wrap:wrap; gap:6px; margin:0; padding:0; list-style:none}
+.bench li{
+  font-family:var(--mono); font-size:.82rem; padding:5px 9px;
+  border:1px solid var(--line); border-radius:2px; background:var(--surface); color:var(--ink-2);
+}
+.bench li b{color:var(--accent-ink); font-weight:600}
+.bench li.up{border-color:var(--accent); background:var(--accent-soft)}
+
+/* ---------- callout ---------- */
+.callout{
+  border-left:3px solid var(--accent); background:var(--surface);
+  padding:14px 18px; margin:20px 0 0; border-radius:0 3px 3px 0;
+  font-size:.94rem; color:var(--ink-2); box-shadow:var(--shadow);
+}
+.callout b{color:var(--ink); font-weight:600}
+.callout .lbl{
+  font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent); display:block; margin-bottom:5px; font-weight:600;
+}
+
+footer{
+  margin-top:64px; padding-top:20px; border-top:2px solid var(--ink);
+  font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+  color:var(--ink-3); display:flex; flex-wrap:wrap; gap:6px 18px;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">
+    <span>Prime Ingredients · NMN + Astaxanthin</span><span class="sep">/</span>
+    <span>Paid Social Creative</span><span class="sep">/</span>
+    <span>Selection Worksheet</span>
+  </div>
+  <h1>31 of 45 scripts, sorted into a launch-ready mix</h1>
+  <p class="standfirst">Every ad in <b>50_ads_with_12_frameworks.docx</b> read, scored on hook strength, proof density and angle distinctiveness, then mapped against the creative-mix requirement. Tick the ones you want — the tallies at the top update live.</p>
+  <ul class="source">
+    <li><dt>Scripts in file</dt><dd>45 <span style="color:var(--warn)">(not 50)</span></dd></li>
+    <li><dt>Frameworks</dt><dd>12 / 12</dd></li>
+    <li><dt>Core set</dt><dd>31</dd></li>
+    <li><dt>Held in reserve</dt><dd>14</dd></li>
+    <li><dt>Distinct angles</dt><dd>8</dd></li>
+  </ul>
+</header>
+
+<div class="score" id="score">
+  <div class="score-inner" id="chips"></div>
+  <p class="score-note" id="scorenote">Selection saved in this browser only</p>
+</div>
+
+<!-- ============ FINDINGS ============ -->
+<section id="findings">
+  <div class="sec-rule"><span class="sec-tag">Before you pick</span></div>
+  <h2>Three things the file doesn't tell you</h2>
+  <p class="lede">These change what you can promise the client, so they come before the selection.</p>
+  <div class="findings">
+    <article class="finding">
+      <span class="flag warn">Count</span>
+      <h4>It's 45 ads, not 50</h4>
+      <p>The document runs A01 through A45 and stops mid-way through the Most-Aware stage. A46–A50 are not in the file.</p>
+      <p class="do"><b>Do</b>Ship the 31-asset core set — it still clears the 25+ requirement — or commission five more.</p>
+    </article>
+    <article class="finding">
+      <span class="flag warn">Coverage</span>
+      <h4>Retargeting inventory is half-built</h4>
+      <p>Unaware, Problem-Aware, Solution-Aware and Product-Aware each carry 10 ads. Most-Aware carries 5.</p>
+      <p class="do"><b>Do</b>Add five more Most-Aware assets before you scale spend, or retargeting frequency climbs fast.</p>
+    </article>
+    <article class="finding">
+      <span class="flag risk">Casting</span>
+      <h4>Founder-led is voiced, never cast</h4>
+      <p>A24, A28, A33 and A37 all use Framework 9 (Founder Objections), but no script puts the actual founder on camera.</p>
+      <p class="do"><b>Do</b>Reshoot A24 and A33 with the real founder, named and credited. Without a face it's just voiceover.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ THE MIX ============ -->
+<section id="mix">
+  <div class="sec-rule"><span class="sec-tag">The core set</span></div>
+  <h2>31 assets, grouped by the requirement each one satisfies</h2>
+  <p class="lede">Selected on four criteria: how hard the hook lands in the first three seconds, how much verifiable proof it carries, whether it makes an argument no other ad in the set makes, and whether the format suits the message.</p>
+
+  <div class="block">
+    <div class="block-head">
+      <h3>UGC</h3>
+      <span class="req">Requirement 3+ different creators · <b>8 selected, 4 archetypes</b></span>
+    </div>
+    <ul class="ads" data-group="UGC"></ul>
+    <div class="callout">
+      <span class="lbl">Casting risk</span>
+      <b>"Linda" carries 18 of the 45 scripts.</b> If one creator shoots all of them you get fatigue on a single face and one point of failure. Split the Linda ads across two or three different women — that also gets you the "different creators" box ticked honestly.
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <h3>Statics</h3>
+      <span class="req">Requirement 4 · <b>7 selected, all three named types covered</b></span>
+    </div>
+    <ul class="ads" data-group="Static"></ul>
+    <div class="callout">
+      <span class="lbl">Gap</span>
+      There is <b>no true review-screenshot static</b> in the document. A05 substitutes by using the community's own verbatim metaphor. Build one real five-star-review static anyway — it's the cheapest asset in the whole mix and routinely lands top three.
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <h3>Carousel</h3>
+      <span class="req">Requirement 2+ · <b>5 selected</b></span>
+    </div>
+    <ul class="ads" data-group="Carousel"></ul>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <h3>Product demo &amp; explainer</h3>
+      <span class="req">Requirement 2+ · <b>4 selected</b></span>
+    </div>
+    <ul class="ads" data-group="Demo"></ul>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <h3>Curiosity-driven</h3>
+      <span class="req">Requirement 2+ · <b>3 selected</b></span>
+    </div>
+    <ul class="ads" data-group="Curiosity"></ul>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <h3>Founder-led</h3>
+      <span class="req">Requirement 2+ · <b>4 selected</b></span>
+    </div>
+    <ul class="ads" data-group="Founder"></ul>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <h3>Bottom-funnel closers</h3>
+      <span class="req">Not required · <b>4 selected</b> — retargeting needs its own inventory</span>
+    </div>
+    <ul class="ads" data-group="Closer"></ul>
+  </div>
+</section>
+
+<!-- ============ ANGLES ============ -->
+<section id="angles">
+  <div class="sec-rule"><span class="sec-tag">Angle coverage</span></div>
+  <h2>Eight distinct angles against a requirement of three to five</h2>
+  <p class="lede">No two of these make the same argument, which is what keeps a 31-asset upload from collapsing into one ad shown eight ways.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:24%">Angle</th><th style="width:32%">The argument it makes</th><th>Assets</th></tr></thead>
+      <tbody>
+        <tr><td><b>Problem / solution</b></td><td>Your fatigue is cellular depletion, not a habits failure</td><td class="mono">A01 · A11 · A13 · A14 · A15 · A17</td></tr>
+        <tr><td><b>Emotional / identity</b></td><td>You are becoming someone you did not agree to become</td><td class="mono">A03 · A04 · A06 · A08</td></tr>
+        <tr><td><b>Product-led proof</b></td><td>Here are the six numbers. Check them yourself</td><td class="mono">A23 · A25 · A30 · A34 · A35 · A36</td></tr>
+        <tr><td><b>Founder transparency</b></td><td>Here is what we got wrong and what this won't do</td><td class="mono">A24 · A28 · A33 · A37</td></tr>
+        <tr><td><b>Us vs them</b></td><td>Most of what's sold in this category was never tested</td><td class="mono">A18 · A21 · A22 · A26 · A27</td></tr>
+        <tr><td><b>Curiosity / mechanism</b></td><td>There's a reason for this that nobody explained to you</td><td class="mono">A06 · A09 · A14 · A40</td></tr>
+        <tr><td><b>Value arithmetic</b></td><td>Stop pricing the bottle. Price the clinical gram</td><td class="mono">A26 · A39 · A44 · A45</td></tr>
+        <tr><td><b>Retention / attach</b></td><td>Running out is the only way you lose the gain</td><td class="mono">A38 · A41 · A42 · A43</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ COMPLIANCE ============ -->
+<section id="compliance">
+  <div class="sec-rule"><span class="sec-tag">Fix before upload</span></div>
+  <h2>Five compliance flags that will cost you ads</h2>
+  <p class="lede">These are rejection triggers, not stylistic notes. Four of them are fixed by swapping which hook variation you lead with — the scripts already contain the safer version.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:26%">Risk</th><th style="width:16%">Affected</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Personal-attributes policy.</b> Second-person copy implying you know the viewer's health state — "<i>You</i> already know how this goes", "<i>Your</i> doctor said it's normal".</td>
+          <td class="mono">A01 · A04 · A06 · A11 · A13 · A15</td>
+          <td>Rewrite to first-person creator narration: "I used to crash at 3 PM," not "You crash at 3 PM." <b>Hook B on most of these ads is already first-person — lead with Hook B.</b></td>
+        </tr>
+        <tr>
+          <td><b>Cognitive adjacency.</b> Word-finding and mental-blank framing sits close to an implied cognitive-decline diagnosis.</td>
+          <td class="mono">A06 · A09 · A12 · A19</td>
+          <td>Keep it to observable daily wins — "the word arrived" — and never use <i>memory</i>, <i>decline</i> or <i>fog</i> as a named condition.</td>
+        </tr>
+        <tr>
+          <td><b>Ingredient status.</b> FDA's position excludes NMN from the dietary-supplement definition; some ad accounts reject on the ingredient name alone.</td>
+          <td class="mono">All 45</td>
+          <td>Confirm account standing before a bulk upload, and have the COA and 30-day guarantee live on the destination page first.</td>
+        </tr>
+        <tr>
+          <td><b>Unsourced statistic.</b> "64% of what's sold was never tested."</td>
+          <td class="mono">A21</td>
+          <td>Cite the source on-screen or cut the number. This is your best-performing angle — don't lose it to a substantiation review.</td>
+        </tr>
+        <tr>
+          <td><b>Dose claims.</b> "1,000mg clinical serving," "the numbers that match the human trials."</td>
+          <td class="mono">A13 · A23 · A25 · A30</td>
+          <td>Have the referenced trials on file and linked before these run.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ TEN ============ -->
+<section id="ten">
+  <div class="sec-rule"><span class="sec-tag">Week one</span></div>
+  <h2>If you can only launch ten</h2>
+  <p class="lede">Ordered by confidence, not by funnel stage. The first four carry the account.</p>
+  <ol class="ten" id="tenlist"></ol>
+  <div class="callout">
+    <span class="lbl">Day-one hook test</span>
+    Run <b>A01</b> as four separate ads using Hook A / B / C / D against the same body and creative. Same message, four headlines — that's the fastest read you'll get on which pain framing the audience actually owns, and every script in the file already ships four variations, so the test costs nothing to build.
+  </div>
+</section>
+
+<!-- ============ BENCH ============ -->
+<section id="bench">
+  <div class="sec-rule"><span class="sec-tag">Reserve</span></div>
+  <h2>Fourteen held on the bench</h2>
+  <p class="lede">Good scripts that lose to something in the core set on the same job. The three highlighted go in first when something fatigues.</p>
+  <ul class="bench" id="benchlist"></ul>
+  <div class="callout">
+    <span class="lbl">First off the bench</span>
+    <b>A22</b> runs the exact winning structure of A21 against the second SKU. <b>A35</b> is pure proof — sixty capsules counted onto a table on camera. <b>A03</b> is the strongest emotional script in the document: "My father stopped driving at 71. I'm not doing it that way."
+  </div>
+</section>
+
+<!-- ============ NAMING ============ -->
+<section id="naming">
+  <div class="sec-rule"><span class="sec-tag">Ops</span></div>
+  <h2>Keep the file's naming convention verbatim</h2>
+  <p class="lede">The document already uses a structured ID. Carry it straight into the ad account and reporting slices by persona, awareness stage, pillar and format with no manual tagging.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Segment</th><th>Example</th><th>What it gives you in reporting</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">A21</td><td class="mono">A21</td><td>Stable asset ID across every placement</td></tr>
+        <tr><td class="mono">Persona</td><td class="mono">Linda</td><td>Which audience archetype is converting</td></tr>
+        <tr><td class="mono">Stage</td><td class="mono">SolA</td><td>Awareness stage — UA / PA / SolA / PdA / MA</td></tr>
+        <tr><td class="mono">Pillar</td><td class="mono">P3</td><td>Message pillar: P1 Energy · P2 Mind · P3 Trust · P4 Value · P5 Identity · P6 Mirror</td></tr>
+        <tr><td class="mono">Concept</td><td class="mono">NotAllNMN</td><td>The creative idea, readable at a glance</td></tr>
+        <tr><td class="mono">Format</td><td class="mono">UGC</td><td>Format performance without a separate label</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <span>Source: 50_ads_with_12_frameworks.docx</span>
+  <span>45 scripts read · 12 frameworks</span>
+  <span>Core set 31 · Reserve 14</span>
+</footer>
+</div>
+
+<script>
+const ADS = [
+ // group, id, name, format, persona, stage, framework, why, hook
+ ["UGC","A01","Three PM Crash","UGC","Linda","Unaware","F7 PAS","The most predictable daily symptom in the audience. A time-anchored hook needs no setup at all.","“It’s 3 PM. You already know how this goes.”"],
+ ["UGC","A02","The Stopwatch","UGC","Robert","Unaware","F8 Ugly","Objective measurement instead of feelings — the only way this persona will admit decline.","“This job used to take me an afternoon. Now it takes two.”"],
+ ["UGC","A21","Not All NMN","UGC","Linda","Solution-Aware","F2 Contrarian","<b>Proven winner.</b> The document cites $57.47 CPM on this angle. Highest-confidence asset in the library — launch it first.","“Not all NMN is created equal — and 64% of what’s sold was never tested.”"],
+ ["UGC","A32","Didn't Buy It For My Skin","UGC","Margaret","Product-Aware","F6 P.U.R.E.","Involuntary discovery — the most persuasive testimonial shape there is. The benefit arrives unasked.","“I bought it in March for energy. In May somebody asked what I did to my skin.”"],
+ ["UGC","A12","Word-Finding As Benefit","UGC","Clarity","Problem-Aware","F6 P.U.R.E.","The only ad that sells a cognitive benefit as an observation rather than a claim. Fourth distinct creator.","“I noticed something strange, and then I realized I had stopped noticing it.”"],
+ ["UGC","A31","How To Take It","UGC","Linda","Product-Aware","F5 X-Without-Y","Kills the category's number-one churn cause — insomnia from late dosing. Doubles as a product demo.","“Take your NMN in the morning on an empty stomach. There’s a reason.”"],
+ ["UGC","A41","The Second Bottle","UGC","Margaret","Most-Aware","F1 Authority","15-second retarget for day 21–45. Attaches the Astaxanthin SKU to an existing NMN buyer.","“You’re about six weeks into taking NMN. Here’s the second bottle.”"],
+ ["UGC","A42","Running Low","UGC","Linda","Most-Aware","F5 X-Without-Y","Day-75 reorder driven by momentum loss instead of a discount. Protects margin on the repeat purchase.","“You’re about twelve days from the bottom of your bottle.”"],
+
+ ["Static","A25","Six Things","Static","Robert","Solution-Aware","F8 Ugly","<b>Features point-out.</b> A monochrome datasheet — six specifications auditable in under four seconds.","“Six things. If an NMN bottle can’t give you all six, you’re guessing.”"],
+ ["Static","A36","The Receipt","Static","Robert","Product-Aware","F10 Us vs Them","<b>Features point-out.</b> Lot number on the bottle matches lot number on the lab test. Irrefutable, almost no copy.","“Same lot number on the bottle. Same on the lab test. Check it yourself.”"],
+ ["Static","A05","Breathing Through A Straw","Static","Linda","Unaware","F8 Ugly","<b>Golden-nugget review.</b> The community's own verbatim metaphor on an unstyled domestic scene.","“Like running a marathon breathing through a straw.”"],
+ ["Static","A15","It Was Never Sleep","Static","Linda","Problem-Aware","F8 Ugly","<b>Benefit call-out.</b> Removes lifestyle self-blame in seven words. Fastest-reading static in the set.","“You fixed the sleep. You’re still tired.”"],
+ ["Static","A16","Skin Goes First","Static","Margaret","Problem-Aware","F6 P.U.R.E.","<b>Benefit call-out.</b> Skin as the earliest visible cellular signal — this is what opens the Margaret segment.","“Skin renews faster than almost any tissue you own.”"],
+ ["Static","A06","The Word That Wouldn't Come","Static","Clarity","Unaware","F12 TEASE","Highest scroll-stop in the static set. Carries a compliance flag — see the fix table.","“The word just wouldn’t come. Mid-sentence. In front of my daughter.”"],
+ ["Static","A45","The Arithmetic","Static","Linda","Most-Aware","F8 Ugly","<b>Value call-out.</b> Handwritten receipt maths landing on 55¢ a day. No models, no stock. Best retargeting static.","“The math, without the marketing pitch.”"],
+
+ ["Carousel","A07","A Day In Four Frames","Carousel","Linda","Unaware","F3 Listicle","Four frames prove the exhaustion is structural rather than behavioural. Perfect swipe logic.","“A complete day in four frames: why 8 hours of sleep didn’t work.”"],
+ ["Carousel","A18","Two Men, Same Age","Carousel","Robert","Problem-Aware","F10 Us vs Them","Two sixty-six-year-olds, one refused. Identity-driven and built for swipe-through.","“Both of these men are 66. One was told to pace himself. One refused.”"],
+ ["Carousel","A27","NMN vs NR","Carousel","Robert","Solution-Aware","F2 Contrarian","Resolves the category's expert deadlock and openly declares its own commercial bias. Rare trust move.","“NMN or NR? Nobody will give you a straight answer. Here’s ours — including our bias.”"],
+ ["Carousel","A28","The Honest Label","Carousel","Clarity","Solution-Aware","F9 Founder","Lists what the product will <b>not</b> do and pre-empts insomnia. Also counts toward founder-led.","“What Prime Ingredients NMN will NOT do.”"],
+ ["Carousel","A37","We Read The Comments","Carousel","Linda","Product-Aware","F9 Founder","Real objections lifted from live ad comments, answered straight. Also counts toward founder-led.","“We read the actual comments under our ads. Here are the straight answers.”"],
+
+ ["Demo","A09","Mechanism Discovery","Video","Clarity","Unaware","F1 Authority","Formulator-led. Explains why the brain burns NAD+ — the mechanism the entire account rests on.","“You can be sharp at 65 without turning life into a protocol.”"],
+ ["Demo","A34","The Purple Bottle","VO","All","Product-Aware","F10 Us vs Them","One unbroken take showing the exact bottle that ships. Kills the ad-bottle-isn't-real-bottle objection.","“A lot of you asked why the bottle looked different. Here is the exact bottle we ship.”"],
+ ["Demo","A40","Week Six Mechanism","Video","Linda","Product-Aware","F1 Authority","Pre-empts the week-six drop-off where users stop feeling the lift and churn. Retention gold.","“Most people quit NMN at week four. Here is why you should wait for week six.”"],
+ ["Demo","A29","Alternative Disqualification","Video","Linda","Solution-Aware","F2 Disqualification","Disqualifies third coffees, B12 shots and eleven-bottle stacks before offering the alternative.","“Stop pretending your third cup of coffee is fixing your afternoon.”"],
+
+ ["Curiosity","A06","The Word That Wouldn't Come","Static","Clarity","Unaware","F12 TEASE","Opens the loop on a moment every one of these buyers has had, without naming a condition.","“The word just wouldn’t come. Mid-sentence. In front of my daughter.”"],
+ ["Curiosity","A14","Depletion Not Decline","VO","Linda","Problem-Aware","F12 TEASE","Resolves the paradox of why good habits stopped working. Reframes the whole category as refilling, not boosting.","“You can’t raise cellular energy above your ceiling. You can only refill what drained.”"],
+ ["Curiosity","A40","Week Six Mechanism","Video","Linda","Product-Aware","F1 Authority","A curiosity hook that also does retention work — rare combination.","“Most people quit NMN at week four. Here is why you should wait for week six.”"],
+
+ ["Founder","A24","The Study That Didn't Go Our Way","VO","Clarity","Solution-Aware","F9 Founder","<b>Best asset in the library.</b> Openly cites the 2025 systematic review that undercuts the category and disqualifies healthy under-40 buyers. Anti-marketing that buys permanent trust.","“Here is the 2025 NMN clinical study that didn’t go our way.”"],
+ ["Founder","A33","Is Prime A Scam?","VO","Robert","Product-Aware","F9 Founder","Takes the harshest public comment head-on, names past fulfilment failures, shows audited shipping SLAs.","“Somebody wrote ‘is Prime Ingredients a scam?’ under one of our ads. Let’s answer that.”"],
+ ["Founder","A28","The Honest Label","Carousel","Clarity","Solution-Aware","F9 Founder","Also counted under Carousel. Pre-empting the side effect is what makes the rest of the claims credible.","“What Prime Ingredients NMN will NOT do.”"],
+ ["Founder","A37","We Read The Comments","Carousel","Linda","Product-Aware","F9 Founder","Also counted under Carousel. Operational transparency answered in the founder's own voice.","“We read the actual comments under our ads.”"],
+
+ ["Closer","A44","The Six-Month Decision","VO","Linda","Most-Aware","F8 Ugly","15-second motion arithmetic: six bottles, 180 days, 55¢ a day, one decision.","“Six bottles. 180 days. 55 cents a day. One decision.”"],
+ ["Closer","A43","Don't Lose The Momentum","VO","Robert","Most-Aware","F10 Us vs Them","No-fluff male reorder prompt. Running out is framed as the only real risk.","“Three months in. Running out is the only way you lose your edge.”"],
+ ["Closer","A39","Price The Gram, Not The Bottle","Video","Robert","Product-Aware","F2 Disqualification","Walks through the real arithmetic of bottle price against cost per clinical gram.","“Stop pricing the bottle. It’s the wrong number.”"],
+ ["Closer","A26","Cheap Isn't The Problem","Static","Linda","Solution-Aware","F10 Us vs Them","Neutralises the cheap-supplement objection without ever apologising for the price.","“Cheap NMN isn’t cheaper. It’s just less.”"]
+];
+
+const TEN = [
+ ["A21","Not All NMN","UGC — the proven angle. Launch it first."],
+ ["A01","Three PM Crash","UGC — broadest cold-traffic hook. Lead with Hook B."],
+ ["A25","Six Things","Static — cheapest to produce, highest proof density."],
+ ["A24","The Study That Didn't Go Our Way","Founder — the trust asset everything else leans on."],
+ ["A02","The Stopwatch","UGC — opens the male segment."],
+ ["A15","It Was Never Sleep","Static — fastest-reading benefit call-out."],
+ ["A27","NMN vs NR","Carousel — captures the category comparison shopper."],
+ ["A32","Didn't Buy It For My Skin","UGC — best testimonial shape, opens Margaret."],
+ ["A31","How To Take It","UGC demo — protects retention from day one."],
+ ["A45","The Arithmetic","Static — the retargeting closer."]
+];
+
+const BENCH = [
+ ["A03","Becoming My Father",1],["A04","The Chair",0],["A08","The Reunion Photo",0],
+ ["A10","Authority Mechanism",0],["A11","Sleep Doesn't Fix It",0],["A13","Your Doctor Said Normal",0],
+ ["A17","The Tank",0],["A19","Mechanism Identity",0],["A20","Inside-Out Mechanism",0],
+ ["A22","Not All Astaxanthin",1],["A23","Read The Label With Me",0],
+ ["A30","Alt. Disqualification (Robert)",0],["A35","Counted On Camera",1],["A38","Inside And Outside",0]
+];
+
+const REQS = [
+ ["UGC","UGC",3],["Static","Statics",4],["Carousel","Carousel",2],
+ ["Demo","Demo / explainer",2],["Curiosity","Curiosity",2],["Founder","Founder-led",2]
+];
+
+const KEY="prime-creative-selection-v1";
+let picked = new Set();
+try{ const s=localStorage.getItem(KEY); if(s) picked=new Set(JSON.parse(s)); }catch(e){}
+if(!picked.size){ ADS.forEach(a=>picked.add(a[0]+"|"+a[1])); }
+
+function esc(s){return s;}
+
+function renderAds(){
+  document.querySelectorAll("ul.ads").forEach(ul=>{
+    const g=ul.dataset.group;
+    ul.innerHTML = ADS.filter(a=>a[0]===g).map(a=>{
+      const key=a[0]+"|"+a[1];
+      const on=picked.has(key);
+      return `<li class="ad${on?" picked":""}" data-key="${key}">
+        <input type="checkbox" ${on?"checked":""} aria-label="Select ${a[1]} ${a[2]}">
+        <span class="id">${a[1]}</span>
+        <span class="who">
+          <span class="name">${a[2]}</span>
+          <span class="meta"><span class="fmt">${a[3]}</span><span>${a[4]}</span><span>${a[5]}</span><span>${a[6]}</span></span>
+        </span>
+        <span class="why">${a[7]}<span class="hook">${a[8]}</span></span>
+      </li>`;
+    }).join("");
+  });
+}
+
+function renderScore(){
+  const uniq=new Set();
+  picked.forEach(k=>uniq.add(k.split("|")[1]));
+  let html = `<span class="chip total"><span class="n">${uniq.size}</span> unique assets · need 25+</span>`;
+  REQS.forEach(([g,label,min])=>{
+    const n = ADS.filter(a=>a[0]===g && picked.has(a[0]+"|"+a[1])).length;
+    const cls = n>=min ? "met" : "short";
+    html += `<span class="chip ${cls}"><span class="n">${n}</span>${label} · need ${min}${g==="Static"?"":"+"}</span>`;
+  });
+  const creators = new Set(ADS.filter(a=>a[0]==="UGC" && picked.has(a[0]+"|"+a[1])).map(a=>a[4]));
+  html += `<span class="chip ${creators.size>=3?"met":"short"}"><span class="n">${creators.size}</span>UGC creators · need 3+</span>`;
+  document.getElementById("chips").innerHTML=html;
+}
+
+function renderTen(){
+  document.getElementById("tenlist").innerHTML = TEN.map((t,i)=>
+    `<li><span class="rank">${String(i+1).padStart(2,"0")}</span><span class="rid">${t[0]}</span><span class="txt"><b>${t[1]}</b> — <span>${t[2]}</span></span></li>`
+  ).join("");
+}
+
+function renderBench(){
+  document.getElementById("benchlist").innerHTML = BENCH.map(b=>
+    `<li class="${b[2]?"up":""}"><b>${b[0]}</b> ${b[1]}</li>`
+  ).join("");
+}
+
+document.addEventListener("change",e=>{
+  const li=e.target.closest(".ad"); if(!li) return;
+  const k=li.dataset.key;
+  if(e.target.checked){picked.add(k); li.classList.add("picked");}
+  else{picked.delete(k); li.classList.remove("picked");}
+  try{ localStorage.setItem(KEY, JSON.stringify([...picked])); }catch(err){
+    document.getElementById("scorenote").textContent="Selection can’t be saved in this browser — tallies still update";
+  }
+  renderScore();
+});
+
+renderAds(); renderScore(); renderTen(); renderBench();
+</script>
