@@ -1,0 +1,1024 @@
+<title>Personal Brand Field Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Archivo+Narrow:wght@400;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+
+<style>
+  :root {
+    --ground:      #FBF8F3;
+    --surface:     #F3EEE5;
+    --surface-2:   #EBE4D7;
+    --ink:         #1B2620;
+    --ink-soft:    #4C574F;
+    --ink-faint:   #7C857D;
+    --rule:        #1B2620;
+    --hairline:    #CFC7B8;
+    --accent:      #8C633F;
+    --accent-soft: #A9805A;
+    --clay:        #8E4F3C;
+    --forest:      #2E3D31;
+    --meter-off:   #DBD3C5;
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --label:   "Archivo Narrow", "Archivo", Arial, sans-serif;
+    --body:    "Newsreader", Georgia, "Times New Roman", serif;
+
+    --col: 68ch;
+    --gutter: 4.5rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #12170F;
+      --surface:     #1A2018;
+      --surface-2:   #242C21;
+      --ink:         #EDE7DA;
+      --ink-soft:    #B4BBAF;
+      --ink-faint:   #838C7F;
+      --rule:        #EDE7DA;
+      --hairline:    #3A4436;
+      --accent:      #C79A6C;
+      --accent-soft: #B98B5E;
+      --clay:        #C47B62;
+      --forest:      #9FB6A2;
+      --meter-off:   #333C2F;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #12170F;
+    --surface:     #1A2018;
+    --surface-2:   #242C21;
+    --ink:         #EDE7DA;
+    --ink-soft:    #B4BBAF;
+    --ink-faint:   #838C7F;
+    --rule:        #EDE7DA;
+    --hairline:    #3A4436;
+    --accent:      #C79A6C;
+    --accent-soft: #B98B5E;
+    --clay:        #C47B62;
+    --forest:      #9FB6A2;
+    --meter-off:   #333C2F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 1.5rem 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: calc(var(--col) + var(--gutter));
+    margin: 0 auto;
+  }
+
+  /* ---------- typographic primitives ---------- */
+
+  .eyebrow {
+    font-family: var(--label);
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--display);
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: clamp(2.35rem, 7vw, 3.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.032em;
+  }
+
+  h2 {
+    font-weight: 800;
+    font-size: clamp(1.4rem, 3.6vw, 1.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.16rem;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: -0.005em;
+  }
+
+  p { margin: 0; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .stack   { display: flex; flex-direction: column; gap: 1.1rem; }
+  .stack-s { display: flex; flex-direction: column; gap: 0.55rem; }
+  .stack-l { display: flex; flex-direction: column; gap: 2rem; }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    padding: 3.5rem 0 0;
+    border-bottom: 3px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .masthead .lede {
+    font-size: 1.14rem;
+    color: var(--ink-soft);
+    max-width: 54ch;
+  }
+
+  .factstrip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0 1.5rem;
+    border-top: 1px solid var(--hairline);
+    padding: 0.9rem 0 1.1rem;
+  }
+  .factstrip > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.35rem 0;
+  }
+  .factstrip .v {
+    font-family: var(--label);
+    font-weight: 600;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- sections ---------- */
+
+  section.major {
+    border-top: 3px solid var(--rule);
+    padding-top: 1.5rem;
+    margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  section.major:first-of-type { border-top: none; }
+
+  .sechead {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .sechead .kicker {
+    font-family: var(--label);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  /* ---------- callout ---------- */
+
+  .callout {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .callout p { font-size: 0.96rem; color: var(--ink-soft); }
+  .callout strong { color: var(--ink); }
+
+  /* ---------- forces ---------- */
+
+  .forces { display: flex; flex-direction: column; }
+
+  .force {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: 0 1rem;
+    padding: 1.05rem 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .force:first-child { border-top: none; padding-top: 0.2rem; }
+
+  .force .n {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.06rem;
+  }
+  .force .t { display: flex; flex-direction: column; gap: 0.3rem; }
+  .force p { font-size: 0.97rem; color: var(--ink-soft); }
+
+  /* ---------- lane panels ---------- */
+
+  .lanes { display: flex; flex-direction: column; gap: 1.4rem; }
+
+  .lane {
+    background: var(--surface);
+    border-top: 2px solid var(--rule);
+    padding: 1.05rem 1.25rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .lane-head { display: flex; flex-direction: column; gap: 0.35rem; }
+
+  .lane .quote {
+    font-family: var(--body);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--accent);
+    line-height: 1.4;
+  }
+
+  .lane p { font-size: 0.95rem; color: var(--ink-soft); }
+  .lane p strong { color: var(--ink); }
+
+  /* rating rows — supplement-panel grammar */
+  .ratings {
+    border-top: 1px solid var(--hairline);
+    padding-top: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .rating {
+    display: grid;
+    grid-template-columns: 6.2rem 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .rating .k {
+    font-family: var(--label);
+    font-weight: 600;
+    font-size: 0.67rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .meter { display: flex; gap: 3px; }
+  .meter i {
+    display: block;
+    height: 7px;
+    flex: 1;
+    background: var(--meter-off);
+  }
+  .meter i.on { background: var(--accent-soft); }
+  .meter.warn i.on { background: var(--clay); }
+  .rating .v {
+    font-family: var(--label);
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  /* ---------- dying list ---------- */
+
+  .dying { display: flex; flex-direction: column; }
+  .dying > div {
+    border-top: 1px solid var(--hairline);
+    padding: 0.75rem 0;
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+  }
+  .dying > div:first-child { border-top: none; }
+  .dying strong { color: var(--ink); }
+
+  /* ---------- directions ---------- */
+
+  .directions { display: flex; flex-direction: column; gap: 1.6rem; }
+
+  .dir {
+    border: 1px solid var(--hairline);
+    padding: 1.2rem 1.35rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    background: var(--ground);
+  }
+  .dir.pick {
+    border: 2px solid var(--accent);
+    background: var(--surface);
+  }
+
+  .dir-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+  .dir-letter {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.7rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+  }
+  .tag {
+    font-family: var(--label);
+    font-weight: 700;
+    font-size: 0.63rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--ground);
+    padding: 0.2rem 0.5rem;
+  }
+
+  .dir dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0.45rem 1rem;
+    border-top: 1px solid var(--hairline);
+    padding-top: 0.85rem;
+  }
+  .dir dt {
+    font-family: var(--label);
+    font-weight: 600;
+    font-size: 0.67rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: 0.28rem;
+  }
+  .dir dd {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+  }
+  .dir dd strong { color: var(--ink); }
+
+  .why {
+    background: var(--surface-2);
+    padding: 0.95rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .why ol {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+  }
+  .why li::marker { color: var(--accent); font-family: var(--display); font-weight: 800; }
+  .why strong { color: var(--ink); }
+
+  /* ---------- table ---------- */
+
+  .tablewrap { overflow-x: auto; border-top: 2px solid var(--rule); }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 560px;
+    font-family: var(--label);
+    font-variant-numeric: tabular-nums;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 0.85rem;
+  }
+  thead th {
+    font-weight: 700;
+    font-size: 0.67rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    vertical-align: bottom;
+  }
+  tbody th {
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  td { color: var(--ink-soft); }
+  .colpick { background: var(--surface); }
+  thead .colpick, td.colpick { color: var(--ink); font-weight: 600; }
+  thead th.colpick { color: var(--accent); }
+
+  /* ---------- questions ---------- */
+
+  .questions { display: flex; flex-direction: column; }
+  .q {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    gap: 0 0.9rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .q:first-child { border-top: none; }
+  .q .n {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.14rem;
+  }
+  .q .t { display: flex; flex-direction: column; gap: 0.2rem; }
+  .q p { font-size: 0.93rem; color: var(--ink-soft); }
+
+  /* ---------- timeline ---------- */
+
+  .timeline { display: flex; flex-direction: column; }
+  .phase {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0 1rem;
+    padding: 0.95rem 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .phase:first-child { border-top: none; }
+  .phase .w {
+    font-family: var(--label);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.28rem;
+  }
+  .phase .t { display: flex; flex-direction: column; gap: 0.25rem; }
+  .phase p { font-size: 0.94rem; color: var(--ink-soft); }
+
+  /* ---------- sources ---------- */
+
+  details.sources {
+    border-top: 1px solid var(--hairline);
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+  details.sources summary {
+    font-family: var(--label);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    cursor: pointer;
+  }
+  details.sources summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .srclist {
+    columns: 2;
+    column-gap: 2rem;
+    margin-top: 1rem;
+    font-family: var(--label);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--ink-faint);
+  }
+  .srclist a { display: block; margin-bottom: 0.45rem; break-inside: avoid; color: var(--ink-soft); text-decoration: none; }
+  .srclist a:hover { color: var(--accent); text-decoration: underline; }
+
+  footer.colophon {
+    margin-top: 3.5rem;
+    border-top: 3px solid var(--rule);
+    padding-top: 1rem;
+    font-family: var(--label);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 620px) {
+    .rating { grid-template-columns: 5.4rem 1fr auto; gap: 0.5rem; }
+    .dir dl { grid-template-columns: 1fr; gap: 0.15rem; }
+    .dir dt { padding-top: 0.5rem; }
+    .srclist { columns: 1; }
+    .phase { grid-template-columns: 1fr; gap: 0.3rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="stack-s">
+      <span class="eyebrow">Prime Ingredients · Brand Strategy · August 2026</span>
+      <h1>Personal Brand<br>Field Map</h1>
+    </div>
+    <p class="lede">Nine lanes that are demonstrably working in the market right now, what's dying, and the four directions actually available to us. Broad first — we pick after.</p>
+    <div class="factstrip">
+      <div><span class="eyebrow">Business</span><span class="v">Prime Ingredients</span></div>
+      <div><span class="eyebrow">Category</span><span class="v">DTC Supplements</span></div>
+      <div><span class="eyebrow">Stage</span><span class="v">Shopify · sub-$1M GMV</span></div>
+      <div><span class="eyebrow">Status</span><span class="v">Exploration — not committed</span></div>
+    </div>
+  </header>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Read this first</span>
+      <h2>How to read this</h2>
+    </div>
+    <p>This is deliberately broad before narrow. The <strong>nine lanes</strong> are the landscape, with real operators in each. The <strong>four directions</strong> narrow to what's available to us given what we already own. The <strong>six questions</strong> at the end are the only real blockers.</p>
+    <div class="callout">
+      <span class="eyebrow">On the evidence</span>
+      <p>Most published creator-economy numbers come from platforms and agencies with something to sell, and they don't agree — one source puts the creator economy at $250B in 2026, another projects $480B, a third had it at $104B in 2024. <strong>Treat every figure here as directional, not decision-grade.</strong> The patterns across sources are far more reliable than the numbers, and where the patterns agree it's noted.</p>
+    </div>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 01</span>
+      <h2>Five forces shaping the market</h2>
+      <p class="kicker">Everything downstream depends on these. They are the consistent signal across every source.</p>
+    </div>
+    <div class="forces">
+      <div class="force">
+        <span class="n">01</span>
+        <div class="t">
+          <h3>Algorithms now favour humans over logos</h3>
+          <p>Meta, TikTok, LinkedIn and YouTube have all shifted distribution toward real human accounts over brand accounts. Personal accounts pull roughly 2–3× the engagement of business accounts. This is the strongest argument for doing this at all — the brand handle is fighting the algorithm, a face isn't.</p>
+        </div>
+      </div>
+      <div class="force">
+        <span class="n">02</span>
+        <div class="t">
+          <h3>Trust moved from brands to identifiable people</h3>
+          <p>Trust in anonymous brands has fallen while trust in named founders has risen. In supplements this is amplified — it's a category where nobody believes the packaging. A named human with a verifiable track record is now the cheapest trust available.</p>
+        </div>
+      </div>
+      <div class="force">
+        <span class="n">03</span>
+        <div class="t">
+          <h3>AI made content cheap, so proof became the product</h3>
+          <p>62% of creators already use generative AI; 94% of brands working with creators have adopted AI tools. When everyone can generate a polished post, polish stops signalling anything. What's scarce is <strong>verifiable, first-hand proof</strong> — real numbers, real screenshots, real failures. The corollary: over-polish now reads as AI slop, and imperfection reads as human.</p>
+        </div>
+      </div>
+      <div class="force">
+        <span class="n">04</span>
+        <div class="t">
+          <h3>Over-niching is out; a point of view is in</h3>
+          <p>The 2023-era "pick one hyper-specific niche forever" advice has softened. Wellness, business and building can coexist under one person if a coherent vision holds them together. But the <em>audience</em> still has to be specific even when the topics aren't — one audience, one promised result, several topics.</p>
+        </div>
+      </div>
+      <div class="force">
+        <span class="n">05</span>
+        <div class="t">
+          <h3>Monetization moved from reach to depth</h3>
+          <p>Course-only creators saw a ~40% revenue decline since 2023 while community-based creators grew ~27% in 2025. Memberships are now the primary revenue foundation rather than one option among many, typically $26–$50/month. The winning stack is consistent everywhere: <strong>short-form for discovery → email for conversion → products and community for revenue.</strong> Ads and brand deals are the least durable layer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 02</span>
+      <h2>The landscape: nine working lanes</h2>
+      <p class="kicker">A catalog, not a ranking. Each lane is live in the market with real operators in it. Ratings are a judgement call, not survey data.</p>
+    </div>
+
+    <div class="lanes">
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · Protocol Documentarian</span>
+          <h3>Here is my exact system, measured, published, free</h3>
+        </div>
+        <p><strong>Who:</strong> Bryan Johnson / Blueprint is the archetype — biological-age measurement, published protocols, a Netflix documentary that moved him mainstream, and a supplement line sold off the back of it. Blueprint extended into a female longevity protocol in 2026 with Kate Tolo as primary subject, which shows the archetype is replicable to a second person rather than locked to the founder.</p>
+        <p><strong>Shape:</strong> Your own data, published relentlessly — measurement <em>is</em> the content. YouTube primary. The protocol is the funnel: the audience is pre-sold on the stack before the store loads. The moat is accumulated data you can't fake or shortcut.</p>
+        <p><strong>Catch:</strong> You must actually live it. It's a lifestyle commitment, not a content calendar — and the highest-scrutiny lane once you're commercial.</p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="v">12–24 months</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="v">Medium, rising</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="v">High</span></div>
+        </div>
+      </article>
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · Credentialed Specialist</span>
+          <h3>I'm an MD, RD or PhD and I own one under-served problem</h3>
+        </div>
+        <p><strong>Who:</strong> Dr. Mary Claire Haver (The 'Pause Life) is the cleanest example — a physician who took perimenopause, a genuinely under-served problem, and built both an audience and a supplement line on it. Adjacent: Judy Greer's Wile, Rochelle Weitzner's Pause — the same midlife gap approached from celebrity and industry-executive credibility.</p>
+        <p><strong>Why it's hot:</strong> A documented gap in US healthcare around perimenopause, where practitioners are under-educated and the downstream risk is real. Under-served + high-anxiety + recurring-purchase is the best possible combination for supplements.</p>
+        <p><strong>Catch:</strong> <strong>Requires a credential you cannot fake.</strong> Without one this lane is only reachable through a co-founded brand with a named practitioner — a real and common structure, but a partnership decision rather than a content one.</p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="v">6–12 months</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="v">Headlines crowding</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="v">Medium</span></div>
+        </div>
+      </article>
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · Operator / Insider</span>
+          <h3>I run a real business. Here's what actually happened this week</h3>
+        </div>
+        <p><strong>Who:</strong> Nik Sharma ("The DTC Guy", Sharma Brands, one of the most-read DTC newsletters, co-hosts <em>Limited Supply</em> with Moiz Ali of Native → P&amp;G, $100M). And most relevantly: <strong>Ash Melwani of Obvi — a bootstrapped collagen brand, ~$30M in under three years, 250K+ customers</strong>, built substantially on community (a Facebook group they credit with a 5×) and creative volume (~40 new creatives a week). Our category, our product, a documented playbook.</p>
+        <p><strong>Shape:</strong> Teardowns, numbers, what broke. LinkedIn or X primary, newsletter as the asset. Monetizes fast and B2B — sponsorships, advisory, agency, tooling — independently of how big the DTC brand is.</p>
+        <p><strong>Catch:</strong> You need real numbers and the willingness to publish them. Sub-$1M isn't a disqualifier — it's the differentiator, because almost everyone teaching in this lane is either much bigger or making it up.</p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="v">60–90 days</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="v">High (general)</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="v">Low</span></div>
+        </div>
+      </article>
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · Category Educator</span>
+          <h3>Here's what's actually in it, and what the dose should be</h3>
+        </div>
+        <p><strong>Shape:</strong> Label deconstruction, dosage versus clinical dosage, sourcing, bioavailability, why this costs $19 and that costs $60. YouTube plus long-form writing, with short-form clipped out of it. Slow to build, close to immune to platform shifts, and converts to product exceptionally well because you've taught the buyer the criteria your product happens to meet.</p>
+        <p><strong>Catch:</strong> The heaviest compliance load of any lane. This is where an offhand sentence becomes an FDA problem.</p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="v">9–18 months</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="v">Low–medium</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="v">High (claims)</span></div>
+        </div>
+      </article>
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · Contrarian / Watchdog</span>
+          <h3>The most-promoted product in this category is one of the worst</h3>
+        </div>
+        <p><strong>Who:</strong> Johnson's public attack on AG1 — calling it "one of the lowest value health products in the world despite being the most heavily promoted," with an estimated ~76% markup at its $60 entry price — is the template. It travelled enormously.</p>
+        <p><strong>Catch:</strong> Attention arrives fast; money arrives awkwardly. The moment you sell your own version, the same lens turns on you. <strong>Viable as a recurring pillar inside another lane; dangerous as a whole identity.</strong></p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="v">Immediate spikes</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="v">Low</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="v">Highest</span></div>
+        </div>
+      </article>
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · AI Operator / Builder-in-Public</span>
+          <h3>Here's the agent stack running my actual company</h3>
+        </div>
+        <p><strong>Why it stands out:</strong> Two trends collide. AI has become baseline infrastructure, so the interesting question moved from "does this work" to "show me your system running a real P&amp;L." And creators are now selling <strong>AI agents as a direct product</strong> — packaging a repeated pain point as an input-output promise, selling access to an agent trained on their methodology rather than access to their calendar. Newsletter-monetization trackers name "a paid AI agent" as one of the 2–3 models the strongest operators stack.</p>
+        <p><strong>Shape:</strong> Build-in-public. "7 things I learned going from $0 to $X" threads are consistently the fastest growth driver. The founder-content rhythm is ~2 expertise posts, 1 building-in-public post, 1 story post per week. X and LinkedIn primary, YouTube for the long-form system flagship.</p>
+        <p><strong>Catch:</strong> The lane is <strong>high in talk and nearly empty of proof</strong> — flooded with people describing agents, almost devoid of people running a real business on them in public. That gap is the whole opportunity, and credibility is binary: if the system isn't genuinely running things, it collapses on contact with a competent audience.</p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="v">60–120 days</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="v">Talk high, proof low</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="v">Low</span></div>
+        </div>
+      </article>
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · Transformation Protagonist</span>
+          <h3>Watch me change over twelve months</h3>
+        </div>
+        <p><strong>Shape:</strong> A personal arc — body, health, business — with the audience along for it. Big top-funnel, hard ceiling on authority. Works as an acquisition layer feeding a product, not as the whole business.</p>
+        <p><strong>Catch:</strong> In supplements this is the highest-compliance-risk format that exists. Before/after content plus a product you sell is precisely the fact pattern regulators look at.</p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="v">Fast, if compelling</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="v">Extreme</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="v">Highest (claims)</span></div>
+        </div>
+      </article>
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · Curator / Signal Filter</span>
+          <h3>I read two hundred things this week so you don't have to</h3>
+        </div>
+        <p><strong>Shape:</strong> A newsletter filtering a firehose for one professional audience. Sponsorships, paid subscriptions, affiliate and digital products are the four highest-ROI newsletter models. The most mechanically reliable lane there is — and the lowest ceiling on its own, so it works best as connective tissue between other lanes.</p>
+        <p><strong>Catch:</strong> Faceless curation now carries an AI-slop penalty. Neutral, personality-free filtering reads as machine-made; curation needs a voice attached to it.</p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="v">Medium, predictable</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="v">High</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="v">Low</span></div>
+        </div>
+      </article>
+
+      <article class="lane">
+        <div class="lane-head">
+          <span class="eyebrow">Lane · Community Convener</span>
+          <h3>I run the room where this conversation happens</h3>
+        </div>
+        <p><strong>Shape:</strong> Obvi's Facebook group again — credited with a 5× on revenue. The least glamorous and most defensible lane in the category. Memberships at $26–$50/month are now the primary revenue foundation for community-led creator businesses; cohort and live formats command premium pricing for the interaction. First $1K/month typically lands 3–9 months in.</p>
+        <p><strong>Catch:</strong> It's a job. A community is a commitment you can't pause without visible decay — which is exactly why competitors stay out.</p>
+        <div class="ratings">
+          <div class="rating"><span class="k">Traction</span><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="v">Slow, compounding</span></div>
+          <div class="rating"><span class="k">Saturation</span><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="v">Low</span></div>
+          <div class="rating"><span class="k">Risk</span><span class="meter warn"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="v">Medium (ongoing)</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 03</span>
+      <h2>What's dying</h2>
+      <p class="kicker">Consistent across every source. Several of these were best practice eighteen months ago.</p>
+    </div>
+    <div class="dying">
+      <div><strong>Generic motivational content and follower-count chasing.</strong> The tactics that built brands in 2023–24 are actively counterproductive now.</div>
+      <div><strong>Corporate polish.</strong> Plain language ("here's what I learned", "this mistake cost us") substantially outperforms buzzword-laden posts. Over-editing is out; natural pacing and visible imperfection are in.</div>
+      <div><strong>Trend-chasing niches.</strong> Trending niches saturate within weeks. Picking one <em>because</em> it's trending is a burnout path.</div>
+      <div><strong>Broad categories.</strong> "Fitness" is saturated; "kettlebell training for over-50s" has fewer competitors and higher conversion. Narrow the audience, not necessarily the topics.</div>
+      <div><strong>Course-only businesses.</strong> Roughly 40% revenue decline since 2023. Courses are a component now, not a business.</div>
+      <div><strong>One brief posted to four platforms.</strong> There is no universal algorithm — TikTok weights watch-completion and re-watch, Instagram weights saves and shares, LinkedIn actively suppresses content that looks like engagement bait.</div>
+      <div><strong>Spreading across every platform at once.</strong> The consensus is one primary, one secondary. For consumer and supplement brands the recommended primary is YouTube; for operator positioning it's LinkedIn or X.</div>
+    </div>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 04</span>
+      <h2>What we already own</h2>
+      <p class="kicker">This is what makes some lanes cheap for us and others expensive. The last row is unusual — most people in this market don't have it.</p>
+    </div>
+    <div class="dying">
+      <div><strong>A real DTC supplement brand.</strong> Prime Ingredients — Shopify, live, sub-$1M GMV, US.</div>
+      <div><strong>A hero SKU with a story.</strong> Multi Collagen Peptides — types I, II, III, V and X, plus Vitamin C, Biotin and Hyaluronic Acid.</div>
+      <div><strong>Real marketing infrastructure.</strong> Klaviyo campaigns and flows, Meta Ads, Triple Whale with the pixel live and Triple Attribution running.</div>
+      <div><strong>A working agent stack.</strong> A newsletter production agent (Canva brand kit → Klaviyo draft, already shipped), a UGC ad-prompt director, and this research workflow.</div>
+      <div><strong>Version-controlled marketing ops.</strong> Every asset committed, reviewable, reproducible. In a lane where credibility is binary, an auditable trail is a structural advantage.</div>
+    </div>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 05</span>
+      <h2>Four directions available to us</h2>
+      <p class="kicker">Each one is a combination of lanes above, pointed at a specific audience with a specific way of making money.</p>
+    </div>
+
+    <div class="directions">
+
+      <article class="dir">
+        <div class="dir-head">
+          <span class="dir-letter">A</span>
+          <h3>The Supplement Operator</h3>
+        </div>
+        <p>You, publicly running a small supplement brand: real numbers, real creative tests, real Klaviyo and Meta results, weekly. <em>"Everyone teaching DTC either exited for $100M or is making it up. I'm in the messy middle and I'm showing the receipts."</em></p>
+        <dl>
+          <dt>Lanes</dt><dd>Operator + Curator</dd>
+          <dt>Audience</dt><dd>DTC operators, other sub-$5M supplement founders, agency people</dd>
+          <dt>Platform</dt><dd>LinkedIn or X primary → newsletter. 3–5 posts a week</dd>
+          <dt>Money</dt><dd>Newsletter sponsors (the supplement-tooling ecosystem is well funded) → advisory → possibly agency</dd>
+          <dt>Traction</dt><dd><strong>60–90 days.</strong> Fastest path to any revenue at all</dd>
+          <dt>Uses agents</dt><dd>Directly — Triple Whale pulls the numbers, the newsletter agent packages them</dd>
+          <dt>Risk</dt><dd>Requires publishing real revenue. Crowded room; differentiation is entirely the <em>supplements + small + honest</em> intersection</dd>
+        </dl>
+      </article>
+
+      <article class="dir">
+        <div class="dir-head">
+          <span class="dir-letter">B</span>
+          <h3>The Ingredient Truth-Teller</h3>
+        </div>
+        <p>The person who teaches people how to read a supplement label, with a recurring watchdog pillar. <em>"Most of what you're paying for is filler and marketing. Here's how to tell."</em></p>
+        <dl>
+          <dt>Lanes</dt><dd>Category Educator + Contrarian, pointed at consumers</dd>
+          <dt>Audience</dt><dd>Our actual customers — supplement buyers who suspect they're being ripped off and are right</dd>
+          <dt>Platform</dt><dd>YouTube primary (evergreen, compounds), short-form clipped from it, Instagram secondary</dd>
+          <dt>Money</dt><dd>Direct to Prime Ingredients. Teach the buying criteria, then meet them</dd>
+          <dt>Traction</dt><dd>Slow — 9–18 months to real momentum</dd>
+          <dt>Uses agents</dt><dd>Partly. The UGC tooling helps; the teaching has to be genuinely yours</dd>
+          <dt>Risk</dt><dd>Heaviest compliance load of the four, and the watchdog pillar cuts both ways once we're selling a competing product. Needs rules written before the first video</dd>
+        </dl>
+      </article>
+
+      <article class="dir pick">
+        <div class="dir-head">
+          <span class="dir-letter">C</span>
+          <h3>The AI-Run Brand</h3>
+          <span class="tag">Recommended</span>
+        </div>
+        <p>You as the operator running a real e-commerce brand on a fleet of agents, published openly — system and P&amp;L both. <em>"I run a supplement brand. Agents write the emails, direct the ads and read the analytics. Here's the whole stack, here's what it costs, here's what it earned, here's what it got wrong."</em></p>
+        <dl>
+          <dt>Lanes</dt><dd>AI Operator + Operator</dd>
+          <dt>Audience</dt><dd>Operators, founders, and the very large group trying to work out what agents are actually good for in a real business</dd>
+          <dt>Platform</dt><dd>X + LinkedIn primary → YouTube long-form system flagship → newsletter</dd>
+          <dt>Cadence</dt><dd>~2 expertise, 1 build-in-public, 1 story per week</dd>
+          <dt>Money</dt><dd>Agent templates and prompt packs → a paid agent product → cohorts and implementation → tool sponsorships. Prime Ingredients becomes a credibility asset rather than the only revenue line</dd>
+          <dt>Traction</dt><dd><strong>60–120 days</strong></dd>
+          <dt>Risk</dt><dd>The system has to genuinely be running things. And an honest open question — is the AI angle still interesting in eighteen months? The hedge is that the brand is the durable asset; AI is the current wedge into it</dd>
+        </dl>
+        <div class="why">
+          <span class="eyebrow">Why this one</span>
+          <ol>
+            <li><strong>It's the only direction where we're structurally hard to copy.</strong> Thousands of people talk about agents. Almost none run a real P&amp;L on one and publish it. High talk, low proof — and we're sitting on proof.</li>
+            <li><strong>It monetizes both sides.</strong> B2B revenue arrives while the DTC brand is still small, and the DTC brand's growth <em>is</em> the content. Neither waits on the other.</li>
+            <li><strong>It's compliance-light.</strong> We're talking about marketing systems, not health outcomes — which removes the single biggest constraint on B and D.</li>
+            <li><strong>The content already exists as a by-product.</strong> Every agent built, every campaign drafted, every number read is content we were going to generate anyway. Lowest marginal effort by a wide margin.</li>
+            <li><strong>The repo is the receipt.</strong> Version-controlled marketing ops means every claim is auditable, in a lane where credibility is binary.</li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="dir">
+        <div class="dir-head">
+          <span class="dir-letter">D</span>
+          <h3>The Midlife Wellness Host</h3>
+        </div>
+        <p>Pointed at the hero SKU's natural buyer. Collagen's core customer overlaps heavily with the perimenopause audience — documented, under-served, high-anxiety, recurring-purchase. Not the expert: the <em>convener</em>, the person who brings the experts into the room and runs it.</p>
+        <dl>
+          <dt>Lanes</dt><dd>Credentialed Specialist + Community Convener</dd>
+          <dt>Audience</dt><dd>Women 38–55 navigating perimenopause with poor support from mainstream healthcare</dd>
+          <dt>Platform</dt><dd>Instagram + a paid community, with a podcast or interview format as the engine</dd>
+          <dt>Money</dt><dd>Highest ceiling of the four — membership at $26–$50/month, direct product, and a natural product-line extension</dd>
+          <dt>Traction</dt><dd>Slow. 12+ months</dd>
+          <dt>Risk</dt><dd>This lane really wants a credential. Without one it's a co-founded structure with a named practitioner — a partnership decision, not a content decision. And the community is a job you can't pause</dd>
+        </dl>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 06</span>
+      <h2>Side by side</h2>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Criterion</th>
+            <th scope="col">A · Operator</th>
+            <th scope="col">B · Truth-Teller</th>
+            <th scope="col" class="colpick">C · AI-Run Brand</th>
+            <th scope="col">D · Wellness Host</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Speed to traction</th><td>High</td><td>Low</td><td class="colpick">High</td><td>Low</td></tr>
+          <tr><th scope="row">Differentiation</th><td>Medium</td><td>Medium</td><td class="colpick">Very high</td><td>Medium</td></tr>
+          <tr><th scope="row">Uses existing assets</th><td>High</td><td>Medium</td><td class="colpick">Very high</td><td>Low</td></tr>
+          <tr><th scope="row">Compliance risk</th><td>Low</td><td>High</td><td class="colpick">Very low</td><td>High</td></tr>
+          <tr><th scope="row">Revenue ceiling</th><td>Medium</td><td>High</td><td class="colpick">High</td><td>Very high</td></tr>
+          <tr><th scope="row">Effort per output</th><td>Medium</td><td>High</td><td class="colpick">Low</td><td>Very high</td></tr>
+          <tr><th scope="row">Needs a credential</th><td>No</td><td>No</td><td class="colpick">No</td><td>Effectively yes</td></tr>
+          <tr><th scope="row">Feeds Prime Ingredients</th><td>Indirectly</td><td>Directly</td><td class="colpick">Indirectly</td><td>Directly</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">The call</span>
+      <p><strong>C as the primary, B as a second layer once C is producing.</strong> C builds the audience and the revenue; B converts consumers into Prime Ingredients customers. A is largely a subset of C. D has the highest ceiling but it's a different business decision, not a branding one.</p>
+    </div>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 07</span>
+      <h2>Compliance guardrails</h2>
+      <p class="kicker">Non-negotiable in this category, and it binds the person, not just the brand.</p>
+    </div>
+    <div class="dying">
+      <div><strong>Two regulators, two jobs.</strong> The FTC governs disclosure of material connections; the FDA governs what claims may be made. Both have to be satisfied.</div>
+      <div><strong>Founders must disclose too.</strong> Posting about your own product on a personal account is a material connection requiring clear and conspicuous disclosure. Genuine enthusiasm is not an exemption.</div>
+      <div><strong>Structure/function claims are allowed; disease claims are not.</strong> "Supports joint comfort" is a different legal object from "treats arthritis." Crossing that line draws warning letters to the brand <em>and</em> the individual.</div>
+      <div><strong>Both parties are liable.</strong> The FTC states plainly that sponsoring brand and individual creator can each be held responsible for unsubstantiated claims or inadequate disclosure — and being paid increases their interest.</div>
+      <div><strong>What does work in 2026 wellness content:</strong> founder-credibility content, ingredient-mechanism education, before/after against measurable metrics rather than disease outcomes, and citing peer-reviewed studies.</div>
+    </div>
+    <p>Practical implication: before any consumer-facing health content ships, we write a one-page claims policy and run every script through it. Under Direction C this constraint mostly disappears — another point in its favour.</p>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 08</span>
+      <h2>What I need from you</h2>
+      <p class="kicker">The only real blockers. Everything above holds regardless of the answers.</p>
+    </div>
+    <div class="questions">
+      <div class="q"><span class="n">1</span><div class="t"><h4>Who is the person?</h4><p>Name, background, and what you're actually credible on. The whole thing hinges on this and I don't have it.</p></div></div>
+      <div class="q"><span class="n">2</span><div class="t"><h4>Camera or not?</h4><p>Face-forward changes the platform ranking completely. Faceless is viable in 2026 but carries an AI-slop penalty unless there's a strong voice attached.</p></div></div>
+      <div class="q"><span class="n">3</span><div class="t"><h4>Realistic weekly hours?</h4><p>Two to three hours and ten hours are different plans, not the same plan scaled.</p></div></div>
+      <div class="q"><span class="n">4</span><div class="t"><h4>How public with numbers?</h4><p>Directions A and C are meaningfully weaker if we can't publish revenue and spend.</p></div></div>
+      <div class="q"><span class="n">5</span><div class="t"><h4>What's the actual goal?</h4><p>Prime Ingredients revenue, or a second income stream? They point at different directions. C serves both, D serves the first, A serves the second.</p></div></div>
+      <div class="q"><span class="n">6</span><div class="t"><h4>Any credentialed partner available?</h4><p>Only relevant if D interests you.</p></div></div>
+    </div>
+  </section>
+
+  <section class="major">
+    <div class="sechead">
+      <span class="eyebrow">Section 09 · Conditional on C</span>
+      <h2>The first ninety days</h2>
+      <p class="kicker">A sketch, not a commitment. The questions above come first. These phases are genuinely sequential — each one depends on the last.</p>
+    </div>
+    <div class="timeline">
+      <div class="phase">
+        <span class="w">Weeks 1–2</span>
+        <div class="t"><h4>Foundation</h4><p>Lock positioning and the one-sentence promise. Claim handles. Set up the newsletter. Pick the primary platform and commit for ninety days. Write the content-pillar definitions.</p></div>
+      </div>
+      <div class="phase">
+        <span class="w">Weeks 3–4</span>
+        <div class="t"><h4>Proof bank</h4><p>Document the agent stack as it exists today — the newsletter agent end to end, the Canva → Klaviyo pipeline, the Triple Whale reporting loop. This is the flagship long-form asset; everything else gets clipped from it.</p></div>
+      </div>
+      <div class="phase">
+        <span class="w">Weeks 5–8</span>
+        <div class="t"><h4>Cadence</h4><p>Three to five posts a week. The first ninety days are about voice and rhythm, not virality. Every post repurposes into a newsletter section. Start the running "what it cost / what it earned" series.</p></div>
+      </div>
+      <div class="phase">
+        <span class="w">Weeks 9–12</span>
+        <div class="t"><h4>First monetization test</h4><p>Package one agent as a free template to build the list, then test a paid version. Open sponsor conversations once the newsletter has a real subscriber count.</p></div>
+      </div>
+      <div class="phase">
+        <span class="w">Throughout</span>
+        <div class="t"><h4>Build the agents on camera</h4><p>Each new agent added to Prime Ingredients is an episode. The work and the content are the same activity — which is the entire point of this direction.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <details class="sources">
+    <summary>Sources — landscape research, August 2026</summary>
+    <div class="srclist">
+      <a href="https://www.teleprompter.com/blog/trending-niches-for-creators-right-now">Trending Niches for Creators (2026) — Teleprompter</a>
+      <a href="https://www.thoughtleaders.io/blog/creator-economy-trends-2026">Creator Economy Trends 2026 — ThoughtLeaders</a>
+      <a href="https://stan.store/blog/creator-economy-trends-2026/">8 Trends Defining the Creator Economy — Stan</a>
+      <a href="https://www.getendow.com/insights/20-most-profitable-creator-niches-in-2026-(complete-guide)">20 Most Profitable Creator Niches — Endow</a>
+      <a href="https://venture-lab.org/2026/creator-economy-trends-2026/">12 Creator Economy Trends — Venture Lab</a>
+      <a href="https://circle.so/blog/creator-economy-statistics">Creator Economy Statistics 2026 — Circle</a>
+      <a href="https://communipass.com/blog/creator-monetization-in-2026-the-5-models-that-actually-generate-recurring-revenues/">Creator Monetization Models 2026 — Communipass</a>
+      <a href="https://communipass.com/blog/paid-newsletter-monetization/">Paid Newsletter Monetization — Communipass</a>
+      <a href="https://communipass.com/blog/creator-monetization-timeline-2026/">Creator Monetization Timeline — Communipass</a>
+      <a href="https://communipass.com/blog/ai-influencer-monetization-strategies-2026/">AI Influencer Monetization Strategies — Communipass</a>
+      <a href="https://mailsoftly.com/blog/newsletter-monetization-guide/">Monetize Your Newsletter in 2026 — Mailsoftly</a>
+      <a href="https://evolveamz.com/founder-led-content-ecommerce-2026/">Founder-Led Content for Ecommerce — EvolveAMZ</a>
+      <a href="https://www.workflows.io/blog/founder-led-marketing">The 2026 B2B Personal Brand Playbook — Workflows.io</a>
+      <a href="https://monolit.sh/blog/how-to-build-personal-brand-tiktok-founder-2026-step-by-step-guide">Personal Brand on TikTok as a Founder — Monolit</a>
+      <a href="https://contentelli.com/blog/founder-led-content/">Founder-Led Content: A 2026 Playbook — Contentelli</a>
+      <a href="https://www.growwithghost.io/blog/personal-branding-trends-2026-what-s-working-and-what-s-dying-on-linkedin/">What's Working and Dying on LinkedIn — Grow with Ghost</a>
+      <a href="https://influenceflow.io/resources/finding-your-creator-niche-a-complete-2026-guide/">Finding Your Creator Niche — InfluenceFlow</a>
+      <a href="https://sproutsocial.com/insights/linkedin-algorithm/">How the LinkedIn Algorithm Works — Sprout Social</a>
+      <a href="https://greenfroglabs.com/blog/tiktok-algorithm-2026-brand-strategy">TikTok Algorithm 2026 — Green Frog Labs</a>
+      <a href="https://www.influencers-time.com/there-is-no-universal-algorithm-just-four-different-ones/">No Universal Algorithm — Influencers Time</a>
+      <a href="https://www.hootsuite.com/research/social-trends">Social Media Trends 2026 — Hootsuite</a>
+      <a href="https://www.opus.pro/blog/faceless-creator-playbook-2026">Faceless Creator Playbook — OpusClip</a>
+      <a href="https://www.socialync.io/blog/building-personal-brand-vs-business-brand-2026">Personal vs Business Brand 2026 — Socialync</a>
+      <a href="https://www.bigeyeagency.com/insights/2026-design-trends-impact-on-consumer-brands">Design Trends 2026 — Bigeye</a>
+      <a href="https://thecreatorsai.com/p/4-ways-monetize-ai-agents-in-2026">4 Ways to Monetize AI Agents — Creators AI</a>
+      <a href="https://www.mindstudio.ai/blog/creator-economy-ai-monetizing-agent-apps">Monetizing Your AI Agent Apps — MindStudio</a>
+      <a href="https://www.autotweet.io/blog/build-in-public-on-x-twitter-2026">Build in Public on X (2026) — AutoTweet</a>
+      <a href="https://ecommercefastlane.com/the-marketing-playbook-from-the-dtc-guy-nik-sharma/">The Marketing Playbook from Nik Sharma — Ecommerce Fastlane</a>
+      <a href="https://dtcpod.simplecast.com/episodes/169-ash-melwani-cmo-obvi-secrets-to-explosive-customer-growth-UOCj5ZpS">Ash Melwani, Obvi — DTC Pod</a>
+      <a href="https://creators.spotify.com/pod/profile/dtcpodcast/episodes/Ep-202-5x-Your-Revenue-with-a-Facebook-Group--40-new-creatives-a-week--and-an-app-with-Ash-Melwani-from-Obvi-Collagen-e1ik0t0">5x Revenue with a Facebook Group — DTC Podcast</a>
+      <a href="https://www.uniladtech.com/social-media/twitter/biohacker-bryan-johnson-slams-popular-influencer-supplement-brand-489906-20260130">Bryan Johnson calls out AG1 — UNILAD Tech</a>
+      <a href="https://www.giftedpicks.com/picks/bryan-johnson-blueprint-supplements">Blueprint Supplements 2026 — GiftedPicks</a>
+      <a href="https://thepauselife.com/collections/supplements">The 'Pause Life — Dr. Mary Claire Haver</a>
+      <a href="https://www.forbes.com/sites/annahaines/2023/04/13/menopause-is-hot-these-beauty-brands-are-supporting-women-through-midlife/">Menopause Is Hot — Forbes</a>
+      <a href="https://trytruli.com/blog/ftc-health-claims-what-supplement-brands-need-to-know">FTC Health Claims in 2026 — Truli</a>
+      <a href="https://trytruli.com/blog/ftc-influencer-compliance-supplement-brands">FTC Influencer Compliance for CPG — Truli</a>
+      <a href="https://influencerfee.com/blog/supplements-influencer-marketing/">Supplement Influencer Marketing — InfluencerFee</a>
+      <a href="https://www.boltpr.com/article/influencer-marketing-wellness-medical-claims">Navigating Medical Claims — Bolt PR</a>
+    </div>
+  </details>
+
+  <footer class="colophon">
+    <span>Prime Ingredients · Personal Brand Field Map</span>
+    <span>Exploration draft · August 2026</span>
+  </footer>
+
+</div>
