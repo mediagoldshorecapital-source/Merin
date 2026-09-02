@@ -14,6 +14,10 @@ elements. Nothing is invented from scratch: each variation names its **parent**,
 | **E — Usage Intercept** | V5 | H16 | `E-usage-intercept.md` | E1 E2 E3 |
 | **F — Offer Mechanics** | V9 | H18 | `F-offer-mechanics.md` | F1 F2 F3 |
 
+**Plus:** `hook-swap-matrix.md` — 27 hook swaps (V1–V9 × 3 concepts), each keeping its parent's
+body exactly as it ran, with the full customer-psychologist audit per concept: internal
+dialogue, bias and lever, and why it converts.
+
 ---
 
 ## The seven transforms used
