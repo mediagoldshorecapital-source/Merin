@@ -114,7 +114,7 @@ set but only lightly worked.*
 **Defeats:** "It's expensive."
 **ICP:** both · **Awareness:** Solution-Aware
 **Best pairings:** F01, F06, F08 · always as the closing beat
-**Status:** `PROVEN` as a beat, `UNTESTED` as a full lead angle. **Recommended test.** Never defend price — move the reference point.
+**Status:** `PROVEN` as a beat (V1, V4, V6), `TESTING` as a full lead angle — briefed as `07-variations` **D2** and **F2**. Never defend price — move the reference point.
 
 ### A13 — The Cost of the Lost Afternoon
 **Claim:** the thing you lost isn't energy, it's the four hours after 2 PM — every day, for years.
@@ -138,11 +138,12 @@ set but only lightly worked.*
 **Status:** `UNTESTED`, **high risk.** Strongest emotional pull in the whole map (autonomy, not vanity) and the tightest compliance constraints. Legal review before it's briefed, not after.
 
 ### A16 — The Morning Protocol Ritual
+*(Promoted from `UNTESTED`: V5 "no-gatekeeping doc" is a winner built entirely on this angle.)*
 **Claim:** the reason your last supplement failed is that you stopped taking it. One capsule, one time, one trigger.
 **Defeats:** "I'm bad at being consistent."
 **ICP:** both · **Awareness:** any
 **Best pairings:** F05/H09, F08/H10
-**Status:** `UNTESTED`. Low-ceiling, high-floor. Excellent retargeting and email-companion angle.
+**Status:** `PROVEN` — V5 won on it. Low-ceiling, high-floor. Best retargeting and post-purchase angle we have, and it reaches competitor buyers.
 
 ---
 

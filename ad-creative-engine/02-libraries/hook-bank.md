@@ -232,6 +232,75 @@ in any category.
 
 ---
 
+### H15 — Ironic Warning / "Side Effects"
+*(Learned from our own winner V4 — not present in any of the 31 competitor ads.)*
+**Device:** open with the grammar of a warning, then reveal the "side effects" are the benefits.
+**Why it stops the scroll:** negativity bias. A warning gets read where a promise gets scrolled — and the reveal is a small joke, which buys goodwill before the pitch.
+**Template:**
+> "Here are the side effects of [CATEGORY] nobody's talking about. Number one, and probably the biggest one: [BENEFIT STATED AS A COMPLAINT]."
+
+**Prime Ingredients versions:**
+- "Side effects of taking NMN nobody warns you about. Number one: you'll stop recognising the tired version of yourself in photos."
+- "Three complaints we actually get about this. The first one is that people run out because they started giving it to their husband."
+- "Warning — do not take this after 2 PM. I'm serious, and the reason is annoying."
+
+**Variants:** the *true warning* version (real cautions: timing, take with food) is more defensible than the ironic one and tests comparably. Prefer it where legal exposure matters.
+**Guardrail:** the "side effects" must be benefits or genuine cautions — never a health claim smuggled in as a joke. "You might genetically change" is red-lane however it's framed.
+
+---
+
+### H16 — Post-Purchase Usage Intercept
+*(Learned from our own winner V5.)*
+**Device:** speak to the person who already bought — theirs or a competitor's — and is standing in the kitchen with a bottle they don't know how to use.
+**Why it stops the scroll:** it addresses a state almost nobody targets. Everyone advertises to shoppers; this talks to owners, and owners already believe the category works.
+**Template:**
+> "So [CATEGORY] got shoved down your throat by every [SOURCE], you got yours in the mail, and now you don't know how to take it. I'll teach you, because I'm a [CREDENTIAL] and I don't gatekeep."
+
+**Prime Ingredients versions:**
+- "You bought the NMN. It's been on your counter for three weeks. Here's how to actually take it."
+- "Three mistakes people make with NMN, and the second one is why you felt nothing for a month."
+- "Even if you didn't buy ours — take it in the morning, take it with food, don't take it after two."
+
+**Why it works:** the "I don't gatekeep, this works even if you bought a different brand" move disarms sales resistance completely, and then the formulation comparison lands as help rather than as a pitch.
+**Best audiences:** post-purchase retargeting, competitor-brand audiences, and anyone who engaged with a competitor's ad. Cheapest high-intent traffic available.
+
+---
+
+### H17 — Physical Lineup Elimination
+*(Learned from our own winner V6.)*
+**Device:** several real bottles on a counter, and a question. Elimination happens on camera, by hand.
+**Why it stops the scroll:** it's a visual game the viewer wants to win. They're guessing before the second sentence. Needs no talking head, no credential, and no script beyond nine words.
+**Template:**
+> "Okay — which one of these is actually the best?"
+> *(picks up each in turn)* "This one has [FLAW]. Same problem. Same problem. This one is the only one that [MECHANISM]."
+
+**Prime Ingredients versions:**
+- "Which one of these four is the only one that gets into the cell?"
+- "Go and get your bottle. I'll wait. Now check three things on the back of it."
+- "Three of these cost more than ours and none of them list a dose on the front."
+
+**Why it works:** it is the shortest path to a spec argument — the comparison is made physically before a single claim is spoken, so the claim arrives as a conclusion rather than an assertion.
+**Guardrail:** competitor labels blurred or turned away. Compare to "typical shelf products", never to a named brand.
+
+---
+
+### H18 — Deal Arbitrage / Native Offer
+*(Learned from our own winner V9.)*
+**Device:** no problem, no mechanism, no education. An insider showing you how to get the price down, plus a physical UI instruction.
+**Why it stops the scroll:** for an in-market buyer, price mechanics *are* the value. Twenty seconds, no persuasion, highest ROAS per second in the library.
+**Template:**
+> "Today you can get [PRODUCT] on a double discount. Let me show you how. Tap [UI ANCHOR] — that activates [DISCOUNT 1], plus [DISCOUNT 2]. This ends [DEADLINE]."
+
+**Prime Ingredients versions:**
+- "Buy two, get two free works out at $16.66 a bottle. That's twenty-eight cents a day. Tap the cart."
+- "Two discounts stack on this and most people only use one. Here's the order you tap them in."
+
+**Why it works:** it removes every cognitive step between wanting it and buying it — no code to find, no page to read, one physical instruction repeated twice.
+**Guardrail:** every deadline and stock statement must be **true**. A fake countdown or invented stock count is red-lane, and in this format the offer mechanics are the entire ad — if they're false there's nothing else holding it up.
+**Where it belongs:** Product-Aware and Most-Aware only. On cold traffic it has nothing to say.
+
+---
+
 ## Hook multiplier: turning 1 hook into 5
 
 Take any winning hook and run it through these five transforms. This is the mechanical

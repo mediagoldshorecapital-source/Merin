@@ -1,5 +1,9 @@
 # Competitor Swipe Index — 31 Ads
 
+> **Read `winners-index.md` first.** That file holds our own nine proven ads. Where this
+> file and that one disagree about what works, our winners win — this is the category's
+> behaviour, not our evidence.
+
 Source: `COMPETITOR_ADS.docx` teardown (Aug–Sep 2026 pulls). Every row is an ad that was
 running in the NMN / NAD+ / longevity category, classified against the engine's own
 libraries so it can be searched by what you need rather than by who made it.
@@ -54,6 +58,7 @@ closest rows, then send those reference videos with the brief. Never brief from 
 | H01 Forbidden / Regulatory | 4 | Highest stop-rate, highest legal load |
 | H03 Authority Name-Drop | 4 | Requires clip rights; strong on cold traffic |
 | H09 Comment Reply | 2 | **Underused relative to how well it performs and how cheap it is** |
+| H15–H18 (our four) | 0 | **Absent from the entire competitor set** — ironic warning, usage intercept, physical lineup and offer mechanics all came from our own winners |
 | H10 Category Confusion | 2 | Owns Product-Aware retargeting |
 | H14 Practitioner | 2 | Gated on a real credentialed presenter |
 | H04 Celebrity | 2 | High variance, high legal load |
