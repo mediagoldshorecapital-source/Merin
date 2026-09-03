@@ -12,10 +12,23 @@ single Node script, and the output in `dist/` is HTML, CSS and JS.
 
 ```bash
 npm run build     # scan newsletters/ -> dist/
+npm run verify    # assert dist/ is a complete, servable site
 npm run dev       # build, then serve dist/ at http://localhost:4173
 ```
 
 There is nothing to `npm install` — `package.json` has no dependencies.
+
+## Continuous integration
+
+`.github/workflows/build.yml` runs on every pull request (and on demand via
+*Run workflow*): it builds the site, runs `npm run verify`, and uploads `dist/`
+as an artifact so the output can be downloaded and inspected from the run.
+
+`verify` checks the build *output* rather than its exit code — a build can
+succeed and still emit something broken. It fails when a required page or asset
+is missing or empty, when a newsletter's email file didn't get copied, when
+`newsletters.json` won't parse, or when a page references a local file that
+isn't in `dist/`.
 
 ## Deploying to Netlify
 
@@ -97,6 +110,10 @@ site/            static source — copied verbatim into dist/
   assets/        stylesheet and page scripts
 scripts/
   build.mjs      scans newsletters/, writes dist/
+  verify.mjs     post-build check on dist/
   serve.mjs      dependency-free local static server
 netlify.toml     build settings, redirects, headers
+.github/
+  workflows/
+    build.yml    builds and verifies the site on every pull request
 ```
