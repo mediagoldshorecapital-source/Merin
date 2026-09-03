@@ -1,0 +1,35 @@
+name: Build
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and verify site
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No `npm ci` step: package.json has no dependencies and there is no
+      # lockfile, so installing would fail on a project that needs nothing.
+      - name: Build
+        run: npm run build
+
+      - name: Verify output
+        run: npm run verify
+
+      - name: Upload site
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7

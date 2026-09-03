@@ -1,0 +1,3 @@
+# Pretty URL for the preview page. Mirrors the redirect in netlify.toml so it
+# also applies to drag-and-drop deploys, where netlify.toml is not read.
+/preview  /preview.html  200
