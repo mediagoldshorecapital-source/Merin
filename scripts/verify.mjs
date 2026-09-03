@@ -33,6 +33,8 @@ const REQUIRED = [
   'assets/index.js',
   'assets/preview.js',
   'data/newsletters.json',
+  '_redirects',
+  '_headers',
 ];
 
 for (const rel of REQUIRED) await present(rel, 'site');

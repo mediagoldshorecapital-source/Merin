@@ -1,0 +1,16 @@
+# Mirrors the headers in netlify.toml so they also apply to drag-and-drop
+# deploys, where netlify.toml is not read.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/data/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/*
+  Cache-Control: public, max-age=3600
