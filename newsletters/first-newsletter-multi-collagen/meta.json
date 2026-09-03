@@ -1,0 +1,21 @@
+{
+  "title": "Multi Collagen Peptides Spotlight",
+  "summary": "Product spotlight on the hero SKU: Multi Collagen Peptides for Younger Skin and Stronger Joints.",
+  "brand": "Prime Ingredients",
+  "status": "draft",
+  "date": "2026-09-02",
+  "subject": "Collagen, Reimagined ✨ Meet Multi Collagen Peptides",
+  "previewText": "One clean scoop for younger-looking skin & stronger joints.",
+  "links": [
+    { "label": "Canva — edit design", "url": "https://www.canva.com/d/YD6UPqoSeMZKUrf" },
+    { "label": "Canva — view design", "url": "https://www.canva.com/d/tZrgqzjt7_AaoML" },
+    { "label": "Klaviyo — campaign", "url": "https://www.klaviyo.com/campaign/01KW0499WS6H6R1N4GCQ64B7JV/wizard" },
+    { "label": "Klaviyo — template", "url": "https://www.klaviyo.com/email-editor/VKP9Rs/edit" }
+  ],
+  "checklist": [
+    "Verify the From address — currently a placeholder; set a sender on a verified sending domain.",
+    "Drop the Canva AI imagery into the hero and section areas.",
+    "Replace the placeholder testimonial with a real review.",
+    "Send a test to yourself and review on desktop + mobile."
+  ]
+}
