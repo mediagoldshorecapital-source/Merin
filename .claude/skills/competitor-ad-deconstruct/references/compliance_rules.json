@@ -1,0 +1,79 @@
+{
+  "_comment": "Single source of truth for verify_report.py and for anyone writing Prime copy. Edit here, not in prose.",
+
+  "drug_disease_claims": [
+    "cure", "cures", "cured", "curing", "treat", "treats", "treated", "treating",
+    "prevent", "prevents", "prevented", "preventing", "heal", "heals", "healed",
+    "reverse aging", "reverses aging", "reverse ageing", "anti-aging cure",
+    "reverses osteoporosis", "reverse osteoporosis", "diagnose", "diagnoses",
+    "mitigate", "mitigates", "remedy", "remedies", "therapy for", "treatment for",
+    "clinically proven to cure", "fda approved", "fda-approved", "doctor prescribed",
+    "alzheimer", "dementia", "cancer", "diabetes", "arthritis", "osteoporosis",
+    "heart disease", "depression", "anxiety disorder", "inflammation disease",
+    "reverses your biological age", "adds years to your life", "cure-all",
+    "eliminates disease", "stops aging", "stop aging", "reverses cellular aging"
+  ],
+
+  "banned_tropes": [
+    "government super-soldier", "super soldier", "government secret",
+    "big pharma doesn't want", "big pharma does not want", "banned by the fda",
+    "doctors hate", "what doctors won't tell you", "military secret",
+    "classified formula", "they don't want you to know", "miracle pill",
+    "fountain of youth pill", "secret the government"
+  ],
+
+  "profanity": ["shit", "fuck", "fucking", "damn it", "goddamn", "bullshit", "crap"],
+
+  "competitor_brands": [
+    "Micro Ingredients", "Tru Niagen", "Elysium", "Elysium Health", "Basis",
+    "Renue By Science", "RenueByScience", "Wonderfeel", "DoNotAge", "Do Not Age",
+    "Omre", "Toniiq", "ProHealth Longevity", "Genex Formulas", "Alive By Science",
+    "Timeline Mitopure", "Mitopure", "Nuchido", "Qualia", "Neurohacker",
+    "Partiqlar", "Liposomal NMN Pro", "Blueprint", "Bryan Johnson",
+    "David Sinclair", "Andrew Huberman", "Joe Rogan", "Gary Brecka",
+    "Peter Attia", "Ben Greenfield", "Dave Asprey"
+  ],
+  "_competitor_brands_note": "Names spoken in the ad may be quoted verbatim in Phases 1-3 (that is reporting what was said). They must never appear in Phases 4-6 Prime copy, including as an unlicensed endorsement.",
+
+  "approved_prices": ["39.97", "79.97", "99.98", "19.99", "16.66", "1.11"],
+  "approved_price_context": {
+    "39.97": "2-Pack (Buy 1 Get 1) — $19.99/bottle, 30-day supply",
+    "79.97": "4-Pack (Buy 2 Get 2) — $19.99/bottle, 60-day supply + free shipping",
+    "99.98": "6-Pack (Buy 3 Get 3) — $16.66/bottle, 90-day supply + free shipping",
+    "19.99": "per-bottle price on 2-Pack and 4-Pack",
+    "16.66": "per-bottle price on 6-Pack only",
+    "1.11": "approx cost per day value anchor"
+  },
+
+  "product_facts": {
+    "name": "Prime Ingredients NMN Ultimate 10-in-1",
+    "dose_mg": 1000,
+    "dose_text": "1,000 mg active NMN complex per serving",
+    "serving": "2 vegetarian capsules daily",
+    "count_per_bottle": 30,
+    "supply_per_bottle_days": 15,
+    "actives_count": 10,
+    "actives": ["NMN", "TMG", "CoQ10", "Trans-Resveratrol", "Glutathione",
+                "Astaxanthin", "Quercetin", "Grape Seed Extract",
+                "Fat-Soluble Vitamin C", "Apigenin"],
+    "trust_signals": ["cGMP-certified facility", "Made in the USA",
+                      "Third-Party Lab Tested (Batch COA)", "Non-GMO", "Vegan",
+                      "Filler-Free"],
+    "guarantee": "30-day money-back guarantee",
+    "value_anchor": "~$1.11/day vs $100-$200/month boutique longevity stacks"
+  },
+
+  "approved_claim_language": [
+    "supports healthy aging", "supports cellular energy", "cellular stamina",
+    "supports mitochondrial energy", "supports NAD+ production",
+    "supports the body's natural NAD+ pathway", "helps maintain daily energy",
+    "supports methylation balance", "antioxidant support",
+    "supports skin elasticity", "helps you feel more like yourself",
+    "supports recovery", "supports focus and daily drive"
+  ],
+
+  "structure_function_note": "Every Prime claim must describe support of a normal body structure or function. If a line implies the product acts on a disease, rewrite it or cut the beat and note the cut under Phase 4.",
+
+  "expression_similarity_threshold": 0.80,
+  "_similarity_note": "Phase 4 must preserve the competitor's BEAT STRUCTURE, cadence and timing while using Prime's own wording. Adapted lines at or above this word-overlap ratio with the source line are copied expression, not adapted structure — rewrite them."
+}
