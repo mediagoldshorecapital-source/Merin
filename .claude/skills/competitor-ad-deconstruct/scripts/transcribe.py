@@ -40,6 +40,18 @@ def die(msg, code=2):
           file=sys.stderr)
     sys.exit(code)
 
+NETWORK_HINTS = ("proxy", "403", "forbidden", "connection", "timeout", "timed out",
+                 "network", "unreachable", "resolve", "ssl", "certificate",
+                 "max retries", "connectionerror", "httperror", "offline",
+                 "failed to download", "couldn't connect", "could not connect")
+
+def is_network_error(exc):
+    """Model weights come from the internet; a blocked download is not the same
+    failure as a missing library, and sends the user somewhere completely
+    different, so it gets its own message."""
+    blob = f"{type(exc).__name__} {exc}".lower()
+    return any(h in blob for h in NETWORK_HINTS)
+
 def ts(sec, sep=":"):
     sec = max(0.0, float(sec)); m, s = divmod(int(sec), 60); h, m = divmod(m, 60)
     return f"{h}:{m:02d}{sep}{s:02d}" if h else f"{m}{sep}{s:02d}"
@@ -251,7 +263,9 @@ def main():
     p.add_argument("input")
     p.add_argument("--outdir", default="./ad-workdir")
     p.add_argument("--model", default="large-v3",
-                   help="large-v3 (best) | medium | small | base | tiny")
+                   help="large-v3 (best) | medium | small | base | tiny, "
+                        "or a path to a locally downloaded model directory "
+                        "(for offline / firewalled machines)")
     p.add_argument("--language", default="en", help="or 'auto'")
     p.add_argument("--backend", default="auto", choices=["auto", "faster", "openai", "mlx"])
     p.add_argument("--no-verbatim-prompt", action="store_true",
@@ -278,7 +292,22 @@ def main():
     try:
         segs, detected = runner(audio, a.model, lang, verbatim)
     except Exception as e:
-        die(f"transcription failed with backend '{backend}': {type(e).__name__}: {e}")
+        msg = f"{type(e).__name__}: {e}"
+        if is_network_error(e):
+            die(f"could not fetch the '{a.model}' model weights: {msg}\n\n"
+                f"The backend is installed but the download was blocked — usually a\n"
+                f"corporate firewall, an egress proxy, or an offline machine.\n"
+                f"Options, in order of effort:\n"
+                f"  1. Pre-download once on a machine with open internet, then copy\n"
+                f"     the cache over:  ~/.cache/huggingface  (faster-whisper/mlx)\n"
+                f"                      ~/.cache/whisper      (openai-whisper)\n"
+                f"  2. Point --model at a local model directory:\n"
+                f"     python3 transcribe.py ad.mp4 --model /path/to/faster-whisper-large-v3\n"
+                f"  3. Allow huggingface.co (or openaipublic.azureedge.net for\n"
+                f"     openai-whisper) through the network policy.\n\n"
+                f"Until the weights are available this machine cannot transcribe. Ask\n"
+                f"the user to paste a transcript rather than analyzing an ad unheard.")
+        die(f"transcription failed with backend '{backend}': {msg}")
 
     if not segs:
         die("ASR returned zero segments — the file may have no speech track. "

@@ -6,11 +6,26 @@ deconstruction for Prime Ingredients NMN Ultimate 10-in-1.
 ## Install (once per machine)
 
 ```bash
+bash .claude/skills/competitor-ad-deconstruct/setup.sh
+```
+
+Installs ffmpeg, faster-whisper and python-docx, pre-downloads the Whisper model
+so your first real ad doesn't stall on a multi-GB fetch mid-transcription, and
+runs preflight. Use `--model medium` for a smaller/faster model, or
+`--skip-model` to defer the download.
+
+Manual equivalent:
+
+```bash
 brew install ffmpeg            # macOS   (Linux: sudo apt-get install -y ffmpeg)
-pip install faster-whisper     # speech recognition
-pip install python-docx        # optional, for .docx export
+pip install faster-whisper python-docx
 python3 scripts/preflight.py   # confirms both are visible
 ```
+
+**Firewalled or offline machines:** model weights come from huggingface.co. If
+that host is blocked, `transcribe.py` says so explicitly and tells you how to
+copy a cache over or point `--model` at a local model directory — it will not
+quietly fall back to guessing.
 
 ## Use
 
