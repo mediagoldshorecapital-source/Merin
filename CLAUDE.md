@@ -26,3 +26,7 @@ Prime Ingredients (`2009539369903270`) is the ONLY Meta ad account you may use. 
 - Any other account that shows up later
 
 If a request seems to need another account, stop and ask the user. Don't act.
+
+## Ad-building playbook
+
+Before creating Prime Ingredients ads, read `meta-ads-playbook.md` and follow its structure.
