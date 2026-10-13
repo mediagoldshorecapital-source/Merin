@@ -125,4 +125,10 @@ Before building a video ad, compare the Meta video `length` with the Drive origi
 - Ad set `86__Broad_USA_Creative_testing – 26-10-26` (`120254445369460341`), created by Claude with 85's settings, start 2026-10-26 00:01 ET, turned off
 - Drive folder: `1yonY0pfIc9CW8WorKmkHrNNs-ARw3Jwl` (statics only at first; no videos in Drive)
 - 16D–30D statics built 2026-10-13 with url_tags, Enhance CTA OPT_IN, multi-advertiser OPT_IN, bodies, titles and descriptions
-- 1D–15D videos: waiting for upload to Ad account media
+- 2D–10D videos built 2026-10-13 (lengths 118.0, 66.4, 92.1, 51.6, 87.5, 37.3, 16.6, 20.7, 32.3s; no Drive originals, so checked only for duplicates). Waiting on 1D and 11D–15D.
+
+## Standing workflow (from the user, 2026-10-13)
+- Videos: the user uploads them to **Media Library → Ad account media** (not the ad edit screen), named `<n><Letter>. <YYYYMMDD>_<Concept>_V<v>.mp4`. Look for them there.
+- Statics: in a Google Drive folder link; import via lh3, numbered 16–30 with the batch letter.
+- Batch letter per ad set: 85=C, 86=D, 87=E, 88=F, 89=G, and so on (ad set number minus 82 → letter index, A=83).
+- New ad set every 2 days at 00:01 ET: 86 = Oct 26, 87 = Oct 28, 88 = Oct 30, …
