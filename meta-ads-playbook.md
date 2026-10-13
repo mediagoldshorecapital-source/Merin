@@ -97,7 +97,9 @@ New test ad sets go into the **Testing** campaign. The budget sits at the campai
 
 For statics, use `link_data` (`image_hash`, `link`, `message`, `name`, `description`, `call_to_action`) instead of `video_data`.
 
-Known blockers:
-- Images uploaded through the Business media folders show up in the ad account list but fail with "Image Not Found" when used. Upload images straight into Ad account media.
-- Meta can't fetch files from Google Drive links (blocked by robots.txt).
-- The URL upload tool isn't rolled out for this account yet.
+Known blockers and fixes:
+- Freshly uploaded images can fail with "Image Not Found" in the connector even though they're in Ad account media.
+- **Fix for images (works):** import each image from Drive with `ads_create_creative` and `image_url=https://lh3.googleusercontent.com/d/<DRIVE_FILE_ID>=s0`. Meta can fetch that address; plain `drive.google.com` links are blocked by robots.txt. This creates a throwaway "<n>C import" creative and makes the hash usable. A matching hash also proves the Drive file is the same file as the library upload. Then build the ad with that `image_hash`.
+- To list a public Drive folder: `curl https://drive.google.com/embeddedfolderview?id=<FOLDER_ID>` (drive.google.com is allowed in this environment's network settings).
+- Videos can't be imported by URL yet (the URL upload tool isn't rolled out for this account). Videos must be uploaded to Ad account media by a person.
+- Batch C Drive folder: `18fdhHh0IWm-r9hWFwyDitZ9mFkt1iLBS` (subfolders Image / Video).
