@@ -132,3 +132,22 @@ Before building a video ad, compare the Meta video `length` with the Drive origi
 - Statics: in a Google Drive folder link; import via lh3, numbered 16–30 with the batch letter.
 - Batch letter per ad set: 85=C, 86=D, 87=E, 88=F, 89=G, and so on (ad set number minus 82 → letter index, A=83).
 - New ad set every 2 days at 00:01 ET: 86 = Oct 26, 87 = Oct 28, 88 = Oct 30, …
+
+## Copy-paste templates for the user
+
+Drive folder: `<AdSetNumber>_<Letter>_<YYYYMMDD>` with subfolders `Statics` and `Videos`.
+
+Statics (15): `16<Letter>. <YYYYMMDD>_Static_V (1).png` … `30<Letter>. <YYYYMMDD>_Static_V (15).png`
+Videos (15, same names in Drive and Ad account media): `1<Letter>. <YYYYMMDD>_<Concept>_V1.mp4` … `15<Letter>. <YYYYMMDD>_<Concept>_V1.mp4`
+
+Message:
+```
+New ad set ready
+Ad set: <AdSetNumber>
+Letter: <Letter>
+Creative date: <YYYYMMDD>
+Start date: <DD-MM-YY> (or "usual")
+Drive link: <paste link>
+Videos uploaded to Ad account media: yes / partly (<which ones>)
+Text changes: none / <describe>
+```
