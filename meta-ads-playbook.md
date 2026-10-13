@@ -40,6 +40,9 @@ New test ad sets go into the **Testing** campaign. The budget sits at the campai
   - Description: `Say goodbye to tiredness! NAD+ levels drop with age, but our NMN Complex helps boost them for clean energy & focus`
   - Display link: `Primeingredients.com`
   - CTA: **Shop Now**
+  - Website link: `https://tryprimeingredients.com/products/nmn`
+- **Identity:** Facebook Page "Prime Ingredients" (`1012373248616002`), Instagram @daily_prime_ingredients (`17841480103037701`). Pass the Instagram ID when creating a creative; the connector's Instagram account list comes back empty, but the ID works.
+- **Swapping media:** an existing ad's creative can't be edited. Create a new creative and a new ad with the same name in the same ad set, pause the wrong ad, then activate the new one.
 - Creative names are auto-generated as `<headline> <date>-<hash>`.
 
 ## Video concept themes seen
