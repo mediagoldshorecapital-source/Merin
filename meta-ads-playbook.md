@@ -126,8 +126,9 @@ Before building a video ad, compare the Meta video `length` with the Drive origi
 - Drive folder: `1yonY0pfIc9CW8WorKmkHrNNs-ARw3Jwl` (statics only at first; no videos in Drive)
 - 16D–30D statics built 2026-10-13 with url_tags, Enhance CTA OPT_IN, multi-advertiser OPT_IN, bodies, titles and descriptions
 - 2D–10D videos built 2026-10-13 (lengths 118.0, 66.4, 92.1, 51.6, 87.5, 37.3, 16.6, 20.7, 32.3s; no Drive originals, so checked only for duplicates).
-- 13D Teacher_V1 (video 1113942288040094, 27.9s), 14D CarExplained_V1 (2174336333513565, 34.3s), 15D FlashSale_V1 (1050258754716605, 14.144s, matches Drive original 1mwisqdSy4yYs7tJuZkZ6PjL9fypl3943) built 2026-10-13, off. A second upload named 15D FlashSale (1581338093200609, 230.3s) is the wrong file; don't use it. 12D MenopauseWomen_V1 (4426904427525066, 37.4s) built 2026-10-13, off.
-- Audit 2026-10-13: 28/30 ads checked. Every video ad's creative video length matches its upload (Meta re-hosts the video under a new ID titled with the headline, so compare lengths, not IDs); statics 16D–30D hashes match in order; copy, CTA and link correct on all. Waiting on 1D and 11D only.
+- 13D Teacher_V1 (video 1113942288040094, 27.9s), 14D CarExplained_V1 (2174336333513565, 34.3s), 15D FlashSale_V1 (1050258754716605, 14.144s, matches Drive original 1mwisqdSy4yYs7tJuZkZ6PjL9fypl3943) built 2026-10-13, off. A second upload named 15D FlashSale (1581338093200609, 230.3s) is the wrong file (it is 1D CaptAmerica); don't use it. 12D MenopauseWomen_V1 (4426904427525066, 37.4s) built 2026-10-13, off.
+- Audit 2026-10-13: 28/30 ads checked. Every video ad's creative video length matches its upload (Meta re-hosts the video under a new ID titled with the headline, so compare lengths, not IDs); statics 16D–30D hashes match in order; copy, CTA and link correct on all.
+- 1D CaptAmerica_V1 (1731941841224749, 230.272s) and 11D MassiveSale_V1 (2912530785767058, 22.407s) built 2026-10-13, off. Ad set 86 complete: 30/30. The extra '15D FlashSale' upload (1581338093200609, 230.272s) was really CaptAmerica (1D) under the wrong name; not used.
 
 ## Ad set 87 (batch E, 20261003)
 
