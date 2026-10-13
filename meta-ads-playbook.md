@@ -75,7 +75,8 @@ New test ad sets go into the **Testing** campaign. The budget sits at the campai
 - Ad set: `85__Broad_USA_Creative_testing – 24-10-26` (created by the user as a draft; it must be published turned off before the tools can read it)
 - Template ad: copy of ad set 84's `2B. 20260930_Static_V (9)` (same copy, link, Page, Instagram)
 - 30 ads in total, named after their files without the extension:
-  - `1C`–`15C`: videos, `<n>C. 20261001_<Concept>_V<v>` (not uploaded yet)
+  - `1C`–`15C`: videos, `<n>C. 20261001_<Concept>_V<v>`. Order: 1C EyeSight, 2C Rightway, 3C BiggerThanCreatine, 4C Podcast, 5C NADvsNMN, 6C Athletes, 7C 6MonthsJourney, 8C Longevity, 9C HairGoneBack, 10C QuestionToLongevity, 11C ReverseGrey, 12C Over50s, 13C StopTaking, 14C DoubleDiscount, 15C Secret. The user said 6C/14C could go either way, so Athletes/DoubleDiscount was a free choice.
+  - Status 2026-10-13: 15C and 16C–30C built and turned off. 1C–14C wait for video uploads. Template ad paused.
   - `16C`–`30C`: statics, `<n>C. 20261001_Static_V (<k>)`, uploaded to Ad account media on 2026-10-13
 - Process: inventory the files, then send the build list for approval, build all ads turned off, verify every ad reads back with the right file, and turn ads on only after approval.
 - Business media folders and Ads Manager drafts can't be read by the Meta connector. Files must be in **Ad account media**.
