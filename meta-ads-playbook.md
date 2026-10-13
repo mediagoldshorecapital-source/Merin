@@ -119,3 +119,10 @@ Known blockers and fixes:
 
 ## Verification rule for videos
 Before building a video ad, compare the Meta video `length` with the Drive original's duration (read the mp4 `mvhd` box after downloading from `drive.usercontent.google.com/download?id=<ID>&export=download`; large files need the `confirm=t&uuid=` step from the virus-scan page). If they don't match, the upload is mislabeled: don't build the ad.
+
+## Ad set 86 (batch D, 20261002)
+
+- Ad set `86__Broad_USA_Creative_testing – 26-10-26` (`120254445369460341`), created by Claude with 85's settings, start 2026-10-26 00:01 ET, turned off
+- Drive folder: `1yonY0pfIc9CW8WorKmkHrNNs-ARw3Jwl` (statics only at first; no videos in Drive)
+- 16D–30D statics built 2026-10-13 with url_tags, Enhance CTA OPT_IN, multi-advertiser OPT_IN, bodies, titles and descriptions
+- 1D–15D videos: waiting for upload to Ad account media
