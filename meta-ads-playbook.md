@@ -169,3 +169,8 @@ Text changes: none / <describe>
 - Every creative has an Instagram media ID and display link `Primeingredients.com`.
 - The connector can't set or read WhatsApp = "Use Facebook Page". It has to be bulk-edited in Ads Manager on every new ad set (86 and 87 still need it).
 - Daylight saving: US clocks go back on Sun 2026-11-01 at 2am. Start times from 2026-11-03 onwards use `-05:00`, not `-04:00`.
+- Name check (2026-10-13): all 76 ads in 85/86/87 use the file their name says. Videos were matched by length to the upload and, for C and E, to the Drive original. Statics were traced from the ad's image hash to its "<n><L> import" creative and then to the Drive file ID and file name. Notes:
+  - The 30 creatives in 85 are named "Support Energy Without More Coffee <date>-<hash>" because the user's Ads Manager bulk edit rebuilt them. Ad names are right; creative names are internal only.
+  - Meta's copies of the videos are all titled with the headline. That's automatic.
+  - fbcdn.net is blocked by this environment's network policy, so Meta-hosted images can't be downloaded to compare by eye.
+  - Typos in source file names carry into ad names: 10D "CoffeeAin_thitting", and E Drive "61yrNMNefferct" and "NADorNMNt".
