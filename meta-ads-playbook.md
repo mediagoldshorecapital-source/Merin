@@ -174,3 +174,12 @@ Text changes: none / <describe>
   - Meta's copies of the videos are all titled with the headline. That's automatic.
   - fbcdn.net is blocked by this environment's network policy, so Meta-hosted images can't be downloaded to compare by eye.
   - Typos in source file names carry into ad names: 10D "CoffeeAin_thitting", and E Drive "61yrNMNefferct" and "NADorNMNt".
+
+## Ad set 80 copy rewrite (2026-10-13, from "Prime Ingredients - final2.pdf")
+- Ad set `80__Broad_USA_Creative_testing - 14-10-26` (`120254418516530341`, starts 2026-10-14 00:01 ET).
+- 25 ads were rebuilt with the same media and new copy, and turned on. The 25 old ads were deleted.
+- Each new ad carries all 5 primary texts, 5 headlines and 4 descriptions as text options (asset_feed_spec, DEGREES_OF_FREEDOM). The default is Option 1 (Halloween). Full copy is in `ad-set-80-new-copy.md`.
+- Small fixes approved by the user: "Support Healthy Aging at the Cellular Level", "One Capsule. All 12 Aging Pathways", "Free shipping. 30-Day Money-Back Guarantee."
+- Kept on every new ad: link /products/nmn, Shop Now, display link, url_tags, Enhance CTA, multi-advertiser ads, Page and IG.
+- Not rebuilt: `1. 20260921_HavingtoGrab_V1` (120254437781370341). The real HavingtoGrab video isn't in Ad account media (both "HavingtoGrab" uploads are SideEffects), and the creative from the user's edit is unreadable (PRIVACY_CHECK_FAIL). It still has the old copy, so the user must edit it in Ads Manager.
+- Left paused: old `2. SideEffects_V1` (120254418516590341).
