@@ -128,6 +128,14 @@ Before building a video ad, compare the Meta video `length` with the Drive origi
 - 2D–10D videos built 2026-10-13 (lengths 118.0, 66.4, 92.1, 51.6, 87.5, 37.3, 16.6, 20.7, 32.3s; no Drive originals, so checked only for duplicates).
 - 13D Teacher_V1 (video 1113942288040094, 27.9s), 14D CarExplained_V1 (2174336333513565, 34.3s), 15D FlashSale_V1 (1050258754716605, 14.144s, matches Drive original 1mwisqdSy4yYs7tJuZkZ6PjL9fypl3943) built 2026-10-13, off. A second upload named 15D FlashSale (1581338093200609, 230.3s) is the wrong file; don't use it. Waiting on 1D, 11D, 12D.
 
+## Ad set 87 (batch E, 20261003)
+
+- Ad set `87__Broad_USA_Creative_testing – 28-10-26` (`120254446150740341`), same settings as 86, start 2026-10-28 00:01 ET, turned off
+- Drive folder `161yfT6--WDmTMksKhYC797E34X7QFZmc`: subfolders Images (`1lgT32zvNvSSLRyzNtzf-y8zdo2E7ZZ4A`, 20 statics `20261003-Static_V (1..20).png`) and Videos (`18ez2UMWz5Bm1pxVsZTL8SRBPYIJztCN3`, 9 videos, no number prefix)
+- 16E–30E built 2026-10-13 from Static_V (1)–(15), off. Static_V (16)–(20) not used yet (waiting on the user)
+- 9E GetThisTonight_V1 (video 4525729444352440, 19.388s, matches Drive 19.389s) built 2026-10-13, off
+- Drive video lengths, used to check uploads: 61yrNMNefferct 97.965 · BiggerThanCreatine 118.26 · EndsToday 7.338 · Explainer 115.171 · GetThisTonight 19.389 · HonestReviews 350.041 · Iam40 78.577 · NADorNMNt 101.657 · Tedtalk 189.034
+
 ## Standing workflow (from the user, 2026-10-13)
 - Videos: the user uploads them to **Media Library → Ad account media** (not the ad edit screen), named `<n><Letter>. <YYYYMMDD>_<Concept>_V<v>.mp4`. Look for them there.
 - Statics: in a Google Drive folder link; import via lh3, numbered 16–30 with the batch letter.
