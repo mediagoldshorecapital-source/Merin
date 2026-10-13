@@ -92,9 +92,13 @@ New test ad sets go into the **Testing** campaign. The budget sits at the campai
      "message":"<primary text>","title":"Support Energy Without More Coffee",
      "link_description":"<description>",
      "call_to_action":{"type":"SHOP_NOW","value":{"link":"https://tryprimeingredients.com/products/nmn","link_caption":"Primeingredients.com"}}}},
- "asset_feed_spec":{"titles":[{"text":"Support Energy Without More Coffee"},{"text":"Beat the 3 PM Energy Slump"},{"text":"How to Support Daily Energy"},{"text":"Support Cellular Energy Daily"},{"text":"FALL SALE: Save Up to 75% on NMN"}],
+ "asset_feed_spec":{"bodies":[{"text":"<primary text>"}],
+   "titles":[{"text":"Support Energy Without More Coffee"},{"text":"Beat the 3 PM Energy Slump"},{"text":"How to Support Daily Energy"},{"text":"Support Cellular Energy Daily"},{"text":"FALL SALE: Save Up to 75% on NMN"}],
+   "descriptions":[{"text":"<description>"}],
    "optimization_type":"DEGREES_OF_FREEDOM"}}
 ```
+
+IMPORTANT: put `bodies` and `descriptions` in `asset_feed_spec` as well as `titles`. If only `titles` is there, Ads Manager shows the primary text and description as empty and the description is dropped. (This happened on the first batch C build, which was rebuilt.)
 
 For statics, use `link_data` (`image_hash`, `link`, `message`, `name`, `description`, `call_to_action`) instead of `video_data`.
 
