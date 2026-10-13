@@ -162,3 +162,10 @@ Drive link: <paste link>
 Videos uploaded to Ad account media: yes / partly (<which ones>)
 Text changes: none / <describe>
 ```
+
+## Audit notes (2026-10-13, devil's-advocate pass)
+- Ad set settings for 85/86/87 match 84 (pixel PURCHASE, 7d click/1d view/1d engaged view, US home/recent/frequently-in, 18–65 Advantage+ audience, Advantage+ placements, relaxed brand safety). 86/87 show `targeting_optimization: expansion_all` without `individual_setting`; delivery should be the same.
+- Video cover images are stored at 1080×1920 (the 160px picture URL is fine). Statics are 1254×1254 square, with no 9:16 version.
+- Every creative has an Instagram media ID and display link `Primeingredients.com`.
+- The connector can't set or read WhatsApp = "Use Facebook Page". It has to be bulk-edited in Ads Manager on every new ad set (86 and 87 still need it).
+- Daylight saving: US clocks go back on Sun 2026-11-01 at 2am. Start times from 2026-11-03 onwards use `-05:00`, not `-04:00`.
