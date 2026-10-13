@@ -76,6 +76,8 @@ New test ad sets go into the **Testing** campaign. The budget sits at the campai
 - Template ad: copy of ad set 84's `2B. 20260930_Static_V (9)` (same copy, link, Page, Instagram)
 - 30 ads in total, named after their files without the extension:
   - `1C`–`15C`: videos, `<n>C. 20261001_<Concept>_V<v>`. Order: 1C EyeSight, 2C Rightway, 3C BiggerThanCreatine, 4C Podcast, 5C NADvsNMN, 6C Athletes, 7C 6MonthsJourney, 8C Longevity, 9C HairGoneBack, 10C QuestionToLongevity, 11C ReverseGrey, 12C Over50s, 13C StopTaking, 14C DoubleDiscount, 15C Secret. The user said 6C/14C could go either way, so Athletes/DoubleDiscount was a free choice.
+  - Drive original lengths, used to check each Meta upload (a mismatch means the wrong file): 1C 96.18s, 2C 110.37, 3C 121.09, 4C 59.75, 5C 103.14, 6C 85.64, 7C 65.95, 8C 74.00, 9C 44.00, 10C 67.64, 11C 94.76, 12C 45.00, 13C 52.25, 14C 15.37, 15C 47.37
+  - The first "15C Secret" upload (video 28750526634570128, 96.18s) was really EyeSight. Its ad was deleted, and a correct re-upload is needed.
   - Status 2026-10-13: 15C and 16C–30C built and turned off. 1C–14C wait for video uploads. Template ad paused.
   - `16C`–`30C`: statics, `<n>C. 20261001_Static_V (<k>)`, uploaded to Ad account media on 2026-10-13
 - Process: inventory the files, then send the build list for approval, build all ads turned off, verify every ad reads back with the right file, and turn ads on only after approval.
@@ -108,3 +110,6 @@ Known blockers and fixes:
 - To list a public Drive folder: `curl https://drive.google.com/embeddedfolderview?id=<FOLDER_ID>` (drive.google.com is allowed in this environment's network settings).
 - Videos can't be imported by URL yet (the URL upload tool isn't rolled out for this account). Videos must be uploaded to Ad account media by a person.
 - Batch C Drive folder: `18fdhHh0IWm-r9hWFwyDitZ9mFkt1iLBS` (subfolders Image / Video).
+
+## Verification rule for videos
+Before building a video ad, compare the Meta video `length` with the Drive original's duration (read the mp4 `mvhd` box after downloading from `drive.usercontent.google.com/download?id=<ID>&export=download`; large files need the `confirm=t&uuid=` step from the virus-scan page). If they don't match, the upload is mislabeled: don't build the ad.
