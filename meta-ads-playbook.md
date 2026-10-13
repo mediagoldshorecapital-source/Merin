@@ -50,6 +50,8 @@ New test ad sets go into the **Testing** campaign. The budget sits at the campai
   - URL parameters: `utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&utm_term={{adset.name}}&tw_source={{site_source_name}}&tw_adid={{ad.id}}`
   - Enhancements: **Enhance CTA ON** (`degrees_of_freedom_spec.creative_features_spec.enhance_cta = OPT_IN`); other enhancements off
   - WhatsApp phone number: **Use Facebook Page**
+  - Multi-advertiser ads: **ON** (`contextual_multi_ads.enroll_status = OPT_IN` in the creative; the tool defaults it to OPT_OUT, so set it explicitly)
+  - Also set `url_tags` on the creative to the URL parameters above, so new builds carry them without a manual edit
   - The connector can't read back URL parameters, Enhance CTA or the WhatsApp setting. After a build, the user checks them in Ads Manager, or bulk-edits all ads at once (select all → Edit), which is fast and keeps the media.
 - **Identity:** Facebook Page "Prime Ingredients" (`1012373248616002`), Instagram @daily_prime_ingredients (`17841480103037701`). Pass the Instagram ID when creating a creative; the connector's Instagram account list comes back empty, but the ID works.
 - **Swapping media:** an existing ad's creative can't be edited. Create a new creative and a new ad with the same name in the same ad set, pause the wrong ad, then activate the new one.
