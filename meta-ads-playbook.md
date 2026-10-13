@@ -79,3 +79,25 @@ New test ad sets go into the **Testing** campaign. The budget sits at the campai
   - `16C`–`30C`: statics, `<n>C. 20261001_Static_V (<k>)`, uploaded to Ad account media on 2026-10-13
 - Process: inventory the files, then send the build list for approval, build all ads turned off, verify every ad reads back with the right file, and turn ads on only after approval.
 - Business media folders and Ads Manager drafts can't be read by the Meta connector. Files must be in **Ad account media**.
+
+## Working method: ad with 5 headlines (tested 2026-10-13 on 15C)
+
+`ads_create_ad` with an inline creative. A full `asset_feed_spec` (images/videos/bodies) is rejected because the ad set isn't Dynamic Creative. What works is a normal `object_story_spec` plus `asset_feed_spec` holding only `titles`, with `optimization_type: DEGREES_OF_FREEDOM`:
+
+```json
+{"name":"<ad name>",
+ "object_story_spec":{"page_id":"1012373248616002","instagram_user_id":"17841480103037701",
+   "video_data":{"video_id":"<id>","image_url":"<video picture url>",
+     "message":"<primary text>","title":"Support Energy Without More Coffee",
+     "link_description":"<description>",
+     "call_to_action":{"type":"SHOP_NOW","value":{"link":"https://tryprimeingredients.com/products/nmn","link_caption":"Primeingredients.com"}}}},
+ "asset_feed_spec":{"titles":[{"text":"Support Energy Without More Coffee"},{"text":"Beat the 3 PM Energy Slump"},{"text":"How to Support Daily Energy"},{"text":"Support Cellular Energy Daily"},{"text":"FALL SALE: Save Up to 75% on NMN"}],
+   "optimization_type":"DEGREES_OF_FREEDOM"}}
+```
+
+For statics, use `link_data` (`image_hash`, `link`, `message`, `name`, `description`, `call_to_action`) instead of `video_data`.
+
+Known blockers:
+- Images uploaded through the Business media folders show up in the ad account list but fail with "Image Not Found" when used. Upload images straight into Ad account media.
+- Meta can't fetch files from Google Drive links (blocked by robots.txt).
+- The URL upload tool isn't rolled out for this account yet.
