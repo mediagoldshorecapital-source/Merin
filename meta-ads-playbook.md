@@ -125,7 +125,8 @@ Before building a video ad, compare the Meta video `length` with the Drive origi
 - Ad set `86__Broad_USA_Creative_testing – 26-10-26` (`120254445369460341`), created by Claude with 85's settings, start 2026-10-26 00:01 ET, turned off
 - Drive folder: `1yonY0pfIc9CW8WorKmkHrNNs-ARw3Jwl` (statics only at first; no videos in Drive)
 - 16D–30D statics built 2026-10-13 with url_tags, Enhance CTA OPT_IN, multi-advertiser OPT_IN, bodies, titles and descriptions
-- 2D–10D videos built 2026-10-13 (lengths 118.0, 66.4, 92.1, 51.6, 87.5, 37.3, 16.6, 20.7, 32.3s; no Drive originals, so checked only for duplicates). Waiting on 1D and 11D–15D.
+- 2D–10D videos built 2026-10-13 (lengths 118.0, 66.4, 92.1, 51.6, 87.5, 37.3, 16.6, 20.7, 32.3s; no Drive originals, so checked only for duplicates).
+- 13D Teacher_V1 (video 1113942288040094, 27.9s), 14D CarExplained_V1 (2174336333513565, 34.3s), 15D FlashSale_V1 (1050258754716605, 14.144s, matches Drive original 1mwisqdSy4yYs7tJuZkZ6PjL9fypl3943) built 2026-10-13, off. A second upload named 15D FlashSale (1581338093200609, 230.3s) is the wrong file; don't use it. Waiting on 1D, 11D, 12D.
 
 ## Standing workflow (from the user, 2026-10-13)
 - Videos: the user uploads them to **Media Library → Ad account media** (not the ad edit screen), named `<n><Letter>. <YYYYMMDD>_<Concept>_V<v>.mp4`. Look for them there.
