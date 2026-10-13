@@ -36,7 +36,13 @@ New test ad sets go into the **Testing** campaign. The budget sits at the campai
   - 84 → 20260930 (B)
 - **Copy is the same on every ad:**
   - Primary text: `Feeling more tired as you age? It's not "just aging." Your NAD+ levels naturally drop — the molecule your cells need for clean, steady energy. Our NMN Complex helps support those levels so you can feel energized, focused, and clear again.`
-  - Headline: `Support Energy Without More Coffee`
+  - Headlines (5 options, set in Ads Manager as extra text options):
+    1. `Support Energy Without More Coffee`
+    2. `Beat the 3 PM Energy Slump`
+    3. `How to Support Daily Energy`
+    4. `Support Cellular Energy Daily`
+    5. `SUMMER SALE! 75% OFF TODAY ONLY!` (check this one is still accurate before reusing it)
+  - Optimise text per person: Disabled
   - Description: `Say goodbye to tiredness! NAD+ levels drop with age, but our NMN Complex helps boost them for clean energy & focus`
   - Display link: `Primeingredients.com`
   - CTA: **Shop Now**
