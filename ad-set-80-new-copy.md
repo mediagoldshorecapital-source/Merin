@@ -20,7 +20,7 @@ Draft for approval. In the PDF, the emojis in Options 4 and 5 float outside the 
 ### PT 1 (Halloween)
 Our Halloween Sale is here, and it's our thank-you to everyone in this community.
 
-For the first time ever, our NMN is 75% off, and we are adding 3 bottles FREE, worth $591.
+For the first time ever, our NMN is up to 75% off, and we are adding 3 bottles FREE, worth $591.
 We've never offered this discount with 3 free bottles before. It's your biggest NMN saving ever.
 
 ✅ 1,000 mg of NMN per serving, with Resveratrol, CoQ10, TMG, Quercetin, Astaxanthin, Glutathione, Grape seed, Vitamin C.

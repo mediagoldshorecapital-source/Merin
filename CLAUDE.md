@@ -58,7 +58,7 @@ Use this on future builds unless the user changes it. The full primary texts are
 **Headlines (final 5):**
 1. Support Cellular Energy Daily (the user typed "Enegry"; corrected to "Energy")
 2. Support Energy Without More Coffee
-3. Halloween Sale - 75% off on NMN
+3. Halloween Sale - Up to 75% off on NMN
 4. Support Your Cellular Energy
 5. One Capsule. All 12 Anti-Aging Pathways
 
@@ -74,3 +74,5 @@ Use this on future builds unless the user changes it. The full primary texts are
 5. Up to 75% OFF + 3 FREE Bottles. Limited Time only.
 
 **Primary texts (5):** PT1 Halloween, PT2 12 pathways, PT3 Longevity club, PT4 2 PM wall, PT5 55-year-olds. Exact text is in `ad-set-80-new-copy.md`.
+
+Offer wording rule (2026-10-15): always say "Up to 75% off", never a flat "75% off". This applies to headline #3 ("Halloween Sale - Up to 75% off on NMN"), PT1 ("our NMN is up to 75% off") and description #5. The copy in `ad-set-80-new-copy.md` is updated to match; ad set 80's live ads still say the old flat wording.
