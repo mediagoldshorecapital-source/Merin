@@ -90,6 +90,12 @@ def split_sections(md):
 def quotes_in(text):
     """Pull quoted strings; fall back to the raw line for unquoted beats."""
     out = []
+    # Uncertainty markers carry their own quotes ([unclear: "word" ~0:31]);
+    # resolve them first or they split the surrounding quote in two. An
+    # [unclear: "word"] stands for the word the ASR heard, so check that word;
+    # [inaudible]/[no speech] spans become a fragment break.
+    text = re.sub(r'\[unclear:\s*["“]([^"”]+)["”][^\]]*\]', r"\1", text)
+    text = MARKER_RE.sub(" … ", text)
     for q in re.findall(r'"([^"]{4,})"|“([^”]{4,})”', text):
         out.append(q[0] or q[1])
     return out
