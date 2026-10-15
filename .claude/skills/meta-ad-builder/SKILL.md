@@ -39,7 +39,7 @@ New ad set or rebuild of ad set <N>
 1. Find the start date in `campaign-calendar.md` and see which period(s) are active.
 2. **One period, copy file exists:** show the full copy (every primary text, headline and description) and ask the user to confirm or change it. Do this every time, even mid-period.
 3. **One period, no copy file yet:** ask the user for the copy, or draft it from their brief for them to approve. Save it as `copy/<year>-q<n>-<period>.json` and add it to the calendar table.
-4. **Two periods overlap:** stop and discuss the split before any copy is written. The options are split by ad set, split by ad, or split-test copy covering both (see the calendar's rule 3). Agree which ads get which copy file.
+4. **Two periods overlap:** the default is to split-test inside the 5 slots. Fill the 5 primary texts, 5 headlines and 5 descriptions with a mix of both occasions (for example 3 + 2, or 2 + 2 + 1 bridging both). Save them as one combined copy file (`copy/<year>-q<n>-<periodA>+<periodB>.json`) used on every ad. Show the proposed mix, slot by slot, and get the user's OK. Use a split by ad set, or by ad with two copy files, only if the user asks for it.
 5. **Gap (no active period):** ask the user which copy to run.
 6. Any change the user makes is saved to the copy file before building. `build_specs.py` rejects a flat "75% off" and more than 5 of any text type.
 

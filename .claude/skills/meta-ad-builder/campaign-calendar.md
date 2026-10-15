@@ -15,10 +15,12 @@ Source: the user's "Q4 Longevity Marketing Campaign Schedule" (shared 2026-10-16
 
 1. **Copy is locked per period.** The copy agreed at the start of a period is used on every ad set that starts inside that period, until the period ends. Don't change it mid-period unless the user asks.
 2. **Confirm every time.** Even when the period's copy is already approved, show it to the user and get a confirmation before each build.
-3. **Overlaps are discussed, never decided alone.** When an ad set starts while two periods are both active, stop and discuss the split with the user before writing any copy. The options are:
-   - **Split by ad set:** some ad sets use period A's copy, others use period B's.
-   - **Split by ad:** inside one ad set, some ads carry A's copy and others B's. This needs two copy files.
-   - **Split-test copy that covers both:** for example, one primary text referencing each occasion.
+3. **Overlaps: split-test inside the 5 slots (the user's default, 2026-10-16).** Each ad has 5 slots each for primary text, headline and description, and Meta tests the combinations. In an overlap, fill those slots with a mix of both occasions, all in one copy file used on every ad in the ad set. For example, during Halloween + Veterans Day:
+   - 2–3 primary texts for Halloween and 2–3 for Veterans Day (or one bridging both)
+   - the same mix for headlines
+   - the same mix for descriptions
+
+   Propose the mix (which slots go to which occasion) and get the user's OK before building. Other splits (by ad set, or by ad with two copy files) are used only if the user asks for them.
 4. **Record the result.** Save each approved copy as `copy/<year>-q<n>-<period>.json` (fields `period`, `dates`, `approved`, `primary_texts`, `headlines`, `descriptions`; 1–5 each). Then add the file to the table above.
 5. **The offer always reads "Up to 75% off".** `build_specs.py` refuses a flat "75% off".
 
