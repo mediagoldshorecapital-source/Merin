@@ -193,3 +193,4 @@ Ad set `120254419640220341` ("81__Broad_USA_Creative_testing – 16-10-26", star
 - 26 new ads turned on, 26 old ads deleted. The ad set now holds exactly 26 ads.
 - On 2026-10-15, 5 videos were still in Meta review: Shoelace, DoubleDiscount, FallEndSale, USGovUsesNMN, PodcastExplainer.
 - Still manual: WhatsApp "Use Facebook Page" (bulk-edit in Ads Manager).
+- **Correction (2026-10-16):** Add music was NOT actually on for the 11 statics; the user checked in Ads Manager. They were built with `audio` OPT_IN only. A test ad with `asset_feed_spec.audios=[{"type":"random"}]` added is waiting on the user's check (see CLAUDE.md). The 11 statics still need rebuilding once the fix is confirmed.

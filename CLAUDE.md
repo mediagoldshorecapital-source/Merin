@@ -48,7 +48,9 @@ Apply these to every ad you create or rebuild. They override any default.
     - `"enhance_cta":{"enroll_status":"OPT_IN"}`
     - `OPT_OUT` for each of: `site_extensions`, `product_extensions`, `show_summary`, `local_store_extension`, `profile_card`, `image_touchups`, `text_optimizations`, `image_templates`, `adapt_to_placement`, `inline_comment`, `image_animation`, `add_text_overlay`, `description_automation`, `image_brightness_and_contrast`, `image_uncrop`, `audio`, `video_auto_crop`, `media_type_automation`, `show_destination_blurbs`, `reveal_details_over_time`, `text_translation`
   - Tested and accepted by the API on 2026-10-15.
-- **Add music: ON for statics only.** On static image ads, set `"audio":{"enroll_status":"OPT_IN"}` (Meta's "Add music" enhancement). On video ads, keep `audio` as `OPT_OUT`. Accepted by the API on 2026-10-15.
+- **Add music: ON for statics only.** On static image ads, set `"audio":{"enroll_status":"OPT_IN"}` (Meta's "Add music" enhancement). On video ads, keep `audio` as `OPT_OUT`.
+  - **2026-10-16 finding:** the 11 statics in ad set 81 were built with only `audio` OPT_IN, and the user found music OFF in Ads Manager. The API accepts the toggle without error but does not turn music on. The likely fix is to also add a music asset in `asset_feed_spec`: `"audios":[{"type":"random"}]` (Meta picks the music). Test ad `120254496283380341` ("TEST - Music check - Static_V (6)", ad set 81, paused) was built this way. **Unverified until the user confirms in Ads Manager.**
+  - Rule: "the API accepted it" is not proof a setting is on. For any enhancement, confirm it in Ads Manager (ask the user) before reporting it as on.
 - **Can't be set by the connector:** WhatsApp = "Use Facebook Page". Remind the user to bulk-edit it after every build.
 
 ## Current approved ad copy (2026-10-15)
