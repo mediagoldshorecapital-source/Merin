@@ -50,3 +50,27 @@ Apply these to every ad you create or rebuild. They override any default.
   - Tested and accepted by the API on 2026-10-15.
 - **Add music: ON for statics only.** On static image ads, set `"audio":{"enroll_status":"OPT_IN"}` (Meta's "Add music" enhancement). On video ads, keep `audio` as `OPT_OUT`. Accepted by the API on 2026-10-15.
 - **Can't be set by the connector:** WhatsApp = "Use Facebook Page". Remind the user to bulk-edit it after every build.
+
+## Current approved ad copy (2026-10-15)
+
+Use this on future builds unless the user changes it. The full primary texts are in `ad-set-80-new-copy.md` (from "Prime Ingredients - final2.pdf"). The user may still send a document to check them against.
+
+**Headlines (final 5):**
+1. Support Cellular Energy Daily (the user typed "Enegry"; corrected to "Energy")
+2. Support Energy Without More Coffee
+3. Halloween Sale - 75% off on NMN
+4. Support Your Cellular Energy
+5. One Capsule. All 12 Anti-Aging Pathways
+
+**Held back for future testing (don't use yet):**
+- One Pill. 10 Ingredients
+- Support Healthy Aging at the Cellular Level
+
+**Descriptions (5, Meta's maximum):**
+1. Free shipping. 30-Day Money-Back Guarantee.
+2. 1,000 mg of NMN + 10 compounds
+3. 1000mg NMN + 10 ingredients.
+4. Support Healthy aging with 1000mg NMN + 10 ingredients
+5. Up to 75% OFF + 3 FREE Bottles. Limited Time only.
+
+**Primary texts (5):** PT1 Halloween, PT2 12 pathways, PT3 Longevity club, PT4 2 PM wall, PT5 55-year-olds. Exact text is in `ad-set-80-new-copy.md`.
