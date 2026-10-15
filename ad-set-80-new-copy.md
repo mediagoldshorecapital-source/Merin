@@ -2,8 +2,8 @@
 
 Draft for approval. In the PDF, the emojis in Options 4 and 5 float outside the text, so their placement below is my best reconstruction. Change anything that's wrong before I build.
 
-## Headlines (5)
-1. Halloween Sale - 75% off on NMN
+## Headlines (5) (ad set 80 set; for future builds use the final headlines in CLAUDE.md)
+1. Halloween Sale - Up to 75% off on NMN
 2. One Capsule. All 12 Aging pathways
 3. One Pill. 10 Ingredients
 4. Support Healthy aging in Cellular Level
