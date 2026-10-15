@@ -27,6 +27,15 @@ Prime Ingredients (`2009539369903270`) is the ONLY Meta ad account you may use. 
 
 If a request seems to need another account, stop and ask the user. Don't act.
 
+## Standing permission (from the user, 2026-10-16)
+
+The user has given the Meta connector full access and allows creating and deleting Prime Ingredients ads without asking each time. Use it carefully:
+- **Still only account `2009539369903270`.** The permission doesn't widen that.
+- **Delete only what's been replaced.** An ad is deleted only after its replacement is built and verified (same media, correct copy), or when the user names it.
+- **Follow the plan the user set for each batch.** If they said "build paused, I'll check tomorrow", don't turn on or delete anything until they've checked.
+- **Ask first** for anything outside creating or deleting ads: budgets, bids, targeting, schedules, turning ad sets or campaigns on or off, and any change to older ad sets (1–79).
+- **Report every action:** what was created, turned on and deleted, with IDs.
+
 ## Ad-building playbook
 
 Before creating Prime Ingredients ads, read `meta-ads-playbook.md` and follow its structure.
