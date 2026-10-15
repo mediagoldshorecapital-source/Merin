@@ -30,3 +30,21 @@ If a request seems to need another account, stop and ask the user. Don't act.
 ## Ad-building playbook
 
 Before creating Prime Ingredients ads, read `meta-ads-playbook.md` and follow its structure.
+
+## Core rules for every Prime Ingredients ad (from the user, 2026-10-15)
+
+Apply these to every ad you create or rebuild. They override any default.
+
+- **Creative setup: all OFF.** In Ads Manager, "Creative setup" means Site links, Products (catalog), Website summaries and 2 more. Everything has to be off. When these are on they break the funnel and waste money. Never connect a catalog.
+- **Advantage+ / creative enhancements: all OFF**, with two exceptions that stay **ON**:
+  - Enhance CTA
+  - Multi-advertiser ads
+- **URL parameters on every ad** (`url_tags`): `utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&utm_term={{adset.name}}&tw_source={{site_source_name}}&tw_adid={{ad.id}}`
+- **Destination:** `https://tryprimeingredients.com/products/nmn`, Shop Now, display link `Primeingredients.com`.
+- **Spec to put on every creative.** Don't include `standard_enhancements`; the API rejects it.
+  - `"contextual_multi_ads":{"enroll_status":"OPT_IN"}`
+  - `"degrees_of_freedom_spec":{"creative_features_spec":{` with:
+    - `"enhance_cta":{"enroll_status":"OPT_IN"}`
+    - `OPT_OUT` for each of: `site_extensions`, `product_extensions`, `show_summary`, `local_store_extension`, `profile_card`, `image_touchups`, `text_optimizations`, `image_templates`, `adapt_to_placement`, `inline_comment`, `image_animation`, `add_text_overlay`, `description_automation`, `image_brightness_and_contrast`, `image_uncrop`, `audio`, `video_auto_crop`, `media_type_automation`, `show_destination_blurbs`, `reveal_details_over_time`, `text_translation`
+  - Tested and accepted by the API on 2026-10-15.
+- **Can't be set by the connector:** WhatsApp = "Use Facebook Page". Remind the user to bulk-edit it after every build.
