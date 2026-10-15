@@ -183,3 +183,13 @@ Text changes: none / <describe>
 - Kept on every new ad: link /products/nmn, Shop Now, display link, url_tags, Enhance CTA, multi-advertiser ads, Page and IG.
 - Not rebuilt: `1. 20260921_HavingtoGrab_V1` (120254437781370341). The real HavingtoGrab video isn't in Ad account media (both "HavingtoGrab" uploads are SideEffects), and the creative from the user's edit is unreadable (PRIVACY_CHECK_FAIL). It still has the old copy, so the user must edit it in Ads Manager.
 - Left paused: old `2. SideEffects_V1` (120254418516590341).
+
+## Ad set 81 rebuild (2026-10-15)
+
+Ad set `120254419640220341` ("81__Broad_USA_Creative_testing – 16-10-26", starts Oct 16 00:01 ET). All 26 ads rebuilt to the CLAUDE.md core rules: new headlines, 5 descriptions, 5 PTs (PT1 "up to 75% off"), URL parameters, every creative-setup and Advantage+ option off except Enhance CTA and multi-advertiser ads, and Add music ON for the 11 statics only.
+
+- 11 statics: same image hash as the old ads (checked one by one).
+- 15 videos: Meta re-hosted under new video IDs; every length matches the original to the millisecond (LastDay kept its original ID).
+- 26 new ads turned on, 26 old ads deleted. The ad set now holds exactly 26 ads.
+- On 2026-10-15, 5 videos were still in Meta review: Shoelace, DoubleDiscount, FallEndSale, USGovUsesNMN, PodcastExplainer.
+- Still manual: WhatsApp "Use Facebook Page" (bulk-edit in Ads Manager).
