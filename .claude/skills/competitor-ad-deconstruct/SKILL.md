@@ -80,6 +80,21 @@ words it didn't catch. Handle flagged spans like this:
 Marking uncertainty is the professional move here. Smoothing it over is the thing
 that gets a bad line into a shot script.
 
+A third failure mode leaves no flag at all: Whisper's silence filter drops
+dialogue under loud music, so whole sentences vanish (common in animated
+stories and long VSLs; `large-v3-turbo` is worst). Look for timestamp gaps of
+more than a few seconds, or one segment stretched over 15+ seconds holding a
+single short line. When you see either, run:
+
+```bash
+python3 scripts/recover_gaps.py <workdir>
+```
+
+It re-transcribes just those windows with the filter off, merges them into
+`transcript.json`, and lists them in `transcript.txt` under "Recovered spans".
+Check recovered lines against the burned-in captions, and say in the report
+which spans were recovered.
+
 ### Step 3 — Look at the video before describing it
 
 ```bash
