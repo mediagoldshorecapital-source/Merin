@@ -33,6 +33,8 @@ Before creating Prime Ingredients ads, read `meta-ads-playbook.md` and follow it
 
 ## Core rules for every Prime Ingredients ad (from the user, 2026-10-15)
 
+**Build every creative with `build_specs.py`** (in this repo): `python3 build_specs.py static "<ad name>" <image_hash>` or `python3 build_specs.py video "<ad name>" <video_id> <thumbnail_url>`. It applies every rule below, including the music asset on statics. Don't hand-write specs.
+
 Apply these to every ad you create or rebuild. They override any default.
 
 - **Creative setup: all OFF.** In Ads Manager, "Creative setup" means Site links, Products (catalog), Website summaries and 2 more. Everything has to be off. When these are on they break the funnel and waste money. Never connect a catalog.
