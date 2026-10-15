@@ -93,6 +93,12 @@ frames. If frames weren't extracted (audio-only input, no ffmpeg), write
 scene. Phase 4 visuals are different: those are directives you are authoring for
 the Prime shoot, so creative invention there is the job.
 
+It also writes `<workdir>/cover.jpg`, the first non-black frame. Put it directly
+under the video's `# Video N` heading as `![Cover — first frame · <who/what is
+on screen>](<workdir>/cover.jpg)` and add the **At a glance** line from the
+output template, so whoever opens the document can recognise the ad and its
+creator without replaying it. Look at the cover before captioning it.
+
 ### Step 4 — Write the report
 
 Read `references/output-template.md` and follow it exactly — it is the layout the

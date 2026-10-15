@@ -60,6 +60,8 @@ def main():
     ap.add_argument("markdown")
     ap.add_argument("--out", default=None)
     ap.add_argument("--title", default=None)
+    ap.add_argument("--cover-height", type=float, default=4.0,
+                    help="height in inches of ![...](...) images, e.g. the cover frame")
     a = ap.parse_args()
 
     src = open(a.markdown, encoding="utf-8").read()
@@ -99,6 +101,21 @@ def main():
             r.font.name = "Consolas"; r.font.size = Pt(9)
             r.font.color.rgb = RGBColor(0x33, 0x33, 0x33)
             continue
+
+        im = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)\s*$", line.strip())
+        if im:
+            path = im.group(2)
+            if not os.path.isabs(path):
+                path = os.path.join(os.path.dirname(os.path.abspath(a.markdown)), path)
+            if os.path.exists(path):
+                p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.add_run().add_picture(path, height=Inches(a.cover_height))
+                if im.group(1):
+                    c = doc.add_paragraph(); c.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                    r = c.add_run(im.group(1)); r.italic = True; r.font.size = Pt(9)
+            else:
+                add_runs(doc.add_paragraph(), f"[image missing: {im.group(2)}]")
+            i += 1; continue
 
         m = re.match(r"^(#{1,4})\s+(.*)$", line)
         if m:

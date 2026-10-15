@@ -15,9 +15,15 @@ wording into a real report.
 
 # Video N — [Creator / Brand / File name]
 
+![Cover — first frame · [creator, as seen: e.g. woman, ~50s, kitchen, holding bottle]](<workdir>/cover.jpg)
+
 **Source file:** `competitor_ad_03.mp4` · **Duration:** 1:11
 **Transcription:** faster-whisper large-v3 · 4 segments flagged for review
 **Visuals:** 28 frames reviewed *(or: "Visuals not analyzed — audio-only source")*
+**At a glance:** [one line from the frames + transcript to jog memory — who is on
+screen, the format (talking head / podcast clip / split-screen / animation), the
+setting, and the hook idea. Describe only what the frames show; if the creator
+isn't named on screen or in the audio, describe them instead of guessing a name.]
 
 ## Phase 1: Verbal Architecture & Funnel Classification
 

@@ -103,6 +103,16 @@ def run_faster_whisper(audio, model, lang, verbatim):
         pass
     print(f"[faster-whisper] model={model} device={device}", file=sys.stderr)
     m = WhisperModel(model, device=device, compute_type=compute)
+    # Hand faster-whisper samples, not a path: its path decoder goes through
+    # PyAV, and PyAV >= 15 dropped an argument faster-whisper 1.2 still passes.
+    # extract_audio() always produces 16 kHz mono s16le WAV, so read it directly.
+    if audio.endswith(".wav"):
+        import wave
+        import numpy as np
+        with wave.open(audio, "rb") as w:
+            if w.getframerate() == 16000 and w.getnchannels() == 1 and w.getsampwidth() == 2:
+                audio = np.frombuffer(w.readframes(w.getnframes()),
+                                      dtype=np.int16).astype(np.float32) / 32768.0
     segs, info = m.transcribe(
         audio, language=lang, word_timestamps=True, beam_size=5,
         vad_filter=True, vad_parameters={"min_silence_duration_ms": 500},
