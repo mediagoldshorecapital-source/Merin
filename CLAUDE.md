@@ -33,7 +33,7 @@ Before creating Prime Ingredients ads, read `meta-ads-playbook.md` and follow it
 
 ## Core rules for every Prime Ingredients ad (from the user, 2026-10-15)
 
-**Build every creative with `build_specs.py`** (in this repo): `python3 build_specs.py static "<ad name>" <image_hash>` or `python3 build_specs.py video "<ad name>" <video_id> <thumbnail_url>`. It applies every rule below, including the music asset on statics. Don't hand-write specs.
+**Build ads with the `/meta-ad-builder` skill** (`.claude/skills/meta-ad-builder/`). Every creative comes from its `build_specs.py`: `python3 .claude/skills/meta-ad-builder/build_specs.py static "<ad name>" <image_hash>` or `python3 .claude/skills/meta-ad-builder/build_specs.py video "<ad name>" <video_id> <thumbnail_url>`. It applies every rule below, including the music asset on statics. Don't hand-write specs.
 
 Apply these to every ad you create or rebuild. They override any default.
 
@@ -56,6 +56,8 @@ Apply these to every ad you create or rebuild. They override any default.
 - **Can't be set by the connector:** WhatsApp = "Use Facebook Page". Remind the user to bulk-edit it after every build.
 
 ## Current approved ad copy (2026-10-15)
+
+Copy now runs per Q4 period (see `.claude/skills/meta-ad-builder/campaign-calendar.md`). It's locked for the whole period, but still confirmed with the user before every build. Overlapping periods get discussed with the user before any copy is written. The copy below is the Halloween / Fall Reset period (Oct 16–31), stored as `copy/2026-q4-halloween.json`.
 
 Use this on future builds unless the user changes it. The full primary texts are in `ad-set-80-new-copy.md` (from "Prime Ingredients - final2.pdf"). The user may still send a document to check them against.
 
