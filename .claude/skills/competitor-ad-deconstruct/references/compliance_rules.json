@@ -181,7 +181,7 @@
   "structure_function_note": "Every Prime claim must describe support of a normal body structure or function. If a line implies the product acts on a disease, rewrite it or cut the beat and note the cut under Phase 4.",
   "expression_similarity_threshold": 0.8,
   "_similarity_note": "Phase 4 must preserve the competitor's BEAT STRUCTURE, cadence and timing while using Prime's own wording. Adapted lines at or above this word-overlap ratio with the source line are copied expression, not adapted structure — rewrite them.",
-  "_price_note": "Bundle dollar amounts were last confirmed in Sept 2026. The bundle STRUCTURE (B1G1/B2G2/B3G3) was reconfirmed 2026-10-15. Reconfirm dollar amounts with the user before a script goes into production spend.",
+  "_price_note": "All bundle prices reconfirmed by the user on 2026-10-15 as valid during the Halloween Sale.",
   "approved_substantiated_claims": [
     "60,000+ five-star reviews",
     "300+ clinical studies",
@@ -202,7 +202,8 @@
       "Free Astaxanthin ($30 value) over $110",
       "Free Magnesium ($80 value) over $150"
     ],
-    "guarantee": "30-day money-back guarantee"
+    "guarantee": "30-day money-back guarantee",
+    "cta_rule": "Every Prime CTA during the Halloween window states 'Up to 75% off' AND the free $250 Amazon gift card; a bundle price may follow."
   },
   "flat_discount_patterns": [
     "75% off",

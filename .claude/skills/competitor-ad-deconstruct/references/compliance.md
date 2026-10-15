@@ -78,9 +78,9 @@ Approved phrasing bank is in `compliance_rules.json → approved_claim_language`
 Per-day anchors: **~$1.33/day** (B1G1) · **~$1.11/day** (B3G3), against
 $100–$200/month boutique longevity stacks.
 
-The bundle *structure* was reconfirmed on 2026-10-15; the dollar amounts were last
-confirmed in September. Prefer "Up to 75% off" + bundle name + gift in scripts,
-and confirm dollar figures with the user before a script goes to production.
+All prices above were reconfirmed on 2026-10-15 as valid during the Halloween
+Sale. During that window every Prime CTA says **"Up to 75% off" and the free $250
+Amazon gift card**; a bundle price or per-day anchor may follow.
 The supply math (bottle = 15 days, B1G1 = 1 month) is the arithmetic most likely
 to go wrong in a fast adaptation — check it.
 
