@@ -195,3 +195,20 @@ Ad set `120254419640220341` ("81__Broad_USA_Creative_testing – 16-10-26", star
 - Still manual: WhatsApp "Use Facebook Page" (bulk-edit in Ads Manager).
 - **Correction (2026-10-16):** Add music was NOT actually on for the 11 statics; the user checked in Ads Manager. They were built with `audio` OPT_IN only. A test ad with `asset_feed_spec.audios=[{"type":"random"}]` added is waiting on the user's check (see CLAUDE.md). The 11 statics still need rebuilding once the fix is confirmed.
 - **Fixed (2026-10-16):** after the user confirmed the test ad showed Music ON, all 11 statics in ad set 81 were rebuilt with `audio` OPT_IN plus `asset_feed_spec.audios=[{"type":"random"}]`. The old no-music statics were deleted. The ad set holds 26 ads (15 videos + 11 statics). Ad sets 86/87 statics still have no music.
+
+## Ad sets 82–87 rebuild (2026-10-16)
+
+Rebuilt with the Halloween copy (`copy/2026-q4-halloween.json`) via `build_specs.py`: all rules, music on statics. Each new ad uses the same media as the ad it replaced (statics checked by hash, videos by length). Old ads were deleted only after their replacement was verified. **All new ads are PAUSED and wait for the user's check.** Ad set on/off states were not changed.
+
+| Ad set | New (paused) | Old deleted | Kept, still old copy |
+|---|---|---|---|
+| 82 | 30 | 31 (incl. paused duplicate DontUseNMN) | none |
+| 83 | 15 (14 statics + LiveTV) | 15 | 12 videos (source hidden: PRIVACY_CHECK_FAIL) + 4A Bandaid (disapproved), still ACTIVE |
+| 84 | 16 statics | 16 | 14 videos (source hidden), still ACTIVE |
+| 85 | 30 | 30 | none |
+| 86 | 30 | 30 | none |
+| 87 | 16 | 16 | none |
+
+- Renames in 82: "SheSaysThat_V1 – Copy" → "SheSaysThat_V1", "091520260928_HollywoodStars_V1" → "20260928_HollywoodStars_V1". In 83: double space removed in "1A. LiveTV".
+- The 26 hidden videos in 83/84 need the MP4s uploaded to Ad account media (or a hand edit in Ads Manager) before they can be rebuilt.
+- To go live: turn on the new ads (82 starts Oct 18 00:01 ET). Bulk-edit WhatsApp → "Use Facebook Page".
