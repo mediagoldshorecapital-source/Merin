@@ -135,6 +135,7 @@ Before building a video ad, compare the Meta video `length` with the Drive origi
 - Ad set `87__Broad_USA_Creative_testing – 28-10-26` (`120254446150740341`), same settings as 86, start 2026-10-28 00:01 ET, turned off
 - Drive folder `161yfT6--WDmTMksKhYC797E34X7QFZmc`: subfolders Images (`1lgT32zvNvSSLRyzNtzf-y8zdo2E7ZZ4A`, 20 statics `20261003-Static_V (1..20).png`) and Videos (`18ez2UMWz5Bm1pxVsZTL8SRBPYIJztCN3`, 9 videos, no number prefix)
 - 16E–30E built 2026-10-13 from Static_V (1)–(15), off. Static_V (16)–(20) not used yet (waiting on the user)
+- 2026-10-16: the user chose to build Static_V (16)–(20) as extra ads 31E–35E (Halloween copy, paused). Built and verified (hash, title, description, CTA): 31E `120254512566570341` (b026c71d…), 32E `120254512571250341` (2114ec85…), 33E `120254512578850341` (db926c6c…), 34E `120254512584270341` (82c91d8d…), 35E `120254512587930341` (52d507f5…). Create responses show 5/5/5 copy, `audios` random and `audio` OPT_IN. Ad set 87 now has 21 ads; it reaches 29 when the 8 missing videos are uploaded.
 - 9E GetThisTonight_V1 (video 4525729444352440, 19.388s, matches Drive 19.389s) built 2026-10-13, off
 - Drive video lengths, used to check uploads: 61yrNMNefferct 97.965 · BiggerThanCreatine 118.26 · EndsToday 7.338 · Explainer 115.171 · GetThisTonight 19.389 · HonestReviews 350.041 · Iam40 78.577 · NADorNMNt 101.657 · Tedtalk 189.034
 
@@ -213,4 +214,4 @@ Rebuilt with the Halloween copy (`copy/2026-q4-halloween.json`) via `build_specs
 - The 26 hidden videos in 83/84 need the MP4s uploaded to Ad account media (or a hand edit in Ads Manager) before they can be rebuilt.
 - To go live: turn on the new ads (82 starts Oct 18 00:01 ET). Bulk-edit WhatsApp → "Use Facebook Page".
 - 2026-10-16: the user asked to delete 4A Bandaid (`120254422868250341`, DISAPPROVED). The connector's delete was refused: "Ad Creative Is Incomplete: The reel you selected for your ad is not available" (code 100 / 2446289). Meta re-checks the hidden video even on delete, so the ad has to be deleted by hand in Ads Manager. The other hidden-video ads in 83/84 will probably hit the same error when their replacements are ready.
-- Ad set 87 statics: Drive has 20 statics (all different, by md5) but the ad set plan has 15 static slots (16E–30E, built from Static_V (1)–(15)). Static_V (16)–(20) are unused, waiting on the user's call on where they go.
+- Ad set 87 statics: Drive has 20 statics (all different, by md5). Static_V (16)–(20) were built as 31E–35E on 2026-10-16 (see the ad set 87 section).
