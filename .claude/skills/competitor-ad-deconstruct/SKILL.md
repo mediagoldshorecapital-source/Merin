@@ -1,6 +1,6 @@
 ---
 name: competitor-ad-deconstruct
-description: Transcribe competitor video/audio ads word-for-word with timestamps and produce the Prime Ingredients 6-phase creative deconstruction report (funnel + awareness classification, timestamped beat transcript, macro formula, customer-psychologist audit table, 1:1 minimal-edit Prime Ingredients adaptation script, modular variable-tagged skeleton, and 3 alternative hooks). Use this skill whenever the user shares an ad video, Reel, TikTok, UGC clip, VSL, .mp4/.mov/.mp3/.wav file, a screen-recorded competitor ad, or an ad transcript and wants it transcribed, broken down, analyzed, reverse-engineered, swiped, adapted, or "made into a Prime version" — even if they only say "here's a competitor ad, do your thing", "break this down", "analyze this ad", "write me a script based on this", or "transcribe this". Also use it when they ask for hook variations, ad teardowns, swipe-file entries, or COMPETITOR_ADS-style docs.
+description: Transcribe competitor video/audio ads word-for-word with timestamps and produce the Prime Ingredients 6-phase creative deconstruction report (funnel + awareness classification, timestamped beat transcript, macro formula, customer-psychologist audit table, 1:1 minimal-edit Prime Ingredients adaptation script, modular variable-tagged skeleton, and 3 alternative hooks). Use this skill whenever the user shares an ad video, Reel, TikTok, UGC clip, VSL, .mp4/.mov/.mp3/.wav file, a screen-recorded competitor ad, or an ad transcript and wants it transcribed, broken down, analyzed, reverse-engineered, swiped, adapted, or "made into a Prime version" — even if they only say "here's a competitor ad, do your thing", "break this down", "analyze this ad", "write me a script based on this", or "transcribe this". Also use it when they ask for hook variations, ad teardowns, swipe-file entries, or COMPETITOR_ADS-style docs, and whenever they share a Google Drive folder (or link) of competitor or "winning" ads — that run ends with one downloadable Word file and PDF for the whole folder.
 ---
 
 # Competitor Ad Deconstruction & Prime Adaptation Engine
@@ -154,7 +154,8 @@ working; overriding it defeats the entire point of the skill.
 ### Step 6 — Deliver
 
 Report the verifier's result in your reply (e.g. "verifier: 14/14 quotes matched,
-0 compliance hits"). If the user wants a Word doc like their existing file:
+0 compliance hits"). For a whole folder of ads, see **Batch mode** below — it
+ends with one combined Word + PDF. For a single ad as a Word doc:
 
 ```bash
 python3 scripts/build_docx.py <report.md> --out <report.docx>
@@ -180,9 +181,43 @@ If a competitor claim has no Prime-side equivalent that survives compliance, cut
 it and say so in a one-line note under Phase 4 rather than inventing a
 substitute claim. A missing beat is fixable; a non-compliant one is a liability.
 
-## Batch mode
+## Batch mode (a Drive folder or several ads)
 
-Multiple ads at once: run Steps 1–5 per ad in its own `<workdir>`, then append
-each report as a `# Video N — <Creator/Brand>` section of one document, matching
-how `COMPETITOR_ADS_1.docx` is organized. Never let one ad's transcript bleed into
-another's analysis — separate working directories exist to prevent exactly that.
+This is the user's standard request: they share a Google Drive folder of winning
+ads (e.g. October - Winners / 15 Oct / Videos) and want every ad torn down.
+**The deliverable is always one downloadable Word file and one PDF** covering the
+whole folder — the team uploads them to Drive, where everyone reads them. A
+Claude Doc with one tab per video is optional (handy for comments), but never the
+only output: a doc exports one tab at a time, which is useless for 40+ videos.
+
+1. **Download.** List the folder's files and save each as `NN.mp4` (numbered in
+   Drive order) with a `manifest.tsv` of number, Drive id and original filename.
+   Public files download from
+   `https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t`;
+   a public folder lists via `https://drive.google.com/embeddedfolderview?id=<FOLDER_ID>`.
+2. **Dedupe.** `md5sum` every file; identical files are duplicates. Analyse the
+   first copy only and record pairs as `copy=original` (e.g. `24=12`).
+3. **Per video, in its own `<workdir>/NN/`:** Steps 1–5 above — transcribe with
+   `large-v3`, run `recover_gaps.py` when the transcript has holes, extract
+   frames + `cover.jpg`, write `report.md` (cover line and **At a glance** under
+   the heading), verify. Never let one ad's transcript bleed into another's
+   analysis — separate working directories exist to prevent exactly that.
+4. **Front matter** (`front.md`): how to use the document, the offer used in
+   every CTA, an index table (# · brand · what it is · length · funnel ·
+   awareness · hook type), and the patterns that repeat across the folder
+   (shared scripts, formats each brand owns, what transfers to Prime, what to
+   avoid, where to start testing).
+5. **Build the files:**
+
+   ```bash
+   python3 scripts/build_folder_report.py <workdir> \
+       --title "Competitor Ads — <folder name>" \
+       --subtitle "<Drive path> · <N> files · Prime Ingredients NMN teardowns" \
+       --front front.md --duplicates 24=12 33=27 --out <dir>/Competitor_Ads_<folder>
+   ```
+
+   It re-verifies every report (a failure stops the build), stamps each
+   section with its verifier result, starts each video on a new page with its
+   cover frame, and writes `.docx` + `.pdf`.
+6. **Send both files** to the user (SendUserFile, as attachments) and give their
+   full paths in the reply in case the attachments don't show.
