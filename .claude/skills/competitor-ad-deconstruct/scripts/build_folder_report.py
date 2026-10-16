@@ -11,6 +11,8 @@ Layout expected:
     <workdir>/NN/report.md      one per video (NN = 01, 02, ...)
     <workdir>/NN/cover.jpg      first frame (from extract_frames.py)
     <workdir>/NN/transcript.json
+    (NN may be a symlink into a shared library when one ad appears in several
+    folders; its "# Video XX —" heading is renumbered per folder.)
 
 Usage:
     python3 build_folder_report.py <workdir> --title "Competitor Ads — 15 Oct" \
@@ -47,9 +49,13 @@ def verify(report, transcript):
     return int(m.group(1))
 
 
-def section(n, d, cover_height):
+def section(n, d, cover_height, label=None):
     report = os.path.join(d, "report.md")
     t = open(report).read()
+    # A report can be shared by several folders: number it for this one.
+    t = re.sub(r"(?m)^# Video(?: [0-9X]+)? —", f"# Video {n} —", t, count=1)
+    if label:
+        t = re.sub(r"(?m)^(# Video .*)$", lambda m: m.group(1) + f"\n\n**Drive subfolder:** {label}", t, count=1)
     tj = os.path.join(d, "transcript.json")
     k = verify(report, tj)
     if k is not None and "**Verifier:**" not in t:
@@ -71,11 +77,13 @@ def main():
     p.add_argument("--duplicates", nargs="*", default=[], help="pairs like 24=12 (copy=original)")
     p.add_argument("--out", required=True, help="output path without extension")
     p.add_argument("--cover-height", type=float, default=3.6)
+    p.add_argument("--labels", help="TSV of NN<TAB>Drive subfolder, shown under each heading")
     a = p.parse_args()
 
     if not shutil.which("pandoc"):
         sys.exit("pandoc is not installed; fall back to build_docx.py per report.")
     dups = dict(x.split("=") for x in a.duplicates)
+    labels = dict(l.rstrip("\n").split("\t", 1) for l in open(a.labels)) if a.labels else {}
     nums = sorted({n for n in os.listdir(a.workdir) if re.fullmatch(r"\d+", n)} | set(dups), key=int)
 
     body, heads = [], []
@@ -83,7 +91,8 @@ def main():
         body.append(PAGE_BREAK)
         if n in dups:
             o = dups[n]
-            first = open(os.path.join(a.workdir, o, "report.md")).readline().lstrip("# ").strip()
+            first = re.sub(r"^Video(?: [0-9X]+)? —", f"Video {o} —",
+                           open(os.path.join(a.workdir, o, "report.md")).readline().lstrip("# ").strip())
             h = f"Video {n} — duplicate of Video {o}"
             body.append(f"# {h}\n\nThis file is a byte-for-byte copy of Video {o} (same checksum). "
                         f"The full teardown is under **{first}**.\n")
@@ -91,7 +100,7 @@ def main():
             d = os.path.join(a.workdir, n)
             if not os.path.exists(os.path.join(d, "report.md")):
                 sys.exit(f"Missing {d}/report.md")
-            t = section(n, d, a.cover_height)
+            t = section(n, d, a.cover_height, labels.get(n))
             h = re.search(r"(?m)^# (.+)$", t).group(1)
             body.append(t)
         heads.append(h)
