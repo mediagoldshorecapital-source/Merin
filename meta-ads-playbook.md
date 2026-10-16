@@ -212,3 +212,5 @@ Rebuilt with the Halloween copy (`copy/2026-q4-halloween.json`) via `build_specs
 - Renames in 82: "SheSaysThat_V1 – Copy" → "SheSaysThat_V1", "091520260928_HollywoodStars_V1" → "20260928_HollywoodStars_V1". In 83: double space removed in "1A. LiveTV".
 - The 26 hidden videos in 83/84 need the MP4s uploaded to Ad account media (or a hand edit in Ads Manager) before they can be rebuilt.
 - To go live: turn on the new ads (82 starts Oct 18 00:01 ET). Bulk-edit WhatsApp → "Use Facebook Page".
+- 2026-10-16: the user asked to delete 4A Bandaid (`120254422868250341`, DISAPPROVED). The connector's delete was refused: "Ad Creative Is Incomplete: The reel you selected for your ad is not available" (code 100 / 2446289). Meta re-checks the hidden video even on delete, so the ad has to be deleted by hand in Ads Manager. The other hidden-video ads in 83/84 will probably hit the same error when their replacements are ready.
+- Ad set 87 statics: Drive has 20 statics (all different, by md5) but the ad set plan has 15 static slots (16E–30E, built from Static_V (1)–(15)). Static_V (16)–(20) are unused, waiting on the user's call on where they go.
