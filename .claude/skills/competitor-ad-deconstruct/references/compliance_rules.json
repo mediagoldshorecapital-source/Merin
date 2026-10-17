@@ -119,7 +119,10 @@
     "16.66",
     "1.33",
     "1.11",
-    "250"
+    "250",
+    "50",
+    "110",
+    "150"
   ],
   "approved_price_context": {
     "39.97": "Buy 1 Get 1 (2 bottles, 60 capsules) — $19.99/bottle, 1-month supply at 2 capsules/day",
@@ -129,7 +132,8 @@
     "16.66": "per-bottle price on Buy 3 Get 3 only",
     "1.33": "approx cost per day on Buy 1 Get 1 ($39.97 / 30 days)",
     "1.11": "approx cost per day on Buy 3 Get 3 ($99.98 / 90 days)",
-    "250": "FREE $250 Amazon gift card — Halloween Sale gift (website, Oct 2026)"
+    "250": "FREE $250 Amazon gift card — Halloween Sale gift (website, Oct 2026)",
+    "50 / 110 / 150": "cart-reward thresholds: free shipping over $50, free Astaxanthin over $110, free Magnesium over $150 (see current_offer)"
   },
   "product_facts": {
     "name": "Prime Ingredients NMN Ultimate 10-in-1",
