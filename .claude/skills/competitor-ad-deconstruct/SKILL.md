@@ -221,3 +221,35 @@ only output: a doc exports one tab at a time, which is useless for 40+ videos.
    cover frame, and writes `.docx` + `.pdf`.
 6. **Send both files** to the user (SendUserFile, as attachments) and give their
    full paths in the reply in case the attachments don't show.
+
+## Static mode (image ads and carousels)
+
+Static ads follow the same rule: what the machine read is the evidence. OCR
+replaces the transcript.
+
+1. **Read the image text.** `python3 scripts/ocr_image.py slide_1.jpg [slide_2.jpg …] --outdir <workdir>`
+   writes `ocr.json` and `ocr.txt` (needs `pip install rapidocr_onnxruntime`).
+   Keep `slide_N.jpg` and a `cover.jpg` (the image, or all slides side by side)
+   in the workdir.
+2. **Write `report.md`.** Look at every slide, and use `ocr.txt` only to cross-check.
+   - Heading: `# Static XX — <Brand> <product> ("<headline>")`.
+   - Phase 1 "On-Image Copy" quotes every printed line as `**Headline (slide 1):** "…"`.
+     Mark small print the OCR could not read as `[unverified: "…"]`.
+   - Phase 4 is a *Static Brief*: a table `| Element | Copy | Visual & Design Direction |`
+     with rows named Headline, Subhead, Product hero, Proof strip, Offer badge, CTA
+     button and Meta primary text / headline / description.
+     - Then an **Image-generation prompt** paragraph for the photo layer, using
+       Prime's exact label copy.
+     - Then **Elements cut for compliance**.
+3. **Verify:** `verify_report.py report.md --transcript ocr.json --static`.
+   - OCR near-matches (≥75%) pass with a warning.
+   - Spacing and 0/O or 1/l confusions are ignored.
+   - `[unverified]` text is skipped, not passed.
+4. **Mockup.** `build_folder_report.py` detects static workdirs (an `ocr.json` and no
+   `transcript.json`) and runs `render_mockup.py`. That draws the Phase 4 copy in the
+   Prime brand system around `references/prime_bottle.png`. The result is placed as
+   `compare.jpg` (competitor | Prime layout mockup) under the Phase 4 heading. Tell
+   the user it is a layout and copy guide, not final art; the image prompt is for
+   the final photo.
+5. **Build the files** exactly as in batch mode, with a title like "Competitor Statics — <folder>".
+   In the index, use a Format column instead of Length.

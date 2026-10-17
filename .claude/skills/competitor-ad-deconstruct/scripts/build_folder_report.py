@@ -37,12 +37,12 @@ PAGE_BREAK = '\n```{=openxml}\n<w:p><w:r><w:br w:type="page"/></w:r></w:p>\n```\
 PANDOC_FMT = "markdown+raw_attribute-tex_math_dollars-tex_math_single_backslash-subscript-superscript"
 
 
-def verify(report, transcript):
+def verify(report, transcript, static=False):
     """Return the number of quotes traced, or None if the report has no transcript."""
     if not os.path.exists(transcript):
         return None
-    r = subprocess.run([sys.executable, "-I", VERIFY, report, "--transcript", transcript],
-                       capture_output=True, text=True)
+    r = subprocess.run([sys.executable, "-I", VERIFY, report, "--transcript", transcript]
+                       + (["--static"] if static else []), capture_output=True, text=True)
     m = re.search(r"PASSED\S* — (\d+) quoted", r.stdout)
     if not m:
         sys.exit(f"Verifier failed for {report} — fix it before building:\n{r.stdout[-1500:]}")
@@ -53,15 +53,26 @@ def section(n, d, cover_height, label=None):
     report = os.path.join(d, "report.md")
     t = open(report).read()
     # A report can be shared by several folders: number it for this one.
-    t = re.sub(r"(?m)^# Video(?: [0-9X]+)? —", f"# Video {n} —", t, count=1)
+    t = re.sub(r"(?m)^# (Video|Static)(?: [0-9X]+)? —", lambda m: f"# {m.group(1)} {n} —", t, count=1)
     if label:
         t = re.sub(r"(?m)^(# Video .*)$", lambda m: m.group(1) + f"\n\n**Drive subfolder:** {label}", t, count=1)
     tj = os.path.join(d, "transcript.json")
-    k = verify(report, tj)
+    static = not os.path.exists(tj) and os.path.exists(os.path.join(d, "ocr.json"))
+    k = verify(report, os.path.join(d, "ocr.json") if static else tj, static)
     if k is not None and "**Verifier:**" not in t:
-        t = re.sub(r"(\*\*Transcription:\*\*[^\n]*)",
-                   lambda m: m.group(1).rstrip() + f" · **Verifier:** passed, {k}/{k} quotes traced to the audio",
-                   t, count=1)
+        stamp = (f"quotes checked against the machine-read image text ({k})" if static
+                 else f"passed, {k}/{k} quotes traced to the audio")
+        t = re.sub(r"(\*\*(?:Transcription|On-image text):\*\*[^\n]*)",
+                   lambda m: m.group(1).rstrip() + f" · **Verifier:** {stamp}", t, count=1)
+    if static:   # draw the Prime layout mockup next to the competitor image
+        r = subprocess.run([sys.executable, "-I", os.path.join(HERE, "render_mockup.py"), d,
+                            "--bottle", os.path.join(HERE, "..", "references", "prime_bottle.png")],
+                           capture_output=True, text=True)
+        cmp_img = os.path.abspath(os.path.join(d, "compare.jpg"))
+        if r.returncode == 0 and os.path.exists(cmp_img):
+            t = re.sub(r"(?m)^(## Phase 4[^\n]*\n)",
+                       lambda m: m.group(1) + f"\n![Competitor (left) and the Prime version as a layout mockup (right)]({cmp_img}){{width=6.2in}}\n\n",
+                       t, count=1)
     cover = os.path.abspath(os.path.join(d, "cover.jpg"))
     t = re.sub(r"!\[([^\]]*)\]\((?:[^)]*/)?cover\.jpg\)",
                lambda m: f"![{m.group(1)}]({cover}){{height={cover_height}in}}", t)
@@ -91,10 +102,11 @@ def main():
         body.append(PAGE_BREAK)
         if n in dups:
             o = dups[n]
-            first = re.sub(r"^Video(?: [0-9X]+)? —", f"Video {o} —",
-                           open(os.path.join(a.workdir, o, "report.md")).readline().lstrip("# ").strip())
-            h = f"Video {n} — duplicate of Video {o}"
-            body.append(f"# {h}\n\nThis file is a byte-for-byte copy of Video {o} (same checksum). "
+            line1 = open(os.path.join(a.workdir, o, "report.md")).readline().lstrip("# ").strip()
+            kind = "Static" if line1.startswith("Static") else "Video"
+            first = re.sub(r"^(Video|Static)(?: [0-9X]+)? —", f"{kind} {o} —", line1)
+            h = f"{kind} {n} — duplicate of {kind} {o}"
+            body.append(f"# {h}\n\nThis file is a byte-for-byte copy of {kind} {o} (same checksum). "
                         f"The full teardown is under **{first}**.\n")
         else:
             d = os.path.join(a.workdir, n)

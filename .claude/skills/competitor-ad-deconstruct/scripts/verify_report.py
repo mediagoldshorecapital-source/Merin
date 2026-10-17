@@ -95,6 +95,8 @@ def quotes_in(text):
     # [unclear: "word"] stands for the word the ASR heard, so check that word;
     # [inaudible]/[no speech] spans become a fragment break.
     text = re.sub(r'\[unclear:\s*["“]([^"”]+)["”][^\]]*\]', r"\1", text)
+    # Static ads: small print the OCR could not read is marked, not checked.
+    text = re.sub(r'\[unverified:[^\]]*\]', " … ", text, flags=re.I)
     text = MARKER_RE.sub(" … ", text)
     for q in re.findall(r'"([^"]{4,})"|“([^”]{4,})”', text):
         out.append(q[0] or q[1])
@@ -111,6 +113,19 @@ def parse_beats(text):
         beats.append({"name": name, "start": t0, "end": t1, "quotes": qs, "raw": line})
     return beats
 
+STATIC_RE = re.compile(
+    r"^\s*[-*]?\s*\*{0,2}([A-Za-z][A-Za-z0-9 /&'\-]*?)\s*\((?:slide\s*\d+|image)\)\*{0,2}\s*:?\s*\*{0,2}\s*(.*)$",
+    re.I)
+
+def parse_static_copy(text):
+    """Static ads: '**Headline (slide 1):** "words"' lines in Phase 1."""
+    out = []
+    for line in text.splitlines():
+        m = STATIC_RE.match(line.strip())
+        if m:
+            out.append({"name": m.group(1).strip(), "quotes": quotes_in(m.group(2)), "raw": line})
+    return out
+
 def table_rows(text):
     rows = []
     for line in text.splitlines():
@@ -118,7 +133,7 @@ def table_rows(text):
         if not (s.startswith("|") and s.count("|") >= 3): continue
         cells = [c.strip() for c in s.strip("|").split("|")]
         if all(re.fullmatch(r":?-{2,}:?", c) for c in cells if c): continue
-        if cells and re.search(r"spoken audio line|time\s*/\s*beat|audio\s*/\s*spoken",
+        if cells and re.search(r"spoken audio line|on-image copy|time\s*/\s*beat|audio\s*/\s*spoken|^element$",
                                cells[0], re.I): continue
         rows.append(cells)
     return rows
@@ -143,7 +158,7 @@ def check_verbatim(quote, hay_norm, hay_raw):
             cand = " ".join(hw[i:i + len(w)])
             r = difflib.SequenceMatcher(None, n, cand).ratio()
             if r > bs: bs, best = r, cand
-        results.append(("fail", f, f"closest actual audio ({bs:.0%}): \"{best}\""))
+        results.append(("fail", f, f"closest actual text ({bs:.0%}): \"{best}\""))
     return results
 
 def word_hits(text, terms):
@@ -161,6 +176,10 @@ def main():
     ap.add_argument("report")
     ap.add_argument("--transcript", required=True, help="transcript.json or .txt")
     ap.add_argument("--rules", default=DEFAULT_RULES)
+    ap.add_argument("--static", action="store_true",
+                    help="static image ad: --transcript is the OCR json; on-image copy lines "
+                         "('**Headline (slide 1):** \"...\"') are checked against it, allowing "
+                         "near matches (OCR misreads stylised type); no timestamps")
     ap.add_argument("--strict-similarity", action="store_true",
                     help="treat copied competitor wording as a hard failure")
     a = ap.parse_args()
@@ -178,6 +197,8 @@ def main():
         hay_raw = open(a.transcript, encoding="utf-8").read()
         hay_raw = "\n".join(l for l in hay_raw.splitlines() if not l.startswith("#"))
     hay_norm = norm(hay_raw)
+    if not hay_norm and a.static:
+        hay_norm, hay_raw = "\x00", ""   # an image with no text: only [no on-image text] reports can pass
     if not hay_norm:
         print(f"{RED}FAIL: transcript is empty — there is nothing to verify against.{RESET}")
         sys.exit(1)
@@ -187,13 +208,43 @@ def main():
 
     print(f"{BOLD}=== Verifying {os.path.basename(a.report)} ==={RESET}")
     if tmeta:
-        print(f"Source: {os.path.basename(tmeta.get('source',''))} | "
+        src = tmeta.get("source", "")
+        src = ", ".join(src) if isinstance(src, list) else os.path.basename(src)
+        print(f"Source: {src} | "
               f"{tmeta.get('backend')}/{tmeta.get('model')} | "
               f"{tmeta.get('word_count','?')} words\n")
 
+    def judge(results, where):
+        nonlocal checked
+        for status, frag, note in results:
+            if status == "skip": continue
+            checked += 1
+            ocr = lambda s: s.replace(" ", "").replace("0", "o").replace("1", "l")
+            if status == "fail" and a.static and ocr(norm(frag)) in ocr(hay_norm):
+                continue   # OCR ran words together ("ThreeCapsules"); same letters, same order
+            if status == "fail":
+                pct = re.search(r"\((\d+)%\)", note)
+                if a.static and pct and int(pct.group(1)) >= 75:
+                    warns.append(f'{where}: OCR near-match only ({pct.group(1)}%) for "{frag.strip()[:70]}" — confirm against the image.')
+                else:
+                    fails.append(f'{where} not on the {"image (OCR)" if a.static else "recording"}: "{frag.strip()[:90]}"\n      {note}')
+
+    if a.static:
+        copy = parse_static_copy(secs.get("phase 1", ""))
+        nocopy = re.search(r"\[no on-image text\]", secs.get("phase 1", ""), re.I)
+        if not copy and not nocopy:
+            fails.append('Phase 1 has no on-image copy lines. Expected: **Headline (slide 1):** "exact words" — or write [no on-image text].')
+        for c in copy:
+            for q in c["quotes"]:
+                judge(check_verbatim(q, hay_norm, hay_raw), f'Phase 1 [{c["name"]}]')
+        for r in table_rows(secs.get("phase 3", "")):
+            for q in (quotes_in(r[0]) or [r[0]]):
+                judge(check_verbatim(q, hay_norm, hay_raw), "Phase 3 column 1")
+        beats, p3 = [], table_rows(secs.get("phase 3", ""))
+
     # --- 1. Phase 1 beat quotes -------------------------------------------
-    beats = parse_beats(secs.get("phase 1", ""))
-    if not beats:
+    beats = beats if a.static else parse_beats(secs.get("phase 1", ""))
+    if not beats and not a.static:
         fails.append("Phase 1 has no parseable beat lines. Expected: "
                      '**Hook (0:00–0:07):** "verbatim words"')
     for b in beats:
@@ -231,7 +282,7 @@ def main():
     p3 = table_rows(secs.get("phase 3", ""))
     if not p3:
         warns.append("Phase 3 audit table has no data rows.")
-    for r in p3:
+    for r in ([] if a.static else p3):   # static rows were judged above
         for q in (quotes_in(r[0]) or [r[0]]):
             for status, frag, note in check_verbatim(q, hay_norm, hay_raw):
                 checked += 1
@@ -316,12 +367,13 @@ def main():
         print(f"{RED}FAIL{RESET} {f}")
 
     if fails:
+        src = "the image (ocr.txt is the cross-check)" if a.static else "transcript.txt"
         print(f"\n{RED}{BOLD}{len(fails)} failure(s).{RESET} Fix by requoting from "
-              f"transcript.txt — never by adjusting the check. A quote that is not "
-              f"in the audio is not a quote.")
+              f"{src} — never by adjusting the check. A quote that is not "
+              f"in the source is not a quote.")
         sys.exit(1)
     print(f"\n{GRN}{BOLD}PASSED{RESET} — {checked} quoted fragments all trace to the "
-          f"recording; {len(warns)} warning(s) for review.")
+          f"{'image text' if a.static else 'recording'}; {len(warns)} warning(s) for review.")
     sys.exit(0)
 
 if __name__ == "__main__":
