@@ -215,3 +215,23 @@ Rebuilt with the Halloween copy (`copy/2026-q4-halloween.json`) via `build_specs
 - To go live: turn on the new ads (82 starts Oct 18 00:01 ET). Bulk-edit WhatsApp → "Use Facebook Page".
 - 2026-10-16: the user asked to delete 4A Bandaid (`120254422868250341`, DISAPPROVED). The connector's delete was refused: "Ad Creative Is Incomplete: The reel you selected for your ad is not available" (code 100 / 2446289). Meta re-checks the hidden video even on delete, so the ad has to be deleted by hand in Ads Manager. The other hidden-video ads in 83/84 will probably hit the same error when their replacements are ready.
 - Ad set 87 statics: Drive has 20 statics (all different, by md5). Static_V (16)–(20) were built as 31E–35E on 2026-10-16 (see the ad set 87 section).
+
+## Drive reorganized by ad set (2026-10-18)
+
+The creatives for ad sets 80–87 now live in one folder per Meta ad set, named exactly like the ad set, under **"Meta ad sets 80-87"** (`1GQVRjl0jM-ir7dLiaX1voRH-m8nRSwqA`) inside the shared "2. Video Editor" folder (`1ng4U0MmER_6v1NajZH-oToyrh8C4Lggj`). Each has `Images` and `Videos` subfolders. File names were not changed, so they still match the Meta ad names.
+
+| Ad set | Folder ID | Old Drive folder | Files |
+|---|---|---|---|
+| 80 | `1gDk9BUoMPnKVrDF7jdU9FPVJBToMTAkz` | 43. Winning Creatives | 26 |
+| 81 | `1fCI7BUr-aQjaTTcpac8WWxP3qUvzeI8F` | 46. Winning ads V13 | 26 |
+| 82 | `1Wbs43fJPGF_dXDpheGkcYSnkQ86Xus-L` | 49. Winning Ads V15 | 30 |
+| 83 | `1E7-qhbRxBMjqw-QCC3glGBqTCAy07kKa` | 50. Winning Ads V16 | 28 |
+| 84 | `1Jy5kWckRseRJVSoMzhpxoWr59sfb1jA6` | 51. Winning Ads V17 | 30 |
+| 85 | `1ryd56kAlCNqQgk-ICtwH7JAV49tLJCPS` | 52. Winning Ads V18 | 30 |
+| 86 | `13417Oa-byfCyBDlSkM310Asd82Nep0CZ` | 53. Winning Ads V19 | 30 |
+| 87 | `1te8joZYAjDqfEEHMrOzwwBi1g3nzCvHv` | 54. Winning ads V20 | 29 (incl. the 8 videos not built yet) |
+
+- 226 files were moved. 3 videos in ad set 80 (BestDuo, Buy1Get1Free, UniverseSign) are owned by su8910bag@gmail.com and couldn't be moved, so copies were put in the ad set 80 folder; the originals are still in folder 43.
+- Left behind on purpose (no ad uses them): `20260929_Static_V (3).png` and `20260929_ListenToThis_V1.mp4` in folder 50.
+- The old folders 46, 49, 51, 52, 53 and 54 are now empty. The Drive folder IDs logged earlier for batches C, D and E (52, 53, 54) point to those empty folders; use the ad set folders above instead.
+- Verified by listing every new folder: 229/229 files in the right place, nothing missing or extra.
