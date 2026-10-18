@@ -235,3 +235,12 @@ The creatives for ad sets 80–87 now live in one folder per Meta ad set, named 
 - Left behind on purpose (no ad uses them): `20260929_Static_V (3).png` and `20260929_ListenToThis_V1.mp4` in folder 50.
 - The old folders 46, 49, 51, 52, 53 and 54 are now empty. The Drive folder IDs logged earlier for batches C, D and E (52, 53, 54) point to those empty folders; use the ad set folders above instead.
 - Verified by listing every new folder: 229/229 files in the right place, nothing missing or extra.
+
+## Active ads reference folder (2026-10-18)
+
+**"Active Meta ads – reference (Oct 18)"** (`1IOukstX6jX4oLzRAjpqdWbuPcs9BHJIl`) in "2. Video Editor" holds the Drive file of every ad that was ACTIVE on 2026-10-18 and has a same-name file in Drive, one subfolder per ad set (named exactly like the ad set) with Images/Videos inside. Ad sets 80–87 are not repeated here; they live in "Meta ad sets 80-87".
+
+- 21 ad sets (56, 57, 59–64, 67, 68–79), 302 active ads, 301 files (two ads in 67 share one file). Verified by listing: 301/301 in the right folder.
+- 176 files were moved. 125 could not be moved (owned by editor accounts such as maxi10105c@gmail.com), so a same-name copy was put in the ad set folder and the original stayed put: all files for ad sets 56, 57, 59, 60, 61, 62, 63.
+- Choices: ad set 62 "LastDayofCrazyPriceDrop" and "ReverseAging" exist in several folders; the `.Corrected Creatives` versions were used. In folder 45, names that differ only by one vs two spaces were matched exactly to the ad name.
+- Not in Drive at all (210 active ads): ad sets 66 and part of 67 (AI statics with descriptive names), 55–58 generic names, a few older ones. 173 are images (downloadable from Meta), 15 videos (no download link from Meta), 22 other formats.
